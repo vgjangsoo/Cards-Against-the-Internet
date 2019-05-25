@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  isQuestion: false
+  content: MyString
+  fromInternet: false
+
+two:
+  isQuestion: false
+  content: MyString
+  fromInternet: false

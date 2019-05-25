@@ -14,7 +14,18 @@ class Api::TestsController < ApplicationController
         data2: @data2 
       }
     }
-
   end
+
+  def show_cards
+    @cards = Card.all.order(created_at: :desc)
+
+    render :json => {
+      message: {
+        cards: @cards 
+      }
+    }
+  end
+
+
 
 end
