@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: 'Click the button to load data!'
+      redirect: false
     }
   }
 
@@ -27,9 +27,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>{ this.state.message }</h1>
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>        
+        <button>
+          <a href="/lobby" className="button">
+          Go to the lobby</a>
+        </button>
       </div>
     );
   }
