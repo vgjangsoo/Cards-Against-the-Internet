@@ -38,18 +38,13 @@ Card.create!({
     content: "Uh, hey guys, I know this was my idea, but I’m having serious doubts about ____."
   })
 
-  Card.create!({
-    isQuestion: true,
-    fromInternet: false,
-    content: "hat’s that smell?"
-  })
 
   puts 'Creating Answer cards'
 
   Card.create!({
     isQuestion: true,
     fromInternet: false,
-    content: "hat’s that smell?"
+    content: "What’s that smell?"
   })
 
   puts 'Creating ANSWER cards'
@@ -82,7 +77,7 @@ Card.create!({
   Card.create!({
     isQuestion: false,
     fromInternet: false,
-    content: "An endless stream of diarrhoea."
+    content: "An endless stream of diarrhea."
   })
 
   puts 'Finshed creating ANSWERS card'

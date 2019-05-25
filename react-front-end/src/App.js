@@ -8,11 +8,7 @@ class App extends Component {
     super(props)
     this.state = {
       message: 'Click the button to load data!',
-<<<<<<< HEAD
-      cards: []
-=======
       data: 'Data: nothing to show here'
->>>>>>> chris-repo
     }
   }
 
@@ -24,6 +20,8 @@ class App extends Component {
 
       console.log(response.data.message)
       console.log(response.data.message.cards) // Just the message
+      console.log(response.data.message.cards[0]) // Just the message
+
       this.setState({
         cards: response.data.message.cards
       });
@@ -53,13 +51,11 @@ class App extends Component {
   render() {
     let cardData = [];
     for (let elm in this.state.cards) {
-      cardData.push(elm)
+      cardData.push(this.state.cards[elm].content)
     }
 
     return (
       <div className="App">
-        <h1> Message: { this.state.message }</h1>
-        <h2> Data: {this.state.data} </h2>
         <button onClick={this.fetchData} >
           Fetch Data
         </button>  
@@ -67,6 +63,7 @@ class App extends Component {
         <button onClick={this.fetchData2} >
           Change both
         </button> 
+         {cardData.map( elm => <h1> {elm + '\n'} </h1>)}
       </div>
     );
   }
