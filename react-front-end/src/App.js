@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Card from "./Card.jsx"
+import Card from "./Card.jsx";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import Lobby from "./Lobby.jsx";
+import Game from "./Game.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -55,16 +58,29 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>  
-        <span> | </span>
-        <button onClick={this.fetchData2} >
-          Change both
-        </button> 
-         {cardData.map( elm => <h1> {elm + '\n'} </h1>)}
-      </div>
+        <div className="App">
+          <button onClick={this.fetchData} >
+            Fetch Data
+          </button>  
+          <span> | </span>
+          <button onClick={this.fetchData2} >
+            Change both
+          </button> 
+          {cardData.map( elm => <h1> {elm + '\n'} </h1>)}
+          <Router>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/lobby">Lobby</Link>
+            </li>
+              <Switch>
+              {/* <Route path='/' exact component={}/> */}
+              <Route path='/lobby' exact component={Lobby}/>
+              <Route path='/lobby/1' exact component={Game}/>
+              </Switch>
+          </Router>
+        </div>
     );
   }
 }
