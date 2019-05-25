@@ -6,6 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Recreating Decks"
+
+Deck.destroy_all
+puts "Finished destroying decks table"
+
+puts 'Creating decks'
+
+baseDeck = Deck.find_or_create_by! theme: 'Base' 
+
+
+puts "Finished creating decks table"
+
 
 puts "Recreating Cards ..."
 
@@ -13,72 +25,72 @@ Card.destroy_all
 puts "Finished destroying cards table"
 
 puts 'Creating QUESTION cards'
-Card.create!({
+
+
+baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "____. High five, bro."
 })
 
-Card.create!({
-    isQuestion: true,
-    fromInternet: false,
-    content: "Hey Reddit! I’m ____. Ask me anything."
-  })
+baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "Hey Reddit! I’m ____. Ask me anything."
+})
 
+baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "Why am I sticky?"
+})
 
-  Card.create!({
-    isQuestion: true,
-    fromInternet: false,
-    content: "Why am I sticky?"
-  })
+baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "Uh, hey guys, I know this was my idea, but I’m having serious doubts about ____."
+})
 
-  Card.create!({
-    isQuestion: true,
-    fromInternet: false,
-    content: "Uh, hey guys, I know this was my idea, but I’m having serious doubts about ____."
-  })
-
+baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell?"
+})
 
   puts 'Creating Answer cards'
 
-  Card.create!({
-    isQuestion: true,
-    fromInternet: false,
-    content: "What’s that smell?"
-  })
-
-  puts 'Creating ANSWER cards'
-  
-  Card.create!({
+  baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Sperm whales."
   })
 
-    
-  Card.create!({
+  baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Fiery poops."
   })
 
-  Card.create!({
+
+  baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Getting crushed by a vending machine."
   })
+  
 
-  Card.create!({
+  baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Horse meat."
   })
 
-  Card.create!({
-    isQuestion: false,
-    fromInternet: false,
-    content: "An endless stream of diarrhea."
+  baseDeck.cards.create!({
+      isQuestion: false,
+      fromInternet: false,
+      content: "An endless stream of diarrhea."
   })
+
 
   puts 'Finshed creating ANSWERS card'
 
