@@ -14,6 +14,7 @@ class Lobby extends Component {
   
     render() {
       return (
+
         <div className="App">
           <h1>Lobby</h1>
           <div>
