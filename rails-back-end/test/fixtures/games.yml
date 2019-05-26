@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  maxRound: 1
+  currentRound: 1
+  isEveryoneDeck: false
+  currentQuestion: 1
+  currentAnswer: 1
+  maxPlayers: 1
+  creator: 1
+  currentQuestioner: 1
+  roundWinner: 1
+  deck_id: 1
+  gameStatus: MyString
+
+two:
+  maxRound: 1
+  currentRound: 1
+  isEveryoneDeck: false
+  currentQuestion: 1
+  currentAnswer: 1
+  maxPlayers: 1
+  creator: 1
+  currentQuestioner: 1
+  roundWinner: 1
+  deck_id: 1
+  gameStatus: MyString

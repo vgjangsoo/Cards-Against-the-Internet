@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_214605) do
+ActiveRecord::Schema.define(version: 2019_05_26_005555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,4 +30,53 @@ ActiveRecord::Schema.define(version: 2019_05_25_214605) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "games", force: :cascade do |t|
+    t.integer "maxRound"
+    t.integer "currentRound"
+    t.boolean "isEveryoneDeck"
+    t.integer "currentQuestion"
+    t.integer "currentAnswer"
+    t.integer "maxPlayers"
+    t.integer "creator"
+    t.integer "currentQuestioner"
+    t.integer "roundWinner"
+    t.integer "deck_id"
+    t.string "gameStatus"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "game_id"
+    t.integer "round"
+    t.integer "question"
+    t.integer "answer"
+    t.integer "winner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_rounds_on_game_id"
+  end
+
+  create_table "user_game_infos", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+    t.integer "roundPoints"
+    t.string "userStatus"
+    t.text "hands", default: [], array: true
+    t.integer "selectedCard"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.boolean "isAdult"
+    t.boolean "isBot"
+    t.integer "leaderboardPoints"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "rounds", "games"
 end
