@@ -29,7 +29,6 @@ class App extends Component {
         cards: response.data.message.cards
       });
     })
-    
   }
   
   fetchData2 = () => {
@@ -48,8 +47,6 @@ class App extends Component {
     })
     
   }
-
-
 
   render() {
     let cardData = [];
