@@ -4,13 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      message: 'Click the button to load data!'
-    };
-  }
-
+  
   render() {
     return (
       <Route>
@@ -19,7 +13,7 @@ class Home extends Component {
             <div className="container">
               <h1 className="display-3"> Hello, trolls!</h1>
               <p>Cards Against Internet is for horrible pelple... blah blah blah blah </p>
-              <p><button className="btn btn-dark btn-md" style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
+              <p><button className="btn btn-dark btn-md" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
             </div>
           </div>
 

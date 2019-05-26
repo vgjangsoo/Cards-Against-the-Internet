@@ -13,19 +13,19 @@ constructor(props) {
 
 render() {
   return (
-    <footer class="page-footer font-small unique-color-dark pt-4 bg-dark">
-      <div class="container">
-        <ul class="list-unstyled list-inline text-center py-2">
-          <li class="list-inline-item">
-            <h5 class="mb-1 text-white">Register for free</h5>
+    <footer className="page-footer font-small unique-color-dark pt-4 bg-dark">
+      <div className="container">
+        <ul className="list-unstyled list-inline text-center py-2">
+          <li className="list-inline-item">
+            <h5 className="mb-1 text-white">Register for free</h5>
           </li>
-          <li class="list-inline-item">
-            <a href="/" class="btn btn-outline-light btn-lg btn-rounded text-white">Sign up!</a>
+          <li className="list-inline-item">
+            <a href="/" className="btn btn-outline-light btn-lg btn-rounded text-white">Sign up!</a>
           </li>
         </ul>
       </div>
-      <div class="footer-copyright text-center py-3 text-white">© 2019 Copyright -
-        <a class="text-white" href="/"> Cards Against Internet</a>
+      <div className="footer-copyright text-center py-3 text-white">© 2019 Copyright -
+        <a className="text-white" href="/"> Cards Against Internet</a>
       </div>
     </footer>
   );
