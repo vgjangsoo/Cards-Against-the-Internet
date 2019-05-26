@@ -91,8 +91,126 @@ baseDeck.cards.create!({
       content: "An endless stream of diarrhea."
   })
 
-
   puts 'Finshed creating ANSWERS card'
+
+  puts "Recreating Users"
+
+  User.destroy_all
+  puts "Finished destroying users table"
+
+  puts 'Creating Users'
+
+  user1 = User.find_or_create_by!({
+    username: 'Sam1',
+    password: '1234',
+    isAdult: true,
+    isBot: false,
+    leaderboardPoints: 10 
+  })
+  
+  user2 = User.find_or_create_by!({
+    username: 'Ben1',
+    password: '1234',
+    isAdult: true,
+    isBot: false,
+    leaderboardPoints: 5 
+  })
+
+  user3 = User.find_or_create_by!({
+    username: 'Tom1',
+    password: '1234',
+    isAdult: true,
+    isBot: false,
+    leaderboardPoints: 0 
+  })
+
+  puts "Finished creating users table"
+
+  puts "Recreating Games"
+
+  Game.destroy_all
+  puts "Finished destroying games table"
+
+  puts 'Creating games'
+
+  game1 = Game.create!({
+    maxRound: 10,
+    currentRound: 0,
+    isEveryoneDeck: true,
+    currentQuestion: nil,
+    currentAnswer: nil,
+    maxPlayers: 5,
+    creator: user1.id,
+    currentQuestioner: user1.id,
+    roundWinner: nil,
+    deck_id: baseDeck.id,
+    gameStatus: 'waiting' 
+   })
+
+   game2 = Game.create!({
+    maxRound: 10,
+    currentRound: 5,
+    isEveryoneDeck: true,
+    currentQuestion: Card.where(isQuestion: true).first.id,
+    currentAnswer: Card.where(isQuestion: false).last.id,
+    maxPlayers: 5,
+    creator: user2.id,
+    currentQuestioner: user1.id,
+    roundWinner: user3.id,
+    deck_id: baseDeck.id,
+    gameStatus: 'playing' 
+   })
+
+   game3 = Game.create!({
+    maxRound: 10,
+    currentRound: 10,
+    isEveryoneDeck: true,
+    currentQuestion: Card.where(isQuestion: true).last.id,
+    currentAnswer: Card.where(isQuestion: false).first.id,
+    maxPlayers: 5,
+    creator: user3.id,
+    currentQuestioner: user1.id,
+    roundWinner: user3.id,
+    deck_id: baseDeck.id,
+    gameStatus: 'gameover' 
+   })
+  
+   puts 'Finished creating games table'
+
+   puts "Recreating Rounds"
+
+   Round.destroy_all
+   puts "Finished destroying rounds table"
+ 
+   puts 'Creating rounds'
+
+   Round.create!({
+     round: game2.currentRound,
+     question: game2.currentQuestion,
+     answer: game2.currentAnswer,
+     winner: game2.roundWinner
+   })
+
+   puts 'Finished creating rounds table'
+
+   puts "Recreating User-game-info"
+
+   UserGameInfo.destroy_all
+   puts "Finished destroying User-game-info table"
+ 
+   puts 'Creating User-game-info'
+
+  #  game2.usergameinfo.find_or_create_by!({
+  #    user_id: user1.id,
+  #    roundPoints: 2,
+  #    userStatus: 'waiting',
+  #    hands: Card.where(isQuestion: false).id,
+  #    selectedCard: Card.where(isQuestion: false).first.id
+  #  })
+
+   puts 'Finished creating User-game-info table'
+   
+   
 
 # everyone question
 # •	____. High five, bro.
