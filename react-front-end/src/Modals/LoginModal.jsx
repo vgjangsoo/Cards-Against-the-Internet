@@ -11,21 +11,26 @@ class LoginModal extends Component {
   render() {
 
     return (
-      <div>
-        <div>
-          <h3>Login</h3>
-        </div>
-        <div>
-          <button onClick={this.props.onClose}>X</button>
-        </div>
-        <div>
-          <input type="text" name="username" placeholder="Username" />
-        </div>
-        <div>
-          <input type="password" name="password" placeholder="Password" />
-        </div>
-        <div>
-          <button>Login</button>
+      <div className='bg-modal'>
+        <div className='modal-contents'>
+          <div>
+            <h2>Login | Register</h2>
+          </div>
+          <div>
+            <button className="btn btn-dark btn-md" onClick={this.props.onClose}>X</button>
+          </div>
+          <div>
+            <h3>Login</h3>
+          </div>
+          <div>
+            <input type="text" name="username" placeholder="Username" />
+          </div>
+          <div>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+          <div>
+            <button className="btn btn-dark btn-md">Login</button>
+          </div>
         </div>
       </div>
     );

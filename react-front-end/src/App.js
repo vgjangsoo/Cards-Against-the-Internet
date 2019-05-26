@@ -17,7 +17,7 @@ class App extends Component {
       message: 'Click the button to load data!',
       data: 'Data: nothing to show here',
       showModal: false
-    }
+    };
   }
 
   closeModal = () => this.setState({ showModal: false });
@@ -66,10 +66,10 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-        <Nav />
+        <Nav onOpen={this.openModal} />
           <Switch>
             <Route path='/' exact render={() => <Home onOpen={this.openModal} />} />
-            <Route path='/lobby' exact component={Lobby}/>
+            <Route path='/lobby' exact render={() => <Lobby />}/>
             <Route path='/lobby/1' exact component={Game}/>
           </Switch>
 
@@ -77,7 +77,7 @@ class App extends Component {
           {this.state.showModal ? (<LoginModal onClose={this.closeModal}/>) : null}
           </div>
 
-          <Footer />
+          <Footer onOpen={this.openModal}/>
 
           <button onClick={this.fetchData} >
             Fetch Data

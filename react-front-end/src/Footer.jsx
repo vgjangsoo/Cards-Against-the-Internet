@@ -20,7 +20,7 @@ render() {
             <h5 className="mb-1 text-white">Register for free</h5>
           </li>
           <li className="list-inline-item">
-            <a href="/" className="btn btn-outline-light btn-lg btn-rounded text-white">Sign up!</a>
+            <button className="btn btn-outline-light btn-lg btn-rounded text-white" onClick={this.props.onOpen}>Sign up!</button>
           </li>
         </ul>
       </div>
