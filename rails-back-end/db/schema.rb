@@ -19,6 +19,31 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.boolean "isQuestion"
     t.string "content"
     t.boolean "fromInternet"
+<<<<<<< HEAD
+=======
+    t.bigint "deck_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_cards_on_deck_id"
+  end
+
+  create_table "decks", force: :cascade do |t|
+    t.string "theme"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "maxRound"
+    t.integer "currentRound"
+    t.boolean "isEveryoneDeck"
+    t.integer "currentQuestion"
+    t.integer "currentAnswer"
+    t.integer "maxPlayers"
+    t.integer "creator"
+    t.integer "currentQuestioner"
+    t.integer "roundWinner"
+>>>>>>> chris-repo
     t.integer "deck_id"
     t.string "gameStatus"
     t.datetime "created_at", null: false
@@ -57,5 +82,5 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "rounds", "games"
+  add_foreign_key "cards", "decks"
 end

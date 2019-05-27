@@ -1,7 +1,7 @@
 class CreateRounds < ActiveRecord::Migration[5.2]
   def change
     create_table :rounds do |t|
-      t.references :game, foreign_key: true
+      t.references :game
       t.integer :round
       t.integer :question
       t.integer :answer
