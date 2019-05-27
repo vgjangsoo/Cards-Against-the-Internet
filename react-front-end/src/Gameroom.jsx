@@ -5,6 +5,11 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Game from "./Game.jsx";
 
 
+const themeStyle = {
+  width: '100%',
+  height: '120px',
+};
+
 
 class Gameroom extends Component {
     constructor(props) {
@@ -16,20 +21,20 @@ class Gameroom extends Component {
   
     render() {
       return (
-        <Route>
+        
           <div className="card mb-4 shadow-lg">
             <div className="card-header">
               <span><h4 className="my-0 font-weight-normal">Room 1</h4></span>
             </div>
             <div className="card-body">
               <h1 className="card-title pricing-card-title">3 <small className="text-muted">/ 3</small></h1>
-              <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4 theme-button">
+              <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
                 <h1>Game of Thrones</h1>
               </button>
               <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
             </div>
           </div>
-        </Route>
+      
       );
     }
   }
