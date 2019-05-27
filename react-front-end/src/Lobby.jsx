@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Gameroom from "./Gameroom.jsx";
+import LobbyNav from "./LobbyNav.jsx";
 
 class Lobby extends Component {
     constructor(props) {
@@ -15,19 +16,22 @@ class Lobby extends Component {
     render() {
       return (
         <div className="App">
-          <h1>Lobby</h1>
-          <div>
-            <button>Create Room</button>
-          </div>
-          <div>
-            <h1>Rooms</h1>
-            <div>
+          <LobbyNav />
+
+          <div class="container">
+            <div class="card-deck mb-3 text-center"> 
+              <Gameroom />
+              <Gameroom />
               <Gameroom />
             </div>
           </div>
+          
         </div>
+
       );
     }
   }
   
   export default Lobby;
+
+  

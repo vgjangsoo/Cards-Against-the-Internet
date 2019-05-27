@@ -4,11 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Game from "./Game.jsx";
 
-const style = {
-  border: '2px solid',
-  display: 'flex-box',
-  width: '300px'
-};
+
 
 class Gameroom extends Component {
     constructor(props) {
@@ -20,16 +16,24 @@ class Gameroom extends Component {
   
     render() {
       return (
-        <div className="Gameroom" style={style}>
-          <h1>Room #1</h1>
-          <div>
-            <h3>Number of Players</h3>
+        <Route>
+          <div className="card mb-4 shadow-lg">
+            <div className="card-header">
+              <span><h4 className="my-0 font-weight-normal">Room 1</h4></span>
+            </div>
+            <div className="card-body">
+              <h1 className="card-title pricing-card-title">3 <small className="text-muted">/ 3</small></h1>
+              <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4 theme-button">
+                <h1>Game of Thrones</h1>
+              </button>
+              <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
+            </div>
           </div>
-          <Link to="/lobby/1"><h1>Theme</h1></Link> {/* ${dataformrails.id} */}
-          <h6>Game Status</h6>
-        </div>
+        </Route>
       );
     }
   }
   
   export default Gameroom;
+
+  {/* <Link to="/lobby/1"><h1>Theme</h1></Link> ${dataformrails.id} */}
