@@ -19,6 +19,9 @@ class Gameroom extends Component {
       }
     }
   
+    // - Some for loop will be required later when there are more than 1 Room
+    // - Need to figure out how to arrange 3 rooms by row
+    
     render() {
       return (
         
@@ -29,7 +32,7 @@ class Gameroom extends Component {
             <div className="card-body">
               <h1 className="card-title pricing-card-title">3 <small className="text-muted">/ 3</small></h1>
               <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
-                <h1>Game of Thrones</h1>
+                <Link to="/lobby/1"><h1>Theme</h1></Link>
               </button>
               <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
             </div>
@@ -41,4 +44,4 @@ class Gameroom extends Component {
   
   export default Gameroom;
 
-  {/* <Link to="/lobby/1"><h1>Theme</h1></Link> ${dataformrails.id} */}
+  
