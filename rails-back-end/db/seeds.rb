@@ -133,47 +133,47 @@ baseDeck.cards.create!({
 
   puts 'Creating games'
 
-  # game1 = Game.create!({
-  #   maxRound: 10,
-  #   currentRound: 0,
-  #   isEveryoneDeck: true,
-  #   currentQuestion: nil,
-  #   currentAnswer: nil,
-  #   maxPlayers: 5,
-  #   creator: user1.id,
-  #   currentQuestioner: user1.id,
-  #   roundWinner: nil,
-  #   deck_id: baseDeck.id,
-  #   gameStatus: 'waiting' 
-  #  })
+  game1 = Game.create!({
+    maxRound: 10,
+    currentRound: 0,
+    isEveryoneDeck: true,
+    currentQuestion: nil,
+    currentAnswer: nil,
+    maxPlayers: 5,
+    creator: user1.id,
+    currentQuestioner: user1.id,
+    roundWinner: nil,
+    deck_id: baseDeck.id,
+    gameStatus: 'waiting' 
+   })
 
-  #  game2 = Game.create!({
-  #   maxRound: 10,
-  #   currentRound: 5,
-  #   isEveryoneDeck: true,
-  #   currentQuestion: Card.where(isQuestion: true).first.id,
-  #   currentAnswer: Card.where(isQuestion: false).last.id,
-  #   maxPlayers: 5,
-  #   creator: user2.id,
-  #   currentQuestioner: user1.id,
-  #   roundWinner: user3.id,
-  #   deck_id: baseDeck.id,
-  #   gameStatus: 'playing' 
-  #  })
+   game2 = Game.create!({
+    maxRound: 10,
+    currentRound: 5,
+    isEveryoneDeck: true,
+    currentQuestion: Card.where(isQuestion: true).first.id,
+    currentAnswer: Card.where(isQuestion: false).last.id,
+    maxPlayers: 5,
+    creator: user2.id,
+    currentQuestioner: user1.id,
+    roundWinner: user3.id,
+    deck_id: baseDeck.id,
+    gameStatus: 'playing' 
+   })
 
-  #  game3 = Game.create!({
-  #   maxRound: 10,
-  #   currentRound: 10,
-  #   isEveryoneDeck: true,
-  #   currentQuestion: Card.where(isQuestion: true).last.id,
-  #   currentAnswer: Card.where(isQuestion: false).first.id,
-  #   maxPlayers: 5,
-  #   creator: user3.id,
-  #   currentQuestioner: user1.id,
-  #   roundWinner: user3.id,
-  #   deck_id: baseDeck.id,
-  #   gameStatus: 'gameover' 
-  #  })
+   game3 = Game.create!({
+    maxRound: 10,
+    currentRound: 10,
+    isEveryoneDeck: true,
+    currentQuestion: Card.where(isQuestion: true).last.id,
+    currentAnswer: Card.where(isQuestion: false).first.id,
+    maxPlayers: 5,
+    creator: user3.id,
+    currentQuestioner: user1.id,
+    roundWinner: user3.id,
+    deck_id: baseDeck.id,
+    gameStatus: 'gameover' 
+   })
   
    puts 'Finished creating games table'
 
@@ -185,11 +185,25 @@ baseDeck.cards.create!({
    puts 'Creating rounds'
 
   #  Round.create!({
-  #    round: game2.currentRound,
-  #    question: game2.currentQuestion,
-  #    answer: game2.currentAnswer,
-  #    winner: game2.roundWinner
+  #    round: Game.where(gameStatus: 'playing').first.currentRound,
+  #    question: Game.where(gameStatus: 'playing').first.currentQuestion,
+  #    answer: Game.where(gameStatus: 'playing').first.currentAnswer,
+  #    winner: Game.where(gameStatus: 'playing').first.roundWinner
   #  })
+
+  game2.rounds.create!({
+    round: game2.currentRound,
+    question: game2.currentQuestion,
+    answer: game2.currentAnswer,
+    winner: game2.roundWinner,
+  })
+
+  game3.rounds.create!({
+    round: game3.currentRound,
+    question: game3.currentQuestion,
+    answer: game3.currentAnswer,
+    winner: game3.roundWinner,
+  })
 
    puts 'Finished creating rounds table'
 
@@ -200,13 +214,27 @@ baseDeck.cards.create!({
  
    puts 'Creating User-game-info'
 
-  #  game2.usergameinfo.find_or_create_by!({
-  #    user_id: user1.id,
-  #    roundPoints: 2,
-  #    userStatus: 'waiting',
-  #    hands: Card.where(isQuestion: false).id,
-  #    selectedCard: Card.where(isQuestion: false).first.id
-  #  })
+  #  testArray = Card.where(isQuestion: false).map{|elm| elm.id }
+  #  puts testArray[0]
+  #  puts testArray[1]
+
+   game2.user_game_infos.create!({
+     user_id: user1.id,
+     roundPoints: 2,
+     userStatus: 'waiting',
+     hands: Card.where(isQuestion: false).map{|elm| elm.id },
+     selectedCard: game2.currentAnswer
+   })
+
+   game3.user_game_infos.create!({
+    user_id: user2.id,
+    roundPoints: 4,
+    userStatus: 'gameover',
+    hands: Card.where(isQuestion: false).map{|elm| elm.id },
+    selectedCard: game3.currentAnswer
+  })
+
+
 
    puts 'Finished creating User-game-info table'
    

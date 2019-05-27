@@ -20,7 +20,7 @@ class App extends Component {
   openModal = () => this.setState({ showModal: true });
 
   fetchData = () => {
-    axios.get('/api/allcards') 
+    axios.get('/api/cards') 
     .then((response) => {
       // handle success
       console.log(response.data) // The entire response from the Rails API
@@ -36,17 +36,18 @@ class App extends Component {
   }
   
   fetchData2 = () => {
-    axios.get('/api/display') // You can simply make your requests to "/api/whatever you want"
+    axios.get('/api/cards/:id') // You can simply make your requests to "/api/whatever you want"
     .then((response) => {
       // handle success
       console.log(response.data) // The entire response from the Rails API
-  
-      console.log(response.data.message) // Just the message
-      // console.log(response.data.someData) // Just the message
+      
+      console.log(response.data.message)
+      console.log(response.data.message.cards) // Just the message
+      console.log(response.data.message.cards.content) // Just the message
+
 
       this.setState({
-        data: response.data.message.data2,
-        message: response.data.message.data1
+        cards: response.data.message.cards.content
       });
     })
     
@@ -57,6 +58,7 @@ class App extends Component {
     for (let elm in this.state.cards) {
       cardData.push(this.state.cards[elm].content)
     }
+    let singleCard = this.state.cards
 
     return (
       <div className="App">
@@ -67,18 +69,17 @@ class App extends Component {
             <Route path='/lobby/:id' component={Game}/>
           </Switch>
         </Router>
+        <button onClick={this.fetchData} >
+          Fetch Data
+        </button>  
+        <button onClick={this.fetchData2} >
+          Fetch single
+        </button> 
+        {cardData.map( elm => <h1> {elm + '\n'} </h1>)} 
+        { singleCard }
       </div>
     );
   }
 }
 
 export default App;
-
-{/* <button onClick={this.fetchData} >
-  Fetch Data
-</button>  
-<span> | </span>
-<button onClick={this.fetchData2} >
-  Change both
-</button> 
-{cardData.map( elm => <h1> {elm + '\n'} </h1>)} */}
