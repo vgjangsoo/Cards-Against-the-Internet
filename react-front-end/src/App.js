@@ -5,8 +5,6 @@ import Card from "./Card.jsx";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Lobby from "./Lobby.jsx";
 import Game from "./Game.jsx";
-import Nav from "./Nav.jsx";
-import Footer from "./Footer.jsx";
 import Home from "./Home.jsx";
 
 class App extends Component {
@@ -15,9 +13,11 @@ class App extends Component {
     this.state = {
       message: 'Click the button to load data!',
       data: 'Data: nothing to show here',
-      modalShow: false
-    }
+    };
   }
+
+  closeModal = () => this.setState({ showModal: false });
+  openModal = () => this.setState({ showModal: true });
 
   fetchData = () => {
     axios.get('/api/allcards') 
@@ -61,22 +61,11 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-        <Nav />
           <Switch>
-            <Route path='/' exact component={Home}/>
-            <Route path='/lobby' exact component={Lobby}/>
+            <Route path='/' exact render={() => <Home />} />
+            <Route path='/lobby' exact render={() => <Lobby />}/>
             <Route path='/lobby/1' exact component={Game}/>
           </Switch>
-
-        <Footer />
-          <button onClick={this.fetchData} >
-            Fetch Data
-          </button>  
-          <span> | </span>
-          <button onClick={this.fetchData2} >
-            Change both
-          </button> 
-          {cardData.map( elm => <h1> {elm + '\n'} </h1>)}
         </Router>
       </div>
     );
@@ -85,7 +74,11 @@ class App extends Component {
 
 export default App;
 
-
-
-
-
+{/* <button onClick={this.fetchData} >
+  Fetch Data
+</button>  
+<span> | </span>
+<button onClick={this.fetchData2} >
+  Change both
+</button> 
+{cardData.map( elm => <h1> {elm + '\n'} </h1>)} */}

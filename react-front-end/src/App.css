@@ -28,29 +28,56 @@
   }
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width:100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	justify-content: center;
+	align-items: center;
 }
 
-.modal-main {
-  position:fixed;
-  background: white;
-  width: 80%;
+.modal-contents {
+  margin: auto;
+  margin-top: 10%;
+	height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+
+
+/* CSS For login/register */
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
   height: auto;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  padding: 10px;
+  font-size: 16px;
 }
-
-.display-block {
-  display: block;
+.form-signin .form-control:focus {
+  z-index: 2;
 }
-
-.display-none {
-  display: none;
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

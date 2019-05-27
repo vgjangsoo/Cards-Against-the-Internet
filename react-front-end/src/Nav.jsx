@@ -20,7 +20,7 @@ class Nav extends Component {
             <nav className="my-2 my-md-0 mr-md-3">
               <a className="p-2 text-white" href="#">Leaderboard</a>
               <a className="p-2 text-white" href="#">Feature</a>
-              <a className="btn btn-outline-light" href="#">Sign up</a>
+              <button className="btn btn-outline-light" onClick={this.props.onOpen}>Sign up</button>
             </nav>
           </div>
         </div>
