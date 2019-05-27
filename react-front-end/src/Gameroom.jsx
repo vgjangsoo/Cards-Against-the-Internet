@@ -4,11 +4,12 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Game from "./Game.jsx";
 
-const style = {
-  border: '2px solid',
-  display: 'flex-box',
-  width: '300px'
+
+const themeStyle = {
+  width: '100%',
+  height: '120px',
 };
+
 
 class Gameroom extends Component {
     constructor(props) {
@@ -18,18 +19,34 @@ class Gameroom extends Component {
       }
     }
   
+    // - Some for loop will be required later when there are more than 1 Room
+    // const gameRooms = this.props.rooms.map(room => {
+    //   <Gameroom room={room} /> ???
+    // });
+    
+    // - Need to figure out how to arrange 3 rooms by row
+
     render() {
       return (
-        <div className="Gameroom" style={style}>
-          <h1>Room #1</h1>
-          <div>
-            <h3>Number of Players</h3>
+         
+          <div className="card mb-4 shadow-lg">
+            <div className="card-header">
+              <span><h4 className="my-0 font-weight-normal">Room 1</h4></span>
+            </div>
+            <div className="card-body">
+              <h1 className="card-title pricing-card-title">3 <small className="text-muted">/ 3</small></h1>
+              <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
+                <Link to="/lobby/1" style={{color: 'black', textDecoration: 'none'}}><h1>Theme</h1></Link>
+              </button>
+              <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
+            </div>
           </div>
-          <Link to="/lobby/1"><h1>Theme</h1></Link> {/* ${dataformrails.id} */}
-          <h6>Game Status</h6>
-        </div>
+       
+      
       );
     }
   }
   
   export default Gameroom;
+
+  
