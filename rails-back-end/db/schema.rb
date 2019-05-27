@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.boolean "isQuestion"
     t.string "content"
     t.boolean "fromInternet"
-    t.integer "deck_id"
+    t.bigint "deck_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_cards_on_deck_id"
   end
 
   create_table "decks", force: :cascade do |t|
@@ -78,5 +79,5 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "rounds", "games"
+  add_foreign_key "cards", "decks"
 end

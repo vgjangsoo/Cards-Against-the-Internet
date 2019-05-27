@@ -133,47 +133,47 @@ baseDeck.cards.create!({
 
   puts 'Creating games'
 
-  game1 = Game.create!({
-    maxRound: 10,
-    currentRound: 0,
-    isEveryoneDeck: true,
-    currentQuestion: nil,
-    currentAnswer: nil,
-    maxPlayers: 5,
-    creator: user1.id,
-    currentQuestioner: user1.id,
-    roundWinner: nil,
-    deck_id: baseDeck.id,
-    gameStatus: 'waiting' 
-   })
+  # game1 = Game.create!({
+  #   maxRound: 10,
+  #   currentRound: 0,
+  #   isEveryoneDeck: true,
+  #   currentQuestion: nil,
+  #   currentAnswer: nil,
+  #   maxPlayers: 5,
+  #   creator: user1.id,
+  #   currentQuestioner: user1.id,
+  #   roundWinner: nil,
+  #   deck_id: baseDeck.id,
+  #   gameStatus: 'waiting' 
+  #  })
 
-   game2 = Game.create!({
-    maxRound: 10,
-    currentRound: 5,
-    isEveryoneDeck: true,
-    currentQuestion: Card.where(isQuestion: true).first.id,
-    currentAnswer: Card.where(isQuestion: false).last.id,
-    maxPlayers: 5,
-    creator: user2.id,
-    currentQuestioner: user1.id,
-    roundWinner: user3.id,
-    deck_id: baseDeck.id,
-    gameStatus: 'playing' 
-   })
+  #  game2 = Game.create!({
+  #   maxRound: 10,
+  #   currentRound: 5,
+  #   isEveryoneDeck: true,
+  #   currentQuestion: Card.where(isQuestion: true).first.id,
+  #   currentAnswer: Card.where(isQuestion: false).last.id,
+  #   maxPlayers: 5,
+  #   creator: user2.id,
+  #   currentQuestioner: user1.id,
+  #   roundWinner: user3.id,
+  #   deck_id: baseDeck.id,
+  #   gameStatus: 'playing' 
+  #  })
 
-   game3 = Game.create!({
-    maxRound: 10,
-    currentRound: 10,
-    isEveryoneDeck: true,
-    currentQuestion: Card.where(isQuestion: true).last.id,
-    currentAnswer: Card.where(isQuestion: false).first.id,
-    maxPlayers: 5,
-    creator: user3.id,
-    currentQuestioner: user1.id,
-    roundWinner: user3.id,
-    deck_id: baseDeck.id,
-    gameStatus: 'gameover' 
-   })
+  #  game3 = Game.create!({
+  #   maxRound: 10,
+  #   currentRound: 10,
+  #   isEveryoneDeck: true,
+  #   currentQuestion: Card.where(isQuestion: true).last.id,
+  #   currentAnswer: Card.where(isQuestion: false).first.id,
+  #   maxPlayers: 5,
+  #   creator: user3.id,
+  #   currentQuestioner: user1.id,
+  #   roundWinner: user3.id,
+  #   deck_id: baseDeck.id,
+  #   gameStatus: 'gameover' 
+  #  })
   
    puts 'Finished creating games table'
 
@@ -184,12 +184,12 @@ baseDeck.cards.create!({
  
    puts 'Creating rounds'
 
-   Round.create!({
-     round: game2.currentRound,
-     question: game2.currentQuestion,
-     answer: game2.currentAnswer,
-     winner: game2.roundWinner
-   })
+  #  Round.create!({
+  #    round: game2.currentRound,
+  #    question: game2.currentQuestion,
+  #    answer: game2.currentAnswer,
+  #    winner: game2.roundWinner
+  #  })
 
    puts 'Finished creating rounds table'
 
