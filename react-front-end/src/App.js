@@ -5,15 +5,23 @@ import Card from "./Card.jsx";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Lobby from "./Lobby.jsx";
 import Game from "./Game.jsx";
+import Nav from "./Nav.jsx";
+import Footer from "./Footer.jsx";
+import Home from "./Home.jsx";
+import LoginModal from "./Modals/LoginModal.jsx"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       message: 'Click the button to load data!',
-      data: 'Data: nothing to show here'
-    }
+      data: 'Data: nothing to show here',
+      showModal: false
+    };
   }
+
+  closeModal = () => this.setState({ showModal: false });
+  openModal = () => this.setState({ showModal: true });
 
   fetchData = () => {
     axios.get('/api/allcards') 
@@ -29,6 +37,7 @@ class App extends Component {
         cards: response.data.message.cards
       });
     })
+    
   }
   
   fetchData2 = () => {
@@ -55,7 +64,21 @@ class App extends Component {
     }
 
     return (
-        <div className="App">
+      <div className="App">
+        <Router>
+        <Nav onOpen={this.openModal} />
+          <Switch>
+            <Route path='/' exact render={() => <Home onOpen={this.openModal} />} />
+            <Route path='/lobby' exact render={() => <Lobby />}/>
+            <Route path='/lobby/1' exact component={Game}/>
+          </Switch>
+
+          <div>
+          {this.state.showModal ? (<LoginModal onClose={this.closeModal}/>) : null}
+          </div>
+
+          <Footer onOpen={this.openModal}/>
+
           <button onClick={this.fetchData} >
             Fetch Data
           </button>  
@@ -64,20 +87,8 @@ class App extends Component {
             Change both
           </button> 
           {cardData.map( elm => <h1> {elm + '\n'} </h1>)}
-          <Router>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/lobby">Lobby</Link>
-            </li>
-              <Switch>
-              {/* <Route path='/' exact component={}/> */}
-              <Route path='/lobby' exact component={Lobby}/>
-              <Route path='/lobby/1' exact component={Game}/>
-              </Switch>
-          </Router>
-        </div>
+        </Router>
+      </div>
     );
   }
 }

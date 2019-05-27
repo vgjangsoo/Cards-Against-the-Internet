@@ -3,8 +3,8 @@ import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Chat from './Chat.jsx';
-import Answerer_deck from './Answerer_deck.jsx';
-import Questioner_deck from './Questioner_deck.jsx';
+import AnswererDeck from './AnswererDeck.jsx';
+import QuestionerDeck from './QuestionerDeck.jsx';
 import History from './History';
 
 const style = {
@@ -44,7 +44,7 @@ class Game extends Component {
           <Link to='/lobby'><button>Leave Room</button></Link>
           <div>
             <div className="questioner" style={style}>
-              <Questioner_deck />
+              <QuestionerDeck />
             </div>
             <div>
               <History />
@@ -59,7 +59,7 @@ class Game extends Component {
               <button>Play Card</button>
             </div>
             <div className="answeres" style={style}>
-              <Answerer_deck />
+              <AnswererDeck />
             </div>
             
           </div>

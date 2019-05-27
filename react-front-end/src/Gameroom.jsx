@@ -28,7 +28,7 @@ class Gameroom extends Component {
 
     render() {
       return (
-        
+         
           <div className="card mb-4 shadow-lg">
             <div className="card-header">
               <span><h4 className="my-0 font-weight-normal">Room 1</h4></span>
@@ -41,6 +41,7 @@ class Gameroom extends Component {
               <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
             </div>
           </div>
+       
       
       );
     }

@@ -18,7 +18,7 @@ class LobbyNav extends Component {
                     <h5 className="my-0 mr-md-auto font-weight-normal text-white"> Cards Against Internet</h5>
                     <nav className="my-2 my-md-0 mr-md-3">                    
 
-                        <button className="btn btn-outline-light btn-dark btn-lg">Create Room</button>
+                        <button onClick={this.props.createRoom} className="btn btn-outline-light btn-dark btn-lg">Create Room</button>
                     </nav>
                 </div>
           </Route>
