@@ -36,7 +36,7 @@ class Gameroom extends Component {
             <div className="card-body">
               <h1 className="card-title pricing-card-title">3 <small className="text-muted">/ 3</small></h1>
               <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
-                <Link to="/lobby/1"><h1>Theme</h1></Link>
+                <Link to="/lobby/1" style={{color: 'black', textDecoration: 'none'}}><h1>Theme</h1></Link>
               </button>
               <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
             </div>
