@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  password: MyString
+  isAdult: false
+  isBot: false
+  leaderboardPoints: 1
+
+two:
+  username: MyString
+  password: MyString
+  isAdult: false
+  isBot: false
+  leaderboardPoints: 1

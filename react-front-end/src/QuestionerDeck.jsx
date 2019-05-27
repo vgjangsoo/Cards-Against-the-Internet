@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
-class Questioner_deck extends Component {
+class QuestionerDeck extends Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -20,4 +20,4 @@ class Questioner_deck extends Component {
     }
   }
   
-  export default Questioner_deck;
+  export default QuestionerDeck;
