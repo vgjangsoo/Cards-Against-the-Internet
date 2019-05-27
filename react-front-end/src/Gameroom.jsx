@@ -9,12 +9,6 @@ const themeStyle = {
   height: '120px',
 };
 
-function ID() {
-  return '_' + Math.random().toString(36).substr(2, 9);
-}
-
-
-
 class Gameroom extends Component {
     constructor(props) {
       super(props)
@@ -32,7 +26,8 @@ class Gameroom extends Component {
     // - Need to figure out how to arrange 3 rooms by row
 
     render() {
-      const roomId = ID();
+      console.log(this.props.roomId);
+      const roomId = this.props.roomId;
       return (
         
         <div className="card mb-4 shadow-lg">

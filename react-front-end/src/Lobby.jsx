@@ -6,6 +6,10 @@ import Gameroom from "./Gameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx"
 
+function ID() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
 class Lobby extends Component {
   constructor(props) {
     super(props)
@@ -33,6 +37,25 @@ class Lobby extends Component {
       newRooms: [...this.state.newRooms, newRoomInfo]
     });
 
+    const postData = {
+      maxRound: newRoomRound,
+      currentRound: 0,
+      isEveryoneDeck: true,
+      currentQuestion: 0,
+      currentAnswer: 0,
+      maxPlayers: newRoomPlayer,
+      creator: 0,
+      currentQuestioner: 0,
+      roundWinner: 0,
+      deckId: 0,
+      gameStatus: 'waiting'
+    }
+
+    axios.post('/api/games', { postData })
+    .then((res) => {
+      console.log(res.data);
+    })
+
     event.target.theme.value = '';
   }
 
@@ -40,7 +63,8 @@ class Lobby extends Component {
   openCreateRoomModal = () => this.setState({ showCreateRoomModal: true });
   
     render() {
-
+      
+      const roomId = ID();
       const newGameRooms = this.state.newRooms.reverse();
 
       return (
@@ -51,7 +75,7 @@ class Lobby extends Component {
             <div className="card-deck mb-3 text-center">
               {newGameRooms.reverse().map(e => {
                 return (
-                  <Gameroom roomInfo={e} />
+                  <Gameroom roomInfo={e} key={roomId} roomId={roomId}/>
                 )
               })} 
             </div>
