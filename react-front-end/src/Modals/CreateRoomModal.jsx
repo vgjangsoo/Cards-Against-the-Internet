@@ -13,51 +13,32 @@ class CreateRoomModal extends Component {
     return (
       <div className='bg-modal'>
         <div className='modal-contents'>
-          <div>
-            <h2>Room Settings</h2>
-          </div>
-          <div>
-            <button className="btn btn-dark btn-md" onClick={this.props.onClose}>X</button>
-          </div>
-          <div>
-            <input type="text" name="theme" placeholder="Theme" />
-          </div>
-          <div>
-              <button className="btn btn-dark btn-md">Randomize Theme</button>
-          </div>
-          <label>
-              Player #  
-          </label>
-          <select>
+          <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal">Room Settings <button className="btn btn-danger btn-sm" onClick={this.props.onClose}>X</button></h1>
+            <label for="theme" class="sr-only">Theme</label>
+            <input type="theme" id="theme" class="form-control" placeholder="Theme"  autofocus></input>
+            <button class="btn btn-md btn-dark btn-block" type="submit">Randomize Theme</button>
+
+            <select class="custom-select d-block w-100" id="playerNumber" required>
+              <option value="">Player #</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-          </select>
-          <label>
-              Round #  
-          </label>
-          <select>
+            </select>
+
+            <select class="custom-select d-block w-100" id="roundNumber" required>
+              <option value="">Round #</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-          </select>
-          <div>
-            <button className="btn btn-dark btn-md">Create Room</button>
-          </div>
+            </select>
+
+            <button class="btn btn-md btn-dark btn-block" type="submit">Create Room</button>
+          </form>
         </div>
       </div>
     );
