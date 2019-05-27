@@ -15,7 +15,8 @@ class Gameroom extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        message: 'Click the button to load data!'
+        message: 'Click the button to load data!',
+        roomStatus: 'Waiting...'
       }
     }
   
@@ -27,6 +28,10 @@ class Gameroom extends Component {
     // - Need to figure out how to arrange 3 rooms by row
 
     render() {
+      const roomName = this.props.roomName;
+      const roomMaxPlayers = this.props.roomMaxPlayers[0];
+      const roomMaxRounds = this.props.roomMaxRounds[0];
+
       return (
          
           <div className="card mb-4 shadow-lg">
@@ -34,11 +39,11 @@ class Gameroom extends Component {
               <span><h4 className="my-0 font-weight-normal">Room 1</h4></span>
             </div>
             <div className="card-body">
-              <h1 className="card-title pricing-card-title">3 <small className="text-muted">/ 3</small></h1>
+              <h1 className="card-title pricing-card-title">0 <small className="text-muted">/ {roomMaxPlayers}</small></h1>
               <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
-                <Link to="/lobby/1" style={{color: 'black', textDecoration: 'none'}}><h1>Theme</h1></Link>
+                <Link to="/lobby/1" style={{color: 'black', textDecoration: 'none'}}><h1>{roomName}</h1></Link>
               </button>
-              <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">Playing...</div>
+              <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">{this.state.roomStatus}</div>
             </div>
           </div>
        
