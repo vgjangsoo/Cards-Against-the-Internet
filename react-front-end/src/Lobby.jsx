@@ -41,7 +41,7 @@ class Lobby extends Component {
   
     render() {
 
-      const newGameRooms = this.state.newRooms;
+      const newGameRooms = this.state.newRooms.reverse();
 
       return (
         <div className="App">
