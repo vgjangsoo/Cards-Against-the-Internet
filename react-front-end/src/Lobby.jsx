@@ -18,12 +18,13 @@ class Lobby extends Component {
         <div className="App">
           <LobbyNav />
 
-          <div class="container">
-            <div class="card-deck mb-3 text-center"> 
+          <div className="container">
+            <div className="card-deck mb-3 text-center"> 
               <Gameroom />
               <Gameroom />
               <Gameroom />
             </div>
+            
           </div>
           
         </div>

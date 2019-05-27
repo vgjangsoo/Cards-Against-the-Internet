@@ -20,8 +20,12 @@ class Gameroom extends Component {
     }
   
     // - Some for loop will be required later when there are more than 1 Room
-    // - Need to figure out how to arrange 3 rooms by row
+    // const gameRooms = this.props.rooms.map(room => {
+    //   <Gameroom room={room} /> ???
+    // });
     
+    // - Need to figure out how to arrange 3 rooms by row
+
     render() {
       return (
         
