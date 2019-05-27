@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Gameroom from "./Gameroom.jsx";
+import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx"
 
 class Lobby extends Component {
@@ -15,26 +16,30 @@ class Lobby extends Component {
 
   closeCreateRoomModal = () => this.setState({ showCreateRoomModal: false });
   openCreateRoomModal = () => this.setState({ showCreateRoomModal: true });
+  
+    render() {
+      return (
+        <div className="App">
+          <LobbyNav createRoom={this.openCreateRoomModal} />
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Lobby</h1>
-        <div>
-          <button className="btn btn-dark btn-md" onClick={this.openCreateRoomModal}>Create Room</button>
-        </div>
-        <div>
-          <h1>Rooms</h1>
+          <div className="container">
+            <div className="card-deck mb-3 text-center"> 
+              <Gameroom />
+              <Gameroom />
+              <Gameroom />
+            </div>
+          </div>
+
           <div>
-            <Gameroom />
+            {this.state.showCreateRoomModal ? (<CreateRoomModal onClose={this.closeCreateRoomModal}/>) : null}
           </div>
+          
         </div>
-        <div>
-          {this.state.showCreateRoomModal ? (<CreateRoomModal onClose={this.closeCreateRoomModal}/>) : null}
-          </div>
-      </div>
-    );
-  }
-}
 
-export default Lobby;
+      );
+    }
+  }
+  
+  export default Lobby;
+
+  

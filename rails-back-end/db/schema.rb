@@ -78,5 +78,15 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+  create_table "decks", force: :cascade do |t|
+    t.string "theme"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+end
+=======
   add_foreign_key "rounds", "games"
 end
+>>>>>>> 110aad64de504ab94b87a6a7c13f49318dfc7f2f
