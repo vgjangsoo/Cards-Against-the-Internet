@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.boolean "isQuestion"
     t.string "content"
     t.boolean "fromInternet"
-<<<<<<< HEAD
-=======
     t.bigint "deck_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,7 +41,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.integer "creator"
     t.integer "currentQuestioner"
     t.integer "roundWinner"
->>>>>>> chris-repo
     t.integer "deck_id"
     t.string "gameStatus"
     t.datetime "created_at", null: false
@@ -82,5 +79,4 @@ ActiveRecord::Schema.define(version: 2019_05_26_005555) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "cards", "decks"
 end
