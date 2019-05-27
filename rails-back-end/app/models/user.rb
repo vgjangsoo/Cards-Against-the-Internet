@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-    has_many :usergameinfos
-    has_many :games, through: :usergameinfos
+    has_many :user_game_infos
+    has_many :games, through: :user_game_infos
 end
