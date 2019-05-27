@@ -6,11 +6,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 class LobbyNav extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props);
-    this.state = {
-        
-      }
-    }
+    this.state = {}
+  }
 
     render() {
       return (
