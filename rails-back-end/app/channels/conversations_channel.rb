@@ -1,4 +1,4 @@
-class ConversationsChannel < ApplicationCable::Channel
+class Api::ConversationsChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
     # Lobby

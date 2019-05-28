@@ -1,4 +1,4 @@
-class MessagesChannel < ApplicationCable::Channel
+class Api::MessagesChannel < ApplicationCable::Channel
   def subscribed
 
     # Gameroom

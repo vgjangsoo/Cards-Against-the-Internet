@@ -89,3 +89,4 @@ const mapConversations = (conversations, handleClick) => {
     );
   });
 };
+
