@@ -29,45 +29,43 @@ const style2 = {
 };
 
 class Game extends Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        message: 'Click the button to load data!'
-      }
-    }
-  
-    render() {
-      return (
-        <div className="Game">
-          <h1>Room #1: Theme</h1>
-          <button>Start</button>
-          <Link to='/lobby'><button>Leave Room</button></Link>
-          <div>
-            <div className="questioner" style={style}>
-              <QuestionerDeck />
-            </div>
-            <div>
-              <History />
-            </div>
-            <div style={style2}>
-              <Chat />
-            </div>
-            <div>
-              <h6>Status Message</h6>
-            </div>
-            <div>
-              <button>Play Card</button>
-            </div>
-            <div className="answeres" style={style}>
-              <AnswererDeck />
-            </div>
-            
-          </div>
-          
-          
-        </div>
-      );
+  constructor(props) {
+    super(props)
+    this.state = {
+      roominfo: this.props
     }
   }
   
-  export default Game;
+  render() {
+    const gameRoomInfo = this.state.roominfo.location.state.info;
+    return (
+      <div className="Game">
+        <h1>Room #1: {gameRoomInfo.room}</h1>
+        <button>Start</button>
+        <Link to='/lobby'><button>Leave Room</button></Link>
+        <div>
+          <div className="questioner" style={style}>
+            <QuestionerDeck />
+          </div>
+          <div>
+            <History />
+          </div>
+          <div style={style2}>
+            <Chat />
+          </div>
+          <div>
+            <h6>Status Message</h6>
+          </div>
+          <div>
+            <button>Play Card</button>
+          </div>
+          <div className="answeres" style={style}>
+            <AnswererDeck />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Game;
