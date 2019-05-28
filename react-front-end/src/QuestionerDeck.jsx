@@ -65,7 +65,11 @@ class QuestionerDeck extends Component {
         <h3>Questioner's Cards</h3>
         {selectedQuestions.map(e => {
           return (
-            <div key={e.id}>{e.content}</div>
+            <div className='deckCard'>
+              <div className='cardContainer'>
+                <div key={e.id}>{e.content}</div>
+              </div>
+            </div>
           )
         })}    
       </div>

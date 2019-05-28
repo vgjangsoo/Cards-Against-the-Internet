@@ -80,7 +80,11 @@ class AnswererDeck extends Component {
         <h3>Answerers' Cards</h3>
         {selectedAnswers.map(e => {
           return (
-            <div key={e.id}>{e.content}</div>
+            <div className='deckCard'>
+              <div className='cardContainer'>
+                <div key={e.id}>{e.content}</div>
+              </div>
+            </div>
           )
         })}
       </div>
