@@ -66,7 +66,7 @@ class App extends Component {
           <Switch>
             <Route path='/' exact render={() => <Home />} />
             <Route path='/lobby' exact render={() => <Lobby />}/>
-            <Route path='/lobby/1' exact component={Game}/>
+            <Route path='/lobby/:id' component={Game}/>
           </Switch>
         </Router>
         <button onClick={this.fetchData} >
