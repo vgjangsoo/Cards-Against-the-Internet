@@ -3,6 +3,8 @@ import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Game from "./Game.jsx";
+import { ActionCableConsumer } from 'react-actioncable-provider';
+import { API_ROOT } from './constants';
 
 const themeStyle = {
   width: '100%',
@@ -18,12 +20,11 @@ class Gameroom extends Component {
     }
   }
   
-    // - Some for loop will be required later when there are more than 1 Room
-    // const gameRooms = this.props.rooms.map(room => {
-    //   <Gameroom room={room} /> ???
-    // });
-    
-    // - Need to figure out how to arrange 3 rooms by row
+  componentDidMount = () => {
+    // console.log(this.props.cable)
+    axios.get(`${API_ROOT}/games`)
+      .then(res => console.log("res:", res.data))
+  };
 
   render() {
     const roomId = this.props.roomId;
