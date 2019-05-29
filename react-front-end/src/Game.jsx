@@ -24,10 +24,14 @@ class Game extends Component {
   
   render() {
     const gameRoomInfo = this.state.roominfo.location.state.info;
+
     return (
       <div>
         <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
-          <h3 className="my-0 mr-md-auto font-weight-normal"> <h6 className='room-name'>Room #1: </h6>{gameRoomInfo.room}</h3>
+          <div className="my-0 mr-md-auto font-weight-normal">
+            <h6 className='room-name'>Room #1: </h6>
+            <h3> {gameRoomInfo.theme}</h3>
+          </div>
           <nav className="my-2 my-md-1 mr-md-3">
             <button className="btn btn-dark btn-md p-2">Start</button>
           </nav>

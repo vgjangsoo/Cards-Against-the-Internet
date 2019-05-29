@@ -65,11 +65,12 @@ class QuestionerDeck extends Component {
         <h4>Questioner's Cards</h4>
         <div className='d-flex flex-row justify-content-around'>
           {selectedQuestions.map(e => {
+
             return (
               <div className="deckCard card questioncards" style={{width: "18rem"}}>
                 <div className='cardContainer'>
                   <div className="card-body">
-                    <div key={e.id} className="card-text">{e.content}</div>
+                    <div key={e.id} className="card-text" value={e.id}>{e.content}</div>
                   </div>
                 </div>
               </div>

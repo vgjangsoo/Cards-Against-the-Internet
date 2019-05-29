@@ -74,7 +74,7 @@ class AnswererDeck extends Component {
   
   render() {
     const selectedAnswers = this.state.answers;
-    console.log(selectedAnswers);
+
     return (
       <div className="Game">
         <h4>Answerers' Cards</h4>
