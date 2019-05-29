@@ -1,12 +1,10 @@
 // Games table columns
 
 theme = 'string ex: Game of Thrones, Avengers....'
-roomStatus = 'string:  ex: Waiting, playing, full, gameover'
 
 gameState = {
     //everything outside is for creating a game
     maxRound: "integer",
-    maxPlayers: 'integer',
     creator: 'integer, user_id',
     deck_id: 'integer',
     isEveryoneDeck: 'bool',
@@ -20,20 +18,24 @@ gameState = {
         roundWinner: 'integer, ,user_id'
     },
     playersInfo: {
-        user_id1: {
-            roundPoints: 'integer',
-            status: 'string, ex: ready, selecting',
-            questionCards: 'array[] of 3 question cards',
-            answerCards: 'array[] of 5 cards',
-            selectedCard: 'integer, card_id'
-        },
-        user_id2: {
-            roundPoints: 'integer',
-            status: 'string, ex: ready, selecting',
-            questionCards: 'array[] of 3 question cards',
-            answerCards: 'array[] of 5 cards',
-            selectedCard: 'integer, card_id'
-        }
+        users: [
+            {
+              id: 'user_id',
+              roundPoints: 'integer',
+              status: 'waiting, ready',
+              questionCards: [ card1.id, card2.id, card3.id],
+              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              selectedCard: 'card_id'
+            },
+            {
+              id: user2.id,
+              roundPoints: 0,
+              status: 'ready',
+              questionCards: nil,
+              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              selectedCard: nil
+            }
+          ] 
     }
 }
 
