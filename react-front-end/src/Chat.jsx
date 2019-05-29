@@ -14,8 +14,18 @@ class Chat extends Component {
   
     render() {
       return (
-        <div className="Chat">
-          <h1>Room #1: Chat</h1>
+        <div className="p-2 chat-box">
+          <h5>Chat</h5>
+          <div className="incoming-msg">
+
+          </div>
+          <div className="d-flex flex-row justify-content-around">
+            <input type="chat-input" id="cha-input" className="form-control write_msg" placeholder="Let's chat!"></input>
+            <button className="btn btn-dark btn-md p-1">
+              Send
+            </button>
+            <button className='btn-md btn btn-dark p-1'> 😀</button>
+          </div>
         </div>
       );
     }

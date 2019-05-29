@@ -69,14 +69,14 @@ class App extends Component {
             <Route path='/lobby/:id' component={Game}/>
           </Switch>
         </Router>
-        <button onClick={this.fetchData} >
+        {/* <button onClick={this.fetchData} >
           Fetch Data
         </button>  
         <button onClick={this.fetchData2} >
           Fetch single
         </button> 
         {cardData.map( elm => <h1> {elm + '\n'} </h1>)} 
-        { singleCard }
+        { singleCard } */}
       </div>
     );
   }
