@@ -134,55 +134,79 @@ baseDeck.cards.create!({
   puts 'Creating games'
 
   game1 = Game.create!({
-    maxRound: 10,
-    currentRound: 0,
-    isEveryoneDeck: true,
-    currentQuestion: nil,
-    currentAnswer: nil,
-    maxPlayers: 5,
-    creator: user1.id,
-    currentQuestioner: user1.id,
-    roundWinner: nil,
-    deck_id: baseDeck.id,
-    gameStatus: 'waiting' 
-   })
+    theme: 'Game of Thrones',
+    roomStatus: 'Waiting',  
+    gameState: {
+      maxRound: "integer",
+      maxPlayers: 'integer',
+      creator: 'integer, user_id',
+      deck_id: 'integer',
+      isEveryoneDeck: 'bool',
+      gameInfo: {
+          status: 'string ex: questioner is choosing a card, answers must choose card....',
+          currentPlayers: 'integer, num of players in the room',
+          currentRound: 'integer',
+          currentQuestioner: 'integer, user_id',
+          selectedQuestion: 'integer, card_id',
+          selectedAnswer: 'integer, card_id',
+          roundWinner: 'integer, ,user_id'
+      },
+      playersInfo: {
+          user_id1: {
+              roundPoints: 'integer',
+              status: 'string, ex: ready, selecting',
+              questionCards: 'array[] of 3 question cards',
+              answerCards: 'array[] of 5 cards',
+              selectedCard: 'integer, card_id'
+          },
+          user_id2: {
+              roundPoints: 'integer',
+              status: 'string, ex: ready, selecting',
+              questionCards: 'array[] of 3 question cards',
+              answerCards: 'array[] of 5 cards',
+              selectedCard: 'integer, card_id'
+          }
+      }
+    }  
+  })
 
-   game2 = Game.create!({
-    maxRound: 10,
-    currentRound: 5,
-    isEveryoneDeck: true,
-    currentQuestion: Card.where(isQuestion: true).first.id,
-    currentAnswer: Card.where(isQuestion: false).last.id,
-    maxPlayers: 5,
-    creator: user2.id,
-    currentQuestioner: user1.id,
-    roundWinner: user3.id,
-    deck_id: baseDeck.id,
-    gameStatus: 'playing' 
-   })
 
-   game3 = Game.create!({
-    maxRound: 10,
-    currentRound: 10,
-    isEveryoneDeck: true,
-    currentQuestion: Card.where(isQuestion: true).last.id,
-    currentAnswer: Card.where(isQuestion: false).first.id,
-    maxPlayers: 5,
-    creator: user3.id,
-    currentQuestioner: user1.id,
-    roundWinner: user3.id,
-    deck_id: baseDeck.id,
-    gameStatus: 'gameover' 
-   })
+  #  game2 = Game.create!({
+  #   maxRound: 10,
+  #   currentRound: 5,
+  #   isEveryoneDeck: true,
+  #   currentQuestion: Card.where(isQuestion: true).first.id,
+  #   currentAnswer: Card.where(isQuestion: false).last.id,
+  #   maxPlayers: 5,
+  #   creator: user2.id,
+  #   currentQuestioner: user1.id,
+  #   roundWinner: user3.id,
+  #   deck_id: baseDeck.id,
+  #   gameStatus: 'playing' 
+  #  })
+
+  #  game3 = Game.create!({
+  #   maxRound: 10,
+  #   currentRound: 10,
+  #   isEveryoneDeck: true,
+  #   currentQuestion: Card.where(isQuestion: true).last.id,
+  #   currentAnswer: Card.where(isQuestion: false).first.id,
+  #   maxPlayers: 5,
+  #   creator: user3.id,
+  #   currentQuestioner: user1.id,
+  #   roundWinner: user3.id,
+  #   deck_id: baseDeck.id,
+  #   gameStatus: 'gameover' 
+  #  })
   
    puts 'Finished creating games table'
 
-   puts "Recreating Rounds"
+  #  puts "Recreating Rounds"
 
-   Round.destroy_all
-   puts "Finished destroying rounds table"
+  #  Round.destroy_all
+  #  puts "Finished destroying rounds table"
  
-   puts 'Creating rounds'
+  #  puts 'Creating rounds'
 
   #  Round.create!({
   #    round: Game.where(gameStatus: 'playing').first.currentRound,
@@ -191,52 +215,52 @@ baseDeck.cards.create!({
   #    winner: Game.where(gameStatus: 'playing').first.roundWinner
   #  })
 
-  game2.rounds.create!({
-    round: game2.currentRound,
-    question: game2.currentQuestion,
-    answer: game2.currentAnswer,
-    winner: game2.roundWinner,
-  })
+  # game2.rounds.create!({
+  #   round: game2.currentRound,
+  #   question: game2.currentQuestion,
+  #   answer: game2.currentAnswer,
+  #   winner: game2.roundWinner,
+  # })
 
-  game3.rounds.create!({
-    round: game3.currentRound,
-    question: game3.currentQuestion,
-    answer: game3.currentAnswer,
-    winner: game3.roundWinner,
-  })
+  # game3.rounds.create!({
+  #   round: game3.currentRound,
+  #   question: game3.currentQuestion,
+  #   answer: game3.currentAnswer,
+  #   winner: game3.roundWinner,
+  # })
 
-   puts 'Finished creating rounds table'
+  #  puts 'Finished creating rounds table'
 
-   puts "Recreating User-game-info"
+  #  puts "Recreating User-game-info"
 
-   UserGameInfo.destroy_all
-   puts "Finished destroying User-game-info table"
+  #  UserGameInfo.destroy_all
+  #  puts "Finished destroying User-game-info table"
  
-   puts 'Creating User-game-info'
+  #  puts 'Creating User-game-info'
 
-  #  testArray = Card.where(isQuestion: false).map{|elm| elm.id }
-  #  puts testArray[0]
-  #  puts testArray[1]
+  # #  testArray = Card.where(isQuestion: false).map{|elm| elm.id }
+  # #  puts testArray[0]
+  # #  puts testArray[1]
 
-   game2.user_game_infos.create!({
-     user_id: user1.id,
-     roundPoints: 2,
-     userStatus: 'waiting',
-     hands: Card.where(isQuestion: false).map{|elm| elm.id },
-     selectedCard: game2.currentAnswer
-   })
+  #  game2.user_game_infos.create!({
+  #    user_id: user1.id,
+  #    roundPoints: 2,
+  #    userStatus: 'waiting',
+  #    hands: Card.where(isQuestion: false).map{|elm| elm.id },
+  #    selectedCard: game2.currentAnswer
+  #  })
 
-   game3.user_game_infos.create!({
-    user_id: user2.id,
-    roundPoints: 4,
-    userStatus: 'gameover',
-    hands: Card.where(isQuestion: false).map{|elm| elm.id },
-    selectedCard: game3.currentAnswer
-  })
+  #  game3.user_game_infos.create!({
+  #   user_id: user2.id,
+  #   roundPoints: 4,
+  #   userStatus: 'gameover',
+  #   hands: Card.where(isQuestion: false).map{|elm| elm.id },
+  #   selectedCard: game3.currentAnswer
+  # })
 
 
 
-   puts 'Finished creating User-game-info table'
+  #  puts 'Finished creating User-game-info table'
    
    
 

@@ -38,17 +38,9 @@ ActiveRecord::Schema.define(version: 2019_05_28_021204) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "maxRound"
-    t.integer "currentRound"
-    t.boolean "isEveryoneDeck"
-    t.integer "currentQuestion"
-    t.integer "currentAnswer"
-    t.integer "maxPlayers"
-    t.integer "creator"
-    t.integer "currentQuestioner"
-    t.integer "roundWinner"
-    t.integer "deck_id"
-    t.string "gameStatus"
+    t.string "theme"
+    t.string "roomStatus"
+    t.json "gameState"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,6 +85,5 @@ ActiveRecord::Schema.define(version: 2019_05_28_021204) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "cards", "decks"
   add_foreign_key "messages", "conversations"
 end
