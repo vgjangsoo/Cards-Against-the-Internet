@@ -27,31 +27,31 @@ puts "Finished destroying cards table"
 puts 'Creating QUESTION cards'
 
 
-baseDeck.cards.create!({
+qcard1 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "____. High five, bro."
 })
 
-baseDeck.cards.create!({
+qcard2 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "Hey Reddit! I’m ____. Ask me anything."
 })
 
-baseDeck.cards.create!({
+qcard3 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "Why am I sticky?"
 })
 
-baseDeck.cards.create!({
+qcard4 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "Uh, hey guys, I know this was my idea, but I’m having serious doubts about ____."
 })
 
-baseDeck.cards.create!({
+qcard5 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "What’s that smell?"
@@ -59,33 +59,33 @@ baseDeck.cards.create!({
 
   puts 'Creating Answer cards'
 
-  baseDeck.cards.create!({
+  acard1 = baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Sperm whales."
   })
 
-  baseDeck.cards.create!({
+  acard2 = baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Fiery poops."
   })
 
 
-  baseDeck.cards.create!({
+  acard3 = baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Getting crushed by a vending machine."
   })
   
 
-  baseDeck.cards.create!({
+  acard4 = baseDeck.cards.create!({
     isQuestion: false,
     fromInternet: false,
     content: "Horse meat."
   })
 
-  baseDeck.cards.create!({
+  acard5 = baseDeck.cards.create!({
       isQuestion: false,
       fromInternet: false,
       content: "An endless stream of diarrhea."
@@ -126,6 +126,29 @@ baseDeck.cards.create!({
 
   puts "Finished creating users table"
 
+
+  puts "Recreating Lobby"
+
+  Lobby.destroy_all
+  puts "Finished destroying lobbiess table"
+  
+  puts 'Creating lobby'
+  
+  lobby = Lobby.new({
+    game_id: nil, 
+    roomStatus: nil,
+    maxPlayer: nil,
+    currentPlayers: nil, 
+    theme: 'Testing room1' 
+  })  
+
+  lobby.save!
+
+  
+  puts "Finished creating lobbies table"
+
+
+  # need to change games below
   puts "Recreating Games"
 
   Game.destroy_all
@@ -133,42 +156,57 @@ baseDeck.cards.create!({
 
   puts 'Creating games'
 
-  game1 = Game.create!({
+  game1 = lobby.games.create!({
     theme: 'Game of Thrones',
-    roomStatus: 'Waiting',  
     gameState: {
-      maxRound: "integer",
-      maxPlayers: 'integer',
-      creator: 'integer, user_id',
-      deck_id: 'integer',
-      isEveryoneDeck: 'bool',
+      maxRound: 5,
+      creator: user1.id,
+      deck_id: baseDeck.id,
+      isEveryoneDeck: true,
       gameInfo: {
-          status: 'string ex: questioner is choosing a card, answers must choose card....',
-          currentPlayers: 'integer, num of players in the room',
-          currentRound: 'integer',
-          currentQuestioner: 'integer, user_id',
-          selectedQuestion: 'integer, card_id',
-          selectedAnswer: 'integer, card_id',
-          roundWinner: 'integer, ,user_id'
+          status: 'Waiting for players to join game...',
+          currentPlayers: 2,
+          currentRound: 0,
+          currentQuestioner: user1.id,
+          selectedQuestion: nil,
+          selectedAnswer: nil,
+          roundWinner: nil
       },
       playersInfo: {
-          user_id1: {
-              roundPoints: 'integer',
-              status: 'string, ex: ready, selecting',
-              questionCards: 'array[] of 3 question cards',
-              answerCards: 'array[] of 5 cards',
-              selectedCard: 'integer, card_id'
-          },
-          user_id2: {
-              roundPoints: 'integer',
-              status: 'string, ex: ready, selecting',
-              questionCards: 'array[] of 3 question cards',
-              answerCards: 'array[] of 5 cards',
-              selectedCard: 'integer, card_id'
-          }
+          users: [
+            {
+              id: user1.id,
+              roundPoints: 0,
+              status: 'waiting',
+              questionCards: [qcard1.id, qcard2.id, qcard3.id],
+              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              selectedCard: nil
+            },
+            {
+              id: user2.id,
+              roundPoints: 0,
+              status: 'ready',
+              questionCards: nil,
+              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              selectedCard: nil
+            }
+          ]          
       }
     }  
   })
+
+puts 'Finished creating Games table'
+
+puts 'updating lobby table'
+ 
+lobby.game_id = game1.id
+lobby.roomStatus = 'Waiting'
+lobby.maxPlayer = 6
+lobby.currentPlayers = 2
+lobby.theme = game1.theme
+lobby.save!
+
+puts 'Finished updating lobby table after game is created'
 
 
   #  game2 = Game.create!({
