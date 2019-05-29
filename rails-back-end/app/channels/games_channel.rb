@@ -1,11 +1,16 @@
 class GamesChannel < ApplicationCable::Channel
+  # def subscribed
+  #   # game room channel
+  #   stream_from "games_channel"
+  # end
+
   def subscribed
-    # stream_from "some_channel"
-    # Lobby
-    stream_from "games_channel"
+    lobby = Lobby.find(params[:lobby])
+    stream_for lobby
   end
   
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
-  end
+
+end

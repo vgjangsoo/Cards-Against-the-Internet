@@ -1,16 +1,20 @@
 class Api::GamesController < ApplicationController
-  def index
-    games = Game.all
-    render json: games
-  end
+  # def index
+  #   # URL: /api/games
+  #   games = Game.all
+  #   render json: games
+  # end
+
 
   def create
     game = Game.new(game_params)
+    # TODO: need to add lobby_id to games table
+    lobby = Lobby.find(game_params[:lobby_id])
     if game.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        GameSerializer.new(game)
+        MessageSerializer.new(game)
       ).serializable_hash
-      ActionCable.server.broadcast 'games_channel', serialized_data
+      GamesChannel.broadcast_to lobby, serialized_data
       head :ok
     end
   end
@@ -22,6 +26,6 @@ class Api::GamesController < ApplicationController
   private
   
   def game_params
-    params.require(:game).permit(:gameState, :theme)
+    params.require(:game).permit(:gameState, :theme, :lobby_id)
   end
 end

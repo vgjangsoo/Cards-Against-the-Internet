@@ -1,5 +1,5 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :theme, :roomStatus, :gameState
+  attributes :id, :theme, :gameState, :lobby_id
 end
 
 
