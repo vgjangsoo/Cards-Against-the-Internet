@@ -2,6 +2,7 @@ class CreateGames < ActiveRecord::Migration[5.2]
   def change
     create_table :games do |t|
       t.string :theme
+      t.string :roomStatus # Waiting, playing, full, gameover
       t.json 'gameState'
 
       t.timestamps
@@ -29,3 +30,7 @@ end
 # t.string :userStatus
 # t.text :hands, array: true, default: []
 # t.integer :selectedCard
+
+let gameState = {
+  maxRound: 
+}
