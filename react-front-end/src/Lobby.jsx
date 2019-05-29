@@ -5,16 +5,14 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Gameroom from "./Gameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx"
-
-function ID() {
-  return '_' + Math.random().toString(36).substr(2, 9);
-}
+import { API_ROOT } from './constants';
 
 class Lobby extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showCreateRoomModal: false,
+      createdRooms: [],
       newRooms: []
     };
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
@@ -50,8 +48,8 @@ class Lobby extends Component {
       deckId: 0,
       gameStatus: 'waiting'
     }
-
-    axios.post('/api/games', { postData })
+    
+    axios.post(`${API_ROOT}/games`, { postData })
     .then((res) => {
       console.log(res.data);
     })
@@ -62,36 +60,41 @@ class Lobby extends Component {
   closeCreateRoomModal = () => this.setState({ showCreateRoomModal: false });
   openCreateRoomModal = () => this.setState({ showCreateRoomModal: true });
   
-    render() {
-      
-      const roomId = ID();
-      const newGameRooms = this.state.newRooms.reverse();
-      console.log(newGameRooms);
+  componentDidMount() {
+    axios.get(`${API_ROOT}/games`)
+    .then(res => {
 
+      res.data.map(e => 
+        this.setState({ createdRooms: [...this.state.createdRooms, e] })
+      )
+    });
+  };
+
+
+    render() {
+      const createdGameRooms = this.state.createdRooms.reverse();
       return (
         <div className="App">
           <LobbyNav createRoom={this.openCreateRoomModal} />
 
           <div className="container">
             <div className="card-deck mb-3 text-center">
-              {newGameRooms.reverse().map(e => {
+              {createdGameRooms.reverse().map(e => {
                 return (
-                  <Gameroom roomInfo={e} key={roomId} roomId={roomId}/>
+                  <Gameroom roomInfo={e} key={e.id} roomId={e.id}/>
                 )
-              })} 
+              })}
             </div>
           </div>
 
           <div>
             {this.state.showCreateRoomModal ? (<CreateRoomModal handleRoomCreate={this.handleRoomCreate} onClose={this.closeCreateRoomModal}/>) : null}
           </div>
-          
         </div>
-
       );
     }
   }
   
-  export default Lobby;
+export default Lobby;
 
   

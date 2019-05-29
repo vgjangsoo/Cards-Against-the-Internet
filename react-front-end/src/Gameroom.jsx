@@ -20,16 +20,15 @@ class Gameroom extends Component {
     }
   }
   
-  componentDidMount = () => {
+  componentDidMount() {
     // console.log(this.props.cable)
-    axios.get(`${API_ROOT}/games`)
-      .then(res => console.log("res:", res.data))
+    // axios.get(`${API_ROOT}/games`)
+    //   .then(res => console.log("res:", res.data))
   };
 
   render() {
-    const roomId = this.props.roomId;
-    const propsSending = this.props.roomInfo;
-    console.log("Propsending from gameroom: ", propsSending);
+    const roomInfo = this.props.roomInfo;
+
     return (
       
       <div className="card mb-4 shadow-lg">
@@ -37,11 +36,11 @@ class Gameroom extends Component {
           <span><h4 className="my-0 font-weight-normal">Room 1</h4></span>
         </div>
         <div className="card-body">
-          <h1 className="card-title pricing-card-title">0 <small className="text-muted">/ {this.props.roomInfo.maxPlayers}</small></h1>
+          <h1 className="card-title pricing-card-title">0 <small className="text-muted">/ {roomInfo.gameState.maxPlayers}</small></h1>
           <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
-            <Link to={{ pathname: `/lobby/${roomId}`, state: {info: propsSending} }} style={{color: 'black', textDecoration: 'none'}}><h1>{this.props.roomInfo.room}</h1></Link>
+            <Link to={{ pathname: `/lobby/${roomInfo.id}`, state: {info: roomInfo} }} style={{color: 'black', textDecoration: 'none'}}><h1>{this.props.roomInfo.theme}</h1></Link>
           </button>
-          <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">{this.state.roomStatus}</div>
+          <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">{roomInfo.roomStatus}</div>
         </div>
       </div>
     
