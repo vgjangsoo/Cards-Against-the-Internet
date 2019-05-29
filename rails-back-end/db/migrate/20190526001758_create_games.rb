@@ -31,6 +31,3 @@ end
 # t.text :hands, array: true, default: []
 # t.integer :selectedCard
 
-let gameState = {
-  maxRound: 
-}
