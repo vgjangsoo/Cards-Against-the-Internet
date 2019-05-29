@@ -74,13 +74,13 @@ class AnswererDeck extends Component {
   
   render() {
     const selectedAnswers = this.state.answers;
-    console.log(selectedAnswers);
+
     return (
       <div className="Game">
         <h4>Answerers' Cards</h4>
         <div className=' answerers-cards'>
         
-          <div className='d-inline-flex flex-row justify-content-between'>
+          <div className='d-inline-flex flex-row justify-content-between content'>
           {selectedAnswers.map(e => {
             return (
               <div className='deckCard card answer-card'>
