@@ -1,7 +1,7 @@
 // src/components/ConversationsList.js
 
 import React from 'react';
-import { ActionCable } from 'react-actioncable-provider';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
 import NewConversationForm from './NewConversationForm';
 import MessagesArea from './MessagesArea';
@@ -14,6 +14,7 @@ class ConversationsList extends React.Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props.cable)
     fetch(`${API_ROOT}/conversations`)
       .then(res => res.json())
       .then(conversations => this.setState({ conversations }));
@@ -25,26 +26,30 @@ class ConversationsList extends React.Component {
 
   handleReceivedConversation = response => {
     const { conversation } = response;
-    this.setState({
-      conversations: [...this.state.conversations, conversation]
-    });
+    this.setState(previousState => ({
+      conversations: [...previousState.conversations, conversation]
+    }));
   };
 
   handleReceivedMessage = response => {
     const { message } = response;
-    const conversations = [...this.state.conversations];
-    const conversation = conversations.find(
-      conversation => conversation.id === message.conversation_id
-    );
-    conversation.messages = [...conversation.messages, message];
-    this.setState({ conversations });
+
+    this.setState(previousState => {
+      const conversations = [...previousState.conversations];
+      const conversation = conversations.find(
+        conversation => conversation.id === message.conversation_id
+      );
+      conversation.messages = [...conversation.messages, message];
+
+      return { conversations }
+    });
   };
 
   render = () => {
     const { conversations, activeConversation } = this.state;
     return (
       <div className="conversationsList">
-        <ActionCable
+        <ActionCableConsumer
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.handleReceivedConversation}
         />

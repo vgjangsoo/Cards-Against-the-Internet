@@ -1,4 +1,4 @@
-class ConversationsController < ApplicationController
+class Api::ConversationsController < ApplicationController
     def index
       conversations = Conversation.all
       render json: conversations
