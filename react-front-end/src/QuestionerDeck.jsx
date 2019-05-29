@@ -61,17 +61,21 @@ class QuestionerDeck extends Component {
     const selectedQuestions = this.state.questions;
     
     return (
-      <div className="Game">
-        <h3>Questioner's Cards</h3>
-        {selectedQuestions.map(e => {
-          return (
-            <div className='deckCard'>
-              <div className='cardContainer'>
-                <div key={e.id}>{e.content}</div>
+      <div>
+        <h4>Questioner's Cards</h4>
+        <div className='d-flex flex-row justify-content-around'>
+          {selectedQuestions.map(e => {
+            return (
+              <div className="deckCard card questioncards" style={{width: "18rem"}}>
+                <div className='cardContainer'>
+                  <div className="card-body">
+                    <div key={e.id} className="card-text">{e.content}</div>
+                  </div>
+                </div>
               </div>
-            </div>
-          )
-        })}    
+            )
+          })}   
+        </div> 
       </div>
     );
   }

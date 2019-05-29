@@ -77,19 +77,26 @@ class AnswererDeck extends Component {
     console.log(selectedAnswers);
     return (
       <div className="Game">
-        <h3>Answerers' Cards</h3>
-        {selectedAnswers.map(e => {
-          return (
-            <div className='deckCard'>
-              <div className='cardContainer'>
-                <div key={e.id}>{e.content}</div>
+        <h4>Answerers' Cards</h4>
+        <div className=' answerers-cards'>
+        
+          <div className='d-inline-flex flex-row justify-content-between'>
+          {selectedAnswers.map(e => {
+            return (
+              <div className='deckCard card answer-card'>
+                <div className='cardContainer'>
+                  <div className="card-body">
+                    <div key={e.id} className="card-text">{e.content}</div>
+                  </div>
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+          </div>
+        </div>
       </div>
     );
   }
 }
-  
+
 export default AnswererDeck;
