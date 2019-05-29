@@ -66,6 +66,7 @@ class Lobby extends Component {
       
       const roomId = ID();
       const newGameRooms = this.state.newRooms.reverse();
+      console.log(newGameRooms);
 
       return (
         <div className="App">

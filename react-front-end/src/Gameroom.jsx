@@ -28,7 +28,8 @@ class Gameroom extends Component {
 
   render() {
     const roomId = this.props.roomId;
-    const propsSending = this.props.roomInfo
+    const propsSending = this.props.roomInfo;
+    console.log("Propsending from gameroom: ", propsSending);
     return (
       
       <div className="card mb-4 shadow-lg">
