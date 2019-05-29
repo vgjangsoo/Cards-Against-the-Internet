@@ -14,6 +14,10 @@ class Api::ConversationsController < ApplicationController
         head :ok
       end
     end
+
+    def update (data)
+    # updating game state logic
+    end
     
     private
     
