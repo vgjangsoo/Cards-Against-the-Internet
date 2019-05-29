@@ -1,3 +1,7 @@
+// Games table columns
+
+theme = 'string ex: Game of Thrones, Avengers....'
+roomStatus = 'string:  ex: Waiting, playing, full, gameover'
 
 gameState = {
     //everything outside is for creating a game
