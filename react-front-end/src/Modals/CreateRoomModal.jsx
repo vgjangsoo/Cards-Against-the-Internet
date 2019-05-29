@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class CreateRoomModal extends Component {
   constructor(props) {
-    
     super(props)
     this.state = {
       newRooms:[]
@@ -18,8 +17,8 @@ class CreateRoomModal extends Component {
     return (
       <div className='bg-modal'>
         <div className='modal-contents'>
+          <h1 className="h3 mb-3 font-weight-normal">Room Settings <button className="btn btn-danger btn-sm" onClick={this.props.onClose}>X</button></h1>
           <form className="form-signin" onSubmit={this.props.handleRoomCreate}>
-            <h1 className="h3 mb-3 font-weight-normal">Room Settings <button className="btn btn-danger btn-sm" onClick={this.props.onClose}>X</button></h1>
             <label className="sr-only">Theme</label>
             <input type="theme" id="theme" className="form-control" placeholder="Theme" autoFocus required></input>
             <button className="btn btn-md btn-dark btn-block" type="submit">Randomize Theme</button>
