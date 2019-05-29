@@ -24,6 +24,7 @@ class Chat extends Component {
             <button className="btn btn-dark btn-md p-1">
               Send
             </button>
+            <button className='btn-md btn btn-dark p-1'> 😀</button>
           </div>
         </div>
       );
