@@ -36,7 +36,6 @@ class Game extends Component {
           </nav>
         </div>
 
-
         <div className="ingame-room container">
           <form>
             <div>
