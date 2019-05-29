@@ -15,8 +15,6 @@ class Gameroom extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: 'Click the button to load data!',
-      roomStatus: 'Waiting...',
       gameState: []
     }
   }
@@ -42,8 +40,6 @@ class Gameroom extends Component {
           <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">{roomInfo.roomStatus}</div>
         </div>
       </div>
-    
-  
     );
   }
 }
