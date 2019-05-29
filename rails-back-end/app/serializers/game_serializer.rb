@@ -1,6 +1,5 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :gameState, :theme
-  has_many :users
+  attributes :id, :theme, :roomStatus, :gameState
 end
 
 

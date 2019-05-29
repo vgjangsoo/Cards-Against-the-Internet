@@ -126,26 +126,50 @@ baseDeck.cards.create!({
 
   puts "Finished creating users table"
 
-  # puts "Recreating Games"
+  puts "Recreating Games"
 
-  # Game.destroy_all
-  # puts "Finished destroying games table"
+  Game.destroy_all
+  puts "Finished destroying games table"
 
-  # puts 'Creating games'
+  puts 'Creating games'
 
-  # game1 = Game.create!({
-  #   maxRound: 10,
-  #   currentRound: 0,
-  #   isEveryoneDeck: true,
-  #   currentQuestion: nil,
-  #   currentAnswer: nil,
-  #   maxPlayers: 5,
-  #   creator: user1.id,
-  #   currentQuestioner: user1.id,
-  #   roundWinner: nil,
-  #   deck_id: baseDeck.id,
-  #   gameStatus: 'waiting' 
-  #  })
+  game1 = Game.create!({
+    theme: 'Game of Thrones',
+    roomStatus: 'Waiting',  
+    gameState: {
+      maxRound: "integer",
+      maxPlayers: 'integer',
+      creator: 'integer, user_id',
+      deck_id: 'integer',
+      isEveryoneDeck: 'bool',
+      gameInfo: {
+          status: 'string ex: questioner is choosing a card, answers must choose card....',
+          currentPlayers: 'integer, num of players in the room',
+          currentRound: 'integer',
+          currentQuestioner: 'integer, user_id',
+          selectedQuestion: 'integer, card_id',
+          selectedAnswer: 'integer, card_id',
+          roundWinner: 'integer, ,user_id'
+      },
+      playersInfo: {
+          user_id1: {
+              roundPoints: 'integer',
+              status: 'string, ex: ready, selecting',
+              questionCards: 'array[] of 3 question cards',
+              answerCards: 'array[] of 5 cards',
+              selectedCard: 'integer, card_id'
+          },
+          user_id2: {
+              roundPoints: 'integer',
+              status: 'string, ex: ready, selecting',
+              questionCards: 'array[] of 3 question cards',
+              answerCards: 'array[] of 5 cards',
+              selectedCard: 'integer, card_id'
+          }
+      }
+    }  
+  })
+
 
   #  game2 = Game.create!({
   #   maxRound: 10,
@@ -175,7 +199,7 @@ baseDeck.cards.create!({
   #   gameStatus: 'gameover' 
   #  })
   
-  #  puts 'Finished creating games table'
+   puts 'Finished creating games table'
 
   #  puts "Recreating Rounds"
 
