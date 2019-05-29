@@ -1,6 +1,7 @@
 class Api::LobbiesController < ApplicationController
 
     def index
+        # URL: /api/lobbies
         lobbies = Lobby.all
         render json: lobbies
     end
@@ -19,13 +20,13 @@ class Api::LobbiesController < ApplicationController
     private
         
     def lobby_params
-        params.require(:lobby).permit({
+        params.require(:lobby).permit(
             :id, 
             :game_id,
             :maxPlayer,
             :currentPlayers,
             :theme,
             :roomStatus
-        })
+        )
     end
 end

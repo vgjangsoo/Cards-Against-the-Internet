@@ -1,9 +1,11 @@
 class Api::GamesController < ApplicationController
-  # def index
-  #   # URL: /api/games
-  #   games = Game.all
-  #   render json: games
-  # end
+ 
+ 
+  def index
+    # URL: /api/games
+    games = Game.all
+    render json: games
+  end
 
 
   def create

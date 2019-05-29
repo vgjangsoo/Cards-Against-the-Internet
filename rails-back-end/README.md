@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## To start rails with sockets
+rails s -b 0.0.0.0 -p 3001
