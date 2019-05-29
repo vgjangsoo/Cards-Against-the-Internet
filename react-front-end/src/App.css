@@ -154,7 +154,7 @@
 }
 
 .answerers-cards {
-  overflow: scroll;
+  overflow-x: scroll;
   padding-bottom: 1.5em;
   margin-bottom: -20px;
 }
