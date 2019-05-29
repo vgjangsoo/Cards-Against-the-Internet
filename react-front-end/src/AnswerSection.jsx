@@ -13,7 +13,7 @@ class AnswerSection extends Component {
             <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}}>
               <div className='cardContainer'>
                 <div className="card-body">
-                <img src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
+                <img className='card-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                   <div className='player-name-section'>
                     <h6>Player 1</h6>
                   </div>
@@ -41,7 +41,7 @@ class AnswerSection extends Component {
             <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}}>
               <div className='cardContainer'>
                 <div className="card-body">
-                <img src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
+                <img className='card-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                   <div className='player-name-section'>
                     <h6>Player 3</h6>
                   </div>
@@ -55,7 +55,7 @@ class AnswerSection extends Component {
             <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}}>
               <div className='cardContainer'>
                 <div className="card-body">
-                <img src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
+                <img className='card-img' src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                   <div className='player-name-section'>
                     <h6>Player 4</h6>
                   </div>
