@@ -3,7 +3,6 @@ import './App.css';
 
 class AnswerSection extends Component {
   render() {
-    
     return (
       <div>
         <h4>Players</h4>
@@ -18,7 +17,7 @@ class AnswerSection extends Component {
                     <h6>Player 1</h6>
                   </div>
                   <div className='player-status-section'>
-                    <h6>Waiting...</h6>
+                    <h6>{this.props.userStatus.games[0].gameState.playersInfo.users[0].status}</h6>
                   </div>
                 </div>
               </div>
@@ -32,7 +31,7 @@ class AnswerSection extends Component {
                     <h6>Player 2</h6>
                   </div>
                   <div className='player-status-section'>
-                    <h6>Ready</h6>
+                    <h6>{this.props.userStatus.games[0].gameState.playersInfo.users[1].status}</h6>
                   </div>
                 </div>
               </div>
