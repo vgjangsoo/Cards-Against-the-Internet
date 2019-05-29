@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :users
     resources :decks
     resources :rounds
-    resources :user_game_infos
+    # resources :user_game_infos
     
     get "cards/show_hand", to: 'cards#show_hand'
   end
