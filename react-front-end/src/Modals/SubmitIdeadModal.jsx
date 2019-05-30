@@ -13,7 +13,8 @@ class SubmitIdeaModal extends Component {
         <h1 className="h3 mb-3 font-weight-normal">Make own cards<button className="btn btn-danger btn-sm" onClick={this.props.closeIdeaModal}>X</button></h1>
           <form className="form-signin">
             <label for="cardIdea" className="sr-only">Suggest a card</label>
-            <input type="cardidea" id="cardIdea" className="form-control" placeholder="Suggest a card" autoFocus></input>
+            <textarea rows="4" cols="50" type="cardidea" id="cardIdea" className="form-control" placeholder="Suggest a card" autoFocus></textarea>
+            <br/>
             <button className="btn btn-lg btn-dark btn-block" type="submit">Submit Bad Idea</button>
           </form>
         </div>
