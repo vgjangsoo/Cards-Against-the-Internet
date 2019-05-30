@@ -145,12 +145,13 @@ qcard5 = baseDeck.cards.create!({
   lobby.save!
 
   lobby2 = Lobby.new({
-    game_id: nil, 
-    roomStatus: nil,
-    maxPlayer: nil,
-    currentPlayers: nil, 
+    game_id: '1', 
+    roomStatus: 'Waiting',
+    maxPlayer: 5,
+    currentPlayers: 1, 
     theme: 'Testing room1' 
   })  
+
 
   lobby2.save!
 

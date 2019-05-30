@@ -34,14 +34,7 @@ class Lobby extends Component {
 
     const newRoom = event.target.theme.value;
     const newRoomPlayer = event.target.playerNumber.value;
-    const newRoomRound = event.target.roundNumber.value;
     
-    // const newRoomInfo = {
-    //   room: newRoom,
-    //   maxPlayers: newRoomPlayer,
-    //   rounds: newRoomRound
-    // }
-    // console.log('newRoomInfo:',newRoomInfo)
 
     const roomData = {
       maxPlayer: newRoomPlayer,
@@ -51,15 +44,8 @@ class Lobby extends Component {
     axios.post(`${API_ROOT}/lobbies`, roomData)
     .then(res => {
       console.log('POST is successful')
-      //some cleanup action after good post request?
     })
 
-
-    // NOTE: should NOT change lobbyState here
-    // this.setState({
-    //   lobbyState: [...this.state.lobbyState, newRoomInfo]
-    // });
-    // TODO: need to add
 
     event.target.theme.value = '';
   }
@@ -68,10 +54,6 @@ class Lobby extends Component {
     console.log('INSIDE WS: handleRecievedLobby function')
     const {lobby} = response
     console.log(lobby)
-
-    // const newRoom = lobby.theme
-    // const newRoomPlayer = lobby.maxPlayer
-    // const newRoomRound = lobby
 
     const newLobbyInfo = {
       theme: lobby.theme,
@@ -89,6 +71,7 @@ class Lobby extends Component {
   openCreateRoomModal = () => this.setState({ showCreateRoomModal: true });
   
     render() {
+      //contains data for display all current lobbies
       const createdGameRooms = this.state.lobbyState.reverse();
     
       return (
