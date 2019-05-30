@@ -18,17 +18,12 @@ class Gameroom extends Component {
       gameState: []
     }
   }
-  
-  componentDidMount() {
-    axios.get(`${API_ROOT}/games`)
-      .then(res => this.setState({gameState: res.data}))
-  };
 
   render() {
     const roomInfo = this.props.roomInfo;
 
     return (
-      <div className="card mb-4 shadow-lg">
+      <div className="card mb-4 shadow-lg col-4">
         <div className="card-header">
           <span><h4 className="my-0 font-weight-normal">Room {roomInfo.id}</h4></span>
         </div>

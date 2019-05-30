@@ -20,9 +20,10 @@ class Lobby extends Component {
   componentDidMount() {
     axios.get(`${API_ROOT}/lobbies`)
     .then(res => {
-      res.data.map(e => 
+      console.log("RESRES", res.data)
+      res.data.map(e => {
         this.setState({ lobbyState: [...this.state.lobbyState, e] })
-      )
+      })
     });
   };
   
@@ -42,6 +43,9 @@ class Lobby extends Component {
     this.setState({
       newRooms: [...this.state.newRooms, newRoomInfo]
     });
+
+    // axios.post(`${API_ROOT}/games`)
+    // .then(res => this.setState({gameState: res.data}))
 
     event.target.theme.value = '';
   }

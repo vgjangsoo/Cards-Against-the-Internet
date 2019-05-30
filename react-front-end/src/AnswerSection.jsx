@@ -3,8 +3,6 @@ import './App.css';
 
 class AnswerSection extends Component {
   render() {
-
-    console.log("zzzzzzzz",this.props.userStatus.games[0])
     return (
       <div>
         <h4>Players</h4>
