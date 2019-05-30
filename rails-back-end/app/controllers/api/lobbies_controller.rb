@@ -16,13 +16,13 @@ class Api::LobbiesController < ApplicationController
         lobby.currentPlayers = 1
 
         if lobby.save
+            # send new room data back as WS broadcast
             serialized_data = ActiveModelSerializers::Adapter::Json.new(
             LobbySerializer.new(lobby)
             ).serializable_hash
             ActionCable.server.broadcast 'lobbies_channel', serialized_data
             head :ok
         end
-        # render or send lobby
     end
         
     private

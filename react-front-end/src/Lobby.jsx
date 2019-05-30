@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Gameroom from "./Gameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx"
-import { API_ROOT } from './constants';
+import { API_ROOT, API_WS_ROOT, HEADERS } from './constants';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 
 class Lobby extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Lobby extends Component {
   }
   
   componentDidMount() {
+    // http GET request to api/lobbies  
     axios.get(`${API_ROOT}/lobbies`)
     .then(res => {
       console.log("RESRES", res.data)
@@ -33,29 +35,54 @@ class Lobby extends Component {
     const newRoom = event.target.theme.value;
     const newRoomPlayer = event.target.playerNumber.value;
     const newRoomRound = event.target.roundNumber.value;
-
-    const newRoomInfo = {
-      room: newRoom,
-      maxPlayers: newRoomPlayer,
-      rounds: newRoomRound
-    }
+    
+    // const newRoomInfo = {
+    //   room: newRoom,
+    //   maxPlayers: newRoomPlayer,
+    //   rounds: newRoomRound
+    // }
+    // console.log('newRoomInfo:',newRoomInfo)
 
     const roomData = {
       maxPlayer: newRoomPlayer,
       theme: newRoom
     }
 
-
-    this.setState({
-      lobbyState: [...this.state.lobbyState, newRoomInfo]
-    });
-    
     axios.post(`${API_ROOT}/lobbies`, roomData)
     .then(res => {
-      console.log('POST RES.DATA from api/lobbies',res.data)
+      console.log('POST is successful')
+      //some cleanup action after good post request?
     })
 
+
+    // NOTE: should NOT change lobbyState here
+    // this.setState({
+    //   lobbyState: [...this.state.lobbyState, newRoomInfo]
+    // });
+    // TODO: need to add
+
     event.target.theme.value = '';
+  }
+
+  handleRecievedLobby = response => {
+    console.log('INSIDE WS: handleRecievedLobby function')
+    const {lobby} = response
+    console.log(lobby)
+
+    // const newRoom = lobby.theme
+    // const newRoomPlayer = lobby.maxPlayer
+    // const newRoomRound = lobby
+
+    const newLobbyInfo = {
+      theme: lobby.theme,
+      maxPlayers: lobby.maxPlayer,
+      currentPlayers: lobby.currentPlayers,
+      roomStatus: lobby.roomStatus
+    }
+    //update lobbyState to show new lobby room
+    this.setState({
+      lobbyState: [...this.state.lobbyState, newLobbyInfo]
+    });
   }
 
   closeCreateRoomModal = () => this.setState({ showCreateRoomModal: false });
@@ -70,11 +97,15 @@ class Lobby extends Component {
 
           <div className="container">
             <div className="card-deck mb-3 text-center">
+              <ActionCableConsumer
+                channel={{ channel: 'LobbiesChannel' }}
+                onReceived={this.handleRecievedLobby}
+              />
               {createdGameRooms.reverse().map(e => {
                 return (
                   <Gameroom roomInfo={e} key={e.id} roomId={e.id}/>
-                )
-              })}
+                  )
+                })}
             </div>
           </div>
 
