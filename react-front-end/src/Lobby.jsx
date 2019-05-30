@@ -12,12 +12,21 @@ class Lobby extends Component {
     super(props)
     this.state = {
       showCreateRoomModal: false,
-      createdRooms: [],
-      newRooms: []
+      lobbyState: []
     };
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
   }
-
+  
+  componentDidMount() {
+    axios.get(`${API_ROOT}/lobbies`)
+    .then(res => {
+      console.log("RESRES", res.data)
+      res.data.map(e => {
+        this.setState({ lobbyState: [...this.state.lobbyState, e] })
+      })
+    });
+  };
+  
   handleRoomCreate(event) {
     event.preventDefault();
 
@@ -35,24 +44,8 @@ class Lobby extends Component {
       newRooms: [...this.state.newRooms, newRoomInfo]
     });
 
-    const postData = {
-      maxRound: newRoomRound,
-      currentRound: 0,
-      isEveryoneDeck: true,
-      currentQuestion: 0,
-      currentAnswer: 0,
-      maxPlayers: newRoomPlayer,
-      creator: 0,
-      currentQuestioner: 0,
-      roundWinner: 0,
-      deckId: 0,
-      gameStatus: 'waiting'
-    }
-    
-    axios.post(`${API_ROOT}/games`, { postData })
-    .then((res) => {
-      console.log(res.data);
-    })
+    // axios.post(`${API_ROOT}/games`)
+    // .then(res => this.setState({gameState: res.data}))
 
     event.target.theme.value = '';
   }
@@ -60,19 +53,9 @@ class Lobby extends Component {
   closeCreateRoomModal = () => this.setState({ showCreateRoomModal: false });
   openCreateRoomModal = () => this.setState({ showCreateRoomModal: true });
   
-  componentDidMount() {
-    axios.get(`${API_ROOT}/games`)
-    .then(res => {
-
-      res.data.map(e => 
-        this.setState({ createdRooms: [...this.state.createdRooms, e] })
-      )
-    });
-  };
-
-
     render() {
-      const createdGameRooms = this.state.createdRooms.reverse();
+      const createdGameRooms = this.state.lobbyState.reverse();
+    
       return (
         <div className="App">
           <LobbyNav createRoom={this.openCreateRoomModal} />

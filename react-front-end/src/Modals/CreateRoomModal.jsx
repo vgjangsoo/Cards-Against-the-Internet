@@ -23,14 +23,14 @@ class CreateRoomModal extends Component {
             <input type="theme" id="theme" className="form-control" placeholder="Theme" autoFocus required></input>
             <button className="btn btn-md btn-dark btn-block" type="submit">Randomize Theme</button>
 
-            <select className="custom-select d-block w-100" id="playerNumber" required>
+            <select className="custom-select d-block w-50" id="playerNumber" required>
               <option value="">Player #</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
 
-            <select className="custom-select d-block w-100" id="roundNumber" required>
+            <select className="custom-select d-block w-50" id="roundNumber" required>
               <option value="">Round #</option>
               <option value="1">1</option>
               <option value="2">2</option>
