@@ -40,12 +40,20 @@ class Lobby extends Component {
       rounds: newRoomRound
     }
 
-    this.setState({
-      newRooms: [...this.state.newRooms, newRoomInfo]
-    });
+    const roomData = {
+      maxPlayer: newRoomPlayer,
+      theme: newRoom
+    }
 
-    // axios.post(`${API_ROOT}/games`)
-    // .then(res => this.setState({gameState: res.data}))
+
+    this.setState({
+      lobbyState: [...this.state.lobbyState, newRoomInfo]
+    });
+    
+    axios.post(`${API_ROOT}/lobbies`, roomData)
+    .then(res => {
+      console.log('POST RES.DATA from api/lobbies',res.data)
+    })
 
     event.target.theme.value = '';
   }
