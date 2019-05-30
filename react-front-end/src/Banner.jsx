@@ -34,12 +34,12 @@ class Banner extends Component {
               <div className="col-md-4">
                 <h2>Fun Experience</h2>
                 <p>Sign up to experience and enjoy our Sassy adult version and be the best player in the leaderboard! </p>
-                <p><a className="btn btn-dark btn-md" href="#" role="button">Play as User&raquo;</a></p>
+                <p><button className="btn btn-dark btn-md" role="button">Play as User&raquo;</button></p>
               </div>
               <div className="col-md-4">
                 <h2>Make own cards</h2>
                 <p>Do you want to share your stuid ideas? Create your own cards and share your trollness with other players!</p>
-                <p><a className="btn btn-dark btn-md" href="#" role="button">Share Your Ideas&raquo;</a></p>
+                <p><button className="btn btn-dark btn-md" onClick={this.props.openIdeaModal} role="button">Share Your Ideas&raquo;</button></p>
               </div>
             </div>
             <hr />

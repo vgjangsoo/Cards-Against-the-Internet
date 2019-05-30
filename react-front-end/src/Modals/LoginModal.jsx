@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class LoginModal extends Component {
 
-  submitLogin(e) {}
-
   render() {
 
     return (
@@ -18,7 +16,7 @@ class LoginModal extends Component {
 
            
             <label for="userName" className="sr-only">Username</label>
-            <input type="username" id="userName" className="form-control" placeholder="Username" required autofocus></input>
+            <input type="username" id="userName" className="form-control" placeholder="Username" required autoFocus></input>
             <label for="inputPassword" className="sr-only">Password</label>
             <input type="password" id="inputPassword" className="form-control" placeholder="Password" required></input>
               <div className="checkbox mb-3">
