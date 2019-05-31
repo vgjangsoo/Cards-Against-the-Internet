@@ -260,27 +260,29 @@
 div.grid {
   display: flex;
   justify-content: flex-start;
-  width: 1500px;
+  width: 100%;
   flex-wrap: wrap;
   text-align: center;
 }
 
 div.gameroom {
   height: 400px;
-  width: 350px;
+  width: 330px;
   margin: 15px;
   border-radius: 10px;
 }
 
-div.container {
+div.gameLobbyContainer {
   display: flex;
   justify-content: center;
+  max-width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 div.card-header {
   background-color:#eaeaea;
   border-top-right-radius: 50px;
 }
-
 
 
