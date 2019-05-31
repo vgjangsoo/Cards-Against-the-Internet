@@ -11,6 +11,7 @@ class Api::GamesController < ApplicationController
     # TODO: need to add lobby_id to games table
     @newLobbyRoom = Lobby.last
     @game.lobby_id = @newLobbyRoom.id
+    
     # HTTP POST request -> /api/games
     @creator = User.find_by(username: 'Sam1')
     @deck = Deck.find_by(theme: 'Base')
@@ -45,7 +46,12 @@ class Api::GamesController < ApplicationController
         }
     }
 
-    if @game.save
+    if @game.save!
+
+      # link the game_id to lobby table
+      @newLobbyRoom.game_id = @game.id
+      @newLobbyRoom.save!
+      # broadcast the new game info
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         MessageSerializer.new(@game)
       ).serializable_hash
