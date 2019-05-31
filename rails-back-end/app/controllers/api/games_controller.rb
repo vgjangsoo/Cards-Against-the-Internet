@@ -76,6 +76,10 @@ class Api::GamesController < ApplicationController
     # HTTP GET request -> Send back game data for one room
     # lobbyID = params[:id]
     # puts `===== lobby ID is: #{lobbyID}` 
+    
+    # need to add a user to room, create all the user game data, and broadcast to everyone
+    
+
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
     game = Game.find(game_id)
