@@ -171,6 +171,7 @@ qcard5 = baseDeck.cards.create!({
 
   game1 = lobby.games.create!({
     theme: 'Game of Thrones', 
+    maxRound: 5,
     gameState: {
       maxRound: 5,
       creator: user1.id,

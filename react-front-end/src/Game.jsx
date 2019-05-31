@@ -8,6 +8,7 @@ import QuestionerDeck from './QuestionerDeck.jsx';
 import History from './History';
 import QuestionSection from './QuestionSection.jsx';
 import AnswerSection from './AnswerSection.jsx';
+import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
 
 const style = {
   marginTop: '5px',
@@ -22,6 +23,17 @@ class Game extends Component {
     this.state = {
       roominfo: this.props
     }
+  }
+
+  componentDidMount() {
+    // http GET request to api/lobbies
+    // axios.get(`${API_ROOT}/lobbies`).then(res => {
+    //   console.log("RESRES", res.data);
+    //   this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
+
+    // });
+
+    console.log("XXXXXXX", this.state.roominfo)
   }
   
   render() {

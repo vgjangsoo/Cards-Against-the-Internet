@@ -6,7 +6,6 @@ import Gameroom from "./Gameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx";
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
-// import { ActionCableConsumer } from "react-actioncable-provider";
 
 class Lobby extends Component {
   constructor(props) {
@@ -40,14 +39,24 @@ class Lobby extends Component {
 
     const newRoom = event.target.theme.value;
     const newRoomPlayer = event.target.playerNumber.value;
+    const maxRound = event.target.roundNumber.value;
 
     const roomData = {
       maxPlayer: newRoomPlayer,
       theme: newRoom
     };
 
+    const gameData = {
+      theme: newRoom,
+      maxRound: maxRound
+    };
+
     axios.post(`${API_ROOT}/lobbies`, roomData).then(res => {
       console.log("POST is successful");
+    });
+
+    axios.post(`${API_ROOT}/games`, gameData).then(res => {
+      console.log("POST to game succsfull")
     });
 
     event.target.theme.value = "";

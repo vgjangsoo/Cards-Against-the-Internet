@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_203011) do
   create_table "games", force: :cascade do |t|
     t.string "theme"
     t.integer "lobby_id"
+    t.integer "maxRound"
     t.json "gameState"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

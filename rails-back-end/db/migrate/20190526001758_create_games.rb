@@ -3,6 +3,7 @@ class CreateGames < ActiveRecord::Migration[5.2]
     create_table :games do |t|
       t.string :theme
       t.integer :lobby_id
+      t.integer :maxRound
       t.json 'gameState'
 
       t.timestamps

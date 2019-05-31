@@ -66,7 +66,9 @@ class App extends Component {
           <Switch>
             <Route path='/' exact render={() => <Home />} />
             <Route path='/lobby' exact render={() => <Lobby cable={this.props.cable}/>}/>
-            <Route path='/lobby/:id' component={Game}/>
+            {/* <Route path='/lobby/:id' component={Game}/> */}
+            <Route path='/lobby/:id' exact render={() => <Game cable={this.props.cable}/>}/>
+      
           </Switch>
         </Router>
       </div>
@@ -75,3 +77,5 @@ class App extends Component {
 }
 
 export default App;
+
+
