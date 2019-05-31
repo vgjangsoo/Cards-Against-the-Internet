@@ -1,0 +1,101 @@
+
+  
+.box1 {
+  background: red;
+  height: 300px;
+  width: 300px;
+  margin: 12px;
+ 
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+ 
+}
+
+.grid {
+  display: flex;
+  justify-content: flex-start;
+  width: 1000px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+
+.card-title {
+  font-size: 25px;
+  padding: 0px;
+}
+
+div.playerNumber {
+  font-size: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.card-header {
+  padding-bottom: 0px;
+}
+
+.card-body {
+  padding: 3px 0px 0px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

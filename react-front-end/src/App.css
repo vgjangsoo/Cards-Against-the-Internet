@@ -256,3 +256,31 @@
 .card-img {
   padding-top: -20px;
 }
+
+div.grid {
+  display: flex;
+  justify-content: flex-start;
+  width: 1500px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+div.gameroom {
+  height: 400px;
+  width: 350px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+div.container {
+  display: flex;
+  justify-content: center;
+}
+
+div.card-header {
+  background-color:#eaeaea;
+  border-top-right-radius: 50px;
+}
+
+
+

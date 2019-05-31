@@ -26,7 +26,7 @@ class Gameroom extends Component {
     // const roomId = this.props.roomId;
 
     return (
-      <div className="card mb-4 shadow-lg col-4">
+      <div className="gameroom mb-4 shadow-lg">
         <div className="card-header">
           <span><h4 className="my-0 font-weight-normal">Room {roomInfo.id}</h4></span>
         </div>
