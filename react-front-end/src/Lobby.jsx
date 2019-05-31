@@ -6,7 +6,7 @@ import Gameroom from "./Gameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx";
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
-import { ActionCableConsumer } from "react-actioncable-provider";
+// import { ActionCableConsumer } from "react-actioncable-provider";
 
 class Lobby extends Component {
   constructor(props) {
@@ -31,8 +31,7 @@ class Lobby extends Component {
     axios.get(`${API_ROOT}/lobbies`).then(res => {
       console.log("RESRES", res.data);
       this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
-      // res.data.map(e => {
-      // })
+
     });
   }
 
@@ -61,7 +60,7 @@ class Lobby extends Component {
 
     const newLobbyInfo = {
       theme: lobby.theme,
-      maxPlayers: lobby.maxPlayer,
+      maxPlayer: lobby.maxPlayer,
       currentPlayers: lobby.currentPlayers,
       roomStatus: lobby.roomStatus,
       id: lobby.id
@@ -77,22 +76,11 @@ class Lobby extends Component {
 
   render() {
     //contains data for display all current lobbies
-    const createdGameRooms = this.state.lobbyState;
+    const createdGameRooms = this.state.lobbyState.reverse();
 
     return (
       <div className="App">
         <LobbyNav createRoom={this.openCreateRoomModal} />
-
-        {/* <ActionCableConsumer
-          channel="LobbiesChannel"
-          onConnected={e => console.log("WS new connection made", e)}
-          onReceived={this.handleRecievedLobby}
-          onDisconnected={e =>
-            console.log("WS connection is now disconnected", e)
-          }
-          onInitialized={e => console.log("WS --- initialized", e)}
-          onRejected={e => console.log("WS --- rejected! ", e)}
-        /> */}
         
         <div className="container">
           <div className="card-deck mb-3 text-center">

@@ -59,7 +59,7 @@ class App extends Component {
       cardData.push(this.state.cards[elm].content)
     }
     let singleCard = this.state.cards
-
+    //FOR ANY COMPONENT THAT NEEDS SOCKET CONNECTION, pass down as a prop: cable={this.props.cable}
     return (
       <div className="App">
         <Router>

@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { API_WS_ROOT } from './constants';
 import actioncable from "actioncable";
 
+//pass this cable prop down to any component that needs socket connections
 const cable = actioncable.createConsumer(API_WS_ROOT);
 
 ReactDOM.render(
