@@ -26,7 +26,7 @@ class ConversationsList extends React.Component {
   };
 
   handleReceivedConversation = response => {
-    // WS request
+    // incoming WS broadcast
     const { conversation } = response;
     this.setState(previousState => ({
       conversations: [...previousState.conversations, conversation]
