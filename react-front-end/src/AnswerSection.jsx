@@ -3,6 +3,7 @@ import './App.css';
 
 class AnswerSection extends Component {
   render() {
+    return null;
     return (
       <div>
         <h4>Players</h4>

@@ -73,11 +73,15 @@ class Api::GamesController < ApplicationController
   def show
     # To show individiual game id -> /api/games/:id 
     # HTTP GET request -> Send back game data for one room
-
-    game = Game.find(params[:id])
+    # lobbyID = params[:id]
+    # puts `===== lobby ID is: #{lobbyID}` 
+    lobby = Lobby.find(params[:id])
+    game_id = lobby.game_id
+    game = Game.find(game_id)
+    # game = lobby.game
     render json: game
-  end
 
+  end
   
   private
   
