@@ -57,7 +57,7 @@ class Game extends Component {
   
   render() {
     console.log('State:',this.state);
-    const gameTable = (this.state.gameTable)? this.state.gameTable.gameState : 'loading...'
+    const gameTable = (this.state.gameTable)? this.state.gameTable : 'loading...'
  
     return (
       <div>
@@ -67,12 +67,12 @@ class Game extends Component {
             : <div>
                 <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
-                  <h6 className='room-name'>Room {gameTable.id}: </h6>
+                  <h6 className='room-name'>Room: {gameTable.id} </h6>
                   <h3> {gameTable.theme}</h3>
                 </div>
                 <nav className="my-2 my-md-1 mr-md-3 game-round">
                   <div className="p-5">
-                    <h6>Round: {/*gameRoomInfo.games[0].gameState.gameInfo.currentRound*/} / {/*gameRoomInfo.games[0].gameState.maxRound*/}</h6>
+                    <h6>Round: {gameTable.gameState.gameInfo.currentRound} / {gameTable.maxRound}</h6>
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
@@ -90,7 +90,7 @@ class Game extends Component {
                       {/*<QuestionSection />*/}
                     </div>
                     <div className='status-message'>
-                    {/* <h6>{gameState.gameInfo.status}</h6> */}
+                    { <h6>{gameTable.gameState.gameInfo.status}</h6> }
                     </div>
                     <div className='play-card-button'>
                       <button className='btn btn-dark btn-md p-2'>Play Card</button>
