@@ -15,6 +15,7 @@ class ConversationsList extends React.Component {
 
   componentDidMount = () => {
     console.log(this.props.cable)
+    //http request
     fetch(`${API_ROOT}/conversations`)
       .then(res => res.json())
       .then(conversations => this.setState({ conversations }));
@@ -25,6 +26,7 @@ class ConversationsList extends React.Component {
   };
 
   handleReceivedConversation = response => {
+    // incoming WS broadcast
     const { conversation } = response;
     this.setState(previousState => ({
       conversations: [...previousState.conversations, conversation]

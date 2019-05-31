@@ -12,6 +12,7 @@ class NewConversationForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    // http POST request
     fetch(`${API_ROOT}/conversations`, {
       method: 'POST',
       headers: HEADERS,

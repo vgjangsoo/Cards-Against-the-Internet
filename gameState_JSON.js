@@ -1,7 +1,7 @@
 // Games table columns
 
 theme = 'string ex: Game of Thrones, Avengers....'
-
+maxRound = "integer"
 gameState = {
     //everything outside is for creating a game
     maxRound: "integer",
