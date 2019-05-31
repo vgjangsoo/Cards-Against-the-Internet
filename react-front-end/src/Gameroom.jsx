@@ -22,7 +22,7 @@ class Gameroom extends Component {
 
   render() {
     const roomInfo = this.props.roomInfo;
-    console.log('roomInfo:', roomInfo)
+    // console.log('roomInfo:', roomInfo)
     // const roomId = this.props.roomId;
 
     return (

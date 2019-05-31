@@ -94,7 +94,7 @@ class Lobby extends Component {
         <div className="container">
           <div className="card-deck mb-3 text-center">
             {createdGameRooms.reverse().map(e => {
-              return <Gameroom roomInfo={e} key={e.id} roomId={e.id} />;
+              return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
             })}
           </div>
         </div>

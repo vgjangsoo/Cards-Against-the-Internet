@@ -8,8 +8,7 @@ class GamesChannel < ApplicationCable::Channel
     # lobby = Lobby.find(params[:lobby])
     # stream_for lobby
 
-    game = Game.find(params[:game])
-    stream_for game
+    stream_from "game_channel_#{params[:id]}"
   end
   
   def unsubscribed

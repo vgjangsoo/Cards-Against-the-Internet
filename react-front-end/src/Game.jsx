@@ -9,6 +9,10 @@ import History from './History';
 import QuestionSection from './QuestionSection.jsx';
 import AnswerSection from './AnswerSection.jsx';
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
+import actioncable from "actioncable";
+
+//pass this cable prop down to any component that needs socket connections
+const cable = actioncable.createConsumer(API_WS_ROOT);
 
 const style = {
   marginTop: '5px',
@@ -21,23 +25,35 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      roominfo: this.props
+      roominfo: this.props.location.state.info
+
     }
+    // being passed down from parent component, will setup the sockect connection
+    // Cable is working for now, but wrong channel
+    cable.subscriptions.create({ channel: "LobbiesChannel"}, {
+      received: (data) => {
+        // console.log('CABLE PROP DATA', data)
+        this.handleRecievedGame(data)
+      }
+    })
+  }
+
+  handleRecievedGame(data) {
+    console.log('INSIDE WS handleRecievedGame')
+    console.log('data is:',data)
   }
 
   componentDidMount() {
-    // http GET request to api/lobbies
-    // axios.get(`${API_ROOT}/lobbies`).then(res => {
-    //   console.log("RESRES", res.data);
-    //   this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
+    // http GET request to api/games
 
-    // });
+    axios.get(`${API_ROOT}/games/1`).then(res => {
+      console.log("GameGAME", res);
+    });
 
-    console.log("XXXXXXX", this.state.roominfo)
   }
   
   render() {
-    const gameRoomInfo = this.state.roominfo.location.state.info;
+    const gameRoomInfo = this.state.roominfo;
 
     if(gameRoomInfo.games[0].gameState.gameInfo.currentRound === 0) {
       return (
