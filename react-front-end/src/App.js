@@ -65,18 +65,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/' exact render={() => <Home />} />
-            <Route path='/lobby' exact render={() => <Lobby />}/>
+            <Route path='/lobby' exact render={() => <Lobby cable={this.props.cable}/>}/>
             <Route path='/lobby/:id' component={Game}/>
           </Switch>
         </Router>
-        {/* <button onClick={this.fetchData} >
-          Fetch Data
-        </button>  
-        <button onClick={this.fetchData2} >
-          Fetch single
-        </button> 
-        {cardData.map( elm => <h1> {elm + '\n'} </h1>)} 
-        { singleCard } */}
       </div>
     );
   }

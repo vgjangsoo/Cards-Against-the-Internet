@@ -15,12 +15,14 @@ class Gameroom extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      gameState: []
+      gameState: [],
+      roomState: []
     }
   }
 
   render() {
     const roomInfo = this.props.roomInfo;
+    // const roomId = this.props.roomId;
 
     return (
       <div className="card mb-4 shadow-lg col-4">
@@ -28,9 +30,10 @@ class Gameroom extends Component {
           <span><h4 className="my-0 font-weight-normal">Room {roomInfo.id}</h4></span>
         </div>
         <div className="card-body">
+          <h5>Players: </h5>
           <h1 className="card-title pricing-card-title">{roomInfo.currentPlayers} <small className="text-muted">/ {roomInfo.maxPlayer}</small></h1>
           <button className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4" style={themeStyle}>
-            <Link to={{ pathname: `/lobby/${roomInfo.id}`, state: {info: roomInfo} }} style={{color: 'black', textDecoration: 'none'}}><h1>{this.props.roomInfo.theme}</h1></Link>
+            <Link to={{ pathname: `/lobby/${roomInfo.id}`, state: {info: roomInfo} }} style={{color: 'black', textDecoration: 'none'}}><h1>{roomInfo.theme}</h1></Link>
           </button>
           <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">{roomInfo.roomStatus}</div>
         </div>
