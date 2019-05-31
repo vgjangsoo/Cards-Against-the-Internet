@@ -24,6 +24,7 @@ class Api::GamesController < ApplicationController
         gameInfo: {
             status: 'Waiting for players to join game...',
             currentPlayers: 1,
+            maxPlayers: @game.maxPlayers,
             currentRound: 0,
             currentQuestioner: @creator.id,
             selectedQuestion: nil,
@@ -86,7 +87,7 @@ class Api::GamesController < ApplicationController
   private
   
   def game_params
-    params.require(:game).permit(:gameState, :theme, :lobby_id, :maxRound)
+    params.require(:game).permit(:gameState, :theme, :lobby_id, :maxRound, :maxPlayers)
   end
 
 end

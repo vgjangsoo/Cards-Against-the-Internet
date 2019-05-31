@@ -4,6 +4,7 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.string :theme
       t.integer :lobby_id
       t.integer :maxRound
+      t.integer :maxPlayers      
       t.json 'gameState'
 
       t.timestamps

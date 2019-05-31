@@ -172,6 +172,7 @@ qcard5 = baseDeck.cards.create!({
   game1 = lobby.games.create!({
     theme: 'Game of Thrones', 
     maxRound: 5,
+    maxPlayers: 5,
     gameState: {
       maxRound: 5,
       creator: user1.id,
@@ -215,7 +216,7 @@ puts 'updating lobby table'
  
 lobby.game_id = game1.id
 lobby.roomStatus = 'Waiting'
-lobby.maxPlayer = 6
+lobby.maxPlayer = 5
 lobby.currentPlayers = 2
 lobby.theme = game1.theme
 lobby.save!
