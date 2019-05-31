@@ -87,7 +87,7 @@ class Game extends Component {
                 <form>
                   <div>
                     <div className="questioner col-9" style={style}>
-                      {/*<QuestionSection />*/}
+                      <QuestionSection />
                     </div>
                     <div className='status-message'>
                     { <h6>{gameTable.gameState.gameInfo.status}</h6> }
@@ -96,7 +96,7 @@ class Game extends Component {
                       <button className='btn btn-dark btn-md p-2'>Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
-                      {/*<AnswerSection userStatus={gameRoomInfo}/>*/}
+                      <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner}/>
                     </div>
                     <br />
                   </div>
