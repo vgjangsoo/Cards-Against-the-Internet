@@ -29,7 +29,7 @@ class Banner extends Component {
               <div className="col-md-4">
                 <h2>Quick Start</h2>
                 <p>You don't need to register to play and enjoy our Everyone version that is suitable for people in all ages! </p>
-                <Link to="/lobby"><p><a style={{color: 'white', textDecoration: 'none'}} className="btn btn-dark btn-md" role="button">Play as Guest &raquo;</a></p></Link>
+                <Link to="/lobby"><p><span style={{color: 'white', textDecoration: 'none'}} className="btn btn-dark btn-md" role="button">Play as Guest &raquo;</span></p></Link>
               </div>
               <div className="col-md-4">
                 <h2>Fun Experience</h2>
