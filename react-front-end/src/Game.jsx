@@ -25,7 +25,9 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      roominfo: this.props.location.state.info
+      roominfo: this.props.location.state.info,
+      gameInfo: [],
+      gameState: {}
 
     }
     // being passed down from parent component, will setup the sockect connection
@@ -48,12 +50,17 @@ class Game extends Component {
 
     axios.get(`${API_ROOT}/games/${this.state.roominfo.id}`).then(res => {
       console.log("GameGAME", res.data);
+      this.setState({gameInfo: [res.data], gameState: res.data.gameState})
     });
 
   }
   
   render() {
     const gameRoomInfo = this.state.roominfo;
+    const gameInfo = this.state.gameInfo;
+    let  gameState = this.state.gameState ? this.state.gameState : gameRoomInfo
+
+    console.log("!!!!!!!", gameState)
 
     if(gameRoomInfo.games[0].gameState.gameInfo.currentRound === 0) {
       return (
@@ -83,7 +90,7 @@ class Game extends Component {
                 <QuestionSection />
               </div>
               <div className='status-message'>
-                <h6>Status Message</h6>
+              {/* <h6>{gameState.gameInfo.status}</h6> */}
               </div>
               <div className='play-card-button'>
                 <button className='btn btn-dark btn-md p-2'>Play Card</button>
