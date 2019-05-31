@@ -46,8 +46,8 @@ class Game extends Component {
   componentDidMount() {
     // http GET request to api/games
 
-    axios.get(`${API_ROOT}/games/1`).then(res => {
-      console.log("GameGAME", res);
+    axios.get(`${API_ROOT}/games/${this.state.roominfo.id}`).then(res => {
+      console.log("GameGAME", res.data);
     });
 
   }

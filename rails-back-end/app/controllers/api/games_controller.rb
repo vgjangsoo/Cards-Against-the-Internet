@@ -63,7 +63,8 @@ class Api::GamesController < ApplicationController
     # To show individiual game id -> /api/games/:id 
     # HTTP GET request -> Send back game data for one room
 
-    games = Game.find params[:id]
+    game = Game.find(params[:id])
+    render json: game
   end
 
   
