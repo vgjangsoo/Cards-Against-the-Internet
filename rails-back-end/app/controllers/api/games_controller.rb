@@ -8,9 +8,7 @@ class Api::GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    # TODO: need to add lobby_id to games table
-    @newLobbyRoom = Lobby.last
-    @game.lobby_id = @newLobbyRoom.id
+
     
     # HTTP POST request -> /api/games
     @creator = User.find_by(username: 'Sam1')
@@ -46,17 +44,24 @@ class Api::GamesController < ApplicationController
         }
     }
 
+    # link the game_id to lobby here to avoid lobbies table not being saved yet in DB
+    @newLobbyRoom = Lobby.find_by(theme: @game.theme)
+    puts '===================================='
+    puts 'NEW ROOM LOBBY ID RELATED TO GAMES'
+    puts @newLobbyRoom.id
+    @game.lobby_id = @newLobbyRoom.id
+
     if @game.save!
 
       # link the game_id to lobby table
       @newLobbyRoom.game_id = @game.id
       @newLobbyRoom.save!
-      # broadcast the new game info
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        MessageSerializer.new(@game)
-      ).serializable_hash
-      GamesChannel.broadcast_to @game, serialized_data
-      head :ok
+      # broadcast the new game info (not really need? since only creating tables in DB)
+      # serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      #   MessageSerializer.new(@game)
+      # ).serializable_hash
+      # GamesChannel.broadcast_to @game, serialized_data
+      # head :ok
     end
   end
 
