@@ -59,6 +59,7 @@ class LoginModal extends Component {
                   </button>
                 </form>
               </div>
+
               <div className="form-container sign-in-container">
                 <form action="#">
                   <h1 className="login-h1">Sign in</h1>
@@ -84,6 +85,7 @@ class LoginModal extends Component {
                   </button>
                 </form>
               </div>
+              
               <div className="overlay-container">
                 <div className="overlay">
                   <div className="overlay-panel overlay-left">

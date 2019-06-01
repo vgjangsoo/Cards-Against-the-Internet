@@ -56,6 +56,21 @@
   animation-duration: 0.4s
 }
 
+.modal-contents-room {
+  margin: auto;
+  margin-top: 3%;
+	height: 400px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+  padding-top: 20px;
+  padding-bottom: 150px;
+	position: relative;
+  border-radius: 4px;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 
@@ -68,13 +83,16 @@
 }
 
 
-
 /* CSS For login/register */
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
+}
+
+#room-header h1 {
+  color: red;
 }
 
 form.create-room-setting {
@@ -306,5 +324,65 @@ button.create-room-button {
   background-color: #15cda8;
 }
 
+/* Custom dropdown */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px; 
+}
 
+.custom-dropdown select {
+  background-color: #1abc9c;
+  color: #fff;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em; 
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; 
+}
 
+.custom-dropdown::before,
+.custom-dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-dropdown::after { 
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom-dropdown::before { /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom-dropdown select[disabled] {
+  color: rgba(0,0,0,.3);
+}
+
+.custom-dropdown select[disabled]::after {
+  color: rgba(0,0,0,.1);
+}
+
+.custom-dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+.custom-dropdown::after {
+  color: rgba(0,0,0,.4);
+}
