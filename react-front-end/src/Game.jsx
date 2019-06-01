@@ -82,7 +82,7 @@ class Game extends Component {
                 <nav className="my-2 my-md-1 mr-md-3 game-round">
                   <div className="p-5">
                     <h6>Round: {gameTable.gameState.gameInfo.currentRound} / {gameTable.maxRound}</h6>
-                    <h6>Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.gameState.maxPlayers}</h6>
+                    <h6>Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.maxPlayers}</h6>
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
