@@ -5,12 +5,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 
 class CreateRoomModal extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      newRooms:[]
-    }
-  }
 
   render() {
 
@@ -41,8 +35,8 @@ class CreateRoomModal extends Component {
               <option value="5">5</option>
             </select>
             </div>
-
-            <button className="btn btn-md btn-dark btn-block" type="submit">Create Room</button>
+            
+              <button className="btn btn-md btn-dark btn-block" type="submit">Create Room</button>
           </form>
         </div>
       </div>
