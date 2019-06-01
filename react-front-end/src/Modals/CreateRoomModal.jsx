@@ -20,8 +20,7 @@ class CreateRoomModal extends Component {
         <button className="btn btn-danger btn-sm close-button" onClick={this.props.onClose}>X</button>
           <h1 id="room-header" className="h1 mb-3">Room Settings</h1>
           <form className="form-signin create-room-setting" onSubmit={this.props.handleRoomCreate}>
-            <label className="sr-only">Theme</label>
-            <input type="theme" id="theme" className="form-control" placeholder="Theme" autoFocus required></input>
+            <input type="theme" id="theme" className="room-theme" placeholder="Game Theme" autoFocus required></input>
             <button className="btn btn-md btn-dark btn-block" type="submit">Randomize Theme</button>
 
         
