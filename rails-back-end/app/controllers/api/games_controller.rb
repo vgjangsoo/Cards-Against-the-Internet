@@ -18,32 +18,23 @@ class Api::GamesController < ApplicationController
     @answerCards = @deck.cards.where(isQuestion: false)
 
     @game.gameState = {
-        maxRound: @game.maxRound,
-        creator: @creator.id,
-        deck_id: @deck.id,
-        isEveryoneDeck: true,
-        gameInfo: {
-            status: 'Waiting for players to join game...',
-            currentPlayers: 0,
-            maxPlayers: @game.maxPlayers,
-            currentRound: 0,
-            currentQuestioner: @creator.id,
-            selectedQuestion: nil,
-            selectedAnswer: nil,
-            roundWinner: nil
-        },
-        playersInfo: {
-            users: [
-              {
-                id: @creator.id,
-                roundPoints: 0,
-                status: 'waiting',
-                questionCards: [],
-                answerCards: [],
-                selectedCard: nil
-              }
-            ]          
-        }
+      maxRound: @game.maxRound,
+      creator: nil,
+      deck_id: @deck.id,
+      isEveryoneDeck: true,
+      gameInfo: {
+        status: 'Waiting for players to join game...',
+        currentPlayers: 0,
+        maxPlayers: @game.maxPlayers,
+        currentRound: 0,
+        currentQuestioner: nil,
+        selectedQuestion: nil,
+        selectedAnswer: nil,
+        roundWinner: nil
+      },
+      playersInfo: {
+        users: []          
+      }
     }
 
     # link the game_id to lobby here to avoid lobbies table not being saved yet in DB
@@ -80,10 +71,10 @@ class Api::GamesController < ApplicationController
     # puts `===== lobby ID is: #{lobbyID}` 
     
     # need to add a user to room, create all the user game data, and broadcast to everyone
-    randomID = rand 1...1000
+    randomID = rand 1...100
     @newPlayer = User.create({
       username: "Guest#{randomID}",
-      password: 123,
+      password: "123",
       isAdult: false,
       isBot: false,
       leaderboardPoints: 0
@@ -112,6 +103,12 @@ class Api::GamesController < ApplicationController
     puts "currentPlayers After add: #{currentPlayers}"
     
     game.gameState["gameInfo"]["currentPlayers"] = currentPlayers
+
+    #  if first time joining room should update as creator
+    if game.gameState["creator"] == nil
+      game.gameState["creator"] = @newPlayer.id
+      game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
+    end
     
     game.save!
 
