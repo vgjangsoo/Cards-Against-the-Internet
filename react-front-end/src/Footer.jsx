@@ -16,7 +16,7 @@ render() {
     <footer id="myFooter">
         <div className="container">
             <div className="row">
-                <div className="col-sm-3">
+                <div className="col-sm-3 footer-logo">
                     <h2 className="logo"><a href="#"> Cards Against Internet </a></h2>
                 </div>
                 <div className="col-sm-2">

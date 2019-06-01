@@ -73,7 +73,8 @@ form {
 	flex-direction: column;
 	padding: 0 50px;
 	height: 100%;
-	text-align: center;
+	
+	/* text-align: center; */
 }
 
 input {
