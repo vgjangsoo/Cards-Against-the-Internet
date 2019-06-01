@@ -23,10 +23,14 @@
   color: #61dafb;
 }
 
-#navbar-logo {
+.navbar-logo {
   font-family: 'Ubuntu', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 23px;
+}
+
+#lobby-navbar-logo a{
+  background-color: red;
 }
 
 @keyframes App-logo-spin {
@@ -150,7 +154,7 @@ button.close-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+g
 
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
 
@@ -314,10 +318,14 @@ div.grid {
 }
 
 div.gameroom {
-  height: 400px;
+  height: 325px;
   width: 330px;
   margin: 15px;
   border-radius: 10px;
+}
+
+h1.gameroom-theme:hover {
+  color: white;
 }
 
 div.gameLobbyContainer {

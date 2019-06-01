@@ -1,29 +1,30 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import '../App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import "../submitform.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class SubmitIdeaModal extends Component {
-
   render() {
-
     return (
-      <div className='bg-modal'>
-        <div className='modal-contents'>
-        <h1 className="h3 mb-3 font-weight-normal">Make own cards<button className="btn btn-danger btn-sm" onClick={this.props.closeIdeaModal}>X</button></h1>
-          <form className="form-signin">
-            <label for="cardIdea" className="sr-only">Suggest a card</label>
-            <textarea rows="4" cols="50" type="cardidea" id="cardIdea" className="form-control" placeholder="Suggest a card" autoFocus></textarea>
-            <br/>
-            <button className="btn btn-lg btn-dark btn-block" type="submit">Submit Bad Idea</button>
+      <div className="bg-modal">
+        <div className="modal-contents-room">
+        <button className="btn btn-danger btn-sm idea-close-button" onClick={this.props.closeIdeaModal}>X</button>
+          <form className="idea-form" action="#">
+            <h2 className="idea-h2 mb-3">Suggest a Card</h2>
+
+            <div class="row">
+              <label className="idea-label" for="fancy-textarea"><strong>Description</strong></label>
+              <textarea className="idea-textarea" name="fancy-textarea" id="fancy-textarea" placeholder="Suggest a card, or a list of several cards separated by commas."/>
+            </div>
+
+            <button className="btn btn-lg btn-dark idea-button" type="submit" tabindex="0">
+             Share your stupid idea!
+            </button>
           </form>
         </div>
-      </div> 
+      </div>
     );
   }
 }
 
 export default SubmitIdeaModal;
-
-
-
