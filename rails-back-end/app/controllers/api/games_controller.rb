@@ -58,11 +58,45 @@ class Api::GamesController < ApplicationController
     end
   end
 
-  def update (data)
+  def update
     # updating game state logic
     # incoming HTTP put/patch request, filter out by type
     # outgoing: Using broadcast WS
 
+    # produit_id = params[:produit_id]
+    type = params[:type]
+    gameState = params[:gameState]
+    puts "==== incoming type ==="
+    puts type
+    puts "==== incoming gameState ==="
+    puts gameState
+
+    lobby = Lobby.find(params[:id])
+    game_id = lobby.game_id
+    game = Game.find(game_id)
+
+    if (type === 'start-button-pressed')
+      # logic to modify gameState
+      puts "====== inside start-button-pressed filter"
+      # returnData = gameState
+      puts gameState
+      gameState["gameInfo"]["status"] = 'Waiting for questioner to select card'
+      gameState["gameInfo"]["currentRound"] = 1
+      
+      
+      game["gameState"] = gameState
+      game.save!
+
+      puts "====== end of start-button-pressed filter"
+    end
+
+    if (type === 'questioner-selected-card')
+      # logic to modify gameState
+    
+    end    
+
+    # need to do broadcast call here
+    broadcast_to_game(game)
   end
 
   def show
@@ -123,11 +157,12 @@ class Api::GamesController < ApplicationController
     if game.save!
     puts "========================BEFORE BROADCAST"
     
-    serialized_data = ActiveModelSerializers::Adapter::Json.new(
-      GameSerializer.new(game)
-      ).serializable_hash
-      ActionCable.server.broadcast 'games_channel', serialized_data
-      head :ok
+    # serialized_data = ActiveModelSerializers::Adapter::Json.new(
+    #   GameSerializer.new(game)
+    #   ).serializable_hash
+    #   ActionCable.server.broadcast 'games_channel', serialized_data
+    #   head :ok
+    broadcast_to_game(game)
       
     puts "========================AFTER BROADCAST"
     # NEVER USE render and broadcast in the same method, only use broadcast

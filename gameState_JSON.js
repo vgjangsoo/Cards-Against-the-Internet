@@ -9,7 +9,7 @@ gameState = {
     deck_id: 'integer',
     isEveryoneDeck: 'bool',
     gameInfo: {
-        status: 'string ex: questioner is choosing a card, answers must choose card....',
+        status: 'string ex: questioner is choosing a card, answers must choose card....', 
         currentPlayers: 'integer, num of players in the room',
         currentRound: 'integer',
         currentQuestioner: 'integer, user_id',

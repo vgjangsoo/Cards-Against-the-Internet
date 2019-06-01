@@ -40,6 +40,7 @@ class Game extends Component {
       }
     })
     this.handleRecievedGame = this.handleRecievedGame.bind(this);
+    this.handlerStartButton = this.handlerStartButton.bind(this);
   }
 
   handleRecievedGame(data) {
@@ -61,8 +62,29 @@ class Game extends Component {
       //this.setState({gameTable: res.data})
     });
 
+    
   }
   
+  handlerStartButton(){
+    // when questioner click on start button
+    console.log('START BUTTON HANDLER called')
+    let updateData = []
+    
+    const gameRoomId = this.props.match.params.id;
+    const type = 'start-button-pressed'
+    updateData.push(type)
+    const gameState = this.state.gameTable.gameState;
+    updateData.push(gameState)
+
+    axios.put(`${API_ROOT}/games/${gameRoomId}`, {
+      type: type,
+      gameState: gameState
+    }).then(res =>{
+      console.log('PUT successful, res:', res)
+    });
+  };
+
+  //////////////////////////////////
   render() {
     console.log('PROPS:',this.props);
     console.log('State:',this.state);
@@ -86,7 +108,7 @@ class Game extends Component {
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
-                  <button className="btn btn-dark btn-md p-2">Start</button>
+                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerStartButton} >Start</button>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
                   <Link to='/lobby'><button className="btn btn-dark btn-md p-2">Leave Room</button></Link>
