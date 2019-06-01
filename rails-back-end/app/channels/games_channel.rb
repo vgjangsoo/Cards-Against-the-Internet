@@ -10,11 +10,20 @@ class GamesChannel < ApplicationCable::Channel
     # maybe #{params[:id]} is not finding the right thing?
 
     # stream_from "game_channel_#{params[:id]}"
+    # stream_from "game_#{params[:room]}"
+
     stream_from "games_channel"
+
   end
   
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
+    # need to remove user from games table and update?
+    # lobby = Lobby.find(params[:id])
+    # game_id = lobby.game_id
+    # game = Game.find(game_id)
+
+
   end
 
 end

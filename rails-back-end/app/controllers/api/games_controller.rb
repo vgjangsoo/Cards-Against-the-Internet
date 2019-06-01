@@ -13,35 +13,28 @@ class Api::GamesController < ApplicationController
     # HTTP POST request -> /api/games
     @creator = User.find_by(username: 'Sam1')
     @deck = Deck.find_by(theme: 'Base')
+    # in update action, can use this to referennce to cards, not used at creation
     @questionCards = @deck.cards.where(isQuestion: true)
     @answerCards = @deck.cards.where(isQuestion: false)
 
     @game.gameState = {
-        maxRound: @game.maxRound,
-        creator: @creator.id,
-        deck_id: @deck.id,
-        isEveryoneDeck: true,
-        gameInfo: {
-            status: 'Waiting for players to join game...',
-            currentPlayers: 1,
-            currentRound: 0,
-            currentQuestioner: @creator.id,
-            selectedQuestion: nil,
-            selectedAnswer: nil,
-            roundWinner: nil
-        },
-        playersInfo: {
-            users: [
-              {
-                id: @creator.id,
-                roundPoints: 0,
-                status: 'waiting',
-                questionCards: [@questionCards[0].id, @questionCards[1].id, @questionCards[2].id],
-                answerCards: [@answerCards[0].id, @answerCards[1].id, @answerCards[2].id, @answerCards[3].id, @answerCards[4].id],
-                selectedCard: nil
-              }
-            ]          
-        }
+      maxRound: @game.maxRound,
+      creator: nil,
+      deck_id: @deck.id,
+      isEveryoneDeck: true,
+      gameInfo: {
+        status: 'Waiting for players to join game...',
+        currentPlayers: 0,
+        maxPlayers: @game.maxPlayers,
+        currentRound: 0,
+        currentQuestioner: nil,
+        selectedQuestion: nil,
+        selectedAnswer: nil,
+        roundWinner: nil
+      },
+      playersInfo: {
+        users: []          
+      }
     }
 
     # link the game_id to lobby here to avoid lobbies table not being saved yet in DB
@@ -71,18 +64,80 @@ class Api::GamesController < ApplicationController
   end
 
   def show
+    # HTTP GET /api/games/:id
     # To show individiual game id -> /api/games/:id 
     # HTTP GET request -> Send back game data for one room
+    # lobbyID = params[:id]
+    # puts `===== lobby ID is: #{lobbyID}` 
+    
+    # need to add a user to room, create all the user game data, and broadcast to everyone
+    randomID = rand 1...100
+    @newPlayer = User.create({
+      username: "Guest#{randomID}",
+      password: "123",
+      isAdult: false,
+      isBot: false,
+      leaderboardPoints: 0
+    })
 
-    game = Game.find(params[:id])
-    render json: game
+    lobby = Lobby.find(params[:id])
+    game_id = lobby.game_id
+    game = Game.find(game_id)
+    # game = lobby.game
+    puts "game state"
+    puts game.gameState.inspect
+    # need to modify game.gameState to include new user cards, info...
+
+    puts '==== Trying to change gameState ===='
+    game.gameState["playersInfo"]["users"].push({
+      id: @newPlayer.id,
+      roundPoints: 0,
+      status: 'ready',
+      questionCards: [],
+      answerCards: [],
+      selectedCard: nil
+    })
+    currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
+    puts "currentPlayers before add: #{currentPlayers}"
+    currentPlayers = currentPlayers + 1
+    puts "currentPlayers After add: #{currentPlayers}"
+    
+    game.gameState["gameInfo"]["currentPlayers"] = currentPlayers
+
+    #  if first time joining room should update as creator
+    if game.gameState["creator"] == nil
+      game.gameState["creator"] = @newPlayer.id
+      game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
+    end
+    
+    if game.save!
+    
+      render json: game
+      
+      serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        GameSerializer.new(game)
+      ).serializable_hash
+      GamesChannel.broadcast "games_channel", serialized_data
+      head :ok
+    
+    end
+
   end
 
+  def broadcast_to_room (data)
+    # need to broadcast to players currently in the room to show updates
+    serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      GameSerializer.new(data)
+    ).serializable_hash
+    GamesChannel.broadcast_to data, serialized_data
+    head :ok
+  
+  end
   
   private
   
   def game_params
-    params.require(:game).permit(:gameState, :theme, :lobby_id, :maxRound)
+    params.require(:game).permit(:gameState, :theme, :lobby_id, :maxRound, :maxPlayers)
   end
 
 end

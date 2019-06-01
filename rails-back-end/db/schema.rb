@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_203011) do
     t.string "theme"
     t.integer "lobby_id"
     t.integer "maxRound"
+    t.integer "maxPlayers"
     t.json "gameState"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

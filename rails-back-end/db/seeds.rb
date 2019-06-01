@@ -139,21 +139,21 @@ qcard5 = baseDeck.cards.create!({
     roomStatus: nil,
     maxPlayer: nil,
     currentPlayers: nil, 
-    theme: 'Testing room1' 
+    theme: 'soon to be Game of Thrones' 
   })  
 
   lobby.save!
 
-  lobby2 = Lobby.new({
-    game_id: '1', 
-    roomStatus: 'Waiting',
-    maxPlayer: 5,
-    currentPlayers: 1, 
-    theme: 'Testing room1' 
-  })  
+  # lobby2 = Lobby.new({
+  #   game_id: '1', 
+  #   roomStatus: 'Waiting',
+  #   maxPlayer: 5,
+  #   currentPlayers: 1, 
+  #   theme: 'Testing room1' 
+  # })  
 
 
-  lobby2.save!
+  # lobby2.save!
 
 
 
@@ -172,6 +172,7 @@ qcard5 = baseDeck.cards.create!({
   game1 = lobby.games.create!({
     theme: 'Game of Thrones', 
     maxRound: 5,
+    maxPlayers: 5,
     gameState: {
       maxRound: 5,
       creator: user1.id,
@@ -215,7 +216,7 @@ puts 'updating lobby table'
  
 lobby.game_id = game1.id
 lobby.roomStatus = 'Waiting'
-lobby.maxPlayer = 6
+lobby.maxPlayer = 5
 lobby.currentPlayers = 2
 lobby.theme = game1.theme
 lobby.save!

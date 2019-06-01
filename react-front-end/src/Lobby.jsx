@@ -48,7 +48,8 @@ class Lobby extends Component {
 
     const gameData = {
       theme: newRoom,
-      maxRound: maxRound
+      maxRound: maxRound,
+      maxPlayers: newRoomPlayer,
     };
 
     axios.post(`${API_ROOT}/lobbies`, roomData).then(res => {
