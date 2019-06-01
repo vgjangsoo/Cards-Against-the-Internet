@@ -110,18 +110,40 @@ class Api::GamesController < ApplicationController
       game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
     end
     
+    # lobby.currentPlayers += 1
+
+    # if lobby.save
+    #   # send new room data back as WS broadcast
+    #   lobby_serialized_data = ActiveModelSerializers::Adapter::Json.new(
+    #   LobbySerializer.new(lobby)
+    #   ).serializable_hash
+    #   ActionCable.server.broadcast 'lobbies_channel', lobby_serialized_data
+    #   head :ok
+    # end
     if game.save!
     
-      render json: game
       
-      # serialized_data = ActiveModelSerializers::Adapter::Json.new(
-      #   GameSerializer.new(game)
-      # ).serializable_hash
-      # GamesChannel.broadcast "games_channel", serialized_data
-      # head :ok
-    
-    end
+    #   puts "========================BEFORE BROADCAST"
+    #   serialized_data = ActiveModelSerializers::Adapter::Json.new(
+    #     GameSerializer.new(game)
+    #   ).serializable_hash
+    #   GamesChannel.broadcast_to "games_channel", serialized_data
+    #   head :ok
+    # puts "====================AFTER BROADCAST"
+    # end
 
+
+    puts "========================BEFORE BROADCAST"
+    
+    serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      GameSerializer.new(game)
+      ).serializable_hash
+      ActionCable.server.broadcast 'games_channel', serialized_data
+      head :ok
+      
+    puts "========================AFTER BROADCAST"
+    # render json: game
+    end
   end
 
   def broadcast_to_room (data)
