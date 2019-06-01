@@ -87,8 +87,8 @@
 
 #myFooter .btn {
     color: white;
-    background-color: #40a798;
-    border-radius: 20px;
+    background-color: #15cda8;
+    border-radius: 15px;
     border: none;
     width: 150px;
     display: block;
@@ -102,10 +102,6 @@
         text-align: center;
     }
 }
-
-
-/* CSS used for positioning the footers at the bottom of the page. */
-/* You can remove this. */
 
 html{
     height: 100%;
