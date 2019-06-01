@@ -10,7 +10,10 @@ class GamesChannel < ApplicationCable::Channel
     # maybe #{params[:id]} is not finding the right thing?
 
     # stream_from "game_channel_#{params[:id]}"
-    stream_from "games_channel#{params[:room]}"
+    # stream_from "game_#{params[:room]}"
+
+    stream_from "games_channel"
+
   end
   
   def unsubscribed

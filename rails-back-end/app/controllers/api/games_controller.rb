@@ -110,12 +110,28 @@ class Api::GamesController < ApplicationController
       game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
     end
     
-    game.save!
+    if game.save!
+    
+      render json: game
+      
+      serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        GameSerializer.new(game)
+      ).serializable_hash
+      GamesChannel.broadcast "games_channel", serialized_data
+      head :ok
+    
+    end
 
-    # playerCount = game.gameState["playersInfo"]["users"].length
+  end
 
-    render json: game
-
+  def broadcast_to_room (data)
+    # need to broadcast to players currently in the room to show updates
+    serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      GameSerializer.new(data)
+    ).serializable_hash
+    GamesChannel.broadcast_to data, serialized_data
+    head :ok
+  
   end
   
   private

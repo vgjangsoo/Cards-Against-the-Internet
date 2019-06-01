@@ -34,6 +34,7 @@ class Game extends Component {
     cable.subscriptions.create({ channel: "GamesChannel", room: `${this.props.match.params.id}`}, {
       received: (data) => {
         // console.log('CABLE PROP DATA', data)
+        console.log('INSIDE WS cable.subscription', data)
         this.handleRecievedGame(data)
       }
     })
