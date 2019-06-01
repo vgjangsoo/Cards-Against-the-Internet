@@ -27,15 +27,19 @@ class LoginModal extends Component {
       <div className='bg-modal'>
         <div className='modal-contents'>
         <div className="login-body">
+        <div className="close-button-div">
+
+        <button className="btn btn-danger btn-sm close-button" onClick={this.props.onClose}>X</button>
+        </div>
 
         <div className={`${classState}`}id ="container">
                     <div className="form-container sign-up-container">
                       <form action="#">
                         <h1 className="login-h1">Create Account</h1>
                         <div className="social-container">
-                          <a className="login-a" href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                          <a className="login-a" href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                          <a className="login-a" href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                          <a className="login-a" href="#" className="social"><i className="fa fa-twitter login-icon"></i></a>
+                          <a className="login-a" href="#" className="social"><i className="fa fa-facebook login-icon"></i></a>
+                          <a className="login-a" href="#" className="social"><i className="fa fa-google-plus login-icon"></i></a>
                         </div>
                         <span className="login-span">or use your email for registration</span>
                         <input type="text" placeholder="Name" />
@@ -48,9 +52,9 @@ class LoginModal extends Component {
                       <form action="#">
                         <h1 className="login-h1">Sign in</h1>
                         <div className="social-container">
-                          <a className="login-a" href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                          <a className="login-a" href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                          <a className="login-a" href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                          <a className="login-a" href="#" className="social"><i className="fa fa-twitter login-icon"></i></a>
+                          <a className="login-a" href="#" className="social"><i className="fa fa-facebook login-icon"></i></a>
+                          <a className="login-a" href="#" className="social"><i className="fa fa-google-plus login-icon"></i></a>
                         </div>
                         <span className="login-span">or use your account</span>
                         <input type="email" placeholder="Email" />
@@ -85,7 +89,6 @@ class LoginModal extends Component {
 
 export default LoginModal;
 
-{/* <button className="btn btn-danger btn-sm" onClick={this.props.onClose}>X</button> */}
 
 
 

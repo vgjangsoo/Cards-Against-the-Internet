@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
 
 * {
 	box-sizing: border-box;
@@ -11,6 +12,7 @@ div.login-body {
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Ubuntu', sans-serif;
+	padding: 100px;
 	height: 100vh;
 	margin: -20px 0 50px;
 }
@@ -141,7 +143,7 @@ input {
 .forgot-password {
 	transition: letter-spacing .3s ease-in-out;
 	text-decoration: none;
-	line-style-type: none;
+	outline: none;
 	color: black;
 	padding-bottom: 5px;
 }
@@ -232,3 +234,24 @@ input {
 	height: 40px;
 	width: 40px;
 }
+
+button.close-button {
+	width: 30px;
+	border-radius: 50px;
+	margin-left: 900px;
+	background-color: #15cda8;
+	border: 1px #15cda8;
+}
+
+i.login-icon {
+	color: black;
+	text-decoration: none;
+	outline: none;
+}
+
+i.login-icon:hover {
+	color: #15cda8;
+	text-decoration: none;
+	outline: none;
+}
+
