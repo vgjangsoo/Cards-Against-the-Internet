@@ -24,7 +24,7 @@ class Api::GamesController < ApplicationController
         isEveryoneDeck: true,
         gameInfo: {
             status: 'Waiting for players to join game...',
-            currentPlayers: 1,
+            currentPlayers: 0,
             maxPlayers: @game.maxPlayers,
             currentRound: 0,
             currentQuestioner: @creator.id,
@@ -106,7 +106,17 @@ class Api::GamesController < ApplicationController
       answerCards: [],
       selectedCard: nil
     })
+    currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
+    puts "currentPlayers before add: #{currentPlayers}"
+    currentPlayers = currentPlayers + 1
+    puts "currentPlayers After add: #{currentPlayers}"
+    
+    game.gameState["gameInfo"]["currentPlayers"] = currentPlayers
+    
     game.save!
+
+    # playerCount = game.gameState["playersInfo"]["users"].length
+
     render json: game
 
   end

@@ -15,6 +15,12 @@ class GamesChannel < ApplicationCable::Channel
   
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
+    # need to remove user from games table and update?
+    # lobby = Lobby.find(params[:id])
+    # game_id = lobby.game_id
+    # game = Game.find(game_id)
+
+
   end
 
 end
