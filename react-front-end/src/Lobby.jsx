@@ -61,6 +61,9 @@ class Lobby extends Component {
     });
 
     event.target.theme.value = "";
+    this.setState({
+      showCreateRoomModal: false
+    })
   }
   // handler function for the incoming WS broadcast
   handleRecievedLobby = response => {
@@ -104,7 +107,7 @@ class Lobby extends Component {
           {this.state.showCreateRoomModal ? (
             <CreateRoomModal
               handleRoomCreate={this.handleRoomCreate}
-              onClose={this.closeCreateRoomModal}
+              onClose={this.closeCreateRoomModal} 
             />
           ) : null}
         </div>
