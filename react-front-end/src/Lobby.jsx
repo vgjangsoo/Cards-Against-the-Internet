@@ -12,7 +12,8 @@ class Lobby extends Component {
     super(props);
     this.state = {
       showCreateRoomModal: false,
-      lobbyState: []
+      lobbyState: [],
+      oldLobbyState: {}
     };
     // being passed down from parent component, will setup the sockect connection
     props.cable.subscriptions.create({ channel: "LobbiesChannel"}, {
@@ -78,10 +79,48 @@ class Lobby extends Component {
       roomStatus: lobby.roomStatus,
       id: lobby.id
     };
+    console.log(newLobbyInfo)
+    // this.setState({
+    //   oldLobbyState: newLobbyInfo
+    // })
     //update lobbyState to show new lobby room
-    this.setState({
-      lobbyState: [...this.state.lobbyState, newLobbyInfo]
+    // let oldLobbyState = this.state.lobbyState;
+    
+    // loop over lobbyState and see if 
+    // if (this.state.oldLobbyState.id === newLobbyInfo.id) {
+    //   this.setState({
+    //     lobbyState: []
+    //   })
+    // }
+
+    let currentLobbyState = this.state.lobbyState
+    let isModifed = false;
+
+    let modifiedLobbyState = currentLobbyState.map ( obj => {
+      let modObj = obj
+      
+      if (modObj.id === newLobbyInfo.id){
+        // if room id match, means room is already created
+        console.log('Matched room id is: ', modObj.id)
+        modObj.currentPlayers = newLobbyInfo.currentPlayers
+        isModifed = true;
+      }
+      return modObj;
     });
+
+    console.log('modfiedLobbyState:', modifiedLobbyState)
+    //need to compare modifiedLobbyState key size if same,
+    if (isModifed){
+      this.setState({
+        lobbyState: [...modifiedLobbyState]
+      });
+    }else {
+      // if newLobbyinfo.id is NEW, then add to entry to lobbyState
+      this.setState({
+        lobbyState: [...this.state.lobbyState, newLobbyInfo]
+      });
+    } 
+    
   };
 
   closeCreateRoomModal = () => this.setState({ showCreateRoomModal: false });

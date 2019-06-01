@@ -110,29 +110,15 @@ class Api::GamesController < ApplicationController
       game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
     end
     
-    # lobby.currentPlayers += 1
+    lobby.currentPlayers += 1
 
-    # if lobby.save
-    #   # send new room data back as WS broadcast
-    #   lobby_serialized_data = ActiveModelSerializers::Adapter::Json.new(
-    #   LobbySerializer.new(lobby)
-    #   ).serializable_hash
-    #   ActionCable.server.broadcast 'lobbies_channel', lobby_serialized_data
-    #   head :ok
-    # end
+    if lobby.save!
+      # send new room data back as WS broadcast
+      broadcast_to_lobby(lobby)
+      puts "=====after broadcast to lobby======"
+    end
+
     if game.save!
-    
-      
-    #   puts "========================BEFORE BROADCAST"
-    #   serialized_data = ActiveModelSerializers::Adapter::Json.new(
-    #     GameSerializer.new(game)
-    #   ).serializable_hash
-    #   GamesChannel.broadcast_to "games_channel", serialized_data
-    #   head :ok
-    # puts "====================AFTER BROADCAST"
-    # end
-
-
     puts "========================BEFORE BROADCAST"
     
     serialized_data = ActiveModelSerializers::Adapter::Json.new(
@@ -143,19 +129,30 @@ class Api::GamesController < ApplicationController
       
     puts "========================AFTER BROADCAST"
     # NEVER USE render and broadcast in the same method, only use broadcast
-    # render json: game
+      
+
     end
   end
 
-  def broadcast_to_room (data)
+  def broadcast_to_game (data)
     # need to broadcast to players currently in the room to show updates
     serialized_data = ActiveModelSerializers::Adapter::Json.new(
-      GameSerializer.new(data)
+    GameSerializer.new(data)
     ).serializable_hash
-    GamesChannel.broadcast_to data, serialized_data
+    ActionCable.server.broadcast 'games_channel', serialized_data
     head :ok
   
   end
+
+  def broadcast_to_lobby (data)
+    # send new room data back as WS broadcast
+    serialized_data = ActiveModelSerializers::Adapter::Json.new(
+    LobbySerializer.new(data)
+    ).serializable_hash
+    ActionCable.server.broadcast 'lobbies_channel', serialized_data
+    head :ok
+  end
+
   
   private
   
