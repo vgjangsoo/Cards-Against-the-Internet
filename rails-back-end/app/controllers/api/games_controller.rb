@@ -114,11 +114,11 @@ class Api::GamesController < ApplicationController
     
       render json: game
       
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        GameSerializer.new(game)
-      ).serializable_hash
-      GamesChannel.broadcast "games_channel", serialized_data
-      head :ok
+      # serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      #   GameSerializer.new(game)
+      # ).serializable_hash
+      # GamesChannel.broadcast "games_channel", serialized_data
+      # head :ok
     
     end
 

@@ -17,12 +17,14 @@ class CreateRoomModal extends Component {
     return (
       <div className='bg-modal'>
         <div className='modal-contents'>
-          <h1 className="h3 mb-3 font-weight-normal">Room Settings <button className="btn btn-danger btn-sm" onClick={this.props.onClose}>X</button></h1>
-          <form className="form-signin" onSubmit={this.props.handleRoomCreate}>
+        <button className="btn btn-danger btn-sm close-button" onClick={this.props.onClose}>X</button>
+          <h1 className="h3 mb-3 font-weight-normal">Room Settings</h1>
+          <form className="form-signin create-room-setting" onSubmit={this.props.handleRoomCreate}>
             <label className="sr-only">Theme</label>
             <input type="theme" id="theme" className="form-control" placeholder="Theme" autoFocus required></input>
             <button className="btn btn-md btn-dark btn-block" type="submit">Randomize Theme</button>
 
+            <div>
             <select className="custom-select d-block w-50" id="playerNumber" required>
               <option value="">Player #</option>
               <option value="3">3</option>
@@ -38,6 +40,7 @@ class CreateRoomModal extends Component {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
+            </div>
 
             <button className="btn btn-md btn-dark btn-block" type="submit">Create Room</button>
           </form>

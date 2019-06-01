@@ -92,8 +92,8 @@ class Lobby extends Component {
       <div className="App">
         <LobbyNav createRoom={this.openCreateRoomModal} />
         
-        <div className="container">
-          <div className="card-deck mb-3 text-center">
+        <div className="container gameLobbyContainer">
+          <div className="grid card-deck mb-3 text-center">
             {createdGameRooms.reverse().map(e => {
               return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
             })}
@@ -114,3 +114,4 @@ class Lobby extends Component {
 }
 
 export default Lobby;
+

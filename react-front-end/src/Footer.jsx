@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './Footer.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Footer extends Component {
@@ -13,20 +13,46 @@ constructor(props) {
 
 render() {
   return (
-    <footer className="page-footer font-small unique-color-dark pt-4 bg-dark">
-      <div className="container">
-        <ul className="list-unstyled list-inline text-center py-2">
-          <li className="list-inline-item">
-            <h5 className="mb-1 text-white">Register for free</h5>
-          </li>
-          <li className="list-inline-item">
-            <button className="btn btn-outline-light btn-lg btn-rounded text-white" onClick={this.props.onOpen}>Sign up!</button>
-          </li>
-        </ul>
-      </div>
-      <div className="footer-copyright text-center py-3 text-white">© 2019 Copyright -
-        <a className="text-white" href="/"> Cards Against Internet</a>
-      </div>
+    <footer id="myFooter">
+        <div className="container">
+            <div className="row">
+                <div className="col-sm-3 footer-logo">
+                    <h2 className="logo"><a href="#"> Cards Against Internet </a></h2>
+                </div>
+                <div className="col-sm-2">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a onClick={this.props.onOpen} href="#">Sign up</a></li>
+                    </ul>
+                </div>
+                <div className="col-sm-2">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#" >Reviews</a></li>
+                    </ul>
+                </div>
+                <div className="col-sm-2">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div className="col-sm-3">
+                    <div className="social-networks">
+                        <a href="#" className="twitter"><i className="fa fa-twitter"></i></a>
+                        <a href="#" className="facebook"><i className="fa fa-facebook"></i></a>
+                        <a href="#" className="google"><i className="fa fa-google-plus"></i></a>
+                    </div>
+                    <button type="button" className="btn btn-dark">Contact us</button>
+                </div>
+            </div>
+        </div>
+        <div className="footer-copyright">
+            <p>© 2019 Copyright </p>
+        </div>
     </footer>
   );
 }

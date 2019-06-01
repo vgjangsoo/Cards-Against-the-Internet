@@ -37,17 +37,19 @@
 	position: absolute;
 	top: 0;
 	justify-content: center;
-	align-items: center;
+  align-items: center;
+  padding-bottom: 1000px;
 }
 
 .modal-contents {
   margin: auto;
-  margin-top: 10%;
-	height: 300px;
-	width: 500px;
+  margin-top: 3%;
+	height: 500px;
+	width: 1000px;
 	background-color: white;
 	text-align: center;
-	padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 300px;
 	position: relative;
   border-radius: 4px;
   animation-name: animatetop;
@@ -73,6 +75,17 @@
   max-width: 330px;
   padding: 15px;
   margin: auto;
+}
+
+form.create-room-setting {
+  padding-top: 0px;
+}
+
+
+button.close-button {
+  float:right;
+  margin-right: 20px;
+  width: 30px;
 }
 
 .form-signin .checkbox {
@@ -256,3 +269,42 @@
 .card-img {
   padding-top: -20px;
 }
+
+div.grid {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+div.gameroom {
+  height: 400px;
+  width: 330px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+div.gameLobbyContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div.card-header {
+  background-color:#eaeaea;
+  border-top-right-radius: 50px;
+}
+
+button.sign-up-button {
+  background-color: #15cda8;
+}
+
+button.create-room-button {
+  background-color: #15cda8;
+}
+
+
+
