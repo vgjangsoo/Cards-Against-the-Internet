@@ -31,7 +31,7 @@ class Game extends Component {
     }
     // being passed down from parent component, will setup the sockect connection
     // Cable is working for now, but wrong channel
-    cable.subscriptions.create({ channel: "LobbiesChannel"}, {
+    cable.subscriptions.create({ channel: "GamesChannel", room: `${this.props.match.params.id}`}, {
       received: (data) => {
         // console.log('CABLE PROP DATA', data)
         this.handleRecievedGame(data)
@@ -40,6 +40,7 @@ class Game extends Component {
   }
 
   handleRecievedGame(data) {
+    // for incoming WS broadcasting to this room only
     console.log('INSIDE WS handleRecievedGame')
     console.log('data is:',data)
   }
@@ -56,6 +57,7 @@ class Game extends Component {
   }
   
   render() {
+    console.log('PROPS:',this.props);
     console.log('State:',this.state);
     const gameTable = (this.state.gameTable)? this.state.gameTable : 'loading...'
  

@@ -13,6 +13,7 @@ class Api::GamesController < ApplicationController
     # HTTP POST request -> /api/games
     @creator = User.find_by(username: 'Sam1')
     @deck = Deck.find_by(theme: 'Base')
+    # in update action, can use this to referennce to cards, not used at creation
     @questionCards = @deck.cards.where(isQuestion: true)
     @answerCards = @deck.cards.where(isQuestion: false)
 
@@ -37,8 +38,8 @@ class Api::GamesController < ApplicationController
                 id: @creator.id,
                 roundPoints: 0,
                 status: 'waiting',
-                questionCards: [@questionCards[0].id, @questionCards[1].id, @questionCards[2].id],
-                answerCards: [@answerCards[0].id, @answerCards[1].id, @answerCards[2].id, @answerCards[3].id, @answerCards[4].id],
+                questionCards: [],
+                answerCards: [],
                 selectedCard: nil
               }
             ]          
@@ -72,18 +73,40 @@ class Api::GamesController < ApplicationController
   end
 
   def show
+    # HTTP GET /api/games/:id
     # To show individiual game id -> /api/games/:id 
     # HTTP GET request -> Send back game data for one room
     # lobbyID = params[:id]
     # puts `===== lobby ID is: #{lobbyID}` 
     
     # need to add a user to room, create all the user game data, and broadcast to everyone
-    
+    randomID = rand 1...1000
+    @newPlayer = User.create({
+      username: "Guest#{randomID}",
+      password: 123,
+      isAdult: false,
+      isBot: false,
+      leaderboardPoints: 0
+    })
 
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
     game = Game.find(game_id)
     # game = lobby.game
+    puts "game state"
+    puts game.gameState.inspect
+    # need to modify game.gameState to include new user cards, info...
+
+    puts '==== Trying to change gameState ===='
+    game.gameState["playersInfo"]["users"].push({
+      id: @newPlayer.id,
+      roundPoints: 0,
+      status: 'ready',
+      questionCards: [],
+      answerCards: [],
+      selectedCard: nil
+    })
+    game.save!
     render json: game
 
   end

@@ -18,9 +18,9 @@ class AnswerSection extends Component {
             {this.props.userStatus.users.map(e => {
               if (currentQuestioner !== e.id){
                 return (
-                  <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}}>
+                  <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}} key={e.id}>
                     <div className='cardContainer'>
-                      <div className="card-body">
+                      <div className="card-body" >
                       <img className='card-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                         <div className='player-name-section'>
                           <h6>Player ID: {e.id}</h6>
@@ -34,9 +34,9 @@ class AnswerSection extends Component {
                 )
               }      
             })}
-            { missingPlayers.map( ()=>{
+            { missingPlayers.map( (e) =>{
               return (
-                <MissingPlayerCard />
+                <MissingPlayerCard key={e+Math.random()+1} />
               );
             } ) }
 
