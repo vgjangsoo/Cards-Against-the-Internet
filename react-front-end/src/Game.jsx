@@ -27,32 +27,38 @@ class Game extends Component {
     this.state = {
       // roominfo: (this.props.location.state || {}).info,
       gameTable: {}
-
     }
     // being passed down from parent component, will setup the sockect connection
     // Cable is working for now, but wrong channel
-    cable.subscriptions.create({ channel: "GamesChannel", room: `${this.props.match.params.id}`}, {
+    // room: `${this.props.match.params.id}`
+    cable.subscriptions.create({ channel: "GamesChannel"}, {
+      
       received: (data) => {
         // console.log('CABLE PROP DATA', data)
         console.log('INSIDE WS cable.subscription', data)
         this.handleRecievedGame(data)
       }
     })
+    this.handleRecievedGame = this.handleRecievedGame.bind(this);
   }
 
   handleRecievedGame(data) {
     // for incoming WS broadcasting to this room only
     console.log('INSIDE WS handleRecievedGame')
     console.log('data is:',data)
+
+    this.setState({gameTable: data.game})
+
   }
 
   componentDidMount() {
     // http GET request to api/games
+    console.log(this.props);
     const gameRoomId = this.props.match.params.id;
     console.log('roominfo: ',this.props.match.params.id)
     axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
       console.log("ComponentDidMount - GAME DATA", res.data);
-      this.setState({gameTable: res.data})
+      //this.setState({gameTable: res.data})
     });
 
   }
@@ -76,7 +82,7 @@ class Game extends Component {
                 <nav className="my-2 my-md-1 mr-md-3 game-round">
                   <div className="p-5">
                     <h6>Round: {gameTable.gameState.gameInfo.currentRound} / {gameTable.maxRound}</h6>
-                    <h6>Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.maxPlayers}</h6>
+                    <h6>Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.gameState.maxPlayers}</h6>
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
