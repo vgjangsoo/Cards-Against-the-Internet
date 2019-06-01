@@ -142,6 +142,7 @@ class Api::GamesController < ApplicationController
       head :ok
       
     puts "========================AFTER BROADCAST"
+    # NEVER USE render and broadcast in the same method, only use broadcast
     # render json: game
     end
   end
