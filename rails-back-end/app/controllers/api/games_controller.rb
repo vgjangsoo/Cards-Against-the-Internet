@@ -60,7 +60,9 @@ class Api::GamesController < ApplicationController
 
   def update (data)
     # updating game state logic
-    # Using broadcast
+    # incoming HTTP put/patch request, filter out by type
+    # outgoing: Using broadcast WS
+
   end
 
   def show

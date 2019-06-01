@@ -23,8 +23,8 @@ gameState = {
               id: 'user_id',
               roundPoints: 'integer',
               status: 'waiting, ready',
-              questionCards: [ card1.id, card2.id, card3.id],
-              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              questionCards: [ card1.content, card2.content, card3.content],
+              answerCards: [acard1.content, acard2.content, acard3.content, acard4.content, acard5.content],
               selectedCard: 'card_id'
             },
             {
