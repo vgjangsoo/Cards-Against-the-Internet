@@ -43,6 +43,7 @@ class Game extends Component {
     this.handleRecievedGame = this.handleRecievedGame.bind(this);
     this.handlerStartButton = this.handlerStartButton.bind(this);
     this.handlerReadyButton = this.handlerReadyButton.bind(this);
+    this.AnswerArea = this.AnswerArea.bind(this);
 
   }
 
@@ -97,6 +98,19 @@ class Game extends Component {
 
   }
 
+  AnswerArea({ userData, gameTable}) {
+    const isStartMode = this.state.gameTable.gameState.gameInfo.currentRound !== 0;
+  
+    return (
+      <div>
+        { isStartMode
+          ? <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
+          : <AnswererDeck userData={userData} />
+        }
+      </div>
+    );
+  }
+
   //////////////////////////////////
   render() {
     console.log('PROPS:',this.props);
@@ -147,7 +161,8 @@ class Game extends Component {
                       <button className='btn btn-dark btn-md p-2'>Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
-                      <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers}/>
+                      {this.AnswerArea(gameTable.gameState.playersInfo.users, gameTable)}
+                      {/* <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers}/> */}
                     </div>
                     <br />
                   </div>
