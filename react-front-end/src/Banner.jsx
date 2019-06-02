@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Banner extends Component {
@@ -17,9 +17,9 @@ class Banner extends Component {
         <main role="main">
           <div className="jumbotron">
             <div className="container">
-              <h1 className="display-3"> Hello, trolls!</h1>
-              <p>Cards Against Internet is for horrible pelple... blah blah blah blah </p>
-              <p><button className="btn btn-dark btn-md" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
+              <h1 className="display-3 jumbotron-h1"> Hello, Trolls!</h1>
+              <p className="jumbotron-p">Cards Against Internet is for horrible pelple... blah blah blah blah </p>
+              <p><button className="btn btn-dark btn-lg" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
             </div>
           </div>
 
@@ -34,12 +34,12 @@ class Banner extends Component {
               <div className="col-md-4">
                 <h2>Fun Experience</h2>
                 <p>Sign up to experience and enjoy our Sassy adult version and be the best player in the leaderboard! </p>
-                <p><button className="btn btn-dark btn-md" role="button">Play as User&raquo;</button></p>
+                <p><button className="btn btn-dark btn-md" role="button">Play as User &raquo;</button></p>
               </div>
               <div className="col-md-4">
                 <h2>Make own cards</h2>
                 <p>Do you want to share your stuid ideas? Create your own cards and share your trollness with other players!</p>
-                <p><button className="btn btn-dark btn-md" onClick={this.props.openIdeaModal} role="button">Share Your Ideas&raquo;</button></p>
+                <p><button className="btn btn-dark btn-md" onClick={this.props.openIdeaModal} role="button">Share Your Ideas &raquo;</button></p>
               </div>
             </div>
             <hr />

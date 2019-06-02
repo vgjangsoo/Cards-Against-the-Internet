@@ -1,3 +1,7 @@
+* {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -19,6 +23,16 @@
   color: #61dafb;
 }
 
+.navbar-logo {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  font-size: 23px;
+}
+
+#lobby-navbar-logo a{
+  background-color: red;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -29,7 +43,6 @@
 }
 
 /* Modal Css*/
-
 .bg-modal {
 	background-color: rgba(0, 0, 0, 0.8);
 	width: 100%;
@@ -38,7 +51,7 @@
 	top: 0;
 	justify-content: center;
   align-items: center;
-  padding-bottom: 1000px;
+  padding-bottom: 1500px;
 }
 
 .modal-contents {
@@ -50,6 +63,21 @@
 	text-align: center;
   padding-top: 20px;
   padding-bottom: 300px;
+	position: relative;
+  border-radius: 4px;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+.modal-contents-room {
+  margin: auto;
+  margin-top: 3%;
+	height: 400px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+  padding-top: 20px;
+  padding-bottom: 150px;
 	position: relative;
   border-radius: 4px;
   animation-name: animatetop;
@@ -68,13 +96,24 @@
 }
 
 
-
 /* CSS For login/register */
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
+}
+
+#room-header {
+  font-weight: 500;
+}
+
+input.room-theme {
+  text-align: center;
+  border: 3px solid black;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 20px;
 }
 
 form.create-room-setting {
@@ -115,10 +154,9 @@ button.close-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+g
 
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
-
 .deckCard {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -133,7 +171,6 @@ button.close-button {
 }
 
 /* On mouse-over, add a deeper shadow */
-
 .deckCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   color: grey;
@@ -226,7 +263,6 @@ button.close-button {
 }
 
 /* In game before the game starts */
-
 .player-name-section {
   padding-top: 15px;
   display: flex;
@@ -279,10 +315,14 @@ div.grid {
 }
 
 div.gameroom {
-  height: 400px;
+  height: 325px;
   width: 330px;
   margin: 15px;
   border-radius: 10px;
+}
+
+h1.gameroom-theme:hover {
+  color: white;
 }
 
 div.gameLobbyContainer {
@@ -306,5 +346,80 @@ button.create-room-button {
   background-color: #15cda8;
 }
 
+/* Custom dropdown */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px; 
+}
 
+.custom-dropdown select {
+  background-color: #1abc9c;
+  color: #fff;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em; 
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; 
+}
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-dropdown::after { 
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom-dropdown::before { 
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom-dropdown select[disabled] {
+  color: rgba(0,0,0,.3);
+}
+
+.custom-dropdown select[disabled]::after {
+  color: rgba(0,0,0,.1);
+}
+
+.custom-dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+.custom-dropdown::after {
+  color: rgba(0,0,0,.4);
+}
+
+/* Homepage Banner */
+div.jumbotron {
+  background-image: url('https://images.pexels.com/photos/37547/suit-business-man-business-man-37547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+}
+
+h1.jumbotron-h1 {
+  color: white;
+}
+
+p.jumbotron-p {
+  color: white;
+}
 

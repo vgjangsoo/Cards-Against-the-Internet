@@ -40,7 +40,7 @@
 }
 
 #myFooter h2 a{
-    font-size: 50px;
+    font-size: 45px;
     text-align: center;
     color: #fff;
 }
@@ -53,7 +53,7 @@
 #myFooter a:hover,
 #myFooter a:focus {
     text-decoration: none;
-    color: white;
+    color: #15cda8;
 }
 
 #myFooter .social-networks {
