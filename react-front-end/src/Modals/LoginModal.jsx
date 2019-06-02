@@ -38,13 +38,13 @@ class LoginModal extends Component {
                 <form action="#">
                   <h1 className="login-h1">Create Account</h1>
                   <div className="social-container">
-                    <a className="login-a" href="#" className="social">
+                    <a className="login-a" href="https://twitter.com/login?lang=en" className="social" style={{textDecoration: 'none'}}>
                       <i className="fa fa-twitter login-icon" />
                     </a>
-                    <a className="login-a" href="#" className="social">
+                    <a className="login-a" href="https://www.facebook.com/login/" className="social" style={{textDecoration: 'none'}}>
                       <i className="fa fa-facebook login-icon" />
                     </a>
-                    <a className="login-a" href="#" className="social">
+                    <a className="login-a" href="https://mail.google.com/mail/u/0/" className="social" style={{textDecoration: 'none'}}>
                       <i className="fa fa-google-plus login-icon" />
                     </a>
                   </div>
@@ -64,13 +64,13 @@ class LoginModal extends Component {
                 <form action="#">
                   <h1 className="login-h1">Sign in</h1>
                   <div className="social-container">
-                    <a className="login-a" href="#" className="social">
+                    <a className="login-a" href="https://twitter.com/login?lang=en" className="social" style={{textDecoration: 'none'}}>
                       <i className="fa fa-twitter login-icon" />
                     </a>
-                    <a className="login-a" href="#" className="social">
+                    <a className="login-a" href="https://www.facebook.com/login/" className="social" style={{textDecoration: 'none'}}>
                       <i className="fa fa-facebook login-icon" />
                     </a>
-                    <a className="login-a" href="#" className="social">
+                    <a className="login-a" href="https://mail.google.com/mail/u/0/" className="social" style={{textDecoration: 'none'}}>
                       <i className="fa fa-google-plus login-icon" />
                     </a>
                   </div>

@@ -410,6 +410,16 @@ button.create-room-button {
 }
 
 /* Homepage Banner */
-div.home-banner {
-  background-color: 
+div.jumbotron {
+  background-image: url('https://images.pexels.com/photos/37547/suit-business-man-business-man-37547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
 }
+
+h1.jumbotron-h1 {
+  color: white;
+}
+
+p.jumbotron-p {
+  color: white;
+}
+

@@ -15,11 +15,11 @@ class Banner extends Component {
     return (
      <div>
         <main role="main">
-          <div className="jumbotron home-banner">
+          <div className="jumbotron">
             <div className="container">
-              <h1 className="display-3"> Hello, trolls!</h1>
-              <p>Cards Against Internet is for horrible pelple... blah blah blah blah </p>
-              <p><button className="btn btn-dark btn-md" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
+              <h1 className="display-3 jumbotron-h1"> Hello, Trolls!</h1>
+              <p className="jumbotron-p">Cards Against Internet is for horrible pelple... blah blah blah blah </p>
+              <p><button className="btn btn-dark btn-lg" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
             </div>
           </div>
 
