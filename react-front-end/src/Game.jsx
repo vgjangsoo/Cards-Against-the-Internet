@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './css/App.css';
+import './Loader.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Chat from './Chat.jsx';
 import AnswererDeck from './AnswererDeck.jsx';
@@ -27,36 +28,76 @@ class Game extends Component {
     this.state = {
       // roominfo: (this.props.location.state || {}).info,
       gameTable: {}
-
     }
     // being passed down from parent component, will setup the sockect connection
     // Cable is working for now, but wrong channel
-    cable.subscriptions.create({ channel: "GamesChannel", room: `${this.props.match.params.id}`}, {
+    // room: `${this.props.match.params.id}`
+    cable.subscriptions.create({ channel: "GamesChannel"}, {
+      
       received: (data) => {
         // console.log('CABLE PROP DATA', data)
         console.log('INSIDE WS cable.subscription', data)
         this.handleRecievedGame(data)
       }
     })
+    this.handleRecievedGame = this.handleRecievedGame.bind(this);
+    this.handlerStartButton = this.handlerStartButton.bind(this);
+    this.handlerReadyButton = this.handlerReadyButton.bind(this);
+
   }
 
   handleRecievedGame(data) {
     // for incoming WS broadcasting to this room only
     console.log('INSIDE WS handleRecievedGame')
     console.log('data is:',data)
+
+    this.setState({gameTable: data.game})
+
   }
 
   componentDidMount() {
     // http GET request to api/games
+    console.log(this.props);
     const gameRoomId = this.props.match.params.id;
     console.log('roominfo: ',this.props.match.params.id)
     axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
       console.log("ComponentDidMount - GAME DATA", res.data);
-      this.setState({gameTable: res.data})
+      this.setState({gameTable: res.data});
+    });
+    
+  }
+  
+  handlerStartButton(){
+    // when questioner click on start button
+    console.log('START BUTTON HANDLER called')
+    let updateData = []
+    
+    const gameRoomId = this.props.match.params.id;
+    const type = 'start-button-pressed'
+    updateData.push(type)
+    const gameState = this.state.gameTable.gameState;
+    updateData.push(gameState)
+
+    axios.put(`${API_ROOT}/games/${gameRoomId}`, {
+      type: type,
+      gameState: gameState
+    }).then(res =>{
+      console.log('PUT successful, res:', res)
+    });
+  };
+
+  handlerReadyButton(){
+    console.log('READY BUTTON HANDLER called')
+
+    const gameRoomId = this.props.match.params.id;
+  
+    axios.post(`${API_ROOT}/games/${gameRoomId}/addUser`).then(res => {
+      console.log("POST to game#addUser succsfull")
     });
 
   }
-  
+
+  //////////////////////////////////
   render() {
     console.log('PROPS:',this.props);
     console.log('State:',this.state);
@@ -66,7 +107,10 @@ class Game extends Component {
       <div>
         {
           !Object.keys(this.state.gameTable).length 
-            ? <div>loadinng</div> 
+            ? 
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
             : <div>
                 <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
@@ -80,7 +124,10 @@ class Game extends Component {
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
-                  <button className="btn btn-dark btn-md p-2">Start</button>
+                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerReadyButton} >Ready?</button>
+                </nav>
+                <nav className="my-2 my-md-1 mr-md-3">
+                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerStartButton} >Start</button>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
                   <Link to='/lobby'><button className="btn btn-dark btn-md p-2">Leave Room</button></Link>

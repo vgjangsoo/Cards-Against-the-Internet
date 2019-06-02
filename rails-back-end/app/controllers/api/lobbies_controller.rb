@@ -13,7 +13,7 @@ class Api::LobbiesController < ApplicationController
         lobby.game_id = nil
         # #########
         lobby.roomStatus = 'Waiting...'
-        lobby.currentPlayers = 1
+        lobby.currentPlayers = 0
 
         if lobby.save
             # send new room data back as WS broadcast

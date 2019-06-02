@@ -57,6 +57,42 @@ qcard5 = baseDeck.cards.create!({
   content: "What’s that smell?"
 })
 
+qcard6 = baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell? 6"
+})
+
+qcard7 = baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell? 7"
+})
+
+qcard8 = baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell? 8"
+})
+
+qcard9 = baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell? 9"
+})
+
+qcard10 = baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell? 10"
+})
+
+qcard11 = baseDeck.cards.create!({
+  isQuestion: true,
+  fromInternet: false,
+  content: "What’s that smell? 11"
+})
+
   puts 'Creating Answer cards'
 
   acard1 = baseDeck.cards.create!({
@@ -90,6 +126,114 @@ qcard5 = baseDeck.cards.create!({
       fromInternet: false,
       content: "An endless stream of diarrhea."
   })
+
+  acard6 = baseDeck.cards.create!({
+    isQuestion: false,
+    fromInternet: false,
+    content: "Sperm whales. #6"
+  })
+  acard7 = baseDeck.cards.create!({
+    isQuestion: false,
+    fromInternet: false,
+    content: "Sperm whales. #7"
+  })
+
+  acard8 = baseDeck.cards.create!({
+    isQuestion: false,
+    fromInternet: false,
+    content: "Sperm whales. #8"
+  })
+  acard9 = baseDeck.cards.create!({
+    isQuestion: false,
+    fromInternet: false,
+    content: "Sperm whales. #9"
+  })
+
+  acard10 = baseDeck.cards.create!({
+    isQuestion: false,
+    fromInternet: false,
+    content: "An endless stream of diarrhea. #10"
+})
+
+acard11 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #11"
+})
+acard12 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #12"
+})
+
+acard13 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #13"
+})
+acard14 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #14"
+})
+
+
+acard15 = baseDeck.cards.create!({
+    isQuestion: false,
+    fromInternet: false,
+    content: "An endless stream of diarrhea. 15"
+})
+
+acard16 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #16"
+})
+acard17 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #17"
+})
+
+acard18 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #18"
+})
+acard19 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sperm whales. #19"
+})
+
+acar20 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "An endless stream of diarrhea. #20"
+})
+
+acard21 = baseDeck.cards.create!({
+isQuestion: false,
+fromInternet: false,
+content: "Sperm whales. #21"
+})
+acard22 = baseDeck.cards.create!({
+isQuestion: false,
+fromInternet: false,
+content: "Sperm whales. #22"
+})
+
+acard23 = baseDeck.cards.create!({
+isQuestion: false,
+fromInternet: false,
+content: "Sperm whales. #23"
+})
+acard24 = baseDeck.cards.create!({
+isQuestion: false,
+fromInternet: false,
+content: "Sperm whales. #24"
+})
+
 
   puts 'Finshed creating ANSWERS card'
 
@@ -193,8 +337,8 @@ qcard5 = baseDeck.cards.create!({
               id: user1.id,
               roundPoints: 0,
               status: 'waiting',
-              questionCards: [qcard1.id, qcard2.id, qcard3.id],
-              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              questionCards: [qcard1.content, qcard2.content, qcard3.content],
+              answerCards: [acard1.content, acard2.content, acard3.content, acard4.content, acard5.content],
               selectedCard: nil
             },
             {
@@ -202,7 +346,7 @@ qcard5 = baseDeck.cards.create!({
               roundPoints: 0,
               status: 'ready',
               questionCards: nil,
-              answerCards: [acard1.id, acard2.id, acard3.id, acard4.id, acard5.id],
+              answerCards: [acard11.content, acard12.content, acard13.content, acard14.content, acard15.content],
               selectedCard: nil
             }
           ]          
