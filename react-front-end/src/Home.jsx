@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './css/App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import LoginModal from "./Modals/LoginModal.jsx"
 import Nav from "./Nav.jsx";
 import Banner from "./Banner.jsx";
@@ -12,8 +11,6 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: 'Click the button to load data!',
-      data: 'Data: nothing to show here',
       showModal: false,
       showSubmitIdeas: false
     };
