@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :decks
     resources :rounds
     resources :lobbies
+    post '/games/:id/addUser', to: 'games#addUser'
     
     # for testing only, not used right now
     get "cards/show_hand", to: 'cards#show_hand'

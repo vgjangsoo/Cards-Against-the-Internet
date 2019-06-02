@@ -57,6 +57,23 @@ class Api::GamesController < ApplicationController
       # head :ok
     end
   end
+  
+  
+  def addUser
+    # post to add user when joining game
+    # POST api/games/:id/addUser
+    randomID = rand 1...100
+    @newPlayer = User.create({
+      username: "Guest#{randomID}",
+      password: "123",
+      isAdult: false,
+      isBot: false,
+      leaderboardPoints: 0
+    })
+
+    # stopped here, need to finish moving code from show method
+
+  end
 
   def update
     # updating game state logic
@@ -107,7 +124,6 @@ class Api::GamesController < ApplicationController
         end
         playerNum += 1
       end
-
       
       game["gameState"] = gameState
       game.save!
