@@ -89,7 +89,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_203011) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "email"
+    t.string "password_digest"
     t.boolean "isAdult"
     t.boolean "isBot"
     t.integer "leaderboardPoints"

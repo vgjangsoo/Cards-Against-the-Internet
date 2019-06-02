@@ -1377,33 +1377,34 @@ puts "Recreating Users"
 User.destroy_all
 puts "Finished destroying users table"
 
-puts 'Creating Users'
+# puts 'Creating Users'
 
-user1 = User.find_or_create_by!({
-  username: 'Sam1',
-  password: '1234',
-  isAdult: true,
-  isBot: false,
-  leaderboardPoints: 10 
-})
+# user1 = User.find_or_create_by!({
+#   username: 'Sam1',
+#   password: '1234',
+#   isAdult: true,
+#   isBot: false,
+#   leaderboardPoints: 10 
+# })
 
-user2 = User.find_or_create_by!({
-  username: 'Ben1',
-  password: '1234',
-  isAdult: true,
-  isBot: false,
-  leaderboardPoints: 5 
-})
+# user2 = User.find_or_create_by!({
+#   username: 'Ben1',
+#   password: '1234',
+#   isAdult: true,
+#   isBot: false,
+#   leaderboardPoints: 5 
+# })
 
-user3 = User.find_or_create_by!({
-  username: 'Tom1',
-  password: '1234',
-  isAdult: true,
-  isBot: false,
-  leaderboardPoints: 0 
-})
+# user3 = User.find_or_create_by!({
+#   username: 'Tom1',
+#   password: '1234',
+#   isAdult: true,
+#   isBot: false,
+#   leaderboardPoints: 0 
+# })
 
-puts "Finished creating users table"
+# puts "Finished creating users table"
+
 puts "Recreating Lobby"
 
 Lobby.destroy_all
@@ -1437,14 +1438,14 @@ game1 = lobby.games.create!({
   maxPlayers: 5,
   gameState: {
     maxRound: 5,
-    creator: user1.id,
+    creator: 990,
     deck_id: baseDeck.id,
     isEveryoneDeck: true,
     gameInfo: {
       status: 'Waiting for players to join game...',
       currentPlayers: 2,
       currentRound: 0,
-      currentQuestioner: user1.id,
+      currentQuestioner: 990,
       selectedQuestion: nil,
       selectedAnswer: nil,
       roundWinner: nil
@@ -1452,7 +1453,7 @@ game1 = lobby.games.create!({
     playersInfo: {
       users: [
         {
-          id: user1.id,
+          id: 990,
           roundPoints: 0,
           status: 'waiting',
           questionCards: [qcard1.content, qcard2.content, qcard3.content],
@@ -1460,7 +1461,7 @@ game1 = lobby.games.create!({
           selectedCard: nil
         },
         {
-          id: user2.id,
+          id: 991,
           roundPoints: 0,
           status: 'ready',
           questionCards: nil,
