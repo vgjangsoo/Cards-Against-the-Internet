@@ -62,6 +62,8 @@ class Api::GamesController < ApplicationController
   def addUser
     # post to add user when joining game
     # POST api/games/:id/addUser
+    
+    puts "========INSIDE addUser method ========="
     randomID = rand 1...100
     @newPlayer = User.create({
       username: "Guest#{randomID}",
@@ -71,7 +73,49 @@ class Api::GamesController < ApplicationController
       leaderboardPoints: 0
     })
 
-    # stopped here, need to finish moving code from show method
+    puts "========finish adding a user ========="
+
+    lobby = Lobby.find(params[:id])
+    game_id = lobby.game_id
+    game = Game.find(game_id)
+
+    puts '==== Trying to change gameState with new user ===='
+    game.gameState["playersInfo"]["users"].push({
+      id: @newPlayer.id,
+      roundPoints: 0,
+      status: 'ready',
+      questionCards: [],
+      answerCards: [],
+      selectedCard: nil
+    })
+    currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
+    puts "currentPlayers before add: #{currentPlayers}"
+    currentPlayers = currentPlayers + 1
+    puts "currentPlayers After add: #{currentPlayers}"
+    
+    game.gameState["gameInfo"]["currentPlayers"] = currentPlayers
+
+    puts '==== finished update gameState table ===='
+
+    #  if first time joining room should update as creator
+    if game.gameState["creator"] == nil
+      game.gameState["creator"] = @newPlayer.id
+      game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
+    end
+    
+    lobby.currentPlayers += 1
+
+    if lobby.save!
+      # send new room data back as WS broadcast
+      broadcast_to_lobby(lobby)
+      puts "=====after broadcast to lobby======"
+    end
+
+    if game.save!
+      puts "========================BEFORE BROADCAST"
+      broadcast_to_game(game)
+      puts "========================AFTER BROADCAST"
+    end
 
   end
 
@@ -147,69 +191,15 @@ class Api::GamesController < ApplicationController
     # lobbyID = params[:id]
     # puts `===== lobby ID is: #{lobbyID}` 
     
-    # need to add a user to room, create all the user game data, and broadcast to everyone
-    randomID = rand 1...100
-    @newPlayer = User.create({
-      username: "Guest#{randomID}",
-      password: "123",
-      isAdult: false,
-      isBot: false,
-      leaderboardPoints: 0
-    })
-
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
     game = Game.find(game_id)
-    # game = lobby.game
-    puts "game state"
-    puts game.gameState.inspect
-    # need to modify game.gameState to include new user cards, info...
-
-    puts '==== Trying to change gameState ===='
-    game.gameState["playersInfo"]["users"].push({
-      id: @newPlayer.id,
-      roundPoints: 0,
-      status: 'ready',
-      questionCards: [],
-      answerCards: [],
-      selectedCard: nil
-    })
-    currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
-    puts "currentPlayers before add: #{currentPlayers}"
-    currentPlayers = currentPlayers + 1
-    puts "currentPlayers After add: #{currentPlayers}"
     
-    game.gameState["gameInfo"]["currentPlayers"] = currentPlayers
+    # broadcast_to_game(game)
+    # puts "===== SHOW METHOD finishshed broadcasting ======"
 
-    #  if first time joining room should update as creator
-    if game.gameState["creator"] == nil
-      game.gameState["creator"] = @newPlayer.id
-      game.gameState["gameInfo"]["currentQuestioner"] = @newPlayer.id
-    end
-    
-    lobby.currentPlayers += 1
+    render json: game
 
-    if lobby.save!
-      # send new room data back as WS broadcast
-      broadcast_to_lobby(lobby)
-      puts "=====after broadcast to lobby======"
-    end
-
-    if game.save!
-    puts "========================BEFORE BROADCAST"
-    
-    # serialized_data = ActiveModelSerializers::Adapter::Json.new(
-    #   GameSerializer.new(game)
-    #   ).serializable_hash
-    #   ActionCable.server.broadcast 'games_channel', serialized_data
-    #   head :ok
-    broadcast_to_game(game)
-      
-    puts "========================AFTER BROADCAST"
-    # NEVER USE render and broadcast in the same method, only use broadcast
-      
-
-    end
   end
 
   def broadcast_to_game (data)
