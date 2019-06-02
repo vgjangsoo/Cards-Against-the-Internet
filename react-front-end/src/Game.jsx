@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import './Loader.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Chat from './Chat.jsx';
 import AnswererDeck from './AnswererDeck.jsx';
@@ -106,7 +107,10 @@ class Game extends Component {
       <div>
         {
           !Object.keys(this.state.gameTable).length 
-            ? <div>Page loading...</div> 
+            ? 
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
             : <div>
                 <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
