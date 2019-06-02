@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './css/App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"; 
 
 class Chat extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      message: 'Click the button to load data!'
-    }
-  }
 
   render() {
     console.log("FROM CHAT.jsx: ", this.props.userInfo.users);
@@ -17,7 +10,8 @@ class Chat extends Component {
     return (
       <div className="p-2 chat-box">
         <div className="score-board">
-          <h6>Score Board</h6>
+          <h6 className='score-title'>Score Board</h6>
+          <hr/>
           {users.map(e => {
             return (
               <h6 className='player-name'>Player #{e.id}: {e.roundPoints}</h6>
