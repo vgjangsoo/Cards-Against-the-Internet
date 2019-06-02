@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Banner extends Component {
@@ -15,7 +15,7 @@ class Banner extends Component {
     return (
      <div>
         <main role="main">
-          <div className="jumbotron">
+          <div className="jumbotron home-banner">
             <div className="container">
               <h1 className="display-3"> Hello, trolls!</h1>
               <p>Cards Against Internet is for horrible pelple... blah blah blah blah </p>

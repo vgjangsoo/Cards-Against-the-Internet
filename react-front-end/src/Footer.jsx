@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './Footer.css';
+import './css/Footer.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Footer extends Component {

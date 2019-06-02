@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './css/App.css';
 import Card from "./Card.jsx";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Lobby from "./Lobby.jsx";

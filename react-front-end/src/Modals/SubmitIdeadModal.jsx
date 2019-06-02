@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "../submitform.css";
+import "../css/submitform.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class SubmitIdeaModal extends Component {

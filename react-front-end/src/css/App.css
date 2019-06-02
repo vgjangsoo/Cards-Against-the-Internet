@@ -157,7 +157,6 @@ button.close-button {
 g
 
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
-
 .deckCard {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -172,7 +171,6 @@ g
 }
 
 /* On mouse-over, add a deeper shadow */
-
 .deckCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   color: grey;
@@ -265,7 +263,6 @@ g
 }
 
 /* In game before the game starts */
-
 .player-name-section {
   padding-top: 15px;
   display: flex;
@@ -388,7 +385,7 @@ button.create-room-button {
   margin-top: -.5em;
 }
 
-.custom-dropdown::before { /*  Custom dropdown arrow cover */
+.custom-dropdown::before { 
   width: 2em;
   right: 0;
   top: 0;
@@ -410,4 +407,9 @@ button.create-room-button {
 
 .custom-dropdown::after {
   color: rgba(0,0,0,.4);
+}
+
+/* Homepage Banner */
+div.home-banner {
+  background-color: 
 }
