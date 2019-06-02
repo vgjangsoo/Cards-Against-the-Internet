@@ -25,8 +25,9 @@ const style = {
 class Game extends Component {
   constructor(props) {
     super(props)
+    ///use loadingGameState to fake loading data until real data comes
     this.state = {
-      // roominfo: (this.props.location.state || {}).info,
+      loadingGameState: (this.props.location.state || {}).info.games[0],
       gameTable: {}
     }
     // being passed down from parent component, will setup the sockect connection
@@ -47,6 +48,21 @@ class Game extends Component {
 
   }
 
+  
+  componentDidMount() {
+    // http GET request to api/games
+    console.log('===INSIDE COMPONENT DID MOUNT===')
+    console.log(this.props);
+    console.log('loadingGameState:',this.state.loadingGameState);    
+    const gameRoomId = this.props.match.params.id;
+    // console.log('roominfo: ',this.props.match.params.id)
+    axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
+      console.log("ComponentDidMount - GAME DATA", res.data);
+      this.setState({gameTable: res.data});
+    });
+    
+  }
+
   handleRecievedGame(data) {
     // for incoming WS broadcasting to this room only
     console.log('INSIDE WS handleRecievedGame')
@@ -54,18 +70,6 @@ class Game extends Component {
 
     this.setState({gameTable: data.game})
 
-  }
-
-  componentDidMount() {
-    // http GET request to api/games
-    console.log(this.props);
-    const gameRoomId = this.props.match.params.id;
-    console.log('roominfo: ',this.props.match.params.id)
-    axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
-      console.log("ComponentDidMount - GAME DATA", res.data);
-      this.setState({gameTable: res.data});
-    });
-    
   }
   
   handlerStartButton(){
@@ -116,8 +120,7 @@ class Game extends Component {
     console.log('PROPS:',this.props);
     console.log('State:',this.state);
     // const gameTable = (this.state.gameTable)? this.state.gameTable : 'loading...'
-    const gameTable = (Object.keys(this.state.gameTable).length)? this.state.gameTable : 'loading...'
- 
+    const gameTable = (Object.keys(this.state.gameTable).length)? this.state.gameTable : this.state.loadingGameState
     return (
       <div>
         {
@@ -162,7 +165,7 @@ class Game extends Component {
                       <button className='btn btn-dark btn-md p-2'>Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
-                      {this.AnswerArea(gameTable.gameState.playersInfo.users, gameTable)}
+                      {this.AnswerArea(gameTable.gameState.playersInfo.users, this.state.loadingGameState)}
                       {/* <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers}/> */}
                     </div>
                     <br />
