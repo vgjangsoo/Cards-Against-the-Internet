@@ -82,7 +82,32 @@ class Api::GamesController < ApplicationController
       puts gameState
       gameState["gameInfo"]["status"] = 'Waiting for questioner to select card'
       gameState["gameInfo"]["currentRound"] = 1
-      
+
+      # assigning cards to each player (including questioner)
+      # find number of users in gameState
+      numPlayers = gameState["playersInfo"]["users"].size
+      puts "numPlayers: #{numPlayers}"
+      # find all answer cards in cards table
+      @answerCards = Card.where(isQuestion: false)  
+      puts "answerCards: #{@answerCards}"
+      puts "answerCards size: #{@answerCards.size}"
+      cardSize = @answerCards.size
+      # randomly assign 5 card.context to each user
+      # puts @answerCards[0].content
+      # puts @answerCards[1].content
+      # puts @answerCards[4].content
+
+      playerNum = 0
+      while playerNum < numPlayers 
+        
+        for i in 0..4
+          cardNum = rand 1...cardSize
+          gameState["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          puts gameState["playersInfo"]["users"][playerNum]["answerCards"]
+        end
+        playerNum += 1
+      end
+
       
       game["gameState"] = gameState
       game.save!
