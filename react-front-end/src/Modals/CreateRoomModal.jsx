@@ -34,7 +34,6 @@ class CreateRoomModal extends Component {
               id="theme"
               className="room-theme"
               placeholder="Game Theme"
-              autoFocus
               required
             />
             <button className="btn btn-md btn-dark btn-block" type="submit">
