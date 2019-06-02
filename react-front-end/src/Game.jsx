@@ -158,7 +158,7 @@ class Game extends Component {
                   <History />
                 </div>
                 <div>
-                  <Chat />
+                  <Chat userInfo={gameTable.gameState.playersInfo}/>
                 </div>
               </div>
             </div>    
