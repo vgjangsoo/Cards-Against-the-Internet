@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './Footer.css';
+import './css/Footer.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class Footer extends Component {
@@ -42,11 +42,11 @@ render() {
                 </div>
                 <div className="col-sm-3">
                     <div className="social-networks">
-                        <a href="#" className="twitter"><i className="fa fa-twitter"></i></a>
-                        <a href="#" className="facebook"><i className="fa fa-facebook"></i></a>
-                        <a href="#" className="google"><i className="fa fa-google-plus"></i></a>
+                        <a href="https://twitter.com/login?lang=en" className="twitter"><i className="fa fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/login/" className="facebook"><i className="fa fa-facebook"></i></a>
+                        <a href="https://mail.google.com/mail/u/0/" className="google"><i className="fa fa-google-plus"></i></a>
                     </div>
-                    <button type="button" className="btn btn-dark">Contact us</button>
+                    <a href="mailto:cardsagainstinternet@gmail.com"><button type="button" className="btn btn-dark">Contact us</button></a>
                 </div>
             </div>
         </div>
