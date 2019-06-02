@@ -369,9 +369,9 @@ acard4 = baseDeck.cards.create!({
 })
 
 acard5 = baseDeck.cards.create!({
-    isQuestion: false,
-    fromInternet: false,
-    content: "An endless stream of diarrhea."
+  isQuestion: false,
+  fromInternet: false,
+  content: "An endless stream of diarrhea."
 })
 
 acard6 = baseDeck.cards.create!({
@@ -1118,142 +1118,361 @@ acard129 = baseDeck.cards.create!({
   content: "Bruce Lee."
 })
 
+acard130 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Dark and mysterious forces beyond our control."
+})
 
+acard131 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Passive-aggressive Post-it notes."
+})
 
+acard132 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Dwayne “The Rock” Johnson."
+})
 
+acard133 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Kanye West."
+})
 
+acard134 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The Holy Bible."
+})
 
+acard134 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My relationship status."
+})
 
+acard135 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Authentic Mexican cuisine."
+})
 
+acard136 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Seeing what happens when you lock people in a room with hungry seagulls."
+})
 
+acard137 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Crippling debt."
+})
 
+acard138 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "A fart so powerful that it wakes the giants from their thousand-year slumber."
+})
 
+acard139 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Former President Geroge W. Bush."
+})
 
+acard140 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Pretending to care."
+})
 
+acard141 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Having big dreams but no realistic way to achieve them."
+})
 
+acard142 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Facebook."
+})
 
+acard143 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Twitter."
+})
 
-  puts 'Finshed creating ANSWERS card'
+acard144 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Fragile masculinity."
+})
 
-  puts "Recreating Users"
+acard145 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Your weird brother."
+})
 
-  User.destroy_all
-  puts "Finished destroying users table"
+acard146 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Fox News."
+})
 
-  puts 'Creating Users'
+acard146 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Making a pouty face."
+})
 
-  user1 = User.find_or_create_by!({
-    username: 'Sam1',
-    password: '1234',
-    isAdult: true,
-    isBot: false,
-    leaderboardPoints: 10 
-  })
-  
-  user2 = User.find_or_create_by!({
-    username: 'Ben1',
-    password: '1234',
-    isAdult: true,
-    isBot: false,
-    leaderboardPoints: 5 
-  })
+acard147 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Land mines."
+})
 
-  user3 = User.find_or_create_by!({
-    username: 'Tom1',
-    password: '1234',
-    isAdult: true,
-    isBot: false,
-    leaderboardPoints: 0 
-  })
+acard148 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Flesh-eating bacteria."
+})
 
-  puts "Finished creating users table"
+acard149 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Hobos."
+})
 
+acard150 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Getting a DUI on a Zamboni."
+})
 
-  puts "Recreating Lobby"
+acard151 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "A despondent Maple Leafs fan sitting all alone."
+})
 
-  Lobby.destroy_all
-  puts "Finished destroying lobbiess table"
-  
-  puts 'Creating lobby'
-  
-  lobby = Lobby.new({
-    game_id: nil, 
-    roomStatus: nil,
-    maxPlayer: nil,
-    currentPlayers: nil, 
-    theme: 'soon to be Game of Thrones' 
-  })  
+acard152 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The Pope."
+})
 
-  lobby.save!
+acard153 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Self-loathing."
+})
 
-  # lobby2 = Lobby.new({
-  #   game_id: '1', 
-  #   roomStatus: 'Waiting',
-  #   maxPlayer: 5,
-  #   currentPlayers: 1, 
-  #   theme: 'Testing room1' 
-  # })  
+acard154 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "An oversized lollipop."
+})
 
+acard155 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My ex-wife."
+})
 
-  # lobby2.save!
+acard156 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Puberty."
+})
 
+acard157 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Oompa-Loompas."
+})
 
+acard158 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Judging everyone."
+})
 
-  
-  puts "Finished creating lobbies table"
+acard159 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Kourtney, Kim, Khloe, Kendall, and Kylie."
+})
 
+acard160 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Bananas."
+})
 
-  # need to change games below
-  puts "Recreating Games"
+acard161 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Milk."
+})
 
-  Game.destroy_all
-  puts "Finished destroying games table"
+acard162 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "O.J. Simpson"
+})
 
-  puts 'Creating games'
+acard163 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My daughter."
+})
 
-  game1 = lobby.games.create!({
-    theme: 'Game of Thrones', 
+acard164 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My son."
+})
+
+acard165 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My family."
+})
+
+acard166 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My chubby father."
+})
+
+acard167 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Peeing a little bit."
+})
+
+acard168 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Bring rich."
+})
+
+acard169 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The milkman."
+})
+
+puts 'Finshed creating ANSWERS card'
+
+puts "Recreating Users"
+
+User.destroy_all
+puts "Finished destroying users table"
+
+puts 'Creating Users'
+
+user1 = User.find_or_create_by!({
+  username: 'Sam1',
+  password: '1234',
+  isAdult: true,
+  isBot: false,
+  leaderboardPoints: 10 
+})
+
+user2 = User.find_or_create_by!({
+  username: 'Ben1',
+  password: '1234',
+  isAdult: true,
+  isBot: false,
+  leaderboardPoints: 5 
+})
+
+user3 = User.find_or_create_by!({
+  username: 'Tom1',
+  password: '1234',
+  isAdult: true,
+  isBot: false,
+  leaderboardPoints: 0 
+})
+
+puts "Finished creating users table"
+puts "Recreating Lobby"
+
+Lobby.destroy_all
+
+puts "Finished destroying lobbiess table"
+puts 'Creating lobby'
+
+lobby = Lobby.new({
+  game_id: nil, 
+  roomStatus: nil,
+  maxPlayer: nil,
+  currentPlayers: nil, 
+  theme: 'soon to be Game of Thrones' 
+})  
+
+lobby.save!
+
+puts "Finished creating lobbies table"
+
+# need to change games below
+puts "Recreating Games"
+
+Game.destroy_all
+
+puts "Finished destroying games table"
+puts 'Creating games'
+
+game1 = lobby.games.create!({
+  theme: 'Game of Thrones', 
+  maxRound: 5,
+  maxPlayers: 5,
+  gameState: {
     maxRound: 5,
-    maxPlayers: 5,
-    gameState: {
-      maxRound: 5,
-      creator: user1.id,
-      deck_id: baseDeck.id,
-      isEveryoneDeck: true,
-      gameInfo: {
-          status: 'Waiting for players to join game...',
-          currentPlayers: 2,
-          currentRound: 0,
-          currentQuestioner: user1.id,
-          selectedQuestion: nil,
-          selectedAnswer: nil,
-          roundWinner: nil
-      },
-      playersInfo: {
-          users: [
-            {
-              id: user1.id,
-              roundPoints: 0,
-              status: 'waiting',
-              questionCards: [qcard1.content, qcard2.content, qcard3.content],
-              answerCards: [acard1.content, acard2.content, acard3.content, acard4.content, acard5.content],
-              selectedCard: nil
-            },
-            {
-              id: user2.id,
-              roundPoints: 0,
-              status: 'ready',
-              questionCards: nil,
-              answerCards: [acard11.content, acard12.content, acard13.content, acard14.content, acard15.content],
-              selectedCard: nil
-            }
-          ]          
-      }
-    }  
-  })
+    creator: user1.id,
+    deck_id: baseDeck.id,
+    isEveryoneDeck: true,
+    gameInfo: {
+      status: 'Waiting for players to join game...',
+      currentPlayers: 2,
+      currentRound: 0,
+      currentQuestioner: user1.id,
+      selectedQuestion: nil,
+      selectedAnswer: nil,
+      roundWinner: nil
+    },
+    playersInfo: {
+      users: [
+        {
+          id: user1.id,
+          roundPoints: 0,
+          status: 'waiting',
+          questionCards: [qcard1.content, qcard2.content, qcard3.content],
+          answerCards: [acard1.content, acard2.content, acard3.content, acard4.content, acard5.content],
+          selectedCard: nil
+        },
+        {
+          id: user2.id,
+          roundPoints: 0,
+          status: 'ready',
+          questionCards: nil,
+          answerCards: [acard11.content, acard12.content, acard13.content, acard14.content, acard15.content],
+          selectedCard: nil
+        }
+      ]          
+    }
+  }  
+})
 
 puts 'Finished creating Games table'
-
 puts 'updating lobby table'
  
 lobby.game_id = game1.id
@@ -1265,127 +1484,94 @@ lobby.save!
 
 puts 'Finished updating lobby table after game is created'
 
+#   game2 = Game.create!({
+#   maxRound: 10,
+#   currentRound: 5,
+#   isEveryoneDeck: true,
+#   currentQuestion: Card.where(isQuestion: true).first.id,
+#   currentAnswer: Card.where(isQuestion: false).last.id,
+#   maxPlayers: 5,
+#   creator: user2.id,
+#   currentQuestioner: user1.id,
+#   roundWinner: user3.id,
+#   deck_id: baseDeck.id,
+#   gameStatus: 'playing' 
+#   })
 
-  #  game2 = Game.create!({
-  #   maxRound: 10,
-  #   currentRound: 5,
-  #   isEveryoneDeck: true,
-  #   currentQuestion: Card.where(isQuestion: true).first.id,
-  #   currentAnswer: Card.where(isQuestion: false).last.id,
-  #   maxPlayers: 5,
-  #   creator: user2.id,
-  #   currentQuestioner: user1.id,
-  #   roundWinner: user3.id,
-  #   deck_id: baseDeck.id,
-  #   gameStatus: 'playing' 
-  #  })
+#   game3 = Game.create!({
+#   maxRound: 10,
+#   currentRound: 10,
+#   isEveryoneDeck: true,
+#   currentQuestion: Card.where(isQuestion: true).last.id,
+#   currentAnswer: Card.where(isQuestion: false).first.id,
+#   maxPlayers: 5,
+#   creator: user3.id,
+#   currentQuestioner: user1.id,
+#   roundWinner: user3.id,
+#   deck_id: baseDeck.id,
+#   gameStatus: 'gameover' 
+#   })
 
-  #  game3 = Game.create!({
-  #   maxRound: 10,
-  #   currentRound: 10,
-  #   isEveryoneDeck: true,
-  #   currentQuestion: Card.where(isQuestion: true).last.id,
-  #   currentAnswer: Card.where(isQuestion: false).first.id,
-  #   maxPlayers: 5,
-  #   creator: user3.id,
-  #   currentQuestioner: user1.id,
-  #   roundWinner: user3.id,
-  #   deck_id: baseDeck.id,
-  #   gameStatus: 'gameover' 
-  #  })
-  
-  #  puts 'Finished creating games table'
+#   puts 'Finished creating games table'
 
-  #  puts "Recreating Rounds"
+#   puts "Recreating Rounds"
 
-  #  Round.destroy_all
-  #  puts "Finished destroying rounds table"
- 
-  #  puts 'Creating rounds'
+#   Round.destroy_all
+#   puts "Finished destroying rounds table"
 
-  #  Round.create!({
-  #    round: Game.where(gameStatus: 'playing').first.currentRound,
-  #    question: Game.where(gameStatus: 'playing').first.currentQuestion,
-  #    answer: Game.where(gameStatus: 'playing').first.currentAnswer,
-  #    winner: Game.where(gameStatus: 'playing').first.roundWinner
-  #  })
+#   puts 'Creating rounds'
 
-  # game2.rounds.create!({
-  #   round: game2.currentRound,
-  #   question: game2.currentQuestion,
-  #   answer: game2.currentAnswer,
-  #   winner: game2.roundWinner,
-  # })
+#   Round.create!({
+#     round: Game.where(gameStatus: 'playing').first.currentRound,
+#     question: Game.where(gameStatus: 'playing').first.currentQuestion,
+#     answer: Game.where(gameStatus: 'playing').first.currentAnswer,
+#     winner: Game.where(gameStatus: 'playing').first.roundWinner
+#   })
 
-  # game3.rounds.create!({
-  #   round: game3.currentRound,
-  #   question: game3.currentQuestion,
-  #   answer: game3.currentAnswer,
-  #   winner: game3.roundWinner,
-  # })
+# game2.rounds.create!({
+#   round: game2.currentRound,
+#   question: game2.currentQuestion,
+#   answer: game2.currentAnswer,
+#   winner: game2.roundWinner,
+# })
 
-  #  puts 'Finished creating rounds table'
+# game3.rounds.create!({
+#   round: game3.currentRound,
+#   question: game3.currentQuestion,
+#   answer: game3.currentAnswer,
+#   winner: game3.roundWinner,
+# })
 
-  #  puts "Recreating User-game-info"
+#   puts 'Finished creating rounds table'
 
-  #  UserGameInfo.destroy_all
-  #  puts "Finished destroying User-game-info table"
- 
-  #  puts 'Creating User-game-info'
+#   puts "Recreating User-game-info"
 
-  # #  testArray = Card.where(isQuestion: false).map{|elm| elm.id }
-  # #  puts testArray[0]
-  # #  puts testArray[1]
+#   UserGameInfo.destroy_all
+#   puts "Finished destroying User-game-info table"
 
-  #  game2.user_game_infos.create!({
-  #    user_id: user1.id,
-  #    roundPoints: 2,
-  #    userStatus: 'waiting',
-  #    hands: Card.where(isQuestion: false).map{|elm| elm.id },
-  #    selectedCard: game2.currentAnswer
-  #  })
+#   puts 'Creating User-game-info'
 
-  #  game3.user_game_infos.create!({
-  #   user_id: user2.id,
-  #   roundPoints: 4,
-  #   userStatus: 'gameover',
-  #   hands: Card.where(isQuestion: false).map{|elm| elm.id },
-  #   selectedCard: game3.currentAnswer
-  # })
+# #  testArray = Card.where(isQuestion: false).map{|elm| elm.id }
+# #  puts testArray[0]
+# #  puts testArray[1]
 
+#   game2.user_game_infos.create!({
+#     user_id: user1.id,
+#     roundPoints: 2,
+#     userStatus: 'waiting',
+#     hands: Card.where(isQuestion: false).map{|elm| elm.id },
+#     selectedCard: game2.currentAnswer
+#   })
+
+#   game3.user_game_infos.create!({
+#   user_id: user2.id,
+#   roundPoints: 4,
+#   userStatus: 'gameover',
+#   hands: Card.where(isQuestion: false).map{|elm| elm.id },
+#   selectedCard: game3.currentAnswer
+# })
 
 
-  #  puts 'Finished creating User-game-info table'
+
+#   puts 'Finished creating User-game-info table'
    
-   
-
-# everyone question
-# •	____. High five, bro.
-# •	Hey Reddit! I’m ____. Ask me anything.
-# •	Why am I sticky?
-# •	Uh, hey guys, I know this was my idea, but I’m having serious doubts about ____.
-# •	What’s that smell?
-# •	What’s that sound?
-# •	____. Betcha can’t have just one!
-# •	I’m going on a cleanse this week. Nothing but kale juice and ____.
-# •	War! What is it good for?
-
-# everyone answers
-# •	Sperm whales.
-# •	Fiery poops.
-# •	Getting crushed by a vending machine.
-# •	Horse meat.
-# •	An endless stream of diarrhoea.
-# •	The miracle of childbirth.
-# •	The Force.
-# •	Fading away into nothingness.
-# •	Mutually assured destruction.
-# •	Exactly what you’d expect.
-# •	My inner demons.
-# •	Women’s suffrage.
-# •	Extremely tight pants.
-# •	Only dating Asian women.
-# •	Becoming a blueberry.
-# •	Waiting till marriage.
-# •	Shutting up so I can watch the game.
-# •	Diversity.
