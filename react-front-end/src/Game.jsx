@@ -41,6 +41,8 @@ class Game extends Component {
     })
     this.handleRecievedGame = this.handleRecievedGame.bind(this);
     this.handlerStartButton = this.handlerStartButton.bind(this);
+    this.handlerReadyButton = this.handlerReadyButton.bind(this);
+
   }
 
   handleRecievedGame(data) {
@@ -59,9 +61,8 @@ class Game extends Component {
     console.log('roominfo: ',this.props.match.params.id)
     axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
       console.log("ComponentDidMount - GAME DATA", res.data);
-      //this.setState({gameTable: res.data})
+      this.setState({gameTable: res.data});
     });
-
     
   }
   
@@ -84,6 +85,17 @@ class Game extends Component {
     });
   };
 
+  handlerReadyButton(){
+    console.log('READY BUTTON HANDLER called')
+
+    const gameRoomId = this.props.match.params.id;
+  
+    axios.post(`${API_ROOT}/games/${gameRoomId}/addUser`).then(res => {
+      console.log("POST to game#addUser succsfull")
+    });
+
+  }
+
   //////////////////////////////////
   render() {
     console.log('PROPS:',this.props);
@@ -94,7 +106,7 @@ class Game extends Component {
       <div>
         {
           !Object.keys(this.state.gameTable).length 
-            ? <div>loadinng</div> 
+            ? <div>Page loading...</div> 
             : <div>
                 <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
@@ -106,6 +118,9 @@ class Game extends Component {
                     <h6>Round: {gameTable.gameState.gameInfo.currentRound} / {gameTable.maxRound}</h6>
                     <h6>Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.maxPlayers}</h6>
                   </div>
+                </nav>
+                <nav className="my-2 my-md-1 mr-md-3">
+                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerReadyButton} >Ready?</button>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
                   <button className="btn btn-dark btn-md p-2" onClick={this.handlerStartButton} >Start</button>
