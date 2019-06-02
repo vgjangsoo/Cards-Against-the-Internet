@@ -10,7 +10,7 @@ class AnswererDeck extends Component {
       answers: []
     }
   }
-
+//need to disable this fetch request, and load in real data as a prop
   fetchAnswerCards() {
     axios.get('/api/cards')
     .then((res) => {

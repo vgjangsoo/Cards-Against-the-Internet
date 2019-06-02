@@ -98,14 +98,14 @@ class Game extends Component {
 
   }
 
-  AnswerArea({ userData, gameTable}) {
-    const isStartMode = this.state.gameTable.gameState.gameInfo.currentRound !== 0;
-  
+  AnswerArea({ userData, gameTable2}) {
+    const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
+    // should have AnswerDeck on top, AnswerSection on bottom
     return (
       <div>
         { isStartMode
-          ? <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
-          : <AnswererDeck userData={userData} />
+          ? <AnswererDeck userData={userData} />
+          : <AnswerSection userStatus={gameTable2.gameState.playersInfo} currentQuestioner= {gameTable2.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable2.maxPlayers} />
         }
       </div>
     );
@@ -115,7 +115,8 @@ class Game extends Component {
   render() {
     console.log('PROPS:',this.props);
     console.log('State:',this.state);
-    const gameTable = (this.state.gameTable)? this.state.gameTable : 'loading...'
+    // const gameTable = (this.state.gameTable)? this.state.gameTable : 'loading...'
+    const gameTable = (Object.keys(this.state.gameTable).length)? this.state.gameTable : 'loading...'
  
     return (
       <div>
