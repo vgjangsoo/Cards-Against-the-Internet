@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import LoginModal from "./Modals/LoginModal.jsx"
 import Nav from "./Nav.jsx";
