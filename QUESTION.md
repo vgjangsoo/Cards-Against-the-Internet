@@ -18,7 +18,6 @@
 •	The class field trip was completely ruined by ____.
 •	Today on Maury: “Help! My son is ____!”
 •	Dude, do not go in that washroom. There’s ____ in there.
-•	I drink to forget ____.
 •	It’s a pity that kids these days are all getting involved with ____.
 •	What makes life worth living?
 •	Just saw this upsetting video! Please retweet! #stop ____
@@ -50,6 +49,8 @@
 •	Well if you’ll excuse me, gentlemen, I have a date with ____.
 •	As the mom of five rambunctious boys, I’m no stranger to ____.
 •	If you can’t be with the one you love, love ____.
+•	What give me uncontrollable gas?
+•	Why can’t I sleep at night?
 
 
 ## ADULT DECK(Qs)
@@ -57,10 +58,8 @@
 •	Kids, I don’t need drugs to get high. I’m high on ____.
 •	During sex, I like to think about ____.
 •	How did I lose my virginity?
-•	In the new Disney Channel Original Movie, Hannah Montana struggles with ____ for the first time. 
-•	What give me uncontrollable gas?
+•	In the new Disney Channel Original Movie, Hannah Montana struggles with ____ for the first time.
 •	What made my first kiss so awkward?
-•	Why can’t I sleep at night?
 •	Daddy, why is mommy crying?
 •	A romantic, candlelit dinner would be incomplete without ____.
 •	What is Batman’s guilty pleasure?
@@ -86,9 +85,7 @@
 •	Mutually assured destruction.
 •	Exactly what you’d expect.
 •	My inner demons.
-•	Women’s suffrage.
 •	Extremely tight pants.
-•	Only dating Asian women.
 •	Becoming a blueberry.
 •	Waiting till marriage.
 •	Shutting up so I can watch the game.
@@ -98,17 +95,14 @@
 •	Vigorous jazz hands.
 •	Rap music.
 •	Justin Bieber.
+•	Drake.
 •	Kim Kardashian.
 •	Darth Vader.
 •	A horde of Vikings.
 •	BATMAN!
-•	Brown people.
-•	White people.
-•	Black people.
 •	A tiny horse.
-•	Women of colour.
-•	Jungle Judy.
-•	Terry Fox’s prosthetic leg.
+•	An enormous horse.
+•	Jungle Brothers.
 •	Barack Obama.
 •	Her Majesty, Queen Elizabeth II.
 •	Vladimir Putin.
@@ -117,27 +111,22 @@
 •	Unfathomable stupidity.
 •	All-you-can-eat shrimp for $8.99.
 •	Raptor attacks.
+•	Bart Simpson.
 •	Alcoholism.
 •	Licking spray paint.
 •	My soul.
-•	Men.
-•	Women.
 •	Smallpox blankets.
 •	Explosions.
 •	A disappointing birthday party.
-•	Boys.
-•	Girls.
-•	Women in yogurt commercials.
+•	A person in yogurt commercials.
 •	Pooping back and forth. Forever.
 •	Farting and walking away.
 •	Throwing grapes at a man until he touch with reality.
-•	Old-people smell.
 •	Shaking a baby until it stops crying.
 •	Fellowship in Christ.
 •	The true meaning of Christmas.
 •	Child beauty pageants.
 •	Emerging from the sea and rampaging through Tokyo.
-•	Throwing Hitler into a volcano.
 •	Wizard music.
 •	Chainsaw for hands.
 •	Pooping in a laptop and closing it.
@@ -161,14 +150,17 @@
 •	PTSD.
 •	A lifetime of sadness.
 •	Puppies!
+•	Cats!
 •	The Royal Canadian Mounted Police.
+
+
+
 •	The blood of Christ.
 •	Listening to her problems without trying to solve them.
 •	A salty surprise.
 •	Scientology.
 •	A cold, soggy breakfast.
 •	Nickelback,
-•	Not wearing pants.
 •	Being fat and stupid.
 •	Mao Zedong.
 •	Shinzo Abe.
@@ -186,7 +178,6 @@
 •	My good bra.
 •	Spectacular abs.
 •	Punching an MP in the face.
-•	A much younger woman.
 •	Poverty.
 •	AXE Body Spray.
 •	Completely unwarranted confidence.
@@ -198,7 +189,6 @@
 •	One trillion dollars.
 •	Poor life choices.
 •	Prescription pain killers.
-•	My abusive boyfriend who really isn’t so bad once you get to know him.
 •	The Great Depression.
 •	A Super Soaker full of cat pee.
 •	The Russians.
@@ -218,18 +208,16 @@
 •	Dwayne “The Rock” Johnson.
 •	Kanye West.
 •	The Holy Bible.
-•	A brain tumour.
 •	My relationship status.
 •	Authentic Mexican cuisine.
 •	Seeing what happens when you lock people in a room with hungry seagulls.
-•	Daddy issues.
-•	Mommy issues.
 •	Crippling debt.
 •	A fart so powerful that it wakes the giants from their thousand-year slumber.
 •	Former President Geroge W. Bush.
 •	Pretending to care.
 •	Having big dreams but no realistic way to achieve them.
 •	Facebook.
+•	Twitter.
 •	Fragile masculinity.
 •	Your weird brother.
 •	Fox News.
@@ -249,20 +237,39 @@
 •	Judging everyone.
 •	Kourtney, Kim, Khloe, Kendall, and Kylie.
 •	Bananas.
+•	Milk.
 •	O.J. Simpson
-•	My fat daughter.
-•	My fat son.
+•	My daughter.
+•	My son.
+•	My family.
 •	My chubby father.
 •	Peeing a little bit.
 •	Bring rich.
 •	The milkman.
-•	White privilege.
-•	A stray pube.
 
 
 
 ## ADULT DECK(As)
 
+•	Throwing Hitler into a volcano.
+•	Boys.
+•	Girls.
+•	My abusive boyfriend who really isn’t so bad once you get to know him.
+•	Not wearing pants.
+•	A much younger woman.
+•	A brain tumour.
+•	Daddy issues.
+•	Mommy issues.
+•	White privilege.
+•	A stray pube.
+•	Old-people smell.
+•	Terry Fox’s prosthetic leg.
+•	Women of colour.
+•	Brown people.
+•	White people.
+•	Black people.
+•	Men.
+•	Women.
 •	Penis breath.
 •	Being a dick to children.
 •	A snapping turtle biting the tip of your penis.
@@ -400,8 +407,4 @@
 •	Balls.
 •	An unwanted pregnancy.
 •	Pictures of boobs.
-
-
-
-
 
