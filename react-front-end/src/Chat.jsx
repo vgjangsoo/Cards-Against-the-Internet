@@ -14,7 +14,7 @@ class Chat extends Component {
           <hr/>
           {users.map(e => {
             return (
-              <h6 className='player-name'>Player #{e.id}: {e.roundPoints}</h6>
+              <h6 key={e.id} className='player-name'>Player #{e.id}: {e.roundPoints}</h6>
             )
           })}
         </div>
