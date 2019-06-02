@@ -159,10 +159,15 @@ class Api::GamesController < ApplicationController
       # puts @answerCards[4].content
 
       playerNum = 0
+      haveCardAlready = []
       while playerNum < numPlayers 
         
         for i in 0..4
           cardNum = rand 1...cardSize
+          while gameState["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
+            # generate another random cardNum to try again
+            cardNum = rand 1...cardSize
+          end
           gameState["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
           puts gameState["playersInfo"]["users"][playerNum]["answerCards"]
         end
