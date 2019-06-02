@@ -42,7 +42,7 @@ render() {
                 </div>
                 <div className="col-sm-3">
                     <div className="social-networks">
-                        <a href="https://twitter.com/login?lang=en" className="https://twitter.com/login?lang=en"><i className="fa fa-twitter"></i></a>
+                        <a href="https://twitter.com/login?lang=en" className="twitter"><i className="fa fa-twitter"></i></a>
                         <a href="https://www.facebook.com/login/" className="facebook"><i className="fa fa-facebook"></i></a>
                         <a href="https://mail.google.com/mail/u/0/" className="google"><i className="fa fa-google-plus"></i></a>
                     </div>
