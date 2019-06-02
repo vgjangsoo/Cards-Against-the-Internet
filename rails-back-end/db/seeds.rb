@@ -836,15 +836,287 @@ acard82 = baseDeck.cards.create!({
   content: "The Royal Canadian Mounted Police."
 })
 
+acard83 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The blood of Christ."
+})
 
+acard84 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Listening to her problems without trying to solve them."
+})
 
+acard85 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "A salty surprise."
+})
 
+acard86 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Scientology."
+})
 
+acard87 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "A cold, soggy breakfast."
+})
 
+acard88 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Nickelback."
+})
 
+acard89 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Being fat and stupid."
+})
 
+acard90 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Mao Zedong."
+})
 
+acard91 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Shinzo Abe."
+})
 
+acard92 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Huge biceps and skinny legs."
+})
+
+acard93 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "NBA superstar LeBron James."
+})
+
+acard94 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Solving problems with violence."
+})
+
+acard95 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Powerful thighs."
+})
+
+acard96 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Sitting on my face and telling me I’m garbage."
+})
+
+acard97 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Apologizing."
+})
+
+acard98 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Donald J. Trump."
+})
+
+acard99 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Kim Jong-un."
+})
+
+acard100 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Adolf Hitler."
+})
+
+acard101 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Illegal immigrants."
+})
+
+acard102 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Chemical weapons."
+})
+
+acard103 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Spectacular abs."
+})
+
+acard104 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Punching an MP in the face."
+})
+
+acard105 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Poverty."
+})
+
+acard106 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "AXE Body Spray."
+})
+
+acard107 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Completely unwarranted confidence."
+})
+
+acard108 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Stalin."
+})
+
+acard109 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The Kool-Aid Man."
+})
+
+acard110 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Licking things to claim them as your own."
+})
+
+acard111 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My Uber driver, Pavel."
+})
+
+acard112 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Doing the right thing."
+})
+
+acard113 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "One trillion dollars."
+})
+
+acard114 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Poor life choices."
+})
+
+acard115 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Prescription pain killers."
+})
+
+acard116 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The Great Depression."
+})
+
+acard117 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "A Super Soaker full of cat pee."
+})
+
+acard118 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The Russians."
+})
+
+acard119 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Tap dancing like there’s no tomorrow."
+})
+
+acard120 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Breaking out into song and dance."
+})
+
+acard121 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "The Big Bang."
+})
+
+acard122 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Eating a whole cake every hour."
+})
+
+acard123 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "My ugly face bad personality."
+})
+
+acard124 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Being able to talk to elephants."
+})
+
+acard125 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Morgan Freeman’s voice."
+})
+
+acard126 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Samuel L. Jackson’s voice."
+})
+
+acard127 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Boogers."
+})
+
+acard128 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Chuck Norris."
+})
+
+acard129 = baseDeck.cards.create!({
+  isQuestion: false,
+  fromInternet: false,
+  content: "Bruce Lee."
+})
 
 
 

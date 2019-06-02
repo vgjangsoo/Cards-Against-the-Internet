@@ -152,15 +152,12 @@
 •	Puppies!
 •	Cats!
 •	The Royal Canadian Mounted Police.
-
-
-
 •	The blood of Christ.
 •	Listening to her problems without trying to solve them.
 •	A salty surprise.
 •	Scientology.
 •	A cold, soggy breakfast.
-•	Nickelback,
+•	Nickelback.
 •	Being fat and stupid.
 •	Mao Zedong.
 •	Shinzo Abe.
@@ -175,7 +172,6 @@
 •	Adolf Hitler.
 •	Illegal immigrants.
 •	Chemical weapons.
-•	My good bra.
 •	Spectacular abs.
 •	Punching an MP in the face.
 •	Poverty.
@@ -203,6 +199,15 @@
 •	Boogers.
 •	Chuck Norris.
 •	Bruce Lee.
+
+
+
+
+
+
+
+
+
 •	Dark and mysterious forces beyond our control.
 •	Passive-aggressive Post-it notes.
 •	Dwayne “The Rock” Johnson.
@@ -251,6 +256,7 @@
 
 ## ADULT DECK(As)
 
+•	My good bra.
 •	Throwing Hitler into a volcano.
 •	Boys.
 •	Girls.
