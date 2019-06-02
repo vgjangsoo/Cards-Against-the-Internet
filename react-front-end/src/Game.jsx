@@ -101,14 +101,14 @@ class Game extends Component {
 
   }
 
-  AnswerArea(userData, gameTable2) {
+  AnswerArea(gameState, gameTable) {
     const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
     // should have AnswerDeck on top, AnswerSection on bottom
     return (
       <div>
         { isStartMode
-          ? <AnswererDeck userData={userData} />
-          : <AnswerSection userStatus={gameTable2.gameState.playersInfo} currentQuestioner= {gameTable2.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable2.maxPlayers} />
+          ? <AnswererDeck gameState={gameState} />
+          : <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
         }
       </div>
     );
@@ -164,7 +164,7 @@ class Game extends Component {
                       <button className='btn btn-dark btn-md p-2'>Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
-                      {this.AnswerArea(gameTable.gameState.playersInfo.users, gameTable)}
+                      {this.AnswerArea(gameTable.gameState, gameTable)}
                     </div>
                     <br />
                   </div>
