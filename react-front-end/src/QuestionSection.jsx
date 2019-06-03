@@ -12,8 +12,8 @@ class QuestionSection extends Component {
             style={{ width: "18rem" }}
           >
             <div className="cardContainer">
-              <div className="card-body">
-                <div className="card-logo">
+              <div className="game-card-body">
+                <div className="game-card-logo">
                   Cards <br />
                   Against <br />
                   Internet
@@ -27,8 +27,8 @@ class QuestionSection extends Component {
             style={{ width: "18rem" }}
           >
             <div className="cardContainer">
-              <div className="card-body">
-                <div className="card-logo">
+              <div className="game-card-body">
+                <div className="game-card-logo">
                   Cards <br />
                   Against <br />
                   Internet
@@ -42,8 +42,8 @@ class QuestionSection extends Component {
             style={{ width: "18rem" }}
           >
             <div className="cardContainer">
-              <div className="card-body">
-                <div>
+              <div className="game-card-body">
+                <div className="game-card-logo">
                   Cards <br />
                   Against <br />
                   Internet
