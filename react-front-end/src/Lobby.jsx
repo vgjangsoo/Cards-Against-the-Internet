@@ -29,7 +29,9 @@ class Lobby extends Component {
 
   componentDidMount() {
     // http GET request to api/lobbies
-    axios.get(`${API_ROOT}/lobbies`).then(res => {
+    // use this to pass user_id info to pass user_id info to server
+    // axios.get(`${API_ROOT}/lobbies?hello=${this.props.userId}`)
+    axios.get(`${API_ROOT}/lobbies?hello=world3333`).then(res => {
       console.log("RESRES", res.data);
       this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
 

@@ -18,6 +18,9 @@ class Home extends Component {
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+
   }
   
   closeModal = () => this.setState({ showModal: false });
@@ -50,6 +53,7 @@ class Home extends Component {
 
     axios.post(`${API_ROOT}/users`, signupData).then(res => {
       console.log("signup POST is successful. RES.DATA:", res.data);
+      this.props.updateCurrentUser(res.data)
       localStorage.setItem('browserUserData', JSON.stringify(res.data))
     });
     
@@ -63,7 +67,30 @@ class Home extends Component {
 
   handleLogout(){
     console.log('Logout button is clicked')
-    localStorage.removeItem('browserUserData')
+    // localStorage.removeItem('browserUserData')
+    this.props.updateCurrentUser({})
+  }
+
+  handleLogin(event) {
+    event.preventDefault();
+    console.log('Login button is clicked')
+    console.log('=====handleLogin=====')
+    const email = event.target.email.value
+    const password = event.target.password.value
+    
+    const loginData = {
+      user: {
+        email: email, 
+        password: password
+      }
+    }
+
+    axios.post(`${API_ROOT}/login`, loginData).then(res => {
+      console.log("login POST is successful. RES.DATA:", res.data);
+      // this will setState for currentUser in App.js
+      this.props.updateCurrentUser(res.data)
+    });
+    
   }
 
   render() {
@@ -71,11 +98,11 @@ class Home extends Component {
     console.log('currentUser is:',currentUser )
     return (
       <Route>
-       <Nav onOpen={this.openModal} onLogout= {this.handleLogout}/>
+       <Nav onOpen={this.openModal} onLogout= {this.handleLogout} userData={this.props.userData}/>
        <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal}/>
        <Footer onOpen={this.openModal}/>
        <div>
-         {this.state.showModal ? (<LoginModal onClose={this.closeModal} handleSignUp={this.handleSignUp}/>) : null}
+         {this.state.showModal ? (<LoginModal onClose={this.closeModal} handleSignUp={this.handleSignUp} handleLogin={this.handleLogin}/>) : null}
        </div>
        <div>
          {this.state.showSubmitIdeas ? (<SubmitIdeaModal closeIdeaModal={this.closeIdeaModal} openIdeaModal={this.openIdeaModal}/>) : null}

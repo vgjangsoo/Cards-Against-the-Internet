@@ -61,7 +61,7 @@ class LoginModal extends Component {
               </div>
 
               <div className="form-container sign-in-container">
-                <form>
+                <form onSubmit= {this.props.handleLogin}>
                   <h1 className="login-h1">Sign in</h1>
                   <div className="social-container">
                     <a className="login-a" href="https://twitter.com/login?lang=en" className="social" style={{textDecoration: 'none'}}>
@@ -75,8 +75,8 @@ class LoginModal extends Component {
                     </a>
                   </div>
                   <span className="login-span">or use your account</span>
-                  <input type="email" placeholder="Email" />
-                  <input type="password" placeholder="Password" />
+                  <input type="email" placeholder="Email" id="email"/>
+                  <input type="password" placeholder="Password" id="password"/>
                   <a className="login-a" href="#" className="forgot-password">
                     Forgot your password?
                   </a>
