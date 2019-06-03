@@ -319,6 +319,61 @@ div.answerers {
   font-weight: 900;
 }
 
+/* Chat-history section */
+.chat-history-bar {
+  margin-top: -679px;
+  margin-left: 75vw;
+  width: 300px; 
+  /* 24vw */
+}
+
+.history-header {
+  font-weight: 900;
+}
+
+.history-border {
+  margin-bottom: 10px;
+  border: 2.5px solid black !important;
+  background-color: #EEE;
+}
+
+.history-box {
+  border-radius: 5px;
+  border: 1px solid;
+  width: 130px;
+  padding: 10px;
+  margin: 5px;
+  margin-left: 10px;
+  height: 165px;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+
+.history-question {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.chat-box {
+  border-radius: 5px;
+  border: 3px solid black;
+  height: 430px;
+  background-color: #EEE;
+}
+
+.incoming-msg {
+  height: 24vh;
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.chat-button {
+  height: 4.7vh;
+  margin-top: 3%;
+}
+
 /* On mouse-over, add a deeper shadow */
 .deckCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -348,40 +403,9 @@ div.answerers {
   margin-bottom: -20px;
 }
 
-.chat-history-bar {
-  margin-top: -675px;
-  margin-left: 70vw;
-  width: 300px;
-}
-
 .play-card-button {
   margin-left: 58vw;
   margin-top: -40px;
-}
-
-.history-box {
-  border-radius: 5px;
-  border: 1px solid;
-  width: 130px;
-  padding: 10px;
-  margin: 5px;
-  margin-left: 10px;
-  height: 165px;
-  margin-bottom: 20px;
-}
-
-.history-question {
-  background-color: black;
-  color: white;
-}
-
-.chat-box {
-  border-radius: 5px;
-  border: 1px solid;
-}
-
-.incoming-msg {
-  height: 323px;
 }
 
 .write_msg {
@@ -671,8 +695,9 @@ p.jumbotron-p {
 /* score board */
 .player-name {
   margin-top: -5px;
-  font-size: 12px;
+  font-size: 13px;
   -webkit-animation: fadein 2s;
+  font-weight: 500;
 }
 
 @-webkit-keyframes fadein {
@@ -682,13 +707,15 @@ p.jumbotron-p {
 
 .score-board {
   border-radius: 5px;
-  border: 1px solid;
+  border: 3px solid black;
   padding: 5%;
   margin: 1%;
+  background-color: white;
 }
 
 .score-title {
   margin-bottom: -10px;
+  font-weight: 900;
 }
 
 

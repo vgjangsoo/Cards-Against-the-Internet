@@ -14,7 +14,7 @@ class History extends Component {
     render() {
       return (
         <div className="history-border">
-        <h5 className="p-2">History</h5>
+        <h5 className="p-2 history-header">History</h5>
           <div className='d-inline-flex flex-row justify-content-around'>
             <div className='history-box history-question'>
               <h5>Q</h5>
