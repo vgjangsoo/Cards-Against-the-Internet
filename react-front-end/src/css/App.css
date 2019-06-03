@@ -52,9 +52,10 @@
   height: 100%;
   position: absolute;
   top: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 70%;
+  padding-bottom: 100%;
 }
 
 .modal-contents {
@@ -452,7 +453,7 @@ p.jumbotron-p {
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1350px) {
   /* Navigation */
   div.home-nav {
     height: 5vw;

@@ -6,15 +6,14 @@
 }
 
 div.login-body {
-	background: #f6f5f7;
+	background: #dedede;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Ubuntu', sans-serif;
-	padding: 100px;
-	height: 113vh;
-	margin: -20px 0 50px;
+	height: 100vh;
+	margin-top: -5vw;
 }
 
 h1.login-h1 {
@@ -256,3 +255,9 @@ i.login-icon:hover {
 	outline: none;
 }
 
+@media screen and (min-width: 1350px) {
+	div.login-body {
+		background-color: #dedede;
+		height: 100vh;
+	}
+}
