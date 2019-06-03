@@ -14,7 +14,7 @@ class SubmitIdeaModal extends Component {
 
             <div class="row">
               <label className="idea-label" for="fancy-textarea"><strong>Description</strong></label>
-              <textarea className="idea-textarea" name="fancy-textarea" id="fancy-textarea" placeholder="Suggest a card, or a list of several cards separated by commas."/>
+              <textarea className="idea-textarea" name="fancy-textarea" id="fancy-textarea" placeholder="Suggest a card, or a list of several cards separated by commas." autoFocus/>
             </div>
 
             <button className="btn btn-lg btn-dark idea-button" type="submit" tabindex="0">
