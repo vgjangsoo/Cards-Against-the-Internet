@@ -67,7 +67,6 @@ class Api::GamesController < ApplicationController
     randomID = rand 1...100
     @newPlayer = User.create({
       username: "Guest#{randomID}",
-      password: "123",
       isAdult: false,
       isBot: false,
       leaderboardPoints: 0
@@ -88,6 +87,7 @@ class Api::GamesController < ApplicationController
       answerCards: [],
       selectedCard: nil
     })
+    
     currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
     puts "currentPlayers before add: #{currentPlayers}"
     currentPlayers = currentPlayers + 1
