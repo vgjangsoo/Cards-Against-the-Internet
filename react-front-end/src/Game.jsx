@@ -129,32 +129,32 @@ class Game extends Component {
               <div className="loader"></div>
             </div>
             : <div>
-                <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm nav-bar-in-game">
+                <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm bg-dark nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
-                  <h6 className='room-name'>Room: {gameTable.id} </h6>
-                  <h3> {gameTable.theme}</h3>
+                  <h6 className='game-number'>Room: {gameTable.id} </h6>
+                  <h3 className="game-theme"> {gameTable.theme}</h3>
                 </div>
-                <nav className="my-2 my-md-1 mr-md-3 game-round">
-                  <div className="p-5">
-                    <h6>Round: {gameTable.gameState.gameInfo.currentRound} / {gameTable.maxRound}</h6>
-                    <h6>Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.maxPlayers}</h6>
+                <nav className="my-2 my-md-1 mr-md-3">
+                  <div className="p-5 game-border">
+                    <h6 className="game-round">Round: {gameTable.gameState.gameInfo.currentRound} / {gameTable.maxRound}</h6>
+                    <h6 className="game-player">Players: {gameTable.gameState.gameInfo.currentPlayers} / {gameTable.maxPlayers}</h6>
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
-                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerReadyButton} >Ready?</button>
+                  <button className="btn btn-dark btn-md p-2 game-nav-button" onClick={this.handlerReadyButton} >Ready?</button>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
-                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerStartButton} >Start</button>
+                  <button className="btn btn-dark btn-md p-2 game-nav-button" onClick={this.handlerStartButton} >Start</button>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
-                  <Link to='/lobby'><button className="btn btn-dark btn-md p-2">Leave Room</button></Link>
+                  <Link to='/lobby'><button className="btn btn-dark btn-md p-2 game-nav-button">Leave Room</button></Link>
                 </nav>
               </div>
     
               <div className="ingame-room container">
                 <form>
-                  <div>
-                    <div className="questioner col-9" style={style}>
+                  <div className="cardDeck-container">
+                    <div className="questioner col-9 shadow-lg" style={style}>
                       <QuestionSection />
                     </div>
                     <div className='status-message'>

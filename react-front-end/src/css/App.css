@@ -176,9 +176,39 @@ button.close-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-g
+
+
+/* CSS for Game(room) */
+.game-number {
+  color: white;
+  font-size: 18px;
+}
+
+.game-theme {
+  color: white;
+  font-size: 30px;
+}
+
+.game-nav-button {
+  background-color: #1abc9c;
+  width: 120px; 
+  height: 45px;
+  font-size: 16px;
+}
+
+.game-nav-button:hover {
+  font-size: 18px;
+  background-color: #1abc9c;
+}
+
+.game-round, .game-player {
+  color: white;
+  font-size: 18px;
+}
+
 
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
+/* Questioner Section  */
 .deckCard {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -190,6 +220,28 @@ g
   animation-name: animatetop;
   animation-duration: 0.2s;
   cursor: pointer;
+}
+
+.ingame-room {
+  margin-left: 1.5%;
+  margin-top: 0px;
+  width: 100%;
+}
+
+div.questioner {
+  width: 1150px;
+  padding-top: 200px;
+  margin-top: 200px;
+  border: 3px solid black !important;
+  background-color: #EEE;
+}
+
+.card-logo {
+  font-size: 25px;
+}
+
+.card-body {
+  padding: 5px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -208,10 +260,6 @@ g
   padding-top: 25px;
   margin: auto;
   width: 40%;
-}
-
-.ingame-room {
-  margin-left: 15px;
 }
 
 .questioncards {
@@ -240,10 +288,6 @@ g
 .play-card-button {
   margin-left: 58vw;
   margin-top: -40px;
-}
-
-.room-name {
-  color: grey;
 }
 
 .history-box {
