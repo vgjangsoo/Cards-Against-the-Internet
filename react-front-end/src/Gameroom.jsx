@@ -27,7 +27,7 @@ class Gameroom extends Component {
 
     return (
       <div className="gameroom mb-4 shadow-lg">
-        <div className="card-header">
+        <div id="gameroom-card-header" className="card-header">
           <span>
             <h4 className="my-0 font-weight-normal">Room {roomInfo.id}</h4>
           </span>
