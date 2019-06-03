@@ -9,7 +9,7 @@
     background-color: #333333;
     padding-top: 1px;
     padding-bottom: 1px;
-    text-align: center;
+    text-align: center;;
 }
 
 #myFooter .row {
@@ -97,12 +97,6 @@
     line-height: 25px;
 }
 
-@media screen and (max-width: 767px) {
-    #myFooter {
-        text-align: center;
-    }
-}
-
 html{
     height: 100%;
 }
@@ -126,3 +120,50 @@ body{
    -webkit-flex: 0 0 auto;
 }
 
+@media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #myFooter {
+        max-width: 100vw;
+    }
+
+    #myFooter .container {
+        max-width: 90vw;
+        margin-left: 3%;
+        padding: none;
+    }
+
+    #myFooter h2 a {
+        font-size: 3.7vw;
+    }
+
+    #myFooter .footer-section {
+        padding: none;
+    }
+
+    #myFooter .footer-h5 {
+        font-size: 1.8vw;
+    }
+
+    #myFooter .footer-a {
+        font-size: 1.2vw;
+    }
+
+    #myFooter .btn {
+       width: 11vw;
+       height: 2.5vw;
+    }
+
+    #myFooter .footer-copyright p {
+        font-size: 1.2vw;
+    }
+
+    #myFooter .footer-icon {
+        font-size: 2.8vw;
+        margin: 1vw;
+    }
+}

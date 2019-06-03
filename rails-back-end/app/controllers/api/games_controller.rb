@@ -89,6 +89,7 @@ class Api::GamesController < ApplicationController
       answerCards: [],
       selectedCard: nil
     })
+
     currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
     puts "currentPlayers before add: #{currentPlayers}"
     currentPlayers = currentPlayers + 1
