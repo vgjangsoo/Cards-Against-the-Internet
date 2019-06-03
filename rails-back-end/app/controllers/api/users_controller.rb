@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
         #   redirecting dont work from back end to front end
         #   redirect_to '/lobbies'
 
-
+            # rails cookie that can be accessed on every controller by:   cookies[:user]
             user ||= cookies[:user].present? ? JSON.parse(cookies[:user]) : {}
             
             # render json: session[:user_id]

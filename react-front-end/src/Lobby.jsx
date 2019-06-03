@@ -23,6 +23,8 @@ class Lobby extends Component {
     })
 
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+
   }
 
   componentDidMount() {
@@ -32,6 +34,11 @@ class Lobby extends Component {
       this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
 
     });
+  }
+
+  handleLogout(){
+    console.log('Logout button is clicked')
+    localStorage.removeItem('browserUserData')
   }
 
   handleRoomCreate(event) {
@@ -117,10 +124,12 @@ class Lobby extends Component {
   render() {
     //contains data for display all current lobbies
     const createdGameRooms = this.state.lobbyState.reverse();
+    const currentUser = localStorage.getItem('browserUserData')
+    console.log('currentUser is:',currentUser )
 
     return (
       <div className="App">
-        <LobbyNav createRoom={this.openCreateRoomModal} />
+        <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout}/>
         {!this.state.lobbyState.length 
             ? 
             <div className="loader-container">

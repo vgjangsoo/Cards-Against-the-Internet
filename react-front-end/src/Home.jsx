@@ -16,6 +16,8 @@ class Home extends Component {
       showModal: false,
       showSubmitIdeas: false
     };
+    this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
   
   closeModal = () => this.setState({ showModal: false });
@@ -23,6 +25,12 @@ class Home extends Component {
 
   closeIdeaModal = () => this.setState({ showSubmitIdeas: false });
   openIdeaModal = () => this.setState({ showSubmitIdeas: true });
+
+  //not used currently
+  getCurrentUser (){
+    let user = localStorage.getItem('browserUserData')
+    console.log('localStorage user is:', user)
+  }
 
   handleSignUp(event) {
     event.preventDefault();
@@ -42,17 +50,28 @@ class Home extends Component {
 
     axios.post(`${API_ROOT}/users`, signupData).then(res => {
       console.log("signup POST is successful. RES.DATA:", res.data);
-      // return(
-      //   <Redirect to="/lobby" />
-      // );
+      localStorage.setItem('browserUserData', JSON.stringify(res.data))
     });
+    
+    // .then(() =>{
+    //   // trying to console log the localStorage user
+    //   this.getCurrentUser()
 
+    // })
+    
+  }
+
+  handleLogout(){
+    console.log('Logout button is clicked')
+    localStorage.removeItem('browserUserData')
   }
 
   render() {
+    const currentUser = localStorage.getItem('browserUserData')
+    console.log('currentUser is:',currentUser )
     return (
       <Route>
-       <Nav onOpen={this.openModal}/>
+       <Nav onOpen={this.openModal} onLogout= {this.handleLogout}/>
        <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal}/>
        <Footer onOpen={this.openModal}/>
        <div>
