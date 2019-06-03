@@ -222,16 +222,16 @@ button.close-button {
 }
 
 .ingame-room {
-  margin-left: 1.5%;
+  margin-left: 5%;
   margin-top: 0px;
   width: 100%;
 }
 
 div.questioner {
-  width: 1150px;
+  width: 1250px;
   padding-top: 200px;
   margin-top: 200px;
-  border: 3px solid black !important;
+  border: 5px solid black !important;
   background-color: #EEE;
 }
 
@@ -266,15 +266,15 @@ div.questioner {
 .game-status-button {
   background-color: #1abc9c;
   border: none;
-  width: 120px; 
+  width: 190px; 
   height: 45px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .game-status-button:hover {
   background-color: #1abc9c;
   border: none;
-  font-size: 19px;
+  font-size: 21px;
 }
 
 /* Answerer's Section */
@@ -282,7 +282,7 @@ div.answerers {
   width: 1150px;
   padding-top: 200px;
   margin-top: 200px;
-  border: 3px solid black !important;
+  border: 5px solid black !important;
   background-color: #EEE;
 }
 
@@ -321,9 +321,9 @@ div.answerers {
 
 /* Chat-history section */
 .chat-history-bar {
-  margin-top: -679px;
+  margin-top: -687px;
   margin-left: 75vw;
-  width: 300px; 
+  width: 310px; 
   /* 24vw */
 }
 
@@ -333,7 +333,7 @@ div.answerers {
 
 .history-border {
   margin-bottom: 10px;
-  border: 2.5px solid black !important;
+  border: 5px solid black !important;
   background-color: #EEE;
 }
 
@@ -357,14 +357,14 @@ div.answerers {
 
 .chat-box {
   border-radius: 5px;
-  border: 3px solid black;
+  border: 5px solid black;
   height: 430px;
   background-color: #EEE;
 }
 
 .incoming-msg {
-  height: 24vh;
-  border: 3px solid black;
+  height: 22vh;
+  border: 5px solid black;
   border-radius: 5px;
   background-color: white;
 }
@@ -707,7 +707,7 @@ p.jumbotron-p {
 
 .score-board {
   border-radius: 5px;
-  border: 3px solid black;
+  border: 5px solid black;
   padding: 5%;
   margin: 1%;
   background-color: white;
