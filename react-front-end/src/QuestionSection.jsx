@@ -6,7 +6,7 @@ class QuestionSection extends Component {
     return (
       <div>
         <h4 className="questioner-header">Questioner's Cards</h4>
-        <div className="d-flex flex-row justify-content-around">
+        <div className="d-flex flex-row questioner-container">
           <div
             className="deckCardBeforeStartQ card questioncards"
             style={{ width: "18rem" }}

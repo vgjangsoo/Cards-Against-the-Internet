@@ -158,10 +158,10 @@ class Game extends Component {
                       <QuestionSection />
                     </div>
                     <div className='status-message'>
-                    { <h6>{gameTable.gameState.gameInfo.status}</h6> }
+                    { <h6 className="game-status-meesage">{gameTable.gameState.gameInfo.status}</h6> }
                     </div>
                     <div className='play-card-button'>
-                      <button className='btn btn-dark btn-md p-2'>Play Card</button>
+                      <button className='btn btn-dark btn-md p-2 game-status-button'>Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
                       {this.AnswerArea(gameTable.gameState, gameTable)}

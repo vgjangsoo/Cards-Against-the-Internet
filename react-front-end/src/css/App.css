@@ -206,7 +206,6 @@ button.close-button {
   font-size: 18px;
 }
 
-
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
 /* Questioner Section  */
 .deckCard {
@@ -244,6 +243,82 @@ div.questioner {
   padding: 5px;
 }
 
+.questioner-header {
+  font-weight: 900;
+}
+
+.questioner-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Gamestatus Section */
+.game-status-meesage {
+  font-size: 20px;
+}
+
+.status-message {
+  padding-top: 1%;
+  margin: auto;
+  width: 50%;
+}
+
+.game-status-button {
+  background-color: #1abc9c;
+  border: none;
+  width: 120px; 
+  height: 45px;
+  font-size: 16px;
+}
+
+.game-status-button:hover {
+  background-color: #1abc9c;
+  border: none;
+  font-size: 19px;
+}
+
+/* Answerer's Section */
+div.answerers {
+  width: 1150px;
+  padding-top: 200px;
+  margin-top: 200px;
+  border: 3px solid black !important;
+  background-color: #EEE;
+}
+
+.answerer-header {
+  font-weight: 900;
+}
+
+.answerer-status {
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.answerer-ID {
+  font-weight: 900;
+  padding: none;
+}
+
+/* In game before the game starts */
+.player-name-section {
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.player-status-section {
+  padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+.answerer-status-section {
+  font-weight: 900;
+}
+
 /* On mouse-over, add a deeper shadow */
 .deckCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -254,12 +329,6 @@ div.questioner {
 /* Add some padding inside the card container */
 .cardContainer {
   padding: 1px 2px;
-}
-
-.status-message {
-  padding-top: 25px;
-  margin: auto;
-  width: 40%;
 }
 
 .questioncards {
@@ -326,21 +395,6 @@ div.questioner {
 .history-border {
   border-radius: 5px;
   border: 1px solid;
-}
-
-/* In game before the game starts */
-.player-name-section {
-  padding-top: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.player-status-section {
-  padding-top: 8px;
-  display: flex;
-  justify-content: center;
-  border: 0.5px solid;
-  border-radius: 5px;
 }
 
 .deckCardBeforeStart {
