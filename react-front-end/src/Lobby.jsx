@@ -23,6 +23,8 @@ class Lobby extends Component {
     })
 
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+
   }
 
   componentDidMount() {
@@ -32,6 +34,11 @@ class Lobby extends Component {
       this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
 
     });
+  }
+
+  handleLogout(){
+    console.log('Logout button is clicked')
+    localStorage.removeItem('browserUserData')
   }
 
   handleRoomCreate(event) {
@@ -122,7 +129,7 @@ class Lobby extends Component {
 
     return (
       <div className="App">
-        <LobbyNav createRoom={this.openCreateRoomModal} />
+        <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout} />
         
         <div className="container gameLobbyContainer">
           <div className="grid card-deck mb-3 text-center">
