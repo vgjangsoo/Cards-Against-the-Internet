@@ -65,9 +65,10 @@ class Api::GamesController < ApplicationController
     
     puts "========INSIDE addUser method ========="
     randomID = rand 1...100
-    @newPlayer = User.create({
+    @newPlayer = User.create!({
       username: "Guest#{randomID}",
-      password: "123",
+      email: "guest#{randomID}@test.com",
+      password_digest: '12345',
       isAdult: false,
       isBot: false,
       leaderboardPoints: 0
