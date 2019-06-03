@@ -129,7 +129,7 @@ class Game extends Component {
               <div className="loader"></div>
             </div>
             : <div>
-                <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
+                <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
                   <h6 className='room-name'>Room: {gameTable.id} </h6>
                   <h3> {gameTable.theme}</h3>
