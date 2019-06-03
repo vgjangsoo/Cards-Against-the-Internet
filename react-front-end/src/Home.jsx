@@ -41,10 +41,10 @@ class Home extends Component {
     console.log(signupData)
 
     axios.post(`${API_ROOT}/users`, signupData).then(res => {
-      console.log("singup POST is successful. RES:", res);
-      return(
-        <Redirect to="/lobby" />
-      );
+      console.log("signup POST is successful. RES.DATA:", res.data);
+      // return(
+      //   <Redirect to="/lobby" />
+      // );
     });
 
   }
