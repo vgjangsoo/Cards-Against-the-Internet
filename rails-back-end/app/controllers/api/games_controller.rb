@@ -69,7 +69,7 @@ class Api::GamesController < ApplicationController
     if request.cookies["currentUser"]
       objCookies = ActiveSupport::JSON.decode(request.cookies["currentUser"])
     end
-    
+
     if objCookies["email"]
       @newPlayer = User.find_by_email(objCookies["email"])
     else 
@@ -196,7 +196,7 @@ class Api::GamesController < ApplicationController
       puts "====== end of start-button-pressed filter"
     end
 
-    if (type === 'questioner-selected-card')
+    if (type === 'answerer-selected-card')
       # logic to modify gameState
     
     end    

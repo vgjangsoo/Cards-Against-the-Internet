@@ -45,6 +45,7 @@ class Game extends Component {
     this.handlerStartButton = this.handlerStartButton.bind(this);
     this.handlerReadyButton = this.handlerReadyButton.bind(this);
     this.AnswerArea = this.AnswerArea.bind(this);
+    this.onSelectAnswer = this.onSelectAnswer.bind(this);
 
   }
 
@@ -100,6 +101,10 @@ class Game extends Component {
     });
 
   }
+  
+  onSelectAnswer(answer){
+    console.log('selected answer is:', answer)
+  }
 
   AnswerArea(gameState, gameTable) {
     const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
@@ -107,12 +112,14 @@ class Game extends Component {
     return (
       <div>
         { isStartMode
-          ? <AnswererDeck gameState={gameState} />
+          ? <AnswererDeck gameState={gameState} userData={this.props.userData} onSelectAnswer={this.onSelectAnswer}/>
           : <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
         }
       </div>
     );
   }
+
+
 
   //////////////////////////////////
   render() {

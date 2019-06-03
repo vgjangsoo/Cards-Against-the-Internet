@@ -51,7 +51,8 @@ class App extends Component {
           <Switch>
             <Route path='/' exact render={() => <Home updateCurrentUser={this.updateCurrentUser} userData={this.state.currentUser}/>} />
             <Route path='/lobby' exact render={() => <Lobby cable={this.props.cable}/>}/>
-            <Route path='/lobby/:id' component={Game}/> 
+            {/* <Route path='/lobby/:id' component={Game}/>  */}
+            <Route path='/lobby/:id' exact render={(props) => <Game {...props} updateCurrentUser={this.updateCurrentUser} userData={this.state.currentUser}/>}/>
           </Switch>
         </Router>
       </div>
