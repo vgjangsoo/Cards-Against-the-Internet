@@ -121,14 +121,19 @@ class Lobby extends Component {
     return (
       <div className="App">
         <LobbyNav createRoom={this.openCreateRoomModal} />
-        
+        {!this.state.lobbyState.length 
+            ? 
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
+            :
         <div className="container gameLobbyContainer">
           <div className="grid card-deck mb-3 text-center">
             {createdGameRooms.reverse().map(e => {
               return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
             })}
           </div>
-        </div>
+        </div>}
 
         <div>
           {this.state.showCreateRoomModal ? (
