@@ -177,7 +177,6 @@ button.close-button {
   border-top-right-radius: 0;
 }
 
-
 /* CSS for Game(room) */
 .game-number {
   color: white;
@@ -227,7 +226,7 @@ button.close-button {
   width: 100%;
 }
 
-div.questioner {
+.questioner {
   width: 1250px;
   padding-top: 200px;
   margin-top: 200px;
@@ -253,7 +252,7 @@ div.questioner {
 }
 
 /* Gamestatus Section */
-.game-status-meesage {
+.game-status-message {
   font-size: 20px;
 }
 
@@ -277,8 +276,100 @@ div.questioner {
   font-size: 21px;
 }
 
+@media screen and (min-width: 1350px) {
+  /* Questioner Section */
+  h6.game-number {
+    font-size: 1vw;
+  }
+
+  div.ingame-room {
+    margin-left: 20%;
+  }
+
+  div.questioner {
+    width: 95vw;
+    height: 40vh;
+  }
+
+  div.game-card-logo {
+    font-size: 2vw;
+    font-weight: 900;
+  }
+
+  h4.questioner-header {
+    font-size: 2vw;
+  }
+
+  div.questioncards {
+    width: 13vw !important;
+    height: 30vh;
+  }
+
+  /* Status Section */
+  h6.game-status-message {
+    font-size: 1.7vw;
+  }
+
+  button.game-status-button {
+    border: none;
+    width: 13vw; 
+    height: 5vh;
+    margin-top: -2%;
+    margin-bottom: 1%;
+    font-size: 1.3vw;
+  }
+  
+  button.game-status-button:hover {
+    font-size: 1.4vw;
+  }
+
+  /* Answerer Section */
+  div.answerers {
+    width: 95vw;
+    height: 40vh;
+  }
+
+  h4.answerer-header {
+    font-size: 2vw;
+  }
+
+  div.deckCardBeforeStart {
+    width: 13vw !important;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  img.card-img {
+    width: 8vw !important;
+    height: 8vw !important;
+  }
+
+  h6.answerer-ID {
+    font-size: 1.2vw;
+  }
+
+  div.player-status-section {
+    margin-top: 10%;
+    border: 3px solid black;
+  }
+
+  h6.answerer-status-section {
+    font-size: 1.5vw;
+  }
+
+  h6.answerer-status1 {
+    font-size: 1.2vw;
+  }
+
+  h6.answerer-status2 {
+    font-size: 1.5vw;
+  }
+
+}
+
 /* Answerer's Section */
-div.answerers {
+.answerers {
   width: 1150px;
   padding-top: 200px;
   margin-top: 200px;
@@ -711,6 +802,7 @@ p.jumbotron-p {
   padding: 5%;
   margin: 1%;
   background-color: white;
+  height: 140px;
 }
 
 .score-title {

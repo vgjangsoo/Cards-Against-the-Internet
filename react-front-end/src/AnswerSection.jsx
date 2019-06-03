@@ -21,7 +21,7 @@ class AnswerSection extends Component {
                   <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}} key={e.id}>
                     <div className='cardContainer answerer-card-container'>
                       <div className="card-body" >
-                      <img className='card-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
+                      <img className='card-img answerer-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                         <div className='player-name-section'>
                           <h6 className="answerer-ID">Player ID: {e.id}</h6>
                         </div>
@@ -58,10 +58,10 @@ class MissingPlayerCard extends Component {
       <div className="card-body">
       <img className='card-img' src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
         <div className='player-name-section'>
-          <h6 className="answerer-status">Waiting to Join</h6>
+          <h6 className="answerer-status answerer-status1">Waiting to Join</h6>
         </div>
         <div className='player-status-section'>
-          <h6 className="answerer-status">Waiting...</h6>
+          <h6 className="answerer-status answerer-status2">Waiting...</h6>
         </div>
       </div>
     </div>
