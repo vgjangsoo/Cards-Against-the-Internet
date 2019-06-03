@@ -60,21 +60,35 @@ class Api::GamesController < ApplicationController
   
   
   def addUser
-    # post to add user when joining game
+    # post to add user when joining game, maps to Ready? button
     # POST api/games/:id/addUser
-    
-    puts "========INSIDE addUser method ========="
-    randomID = rand 1...100
-    @newPlayer = User.create!({
-      username: "Guest#{randomID}",
-      email: "guest#{randomID}@test.com",
-      password_digest: '12345',
-      isAdult: false,
-      isBot: false,
-      leaderboardPoints: 0
-    })
+    puts "========INCOMING COOKIE IS ========="
+    puts request.cookies["currentUser"]
+    objCookies = {}
 
-    puts "========finish adding a user ========="
+    if request.cookies["currentUser"]
+      objCookies = ActiveSupport::JSON.decode(request.cookies["currentUser"])
+    end
+    
+    if objCookies["email"]
+      @newPlayer = User.find_by_email(objCookies["email"])
+    else 
+
+      puts "========INSIDE addUser method ========="
+      randomID = rand 1...100
+      @newPlayer = User.create!({
+        username: "Guest#{randomID}",
+        email: "guest#{randomID}@test.com",
+        password_digest: '12345',
+        isAdult: false,
+        isBot: false,
+        leaderboardPoints: 0
+      })
+
+      puts "========finish adding a user ========="
+    end
+
+
 
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
