@@ -13,7 +13,7 @@ class QuestionSection extends Component {
             <div className='cardContainer'>
               <div className="card-body">
                 <div>Cards <br/>
-                  Against the <br/>
+                  Against <br/>
                   Internet
                 </div>
               </div>
@@ -24,7 +24,7 @@ class QuestionSection extends Component {
             <div className='cardContainer'>
               <div className="card-body">
                 <div>Cards <br/>
-                  Against the <br/>
+                  Against <br/>
                   Internet
                 </div>
               </div>
@@ -35,7 +35,7 @@ class QuestionSection extends Component {
             <div className='cardContainer'>
               <div className="card-body">
                 <div>Cards <br/>
-                  Against the <br/>
+                  Against <br/>
                   Internet
                 </div>
               </div>

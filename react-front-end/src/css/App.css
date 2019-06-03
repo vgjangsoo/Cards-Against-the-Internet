@@ -520,3 +520,26 @@ p.jumbotron-p {
     margin: 3%;
   }
 }
+
+/* score board */
+.player-name {
+  margin-top: -5px;
+  font-size: 12px;
+  -webkit-animation: fadein 2s;
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; color: #15cda8}
+  to   { opacity: 1; }
+}
+
+.score-board {
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 5%;
+  margin: 1%;
+}
+
+.score-title {
+  margin-bottom: -10px;
+}

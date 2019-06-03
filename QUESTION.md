@@ -199,15 +199,6 @@
 •	Boogers.
 •	Chuck Norris.
 •	Bruce Lee.
-
-
-
-
-
-
-
-
-
 •	Dark and mysterious forces beyond our control.
 •	Passive-aggressive Post-it notes.
 •	Dwayne “The Rock” Johnson.
@@ -238,7 +229,6 @@
 •	My ex-wife.
 •	Puberty.
 •	Oompa-Loompas.
-•	Poor people.
 •	Judging everyone.
 •	Kourtney, Kim, Khloe, Kendall, and Kylie.
 •	Bananas.
@@ -256,6 +246,7 @@
 
 ## ADULT DECK(As)
 
+•	Poor people.
 •	My good bra.
 •	Throwing Hitler into a volcano.
 •	Boys.

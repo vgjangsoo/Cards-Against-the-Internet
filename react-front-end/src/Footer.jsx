@@ -46,7 +46,7 @@ render() {
                         <a href="https://www.facebook.com/login/" className="facebook"><i className="footer-icon fa fa-facebook"></i></a>
                         <a href="https://mail.google.com/mail/u/0/" className="google"><i className="footer-icon fa fa-google-plus"></i></a>
                     </div>
-                    <button type="button" className="btn btn-dark">Contact us</button>
+                    <a href="mailto:cardsagainstinternet@gmail.com"><button type="button" className="btn btn-dark">Contact us</button></a>
                 </div>
             </div>
         </div>

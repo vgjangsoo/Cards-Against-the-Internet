@@ -37,20 +37,20 @@ class Gameroom extends Component {
             Players &raquo; {roomInfo.currentPlayers}{" "}
             <small>/ {roomInfo.maxPlayer}</small>
           </h5>
-          <button
-            className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4"
-            style={themeStyle}
+          <Link
+            to={{
+              pathname: `/lobby/${roomInfo.id}`,
+              state: { info: roomInfo }
+            }}
+            style={{ color: "black", textDecoration: "none" }}
           >
-            <Link
-              to={{
-                pathname: `/lobby/${roomInfo.id}`,
-                state: { info: roomInfo }
-              }}
-              style={{ color: "black", textDecoration: "none" }}
+            <button
+              className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4"
+              style={themeStyle}
             >
               <h1 className="gameroom-theme">{roomInfo.theme}</h1>
-            </Link>
-          </button>
+            </button>
+          </Link>
           <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">
             {roomInfo.roomStatus}
           </div>
