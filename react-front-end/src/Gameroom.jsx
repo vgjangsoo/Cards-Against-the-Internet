@@ -29,11 +29,11 @@ class Gameroom extends Component {
       <div className="gameroom mb-4 shadow-lg">
         <div id="gameroom-card-header" className="card-header">
           <span>
-            <h4 className="my-0 font-weight-normal">Room {roomInfo.id}</h4>
+            <h4 className="my-0 font-weight-normal gameroom-header">Room {roomInfo.id}</h4>
           </span>
         </div>
         <div className="card-body">
-          <h5 className="card-title pricing-card-title">
+          <h5 className="card-title pricing-card-title gameroom-player-number">
             Players &raquo; {roomInfo.currentPlayers}{" "}
             <small>/ {roomInfo.maxPlayer}</small>
           </h5>
@@ -44,14 +44,15 @@ class Gameroom extends Component {
             }}
             style={{ color: "black", textDecoration: "none" }}
           >
-            <button
+            <button 
+              id="gameroom-button"
               className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4"
               style={themeStyle}
             >
               <h1 className="gameroom-theme">{roomInfo.theme}</h1>
             </button>
           </Link>
-          <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark">
+          <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark gameroom-status">
             {roomInfo.roomStatus}
           </div>
         </div>

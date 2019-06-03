@@ -325,19 +325,19 @@ g
   padding-top: -20px;
 }
 
+/* Gameroom in lobby */
 div.grid {
   display: flex;
   justify-content: flex-start;
   width: 100%;
   flex-wrap: wrap;
   text-align: center;
-  margin-left: 3%;
 }
 
 div.gameroom {
-  height: 325px;
-  width: 330px;
-  margin: 15px;
+  height: 335px;
+  width: 350px;
+  margin: 1%;
   border-radius: 20px;
   border: 3.1px solid black;
 }
@@ -350,8 +350,7 @@ div.gameLobbyContainer {
   display: flex;
   justify-content: center;
   max-width: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5%;
 }
 
 #gameroom-card-header {
@@ -522,6 +521,52 @@ p.jumbotron-p {
   }
 }
 
+/* Lobby-gameroom */
+@media screen and (max-width: 790px) {
+  div.grid {
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  div.gameroom {
+    height: 25vw;
+    width: 25vw;
+  }
+
+  h4.gameroom-header {
+    font-size: 2vw;
+    font-weight: 500;
+  }
+
+  h5.gameroom-player-number {
+    font-size: 1.5vw;
+  } 
+
+  div.gameLobbyContainer {
+    margin-left: 7%;
+  }
+
+  button.gameroom-button {
+    height: 10vw;
+  }
+
+  #gameroom-button.btn.btn-lg {
+    height: 10vw !important;
+  }
+
+  h1.gameroom-theme {
+    font-size: 3vw;
+  }
+
+  div.gameroom-status {
+    height: 3vw;
+    margin-top: 3%;
+    font-size: 1.4vw;
+  }
+}
+
+
 /* score board */
 .player-name {
   margin-top: -5px;
@@ -544,3 +589,7 @@ p.jumbotron-p {
 .score-title {
   margin-bottom: -10px;
 }
+
+
+
+
