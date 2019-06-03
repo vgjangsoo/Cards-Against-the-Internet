@@ -35,7 +35,7 @@ class LoginModal extends Component {
 
             <div className={`${classState}`} id="container">
               <div className="form-container sign-up-container">
-                <form action="#">
+                <form onSubmit= {this.props.handleSignUp}>
                   <h1 className="login-h1">Create Account</h1>
                   <div className="social-container">
                     <a className="login-a" href="https://twitter.com/login?lang=en" className="social" style={{textDecoration: 'none'}}>
@@ -51,9 +51,9 @@ class LoginModal extends Component {
                   <span className="login-span">
                     or use your email for registration
                   </span>
-                  <input type="text" placeholder="Name" />
-                  <input type="email" placeholder="Email" />
-                  <input type="password" placeholder="Password" />
+                  <input type="text" placeholder="Name" id="username"/>
+                  <input type="email" placeholder="Email" id="email"/>
+                  <input type="password" placeholder="Password" id="password"/>
                   <button className="login-button" type="submit">
                     Sign Up
                   </button>
@@ -61,7 +61,7 @@ class LoginModal extends Component {
               </div>
 
               <div className="form-container sign-in-container">
-                <form action="#">
+                <form>
                   <h1 className="login-h1">Sign in</h1>
                   <div className="social-container">
                     <a className="login-a" href="https://twitter.com/login?lang=en" className="social" style={{textDecoration: 'none'}}>

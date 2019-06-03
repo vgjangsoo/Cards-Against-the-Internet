@@ -12,8 +12,7 @@ class Lobby extends Component {
     super(props);
     this.state = {
       showCreateRoomModal: false,
-      lobbyState: [],
-      oldLobbyState: {}
+      lobbyState: []
     };
     // being passed down from parent component, will setup the sockect connection
     props.cable.subscriptions.create({ channel: "LobbiesChannel"}, {
@@ -80,18 +79,7 @@ class Lobby extends Component {
       id: lobby.id
     };
     console.log(newLobbyInfo)
-    // this.setState({
-    //   oldLobbyState: newLobbyInfo
-    // })
-    //update lobbyState to show new lobby room
-    // let oldLobbyState = this.state.lobbyState;
-    
-    // loop over lobbyState and see if 
-    // if (this.state.oldLobbyState.id === newLobbyInfo.id) {
-    //   this.setState({
-    //     lobbyState: []
-    //   })
-    // }
+
 
     let currentLobbyState = this.state.lobbyState
     let isModifed = false;

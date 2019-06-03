@@ -9,7 +9,7 @@ import QuestionerDeck from './QuestionerDeck.jsx';
 import History from './History';
 import QuestionSection from './QuestionSection.jsx';
 import AnswerSection from './AnswerSection.jsx';
-import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
+import { API_ROOT, API_WS_ROOT, HEADERS, loadingGameState } from "./constants";
 import actioncable from "actioncable";
 
 //pass this cable prop down to any component that needs socket connections
@@ -25,8 +25,9 @@ const style = {
 class Game extends Component {
   constructor(props) {
     super(props)
+    ///use loadingGameState to fake loading data until real data comes
     this.state = {
-      // roominfo: (this.props.location.state || {}).info,
+      loadingGameState: loadingGameState,
       gameTable: {}
     }
     // being passed down from parent component, will setup the sockect connection
@@ -43,7 +44,22 @@ class Game extends Component {
     this.handleRecievedGame = this.handleRecievedGame.bind(this);
     this.handlerStartButton = this.handlerStartButton.bind(this);
     this.handlerReadyButton = this.handlerReadyButton.bind(this);
+    this.AnswerArea = this.AnswerArea.bind(this);
 
+  }
+
+  
+  componentDidMount() {
+    // http GET request to api/games
+    console.log('===INSIDE COMPONENT DID MOUNT===')
+    console.log(this.props);
+    const gameRoomId = this.props.match.params.id;
+    // console.log('roominfo: ',this.props.match.params.id)
+    axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
+      console.log("ComponentDidMount - GAME DATA", res.data);
+      this.setState({gameTable: res.data});
+    });
+    
   }
 
   handleRecievedGame(data) {
@@ -53,18 +69,6 @@ class Game extends Component {
 
     this.setState({gameTable: data.game})
 
-  }
-
-  componentDidMount() {
-    // http GET request to api/games
-    console.log(this.props);
-    const gameRoomId = this.props.match.params.id;
-    console.log('roominfo: ',this.props.match.params.id)
-    axios.get(`${API_ROOT}/games/${gameRoomId}`).then(res => {
-      console.log("ComponentDidMount - GAME DATA", res.data);
-      this.setState({gameTable: res.data});
-    });
-    
   }
   
   handlerStartButton(){
@@ -97,12 +101,25 @@ class Game extends Component {
 
   }
 
+  AnswerArea(gameState, gameTable) {
+    const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
+    // should have AnswerDeck on top, AnswerSection on bottom
+    return (
+      <div>
+        { isStartMode
+          ? <AnswererDeck gameState={gameState} />
+          : <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
+        }
+      </div>
+    );
+  }
+
   //////////////////////////////////
   render() {
     console.log('PROPS:',this.props);
     console.log('State:',this.state);
-    const gameTable = (this.state.gameTable)? this.state.gameTable : 'loading...'
- 
+    console.log('loadingGameState:',this.state.loadingGameState);    
+    const gameTable = (Object.keys(this.state.gameTable).length)? this.state.gameTable : this.state.loadingGameState
     return (
       <div>
         {
@@ -147,7 +164,7 @@ class Game extends Component {
                       <button className='btn btn-dark btn-md p-2'>Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
-                      <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers}/>
+                      {this.AnswerArea(gameTable.gameState, gameTable)}
                     </div>
                     <br />
                   </div>

@@ -10,7 +10,7 @@ class AnswererDeck extends Component {
       answers: []
     }
   }
-
+//need to disable this fetch request, and load in real data as a prop
   fetchAnswerCards() {
     axios.get('/api/cards')
     .then((res) => {
@@ -83,7 +83,7 @@ class AnswererDeck extends Component {
           <div className='d-inline-flex flex-row justify-content-between content'>
           {selectedAnswers.map(e => {
             return (
-              <div className='deckCard card answer-card'>
+              <div className='deckCard card answer-card' key={e.id}>
                 <div className='cardContainer'>
                   <div className="card-body">
                     <div key={e.id} className="card-text">{e.content}</div>
