@@ -330,6 +330,7 @@ div.grid {
   width: 100%;
   flex-wrap: wrap;
   text-align: center;
+  margin-left: 3%;
 }
 
 div.gameroom {
