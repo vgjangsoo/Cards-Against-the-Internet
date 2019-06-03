@@ -54,7 +54,22 @@ class QuestionerDeck extends Component {
   }
 
   componentDidMount() {
-    this.fetchQuestionCards();
+    // this.fetchQuestionCards();
+    let questionerID = this.props.gameState.gameInfo.currentQuestioner
+    let numPlayers = this.props.gameState.gameInfo.currentPlayers
+    const tempCards = [];
+    console.log(this.props)
+    for (let i= 0; i < numPlayers-1; i++ ){
+      if (this.props.userData.id === questionerID){
+        console.log('FOUND questioner in playersInfo, id:', this.state.currentUser.id )
+        for (let k=0; k<3; k++){
+          //push in 3 question cards
+          tempCards.push(this.props.gameState.playersInfo.users[i].questionCards[k])
+        }
+      }
+    }
+    console.log('tempCards is:',tempCards)
+    this.setState({questions: tempCards})
   }
 
   render() {
@@ -64,13 +79,13 @@ class QuestionerDeck extends Component {
       <div>
         <h4>Questioner's Cards</h4>
         <div className='d-flex flex-row justify-content-around'>
-          {selectedQuestions.map(e => {
+          {selectedQuestions.map((question, index )=> {
 
             return (
-              <div className="deckCard card questioncards" style={{width: "18rem"}}>
+              <div className="deckCard card questioncards" style={{width: "18rem"}} key={index} onClick={() => {this.props.onSelectQuestion(question)}}>
                 <div className='cardContainer'>
                   <div className="card-body">
-                    <div key={e.id} className="card-text" value={e.id}>{e.content}</div>
+                    <div className="card-text" >{question}</div>
                   </div>
                 </div>
               </div>

@@ -45,7 +45,9 @@ class Game extends Component {
     this.handlerStartButton = this.handlerStartButton.bind(this);
     this.handlerReadyButton = this.handlerReadyButton.bind(this);
     this.AnswerArea = this.AnswerArea.bind(this);
+    this.QuestionArea = this.QuestionArea.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
+    this.onSelectQuestion = this.onSelectQuestion.bind(this);
 
   }
 
@@ -101,10 +103,15 @@ class Game extends Component {
     });
 
   }
-  
+
   onSelectAnswer(answer){
     console.log('selected answer is:', answer)
   }
+
+  onSelectQuestion(question){
+    console.log('selected question is:', question)
+  }
+  
 
   AnswerArea(gameState, gameTable) {
     const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
@@ -118,6 +125,19 @@ class Game extends Component {
       </div>
     );
   }
+
+  QuestionArea(gameState) {
+    const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
+    return (
+      <div>
+        { isStartMode
+          ? <QuestionerDeck gameState={gameState} userData={this.props.userData} onSelectQuestion={this.onSelectQuestion}/>
+          : <QuestionSection />
+        }
+      </div>
+    );
+  }
+
 
 
 
@@ -163,6 +183,7 @@ class Game extends Component {
                   <div>
                     <div className="questioner col-9" style={style}>
                       <QuestionSection />
+                      {/* {this.QuestionArea(gameTable.gameState)} */}
                     </div>
                     <div className='status-message'>
                     { <h6>{gameTable.gameState.gameInfo.status}</h6> }
