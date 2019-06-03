@@ -4,12 +4,21 @@ class Api::UsersController < ApplicationController
     end
 
     def create
+        # URL: POST api/users
+        puts "=====user controller - create===== "
         user = User.new(user_params)
+
+        puts user.username
+        puts user.email
+        puts user.password_digest
+
         if user.save
           session[:user_id] = user.id
-          redirect_to '/'
+        #   redirecting dont work from back end to front end
+        #   redirect_to '/lobbies'
         else
-          redirect_to '/signup'
+            puts user.errors.full_messages 
+            redirect_to '/signup'
         end
     end
 
@@ -19,3 +28,4 @@ class Api::UsersController < ApplicationController
     end
 
 end
+

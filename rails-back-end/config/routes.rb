@@ -22,9 +22,9 @@ Rails.application.routes.draw do
     
     # These routes will be for signup. The first renders a form in the browse, the second will 
     # receive the form and create a user in our database using the data given to us by the user.
-    # URL : api/signup
+    # URL : api/signup  
     get '/signup', to: 'users#new'
-    # URL : api/users
+    # URL : api/users  for creating new user 
     post '/users', to: 'users#create'
 
 
@@ -32,9 +32,9 @@ Rails.application.routes.draw do
     # get '/login' not used because we have a separate react login form 
     get '/login', to: 'sessions#new'
     
-    # URL : api/login
+    # URL : api/login   for logging in 
     post '/login', to: 'sessions#create'
-    # URL : api/logout
+    # URL : api/logout  for log out
     get '/logout', to: 'sessions#destroy'
 
     

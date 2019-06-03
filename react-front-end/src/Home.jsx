@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import LoginModal from "./Modals/LoginModal.jsx"
 import Nav from "./Nav.jsx";
 import Banner from "./Banner.jsx";
 import Footer from "./Footer.jsx";
 import SubmitIdeaModal from './Modals/SubmitIdeadModal';
+import axios from 'axios';
+import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
 
 class Home extends Component {
   constructor(props) {
@@ -22,6 +24,31 @@ class Home extends Component {
   closeIdeaModal = () => this.setState({ showSubmitIdeas: false });
   openIdeaModal = () => this.setState({ showSubmitIdeas: true });
 
+  handleSignUp(event) {
+    event.preventDefault();
+    console.log('=====handleSignUp=====')
+    const username = event.target.username.value
+    const email = event.target.email.value
+    const password = event.target.password.value
+    
+    const signupData = {
+      user: {
+        username: username, 
+        email: email, 
+        password: password
+      }
+    }
+    console.log(signupData)
+
+    axios.post(`${API_ROOT}/users`, signupData).then(res => {
+      console.log("singup POST is successful. RES:", res);
+      return(
+        <Redirect to="/lobby" />
+      );
+    });
+
+  }
+
   render() {
     return (
       <Route>
@@ -29,7 +56,7 @@ class Home extends Component {
        <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal}/>
        <Footer onOpen={this.openModal}/>
        <div>
-         {this.state.showModal ? (<LoginModal onClose={this.closeModal}/>) : null}
+         {this.state.showModal ? (<LoginModal onClose={this.closeModal} handleSignUp={this.handleSignUp}/>) : null}
        </div>
        <div>
          {this.state.showSubmitIdeas ? (<SubmitIdeaModal closeIdeaModal={this.closeIdeaModal} openIdeaModal={this.openIdeaModal}/>) : null}
