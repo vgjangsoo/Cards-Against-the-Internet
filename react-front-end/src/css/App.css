@@ -63,7 +63,7 @@
   margin-top: 3%;
   height: 500px;
   width: 1000px;
-  background-color: white;
+  background-color: #dedede;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 300px;
@@ -78,7 +78,7 @@
   margin-top: 10%;
   height: 400px;
   width: 500px;
-  background-color: white;
+  background-color: #dedede;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 150px;
@@ -138,6 +138,7 @@ input.room-theme {
 
 form.create-room-setting {
   padding-top: 0px;
+  background-color: #dedede;
 }
 
 button.close-button {
