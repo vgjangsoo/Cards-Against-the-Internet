@@ -17,6 +17,7 @@ class Home extends Component {
       showSubmitIdeas: false
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
   
   closeModal = () => this.setState({ showModal: false });
@@ -25,6 +26,7 @@ class Home extends Component {
   closeIdeaModal = () => this.setState({ showSubmitIdeas: false });
   openIdeaModal = () => this.setState({ showSubmitIdeas: true });
 
+  //not used currently
   getCurrentUser (){
     let user = localStorage.getItem('browserUserData')
     console.log('localStorage user is:', user)
@@ -59,14 +61,17 @@ class Home extends Component {
     
   }
 
-
+  handleLogout(){
+    console.log('Logout button is clicked')
+    localStorage.removeItem('browserUserData')
+  }
 
   render() {
     const currentUser = localStorage.getItem('browserUserData')
     console.log('currentUser is:',currentUser )
     return (
       <Route>
-       <Nav onOpen={this.openModal}/>
+       <Nav onOpen={this.openModal} onLogout= {this.handleLogout}/>
        <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal}/>
        <Footer onOpen={this.openModal}/>
        <div>

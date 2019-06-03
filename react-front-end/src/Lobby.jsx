@@ -117,6 +117,8 @@ class Lobby extends Component {
   render() {
     //contains data for display all current lobbies
     const createdGameRooms = this.state.lobbyState.reverse();
+    const currentUser = localStorage.getItem('browserUserData')
+    console.log('currentUser is:',currentUser )
 
     return (
       <div className="App">
