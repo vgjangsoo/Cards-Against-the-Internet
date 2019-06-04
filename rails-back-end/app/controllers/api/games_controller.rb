@@ -72,20 +72,20 @@ class Api::GamesController < ApplicationController
 
     if objCookies["email"]
       @newPlayer = User.find_by_email(objCookies["email"])
-    else 
+    # else 
 
-      puts "========INSIDE addUser method ========="
-      randomID = rand 1...100
-      @newPlayer = User.create!({
-        username: "Guest#{randomID}",
-        email: "guest#{randomID}@test.com",
-        password_digest: '12345',
-        isAdult: false,
-        isBot: false,
-        leaderboardPoints: 0
-      })
+    #   puts "========INSIDE addUser method ========="
+    #   randomID = rand 1...100
+    #   @newPlayer = User.create!({
+    #     username: "Guest ##{randomID}",
+    #     email: "guest#{randomID}@test.com",
+    #     password_digest: '12345',
+    #     isAdult: false,
+    #     isBot: false,
+    #     leaderboardPoints: 0
+    #   })
 
-      puts "========finish adding a user ========="
+    #   puts "========finish adding a user ========="
     end
 
 
@@ -101,7 +101,8 @@ class Api::GamesController < ApplicationController
       status: 'ready',
       questionCards: [],
       answerCards: [],
-      selectedCard: nil
+      selectedCard: nil,
+      username: @newPlayer.username
     })
 
     currentPlayers = game.gameState["gameInfo"]["currentPlayers"] 
