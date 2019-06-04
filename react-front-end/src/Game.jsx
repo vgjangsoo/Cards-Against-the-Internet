@@ -157,7 +157,7 @@ class Game extends Component {
     console.log('ANSWERS activeUserInfo:', activeUserInfo)
     //conditionally render based on:
     // isAnswerer = true ---- AnswererDeck
-    //  isAnswerer = false --- AnswererSection 
+    //  isAnswerer = false --- AnswererSection   
     return (
       <div>
         { (isAnswerer)
