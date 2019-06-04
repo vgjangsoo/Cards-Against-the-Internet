@@ -14,12 +14,12 @@ class History extends Component {
     render() {
       return (
         <div className="history-border">
-        <h5 className="p-2">History</h5>
-          <div className='d-inline-flex flex-row justify-content-around'>
+        <h5 className="p-2 history-header">History</h5>
+          <div className='d-inline-flex flex-row history-container'>
             <div className='history-box history-question'>
               <h5>Q</h5>
             </div>
-            <div className='history-box'>
+            <div className='history-box answer-question'>
               <h5>A</h5>
             </div>
           </div>
