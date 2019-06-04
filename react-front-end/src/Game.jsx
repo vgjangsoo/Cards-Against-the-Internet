@@ -224,7 +224,11 @@ class Game extends Component {
     // this.setState({userIndex: tempUserIndex})
 
     //trying to only render the QuestionDeck or Question section based on activeUserInfo 
-    const isQuestioner = activeUserInfo.questionCards.length > 0
+    let isQuestioner = activeUserInfo.questionCards.length > 0
+    let currentStatus = this.state.gameTable.gameState.gameInfo.status
+    if (currentStatus === 'Question selected, please choose an answer'){
+      isQuestioner = true;
+    }
     
     //set the userIndex inside the gameState object to be passed to backend
     // if(tempUserIndex >= 0){

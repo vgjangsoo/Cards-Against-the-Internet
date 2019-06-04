@@ -35,6 +35,7 @@ class QuestionerDeck extends Component {
 
   // componentWillUpdate = () => {
   //   let status = this.props.gameState.gameInfo.status
+  //    next line runs an infinite loop, CANNOT USE
   //   if (status === 'Question selected, please choose an answer'){
   //     let selectedQuestion = this.props.gameState.gameInfo.selectedQuestion;
   //     let tempArray = []
