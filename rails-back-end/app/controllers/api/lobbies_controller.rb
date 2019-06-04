@@ -3,16 +3,7 @@ class Api::LobbiesController < ApplicationController
     def index
         # URL: GET /api/lobbies
         lobbies = Lobby.all
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
-        puts params['hello']
+        # just for testing passing values in axios url query selector
         puts params['hello']
         puts params['hello']
         render json: lobbies

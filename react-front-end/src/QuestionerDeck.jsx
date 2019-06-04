@@ -7,54 +7,61 @@ class QuestionerDeck extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: 'Click the button to load data!',
       questions: []
     }
   }
 
-  fetchQuestionCards() {
-    axios.get('/api/cards')
-    .then((res) => {
-      const deckCards = res.data.message.cards;
-      let questionCards = [];
-      for (let card in deckCards) {
-        if (deckCards[card].isQuestion === true) {
-          questionCards.push(deckCards[card]);
-        }
-      }
+  // fetchQuestionCards() {
+  //   axios.get('/api/cards')
+  //   .then((res) => {
+  //     const deckCards = res.data.message.cards;
+  //     let questionCards = [];
+  //     for (let card in deckCards) {
+  //       if (deckCards[card].isQuestion === true) {
+  //         questionCards.push(deckCards[card]);
+  //       }
+  //     }
 
-      let questions = [];
+  //     let questions = [];
 
-      const randomNum1 = Math.floor(Math.random() * (questionCards.length));
-      questions.push(questionCards[randomNum1]);
-      let index1 = questionCards.indexOf(questionCards[randomNum1])
+  //     const randomNum1 = Math.floor(Math.random() * (questionCards.length));
+  //     questions.push(questionCards[randomNum1]);
+  //     let index1 = questionCards.indexOf(questionCards[randomNum1])
 
-      if (index1 > -1) {
-        questionCards.splice(index1, 1);
-      }
+  //     if (index1 > -1) {
+  //       questionCards.splice(index1, 1);
+  //     }
 
-      const randomNum2 = Math.floor(Math.random() * (questionCards.length));
-      questions.push(questionCards[randomNum2]);
-      let index2 = questionCards.indexOf(questionCards[randomNum2])
+  //     const randomNum2 = Math.floor(Math.random() * (questionCards.length));
+  //     questions.push(questionCards[randomNum2]);
+  //     let index2 = questionCards.indexOf(questionCards[randomNum2])
 
-      if (index2 > -1) {
-        questionCards.splice(index2, 1);
-      }
+  //     if (index2 > -1) {
+  //       questionCards.splice(index2, 1);
+  //     }
 
-      const randomNum3 = Math.floor(Math.random() * (questionCards.length));
-      questions.push(questionCards[randomNum3]);
-      let index3 = questionCards.indexOf(questionCards[randomNum3])
+  //     const randomNum3 = Math.floor(Math.random() * (questionCards.length));
+  //     questions.push(questionCards[randomNum3]);
+  //     let index3 = questionCards.indexOf(questionCards[randomNum3])
 
-      if (index3 > -1) {
-        questionCards.splice(index3, 1);
-      }
+  //     if (index3 > -1) {
+  //       questionCards.splice(index3, 1);
+  //     }
 
-      this.setState({ questions: questions });
-    })
-  }
+  //     this.setState({ questions: questions });
+  //   })
+  // }
 
   componentDidMount() {
-    this.fetchQuestionCards();
+    // this.fetchQuestionCards();
+    const tempCards = [];
+    for (let k=0; k<this.props.activeUserInfo.questionCards.length; k++){
+      //push in 3 question cards
+      tempCards.push(this.props.activeUserInfo.questionCards[k])
+    }
+    
+    console.log('Questions tempCards is:',tempCards)
+    this.setState({questions: tempCards})
   }
 
   render() {
@@ -64,13 +71,13 @@ class QuestionerDeck extends Component {
       <div>
         <h4>Questioner's Cards</h4>
         <div className='d-flex flex-row justify-content-around'>
-          {selectedQuestions.map(e => {
+          {selectedQuestions.map((question, index )=> {
 
             return (
-              <div className="deckCard card questioncards" style={{width: "18rem"}}>
+              <div className="deckCard card questioncards" style={{width: "18rem"}} key={index} onClick={() => {this.props.onSelectQuestion(question)}}>
                 <div className='cardContainer'>
                   <div className="card-body">
-                    <div key={e.id} className="card-text" value={e.id}>{e.content}</div>
+                    <div className="card-text" >{question}</div>
                   </div>
                 </div>
               </div>
