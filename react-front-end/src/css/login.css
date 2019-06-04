@@ -14,13 +14,13 @@ div.login-body {
 	font-family: 'Ubuntu', sans-serif;
 	height: 100vh;
 	margin-top: -5vw;
+	border-radius: 15px;
 }
 
 h1.login-h1 {
 	font-weight: bold;
 	margin: 0;
 }
-
 
 p.login-p {
 	font-size: 14px;

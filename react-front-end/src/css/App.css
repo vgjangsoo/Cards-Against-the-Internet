@@ -71,6 +71,7 @@
   border-radius: 4px;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  border-radius: 15px;
 }
 
 .modal-contents-room {
@@ -86,6 +87,7 @@
   border-radius: 4px;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  border-radius: 15px;
 }
 
 /* Add Animation */
@@ -174,9 +176,37 @@ button.close-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-g
+
+/* CSS for Game(room) */
+.game-number {
+  color: white;
+  font-size: 18px;
+}
+
+.game-theme {
+  color: white;
+  font-size: 30px;
+}
+
+.game-nav-button {
+  background-color: #1abc9c;
+  width: 120px; 
+  height: 45px;
+  font-size: 16px;
+}
+
+.game-nav-button:hover {
+  font-size: 18px;
+  background-color: #1abc9c;
+}
+
+.game-round, .game-player {
+  color: white;
+  font-size: 18px;
+}
 
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
+/* Questioner Section  */
 .deckCard {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -190,26 +220,350 @@ g
   cursor: pointer;
 }
 
+.ingame-room {
+  width: 100%;
+}
+
+.questioner {
+  width: 950px;
+  padding-top: 200px;
+  margin-top: 200px;
+  border: 5px solid black !important;
+  background-color: #EEE;
+}
+
+.game-card-logo {
+  font-size: 25px;
+}
+
+.game-card-body {
+  padding: 5px;
+}
+
+.questioner-header {
+  font-weight: 900;
+}
+
+.questioner-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Gamestatus Section */
+.game-status-message {
+  font-size: 20px;
+}
+
+.status-message {
+  padding-top: 1%;
+  margin-left: 23vw;
+  width: 50%;
+}
+
+.game-status-button {
+  background-color: #1abc9c;
+  border: none;
+  width: 190px; 
+  height: 45px;
+  font-size: 18px;
+}
+
+.game-status-button:hover {
+  background-color: #1abc9c;
+  border: none;
+  font-size: 21px;
+}
+
+/* Answerer's Section */
+.answerers {
+  width: 950px;
+  padding-top: 200px;
+  margin-top: 200px;
+  border: 5px solid black !important;
+  background-color: #EEE;
+}
+
+.answerer-header {
+  font-weight: 900;
+}
+
+.answerer-status {
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.answerer-ID {
+  font-weight: 900;
+  padding: none;
+}
+
+/* In game before the game starts */
+.player-name-section {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 160px !important;
+  margin-right: 1.5%; 
+}
+
+.player-status-section {
+  padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+.answerer-status-section {
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1350px) {
+  /* Nav Section */
+  button.game-nav-button {
+    width: 9vw;
+    height: 5vh;
+    font-size: 1.2vw;
+  }
+
+  button.game-nav-button:hover {
+    width: 9vw;
+    height: 5vh;
+    font-size: 1.35vw;
+  }
+
+  h6.game-round, h6.game-player {
+    font-size: 1.1vw;
+  }
+
+  /* Questioner Section */
+  h6.game-number {
+    font-size: 1vw;
+  }
+
+  div.questioner {
+    width: 70vw;
+    height: 40vh;
+  }
+
+  div.game-card-logo {
+    font-size: 2vw;
+    font-weight: 900;
+  }
+
+  h4.questioner-header {
+    font-size: 2vw;
+  }
+
+  div.questioncards {
+    width: 13vw !important;
+    height: 30vh;
+  }
+
+  /* Status Section */
+  h6.game-status-message {
+    font-size: 1.7vw;
+  }
+
+  button.game-status-button {
+    border: none;
+    width: 14vw; 
+    height: 6vh;
+    margin-top: -2%;
+    margin-left: -1.5vw;
+    margin-bottom: 3%;
+    font-size: 1.3vw;
+  }
+  
+  button.game-status-button:hover {
+    font-size: 1.4vw;
+  }
+
+  /* Answerer Section */
+  div.answerers {
+    width: 70vw;
+    height: 40vh;
+  }
+
+  h4.answerer-header {
+    font-size: 2vw;
+  }
+
+  div.deckCardBeforeStart {
+    width: 13vw !important;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  img.answerer-img {
+    width: 8vw !important;
+    height: 8vw !important;
+  }
+
+  h6.answerer-ID {
+    font-size: 1.2vw;
+  }
+
+  div.player-status-section {
+    border: 3px solid black;
+  }
+
+  h6.answerer-status-section {
+    font-size: 1.5vw;
+  }
+
+  h6.answerer-status1 {
+    font-size: 1.15vw;
+  }
+
+  h6.answerer-status2 {
+    font-size: 1.5vw;
+  }
+
+  div.cardDeck-container {
+    margin-left: -2%;
+  }
+
+  /* Chat-history-bar */
+  div.chat-history-bar {
+    margin-left: 71vw;
+    width: 25vw;
+    margin-top: -51vw;
+  }
+
+  div.history-border {
+    height: 15vw;
+  }
+
+  h5.history-header {
+    font-size: 1.8vw;
+  }
+
+  div.history-border {
+    height: 30vh; 
+    padding-left: 2vw;
+  }
+
+  div.history-box {
+    width: 9vw;
+    height: 22vh;
+  }
+
+  div.chat-box {
+    height: 58vh;
+  }
+
+  div.score-board {
+    height: 18vh;
+  }
+
+  h6.score-title {
+    font-size: 1.2vw;
+  }
+
+  h6.player-name {
+    font-size: 0.8vw;
+  }
+
+  h5.chat-header {
+    font-size: 1.8vw;
+  }
+
+  div.incoming-msg {
+    height: 27vh;
+  }
+
+  input.write_msg {
+    width: 15vw;
+  }
+
+  button.chat-button {
+    width: 3.5vw;
+    height: 3.8vh;
+  }
+
+  /* Answerers Card Section */
+  div.answerer-answer {
+    width: 12.3vw !important;
+    height: 28vh;
+  }
+
+  div.card-text {
+    font-size: 1.3vw;
+    font-weight: 500;
+  }
+}
+
+/* Chat-history section */
+.chat-history-bar {
+  margin-top: -687px;
+  margin-left: 75vw;
+  width: 310px; 
+}
+
+.history-header {
+  font-weight: 900;
+}
+
+.history-border {
+  margin-bottom: 10px;
+  border: 5px solid black !important;
+  background-color: #EEE;
+}
+
+.history-box {
+  border-radius: 5px;
+  border: 1px solid;
+  width: 130px;
+  padding: 10px;
+  margin: 5px;
+  margin-left: 10px;
+  height: 165px;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+
+.history-question {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.answer-question {
+  background-color: white;
+}
+
+.chat-box {
+  border-radius: 5px;
+  border: 5px solid black;
+  height: 430px;
+  background-color: #EEE;
+}
+
+.incoming-msg {
+  height: 18vh;
+  border: 5px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.chat-button {
+  height: 4.7vh;
+  margin-top: 3%;
+}
+
 /* On mouse-over, add a deeper shadow */
 .deckCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  color: grey;
-  background-color: #dbeeba;
+  color: white;
+  background-color: #1abc9c;
 }
 
 /* Add some padding inside the card container */
 .cardContainer {
   padding: 1px 2px;
-}
-
-.status-message {
-  padding-top: 25px;
-  margin: auto;
-  width: 40%;
-}
-
-.ingame-room {
-  margin-left: 15px;
 }
 
 .questioncards {
@@ -221,8 +575,6 @@ g
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 160px !important;
-  margin-right: 1.5%; 
 }
 
 .answerers-cards {
@@ -231,44 +583,10 @@ g
   margin-bottom: -20px;
 }
 
-.chat-history-bar {
-  margin-top: -675px;
-  margin-left: 70vw;
-  width: 300px;
-}
-
 .play-card-button {
-  margin-left: 58vw;
+  margin-left: 55vw;
   margin-top: -40px;
-}
-
-.room-name {
-  color: grey;
-}
-
-.history-box {
-  border-radius: 5px;
-  border: 1px solid;
-  width: 130px;
-  padding: 10px;
-  margin: 5px;
-  margin-left: 10px;
-  height: 165px;
-  margin-bottom: 20px;
-}
-
-.history-question {
-  background-color: black;
-  color: white;
-}
-
-.chat-box {
-  border-radius: 5px;
-  border: 1px solid;
-}
-
-.incoming-msg {
-  height: 323px;
+  width: 195px;
 }
 
 .write_msg {
@@ -277,26 +595,19 @@ g
 
 .nav-bar-in-game {
   height: 80px;
+  background-color: #343a40;
+}
+
+h6.game-logged-ID {
+  color: white;
+  font-size: 1vw;
+  margin: none;
+  padding: none;
 }
 
 .history-border {
   border-radius: 5px;
   border: 1px solid;
-}
-
-/* In game before the game starts */
-.player-name-section {
-  padding-top: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.player-status-section {
-  padding-top: 8px;
-  display: flex;
-  justify-content: center;
-  border: 0.5px solid;
-  border-radius: 5px;
 }
 
 .deckCardBeforeStart {
@@ -438,7 +749,7 @@ div.jumbotron {
   background-image: url("https://images.pexels.com/photos/37547/suit-business-man-business-man-37547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
   max-width: 100%;
-  height: 380px;
+  height: 400px;
 }
 
 h1.jumbotron-h1 {
@@ -471,8 +782,26 @@ p.jumbotron-p {
 
   button.nav-signup-button {
     width: 6vw;
-    height: 6vh;
+    height: 5vh;
     font-size: 1vw;
+  }
+
+  button.nav-signup-button:hover {
+    width: 6vw;
+    height: 5vh;
+    font-size: 1.1vw;
+    background-color: #1abc9c;
+  }
+
+  button.create-room-button {
+    width: 15vw !important;
+    font-size: 1.2vw;
+    border: none;
+  }
+
+  button.create-room-button:hover {
+    background-color: #1abc9c;
+    border: none;
   }
 
   /* Banner  */
@@ -573,8 +902,9 @@ p.jumbotron-p {
 /* score board */
 .player-name {
   margin-top: -5px;
-  font-size: 12px;
+  font-size: 13px;
   -webkit-animation: fadein 2s;
+  font-weight: 500;
 }
 
 @-webkit-keyframes fadein {
@@ -584,15 +914,17 @@ p.jumbotron-p {
 
 .score-board {
   border-radius: 5px;
-  border: 1px solid;
+  border: 5px solid black;
   padding: 5%;
   margin: 1%;
+  background-color: white;
+  height: 140px;
 }
 
 .score-title {
   margin-bottom: -10px;
+  font-weight: 900;
 }
-
 
 
 

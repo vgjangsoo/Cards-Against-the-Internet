@@ -103,7 +103,7 @@ class AnswererDeck extends Component {
         <h4>Answerers' Cards</h4>
         <div className=' answerers-cards'>
         
-          <div className='d-inline-flex flex-row justify-content-between content'>
+          <div className='d-inline-flex flex-row'>
           {selectedAnswers.map((answer, index) => {
             return (
               <div className='deckCard card answer-card' key={index} onClick={() => {this.props.onSelectAnswer(answer)}}>
