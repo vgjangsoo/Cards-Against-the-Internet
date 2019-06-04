@@ -24,10 +24,12 @@ class Chat extends Component {
 
         </div>
         <div className="d-flex flex-row justify-content-around">
-          <input type="chat-input" id="cha-input" className="form-control write_msg" placeholder="Let's chat!"></input>
-          <button className="btn btn-dark btn-md p-1 chat-button">
-            Send
-          </button>
+          <form>
+            <input type="chat-input" id="cha-input" className="form-control write_msg" placeholder="Let's chat!"></input>
+            <button className="btn btn-dark btn-md p-1 chat-button">
+              Send
+            </button>
+          </form>
           <button className='btn-md btn btn-dark p-1 chat-button'> 😀</button>
         </div>
       </div>

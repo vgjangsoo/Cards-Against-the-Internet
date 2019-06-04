@@ -29,7 +29,7 @@ class Banner extends Component {
               <div className="col-md-4 option-section">
                 <h2 className="option-header">Quick Start</h2>
                 <p className="option-p">You don't need to register to play and enjoy our Everyone version that is suitable for people in all ages! </p>
-                <Link to="/lobby"><p><span style={{color: 'white', textDecoration: 'none'}} className="btn btn-dark btn-md banner-button" role="button">Play as Guest &raquo;</span></p></Link>
+                <Link to="/lobby"><p><span style={{color: 'white', textDecoration: 'none'}} className="btn btn-dark btn-md banner-button" role="button">Go to Lobby &raquo;</span></p></Link>
               </div>
               <div className="col-md-4 option-section">
                 <h2 className="option-header">Fun Experience</h2>
