@@ -28,7 +28,9 @@ class Game extends Component {
     ///use loadingGameState to fake loading data until real data comes
     this.state = {
       loadingGameState: loadingGameState,
-      gameTable: {}
+      gameTable: {},
+      selectedAnswer: '',
+      selectedQuestion: ''
     }
     // being passed down from parent component, will setup the sockect connection
     // Cable is working for now, but wrong channel
@@ -104,23 +106,58 @@ class Game extends Component {
 
   }
 
+  handlerPlayCardButton(){
+    console.log('playcard button pressed')
+
+
+    //need to clear both selectedAnswer and selectedQuestion after posting
+  }
+
   onSelectAnswer(answer){
     console.log('selected answer is:', answer)
+    //need to set State of selected Answer
+    this.setState({selectedAnswer: answer})
   }
 
   onSelectQuestion(question){
     console.log('selected question is:', question)
-  }
-  
+    // need to set State of selected Question
+    this.setState({selectedQuestion: question})
 
+  }
+
+  
   AnswerArea(gameState, gameTable) {
     const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
     // should have AnswerDeck on top, AnswerSection on bottom
+
+    if(!isStartMode) {
+      return <AnswerSection />
+    }
+    let activeUserInfo;
+    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
+    
+    for (let i= 0; i <= (numPlayers-1); i++ ){
+      //trying to find the ONE player in playersInfo.user array
+      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
+        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
+      }
+    }
+
+    if (!activeUserInfo){
+      debugger;
+    }
+    //trying to only render the QuestionDeck or Question section based on activeUserInfo 
+    const isAnswerer = activeUserInfo.answerCards.length > 0
+    console.log('ANSWERS activeUserInfo:', activeUserInfo)
+    //conditionally render based on:
+    // isAnswerer = true ---- AnswererDeck
+    //  isAnswerer = false --- AnswererSection 
     return (
       <div>
-        { isStartMode
-          ? <AnswererDeck gameState={gameState} userData={this.props.userData} onSelectAnswer={this.onSelectAnswer}/>
-          : <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
+        { isAnswerer
+          ? <AnswererDeck activeUserInfo={activeUserInfo} gameState={gameState} userData={this.props.userData} onSelectAnswer={this.onSelectAnswer}/>
+          : <AnswerSection activeUserInfo={activeUserInfo} userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
         }
       </div>
     );
@@ -135,12 +172,16 @@ class Game extends Component {
     let activeUserInfo;
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
 
-    for (let i= 0; i < numPlayers-1; i++ ){
+    for (let i= 0; i <= (numPlayers-1); i++ ){
+      //trying to find the ONE player in playersInfo.user array
       if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
         activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
       }
     }
-    debugger;
+    if (!activeUserInfo){
+      debugger;
+    }
+    //trying to only render the QuestionDeck or Question section based on activeUserInfo 
     const isQuestioner = activeUserInfo.questionCards.length > 0
     return (
       <div>
@@ -159,7 +200,7 @@ class Game extends Component {
   render() {
     console.log('PROPS:',this.props);
     console.log('State:',this.state);
-    console.log('loadingGameState:',this.state.loadingGameState);    
+    // console.log('loadingGameState:',this.state.loadingGameState);    
     const gameTable = (Object.keys(this.state.gameTable).length)? this.state.gameTable : this.state.loadingGameState
     return (
       <div>
@@ -198,14 +239,13 @@ class Game extends Component {
                 <form>
                   <div>
                     <div className="questioner col-9" style={style}>
-                      {/* <QuestionSection /> */}
                       {this.QuestionArea(gameTable.gameState)}
                     </div>
                     <div className='status-message'>
                     { <h6>{gameTable.gameState.gameInfo.status}</h6> }
                     </div>
                     <div className='play-card-button'>
-                      <button className='btn btn-dark btn-md p-2'>Play Card</button>
+                      <button className='btn btn-dark btn-md p-2' onClick={this.handlerPlayCardButton} >Play Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
                       {this.AnswerArea(gameTable.gameState, gameTable)}
