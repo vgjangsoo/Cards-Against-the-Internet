@@ -151,7 +151,7 @@ class Game extends Component {
                   <button className="btn btn-dark btn-md p-2" onClick={this.handlerReadyButton} >Ready?</button>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
-                  <button className="btn btn-dark btn-md p-2" onClick={this.handlerStartButton} >Start</button>
+                  <Link to={{ pathname: '/game/1', state:{gameTable: gameTable}}}><button className="btn btn-dark btn-md p-2">Start</button></Link>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
                   <Link to='/lobby'><button className="btn btn-dark btn-md p-2">Leave Room</button></Link>

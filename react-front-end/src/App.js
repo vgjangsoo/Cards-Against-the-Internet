@@ -6,6 +6,7 @@ import Game from "./Game.jsx";
 import Home from "./Home.jsx";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import Game1 from "./Hard-coded-version/Game-1.jsx";
 
 const cookies = new Cookies()
 
@@ -53,6 +54,7 @@ class App extends Component {
             <Route path='/lobby' exact render={() => <Lobby cable={this.props.cable}/>}/>
             {/* <Route path='/lobby/:id' component={Game}/>  */}
             <Route path='/lobby/:id' exact render={(props) => <Game {...props} updateCurrentUser={this.updateCurrentUser} userData={this.state.currentUser}/>}/>
+            <Route path='/game/1' exact component={Game1} />
           </Switch>
         </Router>
       </div>
