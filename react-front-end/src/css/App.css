@@ -223,6 +223,8 @@ g
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  width: 160px !important;
+  margin-right: 1.5%; 
 }
 
 .answerers-cards {

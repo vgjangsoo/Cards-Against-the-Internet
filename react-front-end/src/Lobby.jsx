@@ -23,15 +23,24 @@ class Lobby extends Component {
     })
 
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+
   }
 
   componentDidMount() {
     // http GET request to api/lobbies
-    axios.get(`${API_ROOT}/lobbies`).then(res => {
+    // use this to pass user_id info to pass user_id info to server
+    // axios.get(`${API_ROOT}/lobbies?hello=${this.props.userId}`)
+    axios.get(`${API_ROOT}/lobbies?hello=world3333`).then(res => {
       console.log("RESRES", res.data);
       this.setState({ lobbyState: [...this.state.lobbyState, ...res.data] });
 
     });
+  }
+
+  handleLogout(){
+    console.log('Logout button is clicked')
+    this.props.updateCurrentUser({})
   }
 
   handleRoomCreate(event) {
@@ -117,18 +126,25 @@ class Lobby extends Component {
   render() {
     //contains data for display all current lobbies
     const createdGameRooms = this.state.lobbyState.reverse();
+    const currentUser = localStorage.getItem('browserUserData')
+    console.log('currentUser is:',currentUser )
 
     return (
       <div className="App">
-        <LobbyNav createRoom={this.openCreateRoomModal} />
-        
+        <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout} userData={this.props.userData}/>
+        {!this.state.lobbyState.length 
+            ? 
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
+            :
         <div className="container gameLobbyContainer">
           <div className="grid card-deck mb-3 text-center">
             {createdGameRooms.reverse().map(e => {
               return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
             })}
           </div>
-        </div>
+        </div>}
 
         <div>
           {this.state.showCreateRoomModal ? (

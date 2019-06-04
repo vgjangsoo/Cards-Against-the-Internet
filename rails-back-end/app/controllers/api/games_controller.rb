@@ -60,21 +60,35 @@ class Api::GamesController < ApplicationController
   
   
   def addUser
-    # post to add user when joining game
+    # post to add user when joining game, maps to Ready? button
     # POST api/games/:id/addUser
-    
-    puts "========INSIDE addUser method ========="
-    randomID = rand 1...100
-    @newPlayer = User.create!({
-      username: "Guest#{randomID}",
-      email: "guest#{randomID}@test.com",
-      password_digest: '12345',
-      isAdult: false,
-      isBot: false,
-      leaderboardPoints: 0
-    })
+    puts "========INCOMING COOKIE IS ========="
+    puts request.cookies["currentUser"]
+    objCookies = {}
 
-    puts "========finish adding a user ========="
+    if request.cookies["currentUser"]
+      objCookies = ActiveSupport::JSON.decode(request.cookies["currentUser"])
+    end
+
+    if objCookies["email"]
+      @newPlayer = User.find_by_email!(objCookies["email"])
+    # else 
+
+    #   puts "========INSIDE addUser method ========="
+    #   randomID = rand 1...100
+    #   @newPlayer = User.create!({
+    #     username: "Guest#{randomID}",
+    #     email: "guest#{randomID}@test.com",
+    #     password_digest: '12345',
+    #     isAdult: false,
+    #     isBot: false,
+    #     leaderboardPoints: 0
+    #   })
+
+    #   puts "========finish adding a user ========="
+    end
+
+
 
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
@@ -126,7 +140,6 @@ class Api::GamesController < ApplicationController
     # incoming HTTP put/patch request, filter out by type
     # outgoing: Using broadcast WS
 
-    # produit_id = params[:produit_id]
     type = params[:type]
     gameState = params[:gameState]
     puts "==== incoming type ==="
@@ -150,18 +163,16 @@ class Api::GamesController < ApplicationController
       # find number of users in gameState
       numPlayers = gameState["playersInfo"]["users"].size
       puts "numPlayers: #{numPlayers}"
+
       # find all answer cards in cards table
       @answerCards = Card.where(isQuestion: false)  
       puts "answerCards: #{@answerCards}"
       puts "answerCards size: #{@answerCards.size}"
       cardSize = @answerCards.size
+      
       # randomly assign 5 card.context to each user
       # puts @answerCards[0].content
-      # puts @answerCards[1].content
-      # puts @answerCards[4].content
-
       playerNum = 0
-      haveCardAlready = []
       while playerNum < numPlayers 
         
         for i in 0..4
@@ -175,14 +186,42 @@ class Api::GamesController < ApplicationController
         end
         playerNum += 1
       end
+
+      # find all question cards in questions table
+      questionerID = gameState["gameInfo"]["currentQuestioner"]
+      puts "questionerID: #{questionerID}"
+      usersSize = gameState["playersInfo"]["users"].size
+
+      @questionCards = Card.where(isQuestion: true)  
+      puts "questionCards: #{@questionCards}"
+      puts "questionCards size: #{@questionCards.size}"
+      qcardSize = @questionCards.size
+
+      # loop through players.users array to find the questioner ID, then push in 3 question cards
+      for k in 0..usersSize-1
+        qcardNum = rand 1...qcardSize
+        quser = gameState["playersInfo"]["users"][k]
+        if quser["id"] === questionerID
+          for m in 0..2
+            while quser["questionCards"].include? (@questionCards[qcardNum].content)
+              # generate another random cardNum to try again
+              qcardNum = rand 1...qcardSize
+            end
+            quser["questionCards"].push(@questionCards[qcardNum].content)
+          end
+          puts "========== all entered question cards"
+          puts quser["questionCards"]
+        end
+      end
       
+      ########### all start conditions should be done before this
       game["gameState"] = gameState
       game.save!
 
       puts "====== end of start-button-pressed filter"
     end
 
-    if (type === 'questioner-selected-card')
+    if (type === 'answerer-selected-card')
       # logic to modify gameState
     
     end    
