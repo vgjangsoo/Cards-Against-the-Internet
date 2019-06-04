@@ -173,6 +173,8 @@ class Game extends Component {
                 <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm nav-bar-in-game">
                 <div className="my-0 mr-md-auto font-weight-normal">
                   <h6 className='room-name'>Room: {gameTable.id} </h6>
+                  <h6 className='room-name'>Logged in: {this.props.userData.username}/ ID:{this.props.userData.id} </h6>
+
                   <h3> {gameTable.theme}</h3>
                 </div>
                 <nav className="my-2 my-md-1 mr-md-3 game-round">
