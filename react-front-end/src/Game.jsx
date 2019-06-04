@@ -182,8 +182,8 @@ class Game extends Component {
                 <form>
                   <div>
                     <div className="questioner col-9" style={style}>
-                      <QuestionSection />
-                      {/* {this.QuestionArea(gameTable.gameState)} */}
+                      {/* <QuestionSection /> */}
+                      {this.QuestionArea(gameTable.gameState)}
                     </div>
                     <div className='status-message'>
                     { <h6>{gameTable.gameState.gameInfo.status}</h6> }
