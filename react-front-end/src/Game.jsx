@@ -128,10 +128,24 @@ class Game extends Component {
 
   QuestionArea(gameState) {
     const isStartMode = (this.state.gameTable.gameState.gameInfo.currentRound !== 0);
+    
+    if(!isStartMode) {
+      return <QuestionSection />
+    }
+    let activeUserInfo;
+    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
+
+    for (let i= 0; i < numPlayers-1; i++ ){
+      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
+        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
+      }
+    }
+    debugger;
+    const isQuestioner = activeUserInfo.questionCards.length > 0
     return (
       <div>
-        { isStartMode
-          ? <QuestionerDeck gameState={gameState} userData={this.props.userData} onSelectQuestion={this.onSelectQuestion}/>
+        { isQuestioner
+          ? <QuestionerDeck activeUserInfo={activeUserInfo} gameState={gameState} userData={this.props.userData} onSelectQuestion={this.onSelectQuestion}/>
           : <QuestionSection />
         }
       </div>

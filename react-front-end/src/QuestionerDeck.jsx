@@ -55,19 +55,12 @@ class QuestionerDeck extends Component {
 
   componentDidMount() {
     // this.fetchQuestionCards();
-    let questionerID = this.props.gameState.gameInfo.currentQuestioner
-    let numPlayers = this.props.gameState.gameInfo.currentPlayers
     const tempCards = [];
-    console.log(this.props)
-    for (let i= 0; i < numPlayers-1; i++ ){
-      if (this.props.userData.id === this.props.gameState.playersInfo.users[i].id){
-        console.log('FOUND questioner in playersInfo, id:', this.props.userData.id)
-        for (let k=0; k<3; k++){
-          //push in 3 question cards
-          tempCards.push(this.props.gameState.playersInfo.users[i].questionCards[k])
-        }
-      }
+    for (let k=0; k<this.props.activeUserInfo.questionCards.length; k++){
+      //push in 3 question cards
+      tempCards.push(this.props.activeUserInfo.questionCards[k])
     }
+    
     console.log('tempCards is:',tempCards)
     this.setState({questions: tempCards})
   }

@@ -140,7 +140,6 @@ class Api::GamesController < ApplicationController
     # incoming HTTP put/patch request, filter out by type
     # outgoing: Using broadcast WS
 
-    # produit_id = params[:produit_id]
     type = params[:type]
     gameState = params[:gameState]
     puts "==== incoming type ==="
