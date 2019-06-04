@@ -165,7 +165,7 @@ class Game extends Component {
     // should have AnswerDeck on top, AnswerSection on bottom
 
     if (!isStartMode) {
-      return <AnswerSection />;
+      return <AnswerSection userStatus={gameTable.gameState.playersInfo} currentQuestioner={gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers}/>
     }
     let activeUserInfo = "";
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
