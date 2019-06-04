@@ -6,7 +6,7 @@ class Chat extends Component {
 
   render() {
     console.log("FROM CHAT.jsx: ", this.props);
-    const users = this.props.userInfo.gameState.playersInfo.users;
+    const users = this.props.userInfo.users;
     return (
       <div className="p-2 chat-box">
         <div className="score-board">
