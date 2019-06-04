@@ -217,20 +217,11 @@ class Game extends Component {
     }
     let activeUserInfo;
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
-    // let tempUserIndex = -1;
-    // let usersArray = this.state.gameTable.gameState.playersInfo.users
-
-    // also cause Maximum update depth exceeded error
-    // let findUserIndex = (element) => {
-    //   // this.setState({userIndex: tempUserIndex})
-    //   return element.id === this.props.userData.id
-    // };
 
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array
       if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
         activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
-        // tempUserIndex = i;
         break;
       }
     }
@@ -238,8 +229,6 @@ class Game extends Component {
       debugger;
     }
 
-    // tempUserIndex = usersArray.findIndex(findUserIndex);
-    // this.setState({userIndex: tempUserIndex})
 
     //trying to only render the QuestionDeck or Question section based on activeUserInfo 
     let isQuestioner = activeUserInfo.questionCards.length > 0
@@ -247,13 +236,12 @@ class Game extends Component {
     if (currentStatus === 'Question selected, please choose an answer'){
       isQuestioner = true;
     }
-    
-    //set the userIndex inside the gameState object to be passed to backend
-    // if(tempUserIndex >= 0){
-    //   console.log('tempUserIndex is:',tempUserIndex)
-    //   // setting state here will caus: Maximum update depth exceeded error
-    //   // this.setState({userIndex: tempUserIndex})
-    // }
+    if (currentStatus.startsWith('Answer have been submitted by')){
+      isQuestioner = true;
+    }
+    // maybe send down isQuestioner as a prop to use?
+    // should do most of the conditional rendering logic here in the parent, only send down static data to let component render
+
 
     return (
       <div>

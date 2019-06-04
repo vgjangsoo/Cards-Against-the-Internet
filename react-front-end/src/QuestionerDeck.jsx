@@ -12,6 +12,11 @@ class QuestionerDeck extends Component {
     }
   }
 
+  // refactoring tips
+  // send in all the question cards to this component
+  // have properties of questionCard[], selectedIndex, onSelection, isPlayedCard
+  // rendering based on these "dumb " properties, they should not change much
+  // the value of properties to pass down is done inside <Game> 
   
   componentDidMount() {
     // this.fetchQuestionCards();
@@ -24,7 +29,7 @@ class QuestionerDeck extends Component {
     this.setState({questions: tempCards})
 
     let status = this.props.gameState.gameInfo.status
-    if (status === 'Question selected, please choose an answer'){
+    if (status === 'Question selected, please choose an answer' || status.startsWith('Answer have been submitted by')){
       let selectedQuestion = this.props.gameState.gameInfo.selectedQuestion;
       let tempArray = []
       tempArray.push(selectedQuestion)  
