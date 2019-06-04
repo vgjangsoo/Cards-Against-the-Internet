@@ -117,7 +117,7 @@ class Game extends Component {
     const type = 'question-card-selected'
     const gameState = this.state.gameTable.gameState;
     const userID = this.props.userData.id
-    const userIndex = this.state.userIndex
+    // const userIndex = this.state.userIndex
   
     axios.put(`${API_ROOT}/games/${gameRoomId}?question=${question}&userID=${userID}`, {
       type: type,
@@ -207,8 +207,6 @@ class Game extends Component {
     //   // this.setState({userIndex: tempUserIndex})
     //   return element.id === this.props.userData.id
     // };
-
-  
 
     for (let i= 0; i <= (numPlayers-1); i++ ){
       //trying to find the ONE player in playersInfo.user array
