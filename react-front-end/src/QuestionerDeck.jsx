@@ -22,15 +22,25 @@ class QuestionerDeck extends Component {
     }
     // console.log('Questions tempCards is:',tempCards)
     this.setState({questions: tempCards})
+
+    let status = this.props.gameState.gameInfo.status
+    if (status === 'Question selected, please choose an answer'){
+      let selectedQuestion = this.props.gameState.gameInfo.selectedQuestion;
+      let tempArray = []
+      tempArray.push(selectedQuestion)  
+      this.setState({questions: tempArray})
+    }
+
   }
 
-  // componentWillUpdate(nextProps, nextState) {
+  // componentWillUpdate = () => {
   //   let status = this.props.gameState.gameInfo.status
   //   if (status === 'Question selected, please choose an answer'){
   //     let selectedQuestion = this.props.gameState.gameInfo.selectedQuestion;
   //     let tempArray = []
   //     tempArray.push(selectedQuestion)  
   //     this.setState({questions: tempArray})
+  //     return;
   //   } 
   // }
 
