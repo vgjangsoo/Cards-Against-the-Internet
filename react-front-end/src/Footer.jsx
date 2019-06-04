@@ -29,7 +29,7 @@ render() {
                 <div className="footer-section col-sm-2">
                     <h5 className="footer-h5">About us</h5>
                     <ul>
-                        <li><a className="footer-a" href="#">Contact us</a></li>
+                        <li><a className="footer-a" href="mailto:cardsagainstinternet@gmail.com">Contact us</a></li>
                         <li><a className="footer-a" href="#" >Reviews</a></li>
                     </ul>
                 </div>

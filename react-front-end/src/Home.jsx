@@ -56,7 +56,8 @@ class Home extends Component {
       this.props.updateCurrentUser(res.data)
       localStorage.setItem('browserUserData', JSON.stringify(res.data))
     });
-    
+
+    this.setState({ showModal: false });
     // .then(() =>{
     //   // trying to console log the localStorage user
     //   this.getCurrentUser()
@@ -91,6 +92,7 @@ class Home extends Component {
       this.props.updateCurrentUser(res.data)
     });
     
+    this.setState({ showModal: false });
   }
 
   render() {

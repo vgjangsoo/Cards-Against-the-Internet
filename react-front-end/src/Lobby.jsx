@@ -6,6 +6,7 @@ import Gameroom from "./Gameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx";
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
+import UserNotLoggedIn from "./UserNotLoggedIn"
 
 class Lobby extends Component {
   constructor(props) {
@@ -132,7 +133,7 @@ class Lobby extends Component {
     return (
       <div className="App">
         <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout} userData={this.props.userData}/>
-        {!this.state.lobbyState.length 
+        {this.props.userData.username ? !this.state.lobbyState.length 
             ? 
             <div className="loader-container">
               <div className="loader"></div>
@@ -144,8 +145,7 @@ class Lobby extends Component {
               return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
             })}
           </div>
-        </div>}
-
+        </div> : <UserNotLoggedIn />}
         <div>
           {this.state.showCreateRoomModal ? (
             <CreateRoomModal
