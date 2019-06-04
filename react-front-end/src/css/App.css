@@ -221,13 +221,11 @@ button.close-button {
 }
 
 .ingame-room {
-  margin-left: 5%;
-  margin-top: 0px;
   width: 100%;
 }
 
 .questioner {
-  width: 1250px;
+  width: 950px;
   padding-top: 200px;
   margin-top: 200px;
   border: 5px solid black !important;
@@ -258,7 +256,7 @@ button.close-button {
 
 .status-message {
   padding-top: 1%;
-  margin: auto;
+  margin-left: 23vw;
   width: 50%;
 }
 
@@ -276,101 +274,9 @@ button.close-button {
   font-size: 21px;
 }
 
-@media screen and (min-width: 1350px) {
-  /* Questioner Section */
-  h6.game-number {
-    font-size: 1vw;
-  }
-
-  div.ingame-room {
-    margin-left: 20%;
-  }
-
-  div.questioner {
-    width: 95vw;
-    height: 40vh;
-  }
-
-  div.game-card-logo {
-    font-size: 2vw;
-    font-weight: 900;
-  }
-
-  h4.questioner-header {
-    font-size: 2vw;
-  }
-
-  div.questioncards {
-    width: 13vw !important;
-    height: 30vh;
-  }
-
-  /* Status Section */
-  h6.game-status-message {
-    font-size: 1.7vw;
-  }
-
-  button.game-status-button {
-    border: none;
-    width: 13vw; 
-    height: 5vh;
-    margin-top: -2%;
-    margin-bottom: 1%;
-    font-size: 1.3vw;
-  }
-  
-  button.game-status-button:hover {
-    font-size: 1.4vw;
-  }
-
-  /* Answerer Section */
-  div.answerers {
-    width: 95vw;
-    height: 40vh;
-  }
-
-  h4.answerer-header {
-    font-size: 2vw;
-  }
-
-  div.deckCardBeforeStart {
-    width: 13vw !important;
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-  }
-
-  img.card-img {
-    width: 8vw !important;
-    height: 8vw !important;
-  }
-
-  h6.answerer-ID {
-    font-size: 1.2vw;
-  }
-
-  div.player-status-section {
-    margin-top: 10%;
-    border: 3px solid black;
-  }
-
-  h6.answerer-status-section {
-    font-size: 1.5vw;
-  }
-
-  h6.answerer-status1 {
-    font-size: 1.2vw;
-  }
-
-  h6.answerer-status2 {
-    font-size: 1.5vw;
-  }
-
-}
-
 /* Answerer's Section */
 .answerers {
-  width: 1150px;
+  width: 950px;
   padding-top: 200px;
   margin-top: 200px;
   border: 5px solid black !important;
@@ -410,12 +316,188 @@ button.close-button {
   font-weight: 900;
 }
 
+@media screen and (min-width: 1350px) {
+  /* Nav Section */
+  button.game-nav-button {
+    width: 9vw;
+    height: 5vh;
+    font-size: 1.2vw;
+  }
+
+  button.game-nav-button:hover {
+    width: 9vw;
+    height: 5vh;
+    font-size: 1.35vw;
+  }
+
+  h6.game-round, h6.game-player {
+    font-size: 1.1vw;
+  }
+
+  /* Questioner Section */
+  h6.game-number {
+    font-size: 1vw;
+  }
+
+  div.questioner {
+    width: 70vw;
+    height: 40vh;
+  }
+
+  div.game-card-logo {
+    font-size: 2vw;
+    font-weight: 900;
+  }
+
+  h4.questioner-header {
+    font-size: 2vw;
+  }
+
+  div.questioncards {
+    width: 13vw !important;
+    height: 30vh;
+  }
+
+  /* Status Section */
+  h6.game-status-message {
+    font-size: 1.7vw;
+  }
+
+  button.game-status-button {
+    border: none;
+    width: 14vw; 
+    height: 6vh;
+    margin-top: -2%;
+    margin-left: -1.5vw;
+    margin-bottom: 3%;
+    font-size: 1.3vw;
+  }
+  
+  button.game-status-button:hover {
+    font-size: 1.4vw;
+  }
+
+  /* Answerer Section */
+  div.answerers {
+    width: 70vw;
+    height: 40vh;
+  }
+
+  h4.answerer-header {
+    font-size: 2vw;
+  }
+
+  div.deckCardBeforeStart {
+    width: 13vw !important;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  img.card-img {
+    width: 8vw !important;
+    height: 8vw !important;
+  }
+
+  h6.answerer-ID {
+    font-size: 1.2vw;
+  }
+
+  div.player-status-section {
+    border: 3px solid black;
+  }
+
+  h6.answerer-status-section {
+    font-size: 1.5vw;
+  }
+
+  h6.answerer-status1 {
+    font-size: 1.2vw;
+  }
+
+  h6.answerer-status2 {
+    font-size: 1.5vw;
+  }
+
+  div.cardDeck-container {
+    margin-left: -2%;
+  }
+
+  /* Chat-history-bar */
+  div.chat-history-bar {
+    margin-left: 71vw;
+    width: 25vw;
+    margin-top: -51vw;
+  }
+
+  div.history-border {
+    height: 15vw;
+  }
+
+  h5.history-header {
+    font-size: 1.8vw;
+  }
+
+  div.history-border {
+    height: 30vh; 
+    padding-left: 2vw;
+  }
+
+  div.history-box {
+    width: 9vw;
+    height: 22vh;
+  }
+
+  div.chat-box {
+    height: 58vh;
+  }
+
+  div.score-board {
+    height: 18vh;
+  }
+
+  h6.score-title {
+    font-size: 1.2vw;
+  }
+
+  h6.player-name {
+    font-size: 0.8vw;
+  }
+
+  h5.chat-header {
+    font-size: 1.8vw;
+  }
+
+  div.incoming-msg {
+    height: 27vh;
+  }
+
+  input.write_msg {
+    width: 15vw;
+  }
+
+  button.chat-button {
+    width: 3.5vw;
+    height: 3.8vh;
+  }
+
+  /* Answerers Card Section */
+  div.answerer-answer {
+    width: 12.3vw !important;
+    height: 28vh;
+  }
+
+  div.card-text {
+    font-size: 1.3vw;
+    font-weight: 500;
+  }
+}
+
 /* Chat-history section */
 .chat-history-bar {
   margin-top: -687px;
   margin-left: 75vw;
   width: 310px; 
-  /* 24vw */
 }
 
 .history-header {
@@ -446,6 +528,10 @@ button.close-button {
   border: none;
 }
 
+.answer-question {
+  background-color: white;
+}
+
 .chat-box {
   border-radius: 5px;
   border: 5px solid black;
@@ -454,7 +540,7 @@ button.close-button {
 }
 
 .incoming-msg {
-  height: 22vh;
+  height: 18vh;
   border: 5px solid black;
   border-radius: 5px;
   background-color: white;
@@ -468,8 +554,8 @@ button.close-button {
 /* On mouse-over, add a deeper shadow */
 .deckCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  color: grey;
-  background-color: #dbeeba;
+  color: white;
+  background-color: #1abc9c;
 }
 
 /* Add some padding inside the card container */
@@ -495,8 +581,9 @@ button.close-button {
 }
 
 .play-card-button {
-  margin-left: 58vw;
+  margin-left: 55vw;
   margin-top: -40px;
+  width: 195px;
 }
 
 .write_msg {
@@ -684,8 +771,26 @@ p.jumbotron-p {
 
   button.nav-signup-button {
     width: 6vw;
-    height: 6vh;
+    height: 5vh;
     font-size: 1vw;
+  }
+
+  button.nav-signup-button:hover {
+    width: 6vw;
+    height: 5vh;
+    font-size: 1.1vw;
+    background-color: #1abc9c;
+  }
+
+  button.create-room-button {
+    width: 15vw !important;
+    font-size: 1.2vw;
+    border: none;
+  }
+
+  button.create-room-button:hover {
+    background-color: #1abc9c;
+    border: none;
   }
 
   /* Banner  */
@@ -809,7 +914,6 @@ p.jumbotron-p {
   margin-bottom: -10px;
   font-weight: 900;
 }
-
 
 
 

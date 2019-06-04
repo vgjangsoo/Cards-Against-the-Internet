@@ -18,7 +18,7 @@ class Chat extends Component {
             )
           })}
         </div>
-        <h5>Chat</h5>
+        <h5 className="chat-header">Chat</h5>
 
         <div className="incoming-msg">
 

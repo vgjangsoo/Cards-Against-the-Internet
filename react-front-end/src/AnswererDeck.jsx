@@ -80,10 +80,10 @@ class AnswererDeck extends Component {
         <h4>Answerers' Cards</h4>
         <div className=' answerers-cards'>
         
-          <div className='d-inline-flex flex-row justify-content-between content'>
+          <div className='d-inline-flex flex-row'>
           {selectedAnswers.map(e => {
             return (
-              <div className='deckCard card answer-card' key={e.id}>
+              <div className='deckCard card answer-card answerer-answer' key={e.id}>
                 <div className='cardContainer'>
                   <div className="card-body">
                     <div key={e.id} className="card-text">{e.content}</div>

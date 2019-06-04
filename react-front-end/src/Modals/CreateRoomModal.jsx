@@ -34,8 +34,8 @@ class CreateRoomModal extends Component {
               Randomize Theme
             </button>
 
-            <div class="room-toggle-down">
-              <div class="custom-dropdown">
+            <div className="room-toggle-down">
+              <div className="custom-dropdown">
                 <select id="playerNumber" required>
                   <option>Player #</option>
                   <option>3</option>
@@ -43,7 +43,7 @@ class CreateRoomModal extends Component {
                   <option>5</option>
                 </select>
               </div>
-              <div class="custom-dropdown">
+              <div className="custom-dropdown">
                 <select id="roundNumber" required>
                   <option>Round #</option>
                   <option>3</option>
