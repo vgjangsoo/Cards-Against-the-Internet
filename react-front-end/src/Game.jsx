@@ -50,6 +50,8 @@ class Game extends Component {
     this.QuestionArea = this.QuestionArea.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
     this.onSelectQuestion = this.onSelectQuestion.bind(this);
+    this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this)
+    this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this)
 
   }
 
@@ -106,9 +108,27 @@ class Game extends Component {
 
   }
 
-  handlerPlayCardButton(){
-    console.log('playcard button pressed')
+  handlerPlayQuestion(){
+    console.log('question button pressed')
+    const question = this.state.selectedQuestion;
+    console.log('question is:', question)
+    const gameRoomId = this.props.match.params.id;
+    const type = 'question-card-selected'
+    const gameState = this.state.gameTable.gameState;
+    const userID = this.props.userData.id
+  
+    axios.put(`${API_ROOT}/games/${gameRoomId}?question=${question}&userID=${userID}`, {
+      type: type,
+      gameState: gameState
+    }).then(res =>{
+      console.log('PUT handlerPlayQuestion successful, res:', res)
+    });
 
+    //need to clear both selectedAnswer and selectedQuestion after posting?
+  }
+
+  handlerPlayAnswer(){
+    console.log('answer button pressed')
 
     //need to clear both selectedAnswer and selectedQuestion after posting
   }
@@ -117,13 +137,13 @@ class Game extends Component {
     console.log('selected answer is:', answer)
     //need to set State of selected Answer
     this.setState({selectedAnswer: answer})
+    
   }
 
   onSelectQuestion(question){
     console.log('selected question is:', question)
     // need to set State of selected Question
     this.setState({selectedQuestion: question})
-
   }
 
   
@@ -151,6 +171,7 @@ class Game extends Component {
 
     //trying to only render the QuestionDeck or Question section based on activeUserInfo 
     let isAnswerer = activeUserInfo.answerCards.length > 0
+    //check again if this person should show  
     if (questionerID === this.props.userData.id){
       isAnswerer = false;  
     }
@@ -250,7 +271,10 @@ class Game extends Component {
                     { <h6>{gameTable.gameState.gameInfo.status}</h6> }
                     </div>
                     <div className='play-card-button'>
-                      <button className='btn btn-dark btn-md p-2' onClick={this.handlerPlayCardButton} >Play Card</button>
+                      <button className='btn btn-dark btn-md p-2' onClick={this.handlerPlayQuestion} >Play Q Card</button>
+                    </div>
+                    <div className='play-card-button'>
+                      <button className='btn btn-dark btn-md p-2' onClick={this.handlerPlayAnswer} >Play A Card</button>
                     </div>
                     <div className="answerers col-9" style={style}>
                       {this.AnswerArea(gameTable.gameState, gameTable)}

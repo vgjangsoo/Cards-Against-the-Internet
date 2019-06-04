@@ -91,7 +91,7 @@ class AnswererDeck extends Component {
       tempCards.push(this.props.activeUserInfo.answerCards[k])
     }
 
-    console.log('ANSWERS tempCards is:',tempCards)
+    // console.log('ANSWERS tempCards is:',tempCards)
     this.setState({answers: tempCards})
   }
   

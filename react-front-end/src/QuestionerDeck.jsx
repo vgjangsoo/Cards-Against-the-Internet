@@ -60,7 +60,7 @@ class QuestionerDeck extends Component {
       tempCards.push(this.props.activeUserInfo.questionCards[k])
     }
     
-    console.log('Questions tempCards is:',tempCards)
+    // console.log('Questions tempCards is:',tempCards)
     this.setState({questions: tempCards})
   }
 

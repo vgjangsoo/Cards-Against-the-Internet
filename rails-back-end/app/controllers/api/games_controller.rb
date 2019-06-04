@@ -215,10 +215,27 @@ class Api::GamesController < ApplicationController
       end
       
       ########### all start conditions should be done before this
-      game["gameState"] = gameState
-      game.save!
+      # game["gameState"] = gameState
+      # game.save!
 
       puts "====== end of start-button-pressed filter"
+    end
+
+    if (type === 'question-card-selected')
+      # question play card button is clicked, need to get the question content from query params?
+      puts "=== GAME: type = question-card-selected ==== "
+      puts params['question']
+      puts params['userID']
+      question = params['question'].to_s
+      userID = params['userID'].to_i
+      gameState["gameInfo"]["status"] = "Question selected, please choose an answer"
+      gameState["gameInfo"]["selectedQuestion"] = question
+      gameState["playersInfo"]["users"][userID]["selectedCard"] = question
+      gameState["playersInfo"]["users"][userID]["status"] = 'ready'
+
+
+      puts "=== end of type - question-card-selected ==== "
+
     end
 
     if (type === 'answerer-selected-card')
@@ -227,6 +244,8 @@ class Api::GamesController < ApplicationController
     end    
 
     # need to do broadcast call here
+    game["gameState"] = gameState
+    game.save!
     broadcast_to_game(game)
   end
 
