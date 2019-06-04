@@ -12,21 +12,21 @@ class AnswerSection extends Component {
     // return null;
     return (
       <div>
-        <h4>Players</h4>
+        <h4 className="answerer-header">Players</h4>
         <div className=' answerers-cards'>
-          <div className='d-flex flex-row justify-content-around'>
+          <div className='d-flex flex-row justify-content-center'>
             {this.props.userStatus.users.map(e => {
               if (currentQuestioner !== e.id){
                 return (
                   <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}} key={e.id}>
-                    <div className='cardContainer'>
+                    <div className='cardContainer answerer-card-container'>
                       <div className="card-body" >
-                      <img className='card-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
+                      <img className='card-img answerer-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                         <div className='player-name-section'>
-                          <h6>Player ID: {e.id}</h6>
+                          <h6 className="answerer-ID">Player ID: {e.id}</h6>
                         </div>
                         <div className='player-status-section'>
-                          <h6>{e.status}</h6>
+                          <h6 className="answerer-status-section">{e.status}</h6>
                         </div>
                       </div>
                     </div>
@@ -58,10 +58,10 @@ class MissingPlayerCard extends Component {
       <div className="card-body">
       <img className='card-img' src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
         <div className='player-name-section'>
-          <h6>Waiting to Join</h6>
+          <h6 className="answerer-status answerer-status1">Waiting to Join</h6>
         </div>
         <div className='player-status-section'>
-          <h6>Waiting...</h6>
+          <h6 className="answerer-status answerer-status2">Waiting...</h6>
         </div>
       </div>
     </div>
