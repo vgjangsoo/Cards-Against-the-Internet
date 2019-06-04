@@ -5,7 +5,7 @@ import './css/App.css';
 class Chat extends Component {
 
   render() {
-    console.log("FROM CHAT.jsx: ", this.props.userInfo.users);
+    console.log("FROM CHAT.jsx: ", this.props);
     const users = this.props.userInfo.users;
     return (
       <div className="p-2 chat-box">
@@ -14,7 +14,7 @@ class Chat extends Component {
           <hr/>
           {users.map(e => {
             return (
-              <h6 key={e.id} className='player-name'>Player #{e.id}: {e.roundPoints}</h6>
+              <h6 key={e.id} className='player-name'>{e.username}: {e.roundPoints}</h6>
             )
           })}
         </div>
