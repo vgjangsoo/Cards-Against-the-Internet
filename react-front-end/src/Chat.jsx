@@ -18,17 +18,17 @@ class Chat extends Component {
             )
           })}
         </div>
-        <h5>Chat</h5>
+        <h5 className="chat-header">Chat</h5>
 
         <div className="incoming-msg">
 
         </div>
         <div className="d-flex flex-row justify-content-around">
           <input type="chat-input" id="cha-input" className="form-control write_msg" placeholder="Let's chat!"></input>
-          <button className="btn btn-dark btn-md p-1">
+          <button className="btn btn-dark btn-md p-1 chat-button">
             Send
           </button>
-          <button className='btn-md btn btn-dark p-1'> 😀</button>
+          <button className='btn-md btn btn-dark p-1 chat-button'> 😀</button>
         </div>
       </div>
     );

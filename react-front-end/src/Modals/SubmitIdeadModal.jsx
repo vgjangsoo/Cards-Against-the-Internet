@@ -18,7 +18,7 @@ class SubmitIdeaModal extends Component {
             </div>
 
             <button className="btn btn-lg btn-dark idea-button" type="submit" tabindex="0">
-             Share your stupid idea!
+                Share your stupid idea!
             </button>
           </form>
         </div>

@@ -140,6 +140,9 @@ class Api::GamesController < ApplicationController
     # incoming HTTP put/patch request, filter out by type
     # outgoing: Using broadcast WS
 
+    # dont really need to have incoming gameState, can gram REAL gameState from DB, 
+    # then update certain sections and broadcast good version to everyone
+
     type = params[:type]
     gameState = params[:gameState]
     puts "==== incoming type ==="
@@ -248,6 +251,8 @@ class Api::GamesController < ApplicationController
 
     if (type === 'answerer-selected-card')
       # logic to modify gameState
+      # need to check after changing gameState how many answer cards have been select,
+      # if all answers are selected, then add a condition/flag to go to next step?
     
     end    
 

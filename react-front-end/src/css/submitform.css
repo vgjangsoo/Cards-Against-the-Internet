@@ -42,3 +42,7 @@ button.idea-close-button {
 button.idea-button {
     margin-top: 3%;
 }
+
+form.idea-form {
+    background-color: #dedede;
+}
