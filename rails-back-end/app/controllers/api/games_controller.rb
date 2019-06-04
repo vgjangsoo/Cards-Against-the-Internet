@@ -249,10 +249,31 @@ class Api::GamesController < ApplicationController
 
     end
 
-    if (type === 'answerer-selected-card')
-      # logic to modify gameState
+    if (type === 'answer-card-selected')
       # need to check after changing gameState how many answer cards have been select,
       # if all answers are selected, then add a condition/flag to go to next step?
+
+      puts "=== GAME: type = answer-card-selected ==== "
+      puts params['answer']
+      puts params['userID']
+      answer = params['answer'].to_s
+      userID = params['userID'].to_i
+      usersArray = gameState["playersInfo"]["users"]
+      # userIndex = params['userIndex'].to_i
+      
+      # need to find the users[index] in order to set the correct user
+      userIndex = usersArray.index { |user| user["id"] === userID }
+      puts "userIndex is #{userIndex}"
+
+      # need to show number of answers have been selected
+      gameState["gameInfo"]["status"] = "Answer have been submitted by User ID:#{userID}"
+      gameState["playersInfo"]["users"][userIndex]["selectedCard"] = answer
+      gameState["playersInfo"]["users"][userIndex]["status"] = 'ready'
+
+      # all gamestate changes should be done before this line
+      game["gameState"] = gameState
+      game.save!
+      puts "=== end of type - answer-card-selected ==== "
     
     end    
 
