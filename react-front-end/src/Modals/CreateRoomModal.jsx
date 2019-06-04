@@ -2,8 +2,27 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../css/App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import Words from "../Words/Words";
+import { API_ROOT, API_WS_ROOT, HEADERS } from "../constants";
 
 class CreateRoomModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { randomizeWord: null };
+    this.randomizeRoomName = this.randomizeRoomName.bind(this);
+  }
+
+  randomizeRoomName() {
+    const words = Words;
+    let number = Math.floor(Math.random() * words.length);
+    axios.get(`${API_ROOT}/lobbies`).then(res => {
+      for (let key in res.data) {
+        if (res.data[key].theme !== words[number]) {
+          this.setState({ randomizeWord: words[number] })
+        }
+      }
+    })
+  }
 
   render() {
     return (
@@ -26,12 +45,13 @@ class CreateRoomModal extends Component {
             <input
               type="theme"
               id="theme"
-              className="room-theme"
-              placeholder="Game Theme"
+              className="room-theme words-appear"
+              placeholder="Game Room Name"
+              value={this.state.randomizeWord}
               required
             />
-            <button className="btn btn-md btn-dark btn-block" type="submit">
-              Randomize Theme
+            <button className="btn btn-md btn-dark btn-block" type="button" onClick={this.randomizeRoomName}>
+              Randomize Room Name
             </button>
 
             <div className="room-toggle-down">
