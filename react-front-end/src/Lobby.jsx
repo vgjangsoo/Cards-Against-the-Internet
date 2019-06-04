@@ -40,7 +40,7 @@ class Lobby extends Component {
 
   handleLogout(){
     console.log('Logout button is clicked')
-    localStorage.removeItem('browserUserData')
+    this.props.updateCurrentUser({})
   }
 
   handleRoomCreate(event) {
@@ -131,7 +131,7 @@ class Lobby extends Component {
 
     return (
       <div className="App">
-        <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout}/>
+        <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout} userData={this.props.userData}/>
         {!this.state.lobbyState.length 
             ? 
             <div className="loader-container">
