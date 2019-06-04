@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
             
             # render json: session[:user_id]
             render json: user
-        else
+        else 
             puts user.errors.full_messages 
             redirect_to '/signup'
         end

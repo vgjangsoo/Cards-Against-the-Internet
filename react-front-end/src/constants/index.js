@@ -14,7 +14,7 @@ export const loadingGameState = {
           currentQuestioner: 0,
       },
       playersInfo: {
-          users: [] 
+          users: [1, 2, 3, 4,5] 
       }
   }
 }

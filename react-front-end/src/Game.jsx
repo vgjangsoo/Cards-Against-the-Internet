@@ -109,7 +109,7 @@ class Game extends Component {
   }
 
   handlerPlayQuestion(){
-    console.log('question button pressed')
+    console.log('question play card button pressed')
     const question = this.state.selectedQuestion;
     console.log('question is:', question)
     const gameRoomId = this.props.match.params.id;
@@ -129,9 +129,22 @@ class Game extends Component {
   }
 
   handlerPlayAnswer(){
-    console.log('answer button pressed')
+    console.log('answer play card button pressed')
+    const answer = this.state.selectedAnswer;
+    console.log('answer is:', answer)
+    const gameRoomId = this.props.match.params.id;
+    const type = 'answer-card-selected'
+    const gameState = this.state.gameTable.gameState;
+    const userID = this.props.userData.id
 
-    //need to clear both selectedAnswer and selectedQuestion after posting
+    axios.put(`${API_ROOT}/games/${gameRoomId}?answer=${answer}&userID=${userID}`, {
+      type: type,
+      gameState: gameState
+    }).then(res =>{
+      console.log('PUT handlerPlayAnswer successful, res:', res)
+    });
+
+    //need to clear both selectedAnswer and selectedQuestion after posting?
   }
 
   onSelectAnswer(answer) {
@@ -183,7 +196,7 @@ class Game extends Component {
     return (
       <div>
         {isAnswerer ? (
-          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo}/>
+          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo} onSelectAnswer={this.onSelectAnswer}/>
         ) : (
           <AnswerSection
             userStatus={gameTable.gameState.playersInfo}
