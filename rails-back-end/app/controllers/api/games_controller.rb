@@ -215,8 +215,8 @@ class Api::GamesController < ApplicationController
       end
       
       ########### all start conditions should be done before this
-      # game["gameState"] = gameState
-      # game.save!
+      game["gameState"] = gameState
+      game.save!
 
       puts "====== end of start-button-pressed filter"
     end
@@ -228,12 +228,20 @@ class Api::GamesController < ApplicationController
       puts params['userID']
       question = params['question'].to_s
       userID = params['userID'].to_i
+      usersArray = gameState["playersInfo"]["users"]
+      # userIndex = params['userIndex'].to_i
+      
+      # need to find the users[index] in order to set the correct user
+      userIndex = usersArray.index { |user| user["id"] === userID }
+      puts "userIndex is #{userIndex}"
+
       gameState["gameInfo"]["status"] = "Question selected, please choose an answer"
       gameState["gameInfo"]["selectedQuestion"] = question
-      gameState["playersInfo"]["users"][userID]["selectedCard"] = question
-      gameState["playersInfo"]["users"][userID]["status"] = 'ready'
+      gameState["playersInfo"]["users"][userIndex]["selectedCard"] = question
+      gameState["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
-
+      game["gameState"] = gameState
+      game.save!
       puts "=== end of type - question-card-selected ==== "
 
     end
@@ -244,8 +252,7 @@ class Api::GamesController < ApplicationController
     end    
 
     # need to do broadcast call here
-    game["gameState"] = gameState
-    game.save!
+
     broadcast_to_game(game)
   end
 

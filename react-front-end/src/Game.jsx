@@ -30,7 +30,8 @@ class Game extends Component {
       loadingGameState: loadingGameState,
       gameTable: {},
       selectedAnswer: '',
-      selectedQuestion: ''
+      selectedQuestion: '', 
+      userIndex: -1
     }
     // being passed down from parent component, will setup the sockect connection
     // Cable is working for now, but wrong channel
@@ -116,6 +117,7 @@ class Game extends Component {
     const type = 'question-card-selected'
     const gameState = this.state.gameTable.gameState;
     const userID = this.props.userData.id
+    const userIndex = this.state.userIndex
   
     axios.put(`${API_ROOT}/games/${gameRoomId}?question=${question}&userID=${userID}`, {
       type: type,
@@ -197,18 +199,42 @@ class Game extends Component {
     }
     let activeUserInfo;
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
+    // let tempUserIndex = -1;
+    // let usersArray = this.state.gameTable.gameState.playersInfo.users
+
+    // also cause Maximum update depth exceeded error
+    // let findUserIndex = (element) => {
+    //   // this.setState({userIndex: tempUserIndex})
+    //   return element.id === this.props.userData.id
+    // };
+
+  
 
     for (let i= 0; i <= (numPlayers-1); i++ ){
       //trying to find the ONE player in playersInfo.user array
       if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
         activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
+        // tempUserIndex = i;
+        break;
       }
     }
     if (!activeUserInfo){
       debugger;
     }
+
+    // tempUserIndex = usersArray.findIndex(findUserIndex);
+    // this.setState({userIndex: tempUserIndex})
+
     //trying to only render the QuestionDeck or Question section based on activeUserInfo 
     const isQuestioner = activeUserInfo.questionCards.length > 0
+    
+    //set the userIndex inside the gameState object to be passed to backend
+    // if(tempUserIndex >= 0){
+    //   console.log('tempUserIndex is:',tempUserIndex)
+    //   // setting state here will caus: Maximum update depth exceeded error
+    //   // this.setState({userIndex: tempUserIndex})
+    // }
+
     return (
       <div>
         { isQuestioner
@@ -218,8 +244,6 @@ class Game extends Component {
       </div>
     );
   }
-
-
 
 
   //////////////////////////////////
