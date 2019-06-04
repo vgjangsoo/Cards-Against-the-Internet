@@ -141,6 +141,9 @@ class Api::GamesController < ApplicationController
     # incoming HTTP put/patch request, filter out by type
     # outgoing: Using broadcast WS
 
+    # dont really need to have incoming gameState, can gram REAL gameState from DB, 
+    # then update certain sections and broadcast good version to everyone
+
     type = params[:type]
     gameState = params[:gameState]
     puts "==== incoming type ==="
@@ -222,12 +225,40 @@ class Api::GamesController < ApplicationController
       puts "====== end of start-button-pressed filter"
     end
 
+    if (type === 'question-card-selected')
+      # question play card button is clicked, need to get the question content from query params?
+      puts "=== GAME: type = question-card-selected ==== "
+      puts params['question']
+      puts params['userID']
+      question = params['question'].to_s
+      userID = params['userID'].to_i
+      usersArray = gameState["playersInfo"]["users"]
+      # userIndex = params['userIndex'].to_i
+      
+      # need to find the users[index] in order to set the correct user
+      userIndex = usersArray.index { |user| user["id"] === userID }
+      puts "userIndex is #{userIndex}"
+
+      gameState["gameInfo"]["status"] = "Question selected, please choose an answer"
+      gameState["gameInfo"]["selectedQuestion"] = question
+      gameState["playersInfo"]["users"][userIndex]["selectedCard"] = question
+      gameState["playersInfo"]["users"][userIndex]["status"] = 'ready'
+
+      game["gameState"] = gameState
+      game.save!
+      puts "=== end of type - question-card-selected ==== "
+
+    end
+
     if (type === 'answerer-selected-card')
       # logic to modify gameState
+      # need to check after changing gameState how many answer cards have been select,
+      # if all answers are selected, then add a condition/flag to go to next step?
     
     end    
 
     # need to do broadcast call here
+
     broadcast_to_game(game)
   end
 

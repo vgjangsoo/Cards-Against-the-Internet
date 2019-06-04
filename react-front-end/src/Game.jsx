@@ -52,6 +52,9 @@ class Game extends Component {
     this.QuestionArea = this.QuestionArea.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
     this.onSelectQuestion = this.onSelectQuestion.bind(this);
+    this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this)
+    this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this)
+
   }
 
   componentDidMount() {
@@ -105,8 +108,28 @@ class Game extends Component {
     });
   }
 
-  handlerPlayCardButton() {
-    console.log("playcard button pressed");
+  handlerPlayQuestion(){
+    console.log('question button pressed')
+    const question = this.state.selectedQuestion;
+    console.log('question is:', question)
+    const gameRoomId = this.props.match.params.id;
+    const type = 'question-card-selected'
+    const gameState = this.state.gameTable.gameState;
+    const userID = this.props.userData.id
+    // const userIndex = this.state.userIndex
+  
+    axios.put(`${API_ROOT}/games/${gameRoomId}?question=${question}&userID=${userID}`, {
+      type: type,
+      gameState: gameState
+    }).then(res =>{
+      console.log('PUT handlerPlayQuestion successful, res:', res)
+    });
+
+    //need to clear both selectedAnswer and selectedQuestion after posting?
+  }
+
+  handlerPlayAnswer(){
+    console.log('answer button pressed')
 
     //need to clear both selectedAnswer and selectedQuestion after posting
   }
@@ -138,10 +161,7 @@ class Game extends Component {
 
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array and also check if they are questioner
-      if (
-        this.props.userData.id ===
-        this.state.gameTable.gameState.playersInfo.users[i].id
-      ) {
+      if (this.props.userData.id ===this.state.gameTable.gameState.playersInfo.users[i].id) {
         activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i];
       }
     }
@@ -150,10 +170,11 @@ class Game extends Component {
       debugger;
     }
 
-    //trying to only render the QuestionDeck or Question section based on activeUserInfo
-    let isAnswerer = activeUserInfo.answerCards.length > 0;
-    if (questionerID === this.props.userData.id) {
-      isAnswerer = false;
+    //trying to only render the QuestionDeck or Question section based on activeUserInfo 
+    let isAnswerer = activeUserInfo.answerCards.length > 0
+    //check again if this person should show  
+    if (questionerID === this.props.userData.id){
+      isAnswerer = false;  
     }
     console.log("ANSWERS activeUserInfo:", activeUserInfo);
     //conditionally render based on:
@@ -161,8 +182,8 @@ class Game extends Component {
     //  isAnswerer = false --- AnswererSection
     return (
       <div>
-        {isStartMode ? (
-          <AnswererDeck gameState={gameState} />
+        {isAnswerer ? (
+          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo}/>
         ) : (
           <AnswerSection
             userStatus={gameTable.gameState.playersInfo}
@@ -182,22 +203,45 @@ class Game extends Component {
       return <QuestionSection />;
     }
     let activeUserInfo;
-    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
+    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
+    // let tempUserIndex = -1;
+    // let usersArray = this.state.gameTable.gameState.playersInfo.users
+
+    // also cause Maximum update depth exceeded error
+    // let findUserIndex = (element) => {
+    //   // this.setState({userIndex: tempUserIndex})
+    //   return element.id === this.props.userData.id
+    // };
 
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array
-      if (
-        this.props.userData.id ===
-        this.state.gameTable.gameState.playersInfo.users[i].id
-      ) {
-        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i];
+      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
+        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
+        // tempUserIndex = i;
+        break;
       }
     }
     if (!activeUserInfo) {
       debugger;
     }
-    //trying to only render the QuestionDeck or Question section based on activeUserInfo
-    const isQuestioner = activeUserInfo.questionCards.length > 0;
+
+    // tempUserIndex = usersArray.findIndex(findUserIndex);
+    // this.setState({userIndex: tempUserIndex})
+
+    //trying to only render the QuestionDeck or Question section based on activeUserInfo 
+    let isQuestioner = activeUserInfo.questionCards.length > 0
+    let currentStatus = this.state.gameTable.gameState.gameInfo.status
+    if (currentStatus === 'Question selected, please choose an answer'){
+      isQuestioner = true;
+    }
+    
+    //set the userIndex inside the gameState object to be passed to backend
+    // if(tempUserIndex >= 0){
+    //   console.log('tempUserIndex is:',tempUserIndex)
+    //   // setting state here will caus: Maximum update depth exceeded error
+    //   // this.setState({userIndex: tempUserIndex})
+    // }
+
     return (
       <div>
         {isQuestioner ? (
@@ -292,23 +336,21 @@ class Game extends Component {
                         </h6>
                       }
                     </div>
-                    <div className="play-card-button">
-                      <button
-                        className="btn btn-dark btn-md p-2 game-status-button"
-                        onClick={this.handlerPlayCardButton}
-                      >
-                        Play Card
-                      </button>
+                    <div>
+                      <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerPlayQuestion} >Play Q Card</button>
+                    </div>
+                    <div className='play-card-button'>
+                      <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerPlayAnswer} >Play A Card</button>
                     </div>
                     <div className="answerers shadow-lg" style={style}>
-                      {/* {this.AnswerArea(gameTable.gameState, gameTable)} */}
-                      <AnswerSection
+                      {this.AnswerArea(gameTable.gameState, gameTable)}
+                      {/* <AnswerSection
                         userStatus={gameTable.gameState.playersInfo}
                         currentQuestioner={
                           gameTable.gameState.gameInfo.currentQuestioner
                         }
                         maxPlayers={gameTable.maxPlayers}
-                      />
+                      /> */}
                     </div>
                     <br />
                     <div className="chat-history-bar">
