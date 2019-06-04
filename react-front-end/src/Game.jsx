@@ -134,12 +134,13 @@ class Game extends Component {
     if(!isStartMode) {
       return <AnswerSection />
     }
-    let activeUserInfo;
+    let activeUserInfo = ''
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
+    const questionerID = this.state.gameTable.gameState.gameInfo.currentQuestioner
     
     for (let i= 0; i <= (numPlayers-1); i++ ){
-      //trying to find the ONE player in playersInfo.user array
-      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
+      //trying to find the ONE player in playersInfo.user array and also check if they are questioner 
+      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id ){
         activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
       }
     }
@@ -147,15 +148,19 @@ class Game extends Component {
     if (!activeUserInfo){
       debugger;
     }
+
     //trying to only render the QuestionDeck or Question section based on activeUserInfo 
-    const isAnswerer = activeUserInfo.answerCards.length > 0
+    let isAnswerer = activeUserInfo.answerCards.length > 0
+    if (questionerID === this.props.userData.id){
+      isAnswerer = false;  
+    }
     console.log('ANSWERS activeUserInfo:', activeUserInfo)
     //conditionally render based on:
     // isAnswerer = true ---- AnswererDeck
     //  isAnswerer = false --- AnswererSection 
     return (
       <div>
-        { isAnswerer
+        { (isAnswerer)
           ? <AnswererDeck activeUserInfo={activeUserInfo} gameState={gameState} userData={this.props.userData} onSelectAnswer={this.onSelectAnswer}/>
           : <AnswerSection activeUserInfo={activeUserInfo} userStatus={gameTable.gameState.playersInfo} currentQuestioner= {gameTable.gameState.gameInfo.currentQuestioner} maxPlayers={gameTable.maxPlayers} />
         }
