@@ -368,6 +368,42 @@ class Api::GamesController < ApplicationController
       game["gameState"]["gameInfo"]["currentQuestioner"] = newQuestionerID.to_i
 
       # need to give the new questioner 3 black cards and clear out the answer cards of the previous questioner
+      # step 1: assign new answer cards to all players
+            
+      # assigning cards to each player (including questioner)
+      # find number of users in gameState
+      numPlayers = game["gameState"]["playersInfo"]["users"].size
+      puts "numPlayers: #{numPlayers}"
+
+      # find all answer cards in cards table
+      @answerCards = Card.where(isQuestion: false)  
+      puts "answerCards: #{@answerCards}"
+      puts "answerCards size: #{@answerCards.size}"
+      cardSize = @answerCards.size
+      
+      # randomly assign 5 card.context to each user
+      # puts @answerCards[0].content
+      playerNum = 0
+      while playerNum < numPlayers 
+        # clear out previous answer cards
+        game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"] = []
+
+        for i in 0..4
+          cardNum = rand 1...cardSize
+          while game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
+            # generate another random cardNum to try again
+            cardNum = rand 1...cardSize
+          end
+          game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          game["gameState"]["playersInfo"]["users"][playerNum]["status"] = 'waiting'
+          puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
+        end
+        playerNum += 1
+      end
+
+
+      # step 2: find the new questioner and assign 3 question cards
+
 
       # need to check users[] and replace all question cards  
 
