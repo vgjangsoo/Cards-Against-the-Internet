@@ -111,7 +111,11 @@ const Words = [
   "Zuchinni",
   "Red",
   "Blue",
-  "Yellow"
+  "Yellow",
+  "Boondocks",
+  "Colossus",
+  "Corkscrew",
+  "Curmudgeon"
 ];
 
 export default Words;
