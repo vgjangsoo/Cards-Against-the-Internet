@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
 import "../css/submitform.css";
 import { API_ROOT, API_WS_ROOT, HEADERS, loadingGameState } from "../constants";
 
-
 class LeaderboardModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       leader: []
     };
@@ -16,35 +15,42 @@ class LeaderboardModal extends Component {
     axios.get(`${API_ROOT}/users`).then(res => {
       this.setState({
         leader: res.data
-      })
-    })
+      });
+    });
   }
 
-
   render() {
-    const allUsers = this.state.leader.sort(function(a, b) { return a.leaderboardPoints - b.leaderboardPoints })
+    const allUsers = this.state.leader.sort(function(a, b) {
+      return b.leaderboardPoints - a.leaderboardPoints;
+    });
 
     return (
       <div className="bg-modal">
         <div className="modal-contents-room leader-modal">
-          <button className="btn btn-danger btn-sm idea-close-button" onClick={this.props.closeLeaderModal}>X</button>
+          <button
+            className="btn btn-danger btn-sm idea-close-button"
+            onClick={this.props.closeLeaderModal}
+          >
+            X
+          </button>
           <h2 className="leader-title">Leaderboard</h2>
-          <table className="table table-striped">
-              <tr className="leader-table">
-                <th scope="row"></th>
-                <td className="leader-title-username">Name</td>
-                <td className="leader-points leader-title-score">Score</td> 
-              </tr>
+          <table className="leader-table">
             <tbody>
-            {allUsers.map(e => {
-              return (
-                <tr className="leader-table">
-                  <th scope="row"></th>
-                  <td key={e.id} className="text-left" colspan="2"> {e.username} </td>
-                  <td className="leader-points">{e.leaderboardPoints}</td> 
-                </tr>
-              )
-            })}
+              <tr>
+                <th className="table-th">Username</th>
+                <th className="table-th table-points">Points</th>
+              </tr>
+              {allUsers.map(e => {
+                return (
+                  <tr>
+                    <th key={e.id}>
+                      {" "}
+                      {e.username}{" "}
+                    </th>
+                    <td>{e.leaderboardPoints}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -54,8 +60,6 @@ class LeaderboardModal extends Component {
 }
 
 export default LeaderboardModal;
-
-
 
 
 
