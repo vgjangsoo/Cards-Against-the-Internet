@@ -57,7 +57,7 @@ class CreateRoomModal extends Component {
             <div className="room-toggle-down">
               <div className="custom-dropdown">
                 <select id="playerNumber" required>
-                  <option>Player #</option>
+                  <option value=''>Player #</option>
                   <option>3</option>
                   <option>4</option>
                   <option>5</option>
@@ -65,7 +65,7 @@ class CreateRoomModal extends Component {
               </div>
               <div className="custom-dropdown">
                 <select id="roundNumber" required>
-                  <option>Round #</option>
+                  <option value=''>Round #</option>
                   <option>3</option>
                   <option>4</option>
                   <option>5</option>
