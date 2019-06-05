@@ -92,8 +92,8 @@ th:nth-child(even){
   border-style: solid;
 }
 
-td:nth-child(even){
-  border-width: 1px 4px;
+td:nth-child(even){ 
+  border-width: 1px 3px;
   border-color: gray;
   border-style: solid;
 }

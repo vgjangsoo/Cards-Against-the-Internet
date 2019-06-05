@@ -21,7 +21,7 @@ class LeaderboardModal extends Component {
 
   render() {
     const allUsers = this.state.leader.sort(function(a, b) {
-      return a.leaderboardPoints - b.leaderboardPoints;
+      return b.leaderboardPoints - a.leaderboardPoints;
     });
 
     return (
@@ -38,15 +38,15 @@ class LeaderboardModal extends Component {
             <tbody>
               <tr>
                 <th className="table-th">Username</th>
-                <th className="table-th">Points</th>
+                <th className="table-th table-points">Points</th>
               </tr>
               {allUsers.map(e => {
                 return (
                   <tr>
-                    <td key={e.id}>
+                    <th key={e.id}>
                       {" "}
                       {e.username}{" "}
-                    </td>
+                    </th>
                     <td>{e.leaderboardPoints}</td>
                   </tr>
                 );
@@ -61,24 +61,7 @@ class LeaderboardModal extends Component {
 
 export default LeaderboardModal;
 
-{/* <table className="table table-striped">
-<tr className="leader-table">
-  <th scope="row">Rank</th>
-  <td className="leader-title-username">Username</td>
-  <td className="leader-points leader-title-score">Points</td>
-</tr>
-<tbody>
-{allUsers.map(e => {
-return (
-  <tr className="leader-table">
-    <th scope="row"></th>
-    <td key={e.id} className="text-left" colspan="2"> {e.username} </td>
-    <td className="leader-points">{e.leaderboardPoints}</td>
-  </tr>
-)
-})}
-</tbody>
-</table> */}
+
 
 /* <form className="idea-form" action="#">
             <h2 className="idea-h2 mb-3">Leaderboard</h2>
