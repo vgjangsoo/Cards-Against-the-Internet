@@ -1377,33 +1377,36 @@ puts "Recreating Users"
 User.destroy_all
 puts "Finished destroying users table"
 
-# puts 'Creating Users'
+puts 'Creating Users'
 
-# user1 = User.find_or_create_by!({
-#   username: 'Sam1',
-#   password: '1234',
-#   isAdult: true,
-#   isBot: false,
-#   leaderboardPoints: 10 
-# })
+user1 = User.find_or_create_by!({
+  username: 'Sam',
+  email: 'sam@gmail.com',
+  password_digest: '1234',
+  isAdult: true,
+  isBot: false,
+  leaderboardPoints: 100
+})
 
-# user2 = User.find_or_create_by!({
-#   username: 'Ben1',
-#   password: '1234',
-#   isAdult: true,
-#   isBot: false,
-#   leaderboardPoints: 5 
-# })
+user2 = User.find_or_create_by!({
+  username: 'Alice',
+  email: 'alice@gmail.com',
+  password_digest: '1234',
+  isAdult: true,
+  isBot: false,
+  leaderboardPoints: 5 
+})
 
-# user3 = User.find_or_create_by!({
-#   username: 'Tom1',
-#   password: '1234',
-#   isAdult: true,
-#   isBot: false,
-#   leaderboardPoints: 0 
-# })
+user3 = User.find_or_create_by!({
+  username: 'Homer',
+  email: 'homer@gmail.com',
+  password_digest: '1234',
+  isAdult: true,
+  isBot: false,
+  leaderboardPoints: 9 
+})
 
-# puts "Finished creating users table"
+puts "Finished creating users table"
 
 puts "Recreating Lobby"
 
