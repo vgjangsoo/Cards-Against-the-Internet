@@ -54,6 +54,7 @@ class Game extends Component {
     this.onSelectQuestion = this.onSelectQuestion.bind(this);
     this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this)
     this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this)
+    this.handlerNextRound = this.handlerNextRound.bind(this)
 
   }
 
@@ -106,6 +107,23 @@ class Game extends Component {
     axios.post(`${API_ROOT}/games/${gameRoomId}/addUser`).then(res => {
       console.log("POST to game#addUser succsfull");
     });
+  }
+
+  handlerNextRound(event){
+    event.preventDefault();
+    console.log('next round button is clicked')
+
+    //need to send some type message for game to start new round
+    const gameRoomId = this.props.match.params.id;
+    const type = 'next-round'
+    const userID = this.props.userData.id
+
+    axios.put(`${API_ROOT}/games/${gameRoomId}?userID=${userID}`, {
+      type: type
+    }).then(res =>{
+      console.log('PUT handlerNextRound successful, res:', res)
+    });
+
   }
 
   handlerPlayQuestion(event){
@@ -389,6 +407,9 @@ class Game extends Component {
                     </div>
                     <div>
                       <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerPlayQuestion} >Play Q Card</button>
+                    </div>
+                    <div>
+                      <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerNextRound} >Next Round</button>
                     </div>
                     <div className='play-card-button'>
                       <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerPlayAnswer} >Play A Card</button>

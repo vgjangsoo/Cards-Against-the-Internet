@@ -264,6 +264,7 @@ class Api::GamesController < ApplicationController
       game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = question
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
+      # need to modify the user status of non questioner, only works for 1 round right now
       game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
       game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
 
@@ -350,6 +351,36 @@ class Api::GamesController < ApplicationController
       game.save!
       puts "=== end of type - questioner-picked-answer-card ==== "
 
+    end
+
+    if ( type === 'next-round')
+      puts "=== GAME: type = next-round ==== "
+      puts params['userID']
+      userID = params['userID'].to_i
+      usersArray = game["gameState"]["playersInfo"]["users"]
+
+      # need to create entry in rounds table for history
+      
+      # need to switch answer and questioner 
+
+      # need to give the new questioner 3 black cards
+
+      # need to check users[] and replace all question cards  
+
+      # need to change gameState data to next round and clear previous round's info in gameInfo, and users[]
+
+      game["gameState"]["gameInfo"]["roundWinner"] = nil
+      game["gameState"]["gameInfo"]["selectedQuestion"] = nil
+      game["gameState"]["gameInfo"]["selectedAnswer"] = nil
+      game["gameState"]["gameInfo"]["selectedAnswer"] += 1
+      game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
+
+
+
+
+      # all gamestate changes should be done before this line
+      # game.save!
+      puts "=== end of type - next-round ==== "
     end
 
 
