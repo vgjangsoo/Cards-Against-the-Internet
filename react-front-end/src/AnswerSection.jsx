@@ -7,7 +7,12 @@ class AnswerSection extends Component {
     let currentQuestioner = this.props.currentQuestioner
     const maxPlayers = this.props.maxPlayers
     // missPlayers is array
-    let missingPlayers = new Array((maxPlayers) - this.props.userStatus.users.length).fill(0);
+    let missingPlayers = []
+    if ((maxPlayers - this.props.userStatus.users.length) > 0){
+      missingPlayers = new Array((maxPlayers) - this.props.userStatus.users.length).fill(0);
+    }else{
+      missingPlayers = []
+    }
     
     // return null;
     return (
@@ -23,7 +28,7 @@ class AnswerSection extends Component {
                       <div className="card-body" >
                       <img className='card-img answerer-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                         <div className='player-name-section'>
-                          <h6 className="answerer-ID">Player ID: {e.id}</h6>
+                          <h6 className="answerer-ID">Player: {e.username}</h6>
                         </div>
                         <div className='player-status-section'>
                           <h6 className="answerer-status-section">{e.status}</h6>
@@ -58,7 +63,7 @@ class MissingPlayerCard extends Component {
       <div className="card-body">
       <img className='card-img answerer-img' src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
         <div className='player-name-section'>
-          <h6 className="answerer-status answerer-status1">Waiting to Join</h6>
+          <h6 className="answerer-status answerer-status1">Waiting to Select</h6>
         </div>
         <div className='player-status-section'>
           <h6 className="answerer-status answerer-status2">Waiting...</h6>

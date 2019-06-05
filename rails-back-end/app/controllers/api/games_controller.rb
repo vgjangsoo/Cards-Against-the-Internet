@@ -168,8 +168,8 @@ class Api::GamesController < ApplicationController
     gameState = params[:gameState]
     puts "==== incoming type ==="
     puts type
-    puts "==== incoming gameState ==="
-    puts gameState
+    # puts "==== incoming gameState ==="
+    # puts gameState
 
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
@@ -178,8 +178,7 @@ class Api::GamesController < ApplicationController
     if (type === 'start-button-pressed')
       # logic to modify gameState
       puts "====== inside start-button-pressed filter"
-      # returnData = gameState
-      puts gameState
+      # puts gameState
       game["gameState"]["gameInfo"]["status"] = 'Waiting for questioner to select card'
       game["gameState"]["gameInfo"]["currentRound"] = 1
 
@@ -206,6 +205,7 @@ class Api::GamesController < ApplicationController
             cardNum = rand 1...cardSize
           end
           game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          game["gameState"]["playersInfo"]["users"][playerNum]["status"] = 'waiting'
           puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
         end
         playerNum += 1
@@ -264,6 +264,9 @@ class Api::GamesController < ApplicationController
       game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = question
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
+      # need to modify the user status of non questioner, only works for 1 round right now
+      game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
+      game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
 
       game.save!
       puts "=== end of type - question-card-selected ==== "
@@ -287,19 +290,104 @@ class Api::GamesController < ApplicationController
       puts "userIndex is #{userIndex}"
 
       # need to show number of answers have been selected
-      game["gameState"]["gameInfo"]["status"] = "Answer have been submitted by User ID:#{userID}"
+      game["gameState"]["gameInfo"]["status"] = "Answer have been submitted by User ID: #{userID}"
       game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = answer
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
+      # add a loop to see if all users have a selected card, then set game status msg to something else
+      # use a arr.each loop to check the if selectedCard"] != nil
+ 
+      numAnswers = 0
+      usersArray.each { |user| 
+        if user["selectedCard"] != nil
+          numAnswers += 1
+        end
+      }
+
+      puts "Number of total answers are: #{numAnswers}"
+
+      if numAnswers == game["gameState"]["gameInfo"]["currentPlayers"]
+        game["gameState"]["gameInfo"]["status"] = "All answers have been submitted, picking best answer"
+      end
+
       # all gamestate changes should be done before this line
-      # game["gameState"] = gameState
       game.save!
       puts "=== end of type - answer-card-selected ==== "
-    
+
+      
     end    
+    
+    if (type === 'questioner-picked-answer-card')
+      # given all selected answer cards are displayed, quesioner have picked a winning answer
+      puts "=== GAME: type = questioner-picked-answer-card ==== "
+      puts params['answer']
+      puts params['userID']
+      answer = params['answer'].to_s
+      userID = params['userID'].to_i
+      usersArray = game["gameState"]["playersInfo"]["users"]
+      
+      roundWinner = "TEST"
+      # roundWinnerID = -1
+      # also have to find who is the winner with that answer
+      usersArray.each { |user| 
+        if user["selectedCard"] === answer
+          roundWinner = user["id"].to_i
+        end
+      }
+
+      # need to find the users[index] in order to set the correct user for roundPoints
+      roundWinnerIndex = usersArray.index { |user| user["id"] === roundWinner }
+      puts "roundWinnerIndex is #{roundWinnerIndex}"
+
+      # add points for the winner answerer (roundWinner)
+      game["gameState"]["playersInfo"]["users"][roundWinnerIndex]["roundPoints"] += 1
+
+      # set the winning answer and game status
+      game["gameState"]["gameInfo"]["status"] = "The best answer is..."
+      game["gameState"]["gameInfo"]["selectedAnswer"] = answer
+      game["gameState"]["gameInfo"]["roundWinner"] = roundWinner
+
+      # all gamestate changes should be done before this line
+      game.save!
+      puts "=== end of type - questioner-picked-answer-card ==== "
+
+    end
+
+    if ( type === 'next-round')
+      puts "=== GAME: type = next-round ==== "
+      puts params['userID']
+      userID = params['userID'].to_i
+      usersArray = game["gameState"]["playersInfo"]["users"]
+
+      # need to create entry in rounds table for history
+      
+      # need to switch answer and questioner 
+      newQuestionerID = game["gameState"]["gameInfo"]["roundWinner"]
+      oldQuestionerID = game["gameState"]["gameInfo"]["currentQuestioner"]
+      
+      game["gameState"]["gameInfo"]["currentQuestioner"] = newQuestionerID.to_i
+
+      # need to give the new questioner 3 black cards and clear out the answer cards of the previous questioner
+
+      # need to check users[] and replace all question cards  
+
+      # need to change gameState data to next round and clear previous round's info in gameInfo, and users[]
+      game["gameState"]["gameInfo"]["roundWinner"] = nil
+      game["gameState"]["gameInfo"]["selectedQuestion"] = nil
+      game["gameState"]["gameInfo"]["selectedAnswer"] = nil
+      game["gameState"]["gameInfo"]["currentRound"] += 1
+      game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
+
+
+
+
+      # all gamestate changes should be done before this line
+      game.save!
+      puts "=== end of type - next-round ==== "
+    end
+
 
     # need to do broadcast call here
-
     broadcast_to_game(game)
   end
 
