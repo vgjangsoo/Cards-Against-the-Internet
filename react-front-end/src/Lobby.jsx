@@ -3,6 +3,7 @@ import axios from "axios";
 import "./css/App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Gameroom from "./Gameroom.jsx";
+import NoGameroom from "./NoGameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx";
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
@@ -130,6 +131,7 @@ class Lobby extends Component {
     console.log('currentUser is:',currentUser )
 
     return (
+      
       <div className="App">
         <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout} userData={this.props.userData}/>
         {!this.state.lobbyState.length 
@@ -140,9 +142,9 @@ class Lobby extends Component {
             :
         <div className="container gameLobbyContainer">
           <div className="grid card-deck mb-3 text-center">
-            {createdGameRooms.reverse().map(e => {
+            {createdGameRooms.length > 0 ? createdGameRooms.reverse().map(e => {
               return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
-            })}
+            }) : <NoGameroom />}
           </div>
         </div>}
 

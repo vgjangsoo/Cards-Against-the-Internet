@@ -29,15 +29,15 @@ render() {
                 <div className="footer-section col-sm-2">
                     <h5 className="footer-h5">About us</h5>
                     <ul>
-                        <li><a className="footer-a" href="#">Contact us</a></li>
-                        <li><a className="footer-a" href="#" >Reviews</a></li>
+                        <li><a className="footer-a" href="mailto:cardsagainstinternet@gmail.com">Contact us</a></li>
+                        <li><a className="footer-a" href="https://www.shutupandsitdown.com/review-cards-against-humanity/" >Reviews</a></li>
                     </ul>
                 </div>
                 <div className="footer-section col-sm-2">
                     <h5 className="footer-h5">Support</h5>
                     <ul>
                         <li><a className="footer-a" href="#">FAQ</a></li>
-                        <li><a className="footer-a" href="#">Forums</a></li>
+                        <li><a className="footer-a" href="https://boardgamegeek.com/forum/383041/cards-against-humanity/general">Forums</a></li>
                     </ul>
                 </div>
                 <div className="footer-section col-sm-3">

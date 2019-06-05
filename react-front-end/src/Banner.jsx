@@ -34,7 +34,7 @@ class Banner extends Component {
               <div className="col-md-4 option-section">
                 <h2 className="option-header">Fun Experience</h2>
                 <p className="option-p">Sign up to experience and enjoy our Sassy adult version and be the best player in the leaderboard! </p>
-                <p><button className="btn btn-dark btn-md banner-button" role="button">Play as User &raquo;</button></p>
+                <Link to="/lobby"><p><span style={{color: 'white', textDecoration: 'none'}} className="btn btn-dark btn-md banner-button" role="button">Play as User &raquo;</span></p></Link>
               </div>
               <div className="col-md-4 option-section">
                 <h2 className="option-header">Make own cards</h2>
