@@ -180,12 +180,12 @@ class Api::GamesController < ApplicationController
       puts "====== inside start-button-pressed filter"
       # returnData = gameState
       puts gameState
-      gameState["gameInfo"]["status"] = 'Waiting for questioner to select card'
-      gameState["gameInfo"]["currentRound"] = 1
+      game["gameState"]["gameInfo"]["status"] = 'Waiting for questioner to select card'
+      game["gameState"]["gameInfo"]["currentRound"] = 1
 
       # assigning cards to each player (including questioner)
       # find number of users in gameState
-      numPlayers = gameState["playersInfo"]["users"].size
+      numPlayers = game["gameState"]["playersInfo"]["users"].size
       puts "numPlayers: #{numPlayers}"
 
       # find all answer cards in cards table
@@ -201,20 +201,20 @@ class Api::GamesController < ApplicationController
         
         for i in 0..4
           cardNum = rand 1...cardSize
-          while gameState["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
+          while game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
             # generate another random cardNum to try again
             cardNum = rand 1...cardSize
           end
-          gameState["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
-          puts gameState["playersInfo"]["users"][playerNum]["answerCards"]
+          game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
         end
         playerNum += 1
       end
 
       # find all question cards in questions table
-      questionerID = gameState["gameInfo"]["currentQuestioner"]
+      questionerID = game["gameState"]["gameInfo"]["currentQuestioner"]
       puts "questionerID: #{questionerID}"
-      usersSize = gameState["playersInfo"]["users"].size
+      usersSize = game["gameState"]["playersInfo"]["users"].size
 
       @questionCards = Card.where(isQuestion: true)  
       puts "questionCards: #{@questionCards}"
@@ -224,7 +224,7 @@ class Api::GamesController < ApplicationController
       # loop through players.users array to find the questioner ID, then push in 3 question cards
       for k in 0..usersSize-1
         qcardNum = rand 1...qcardSize
-        quser = gameState["playersInfo"]["users"][k]
+        quser = game["gameState"]["playersInfo"]["users"][k]
         if quser["id"] === questionerID
           for m in 0..2
             while quser["questionCards"].include? (@questionCards[qcardNum].content)
@@ -239,7 +239,7 @@ class Api::GamesController < ApplicationController
       end
       
       ########### all start conditions should be done before this
-      game["gameState"] = gameState
+      # game["gameState"] = gameState
       game.save!
 
       puts "====== end of start-button-pressed filter"
