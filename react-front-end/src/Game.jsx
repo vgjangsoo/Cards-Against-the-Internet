@@ -281,6 +281,9 @@ class Game extends Component {
     if (currentStatus.startsWith('Answer have been submitted by')){
       isQuestioner = true;
     }
+    if (currentStatus.startsWith("All answers have been submitted,")){
+      isQuestioner = true;
+    }
     // maybe send down isQuestioner as a prop to use?
     // should do most of the conditional rendering logic here in the parent, only send down static data to let component render
 
