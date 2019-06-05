@@ -385,8 +385,9 @@ class Api::GamesController < ApplicationController
       # puts @answerCards[0].content
       playerNum = 0
       while playerNum < numPlayers 
-        # clear out previous answer cards
+        # clear out previous answer cards and question cards
         game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"] = []
+        game["gameState"]["playersInfo"]["users"][playerNum]["questionCards"] = []
 
         for i in 0..4
           cardNum = rand 1...cardSize
@@ -403,6 +404,34 @@ class Api::GamesController < ApplicationController
 
 
       # step 2: find the new questioner and assign 3 question cards
+      # find all question cards in questions table
+      # questionerID = game["gameState"]["gameInfo"]["currentQuestioner"]
+
+      
+      puts "New QuestionerID: #{newQuestionerID}"
+      usersSize = game["gameState"]["playersInfo"]["users"].size
+
+      @questionCards = Card.where(isQuestion: true)  
+      puts "questionCards: #{@questionCards}"
+      puts "questionCards size: #{@questionCards.size}"
+      qcardSize = @questionCards.size
+
+      # loop through players.users array to find the questioner ID, then push in 3 question cards
+      for k in 0..usersSize-1
+        qcardNum = rand 1...qcardSize
+        quser = game["gameState"]["playersInfo"]["users"][k]
+        if quser["id"] === newQuestionerID 
+          for m in 0..2
+            while quser["questionCards"].include? (@questionCards[qcardNum].content)
+              # generate another random cardNum to try again
+              qcardNum = rand 1...qcardSize
+            end
+            quser["questionCards"].push(@questionCards[qcardNum].content)
+          end
+          puts "=== assigned new question cards to next questioner ==="
+          puts quser["questionCards"]
+        end
+      end
 
 
       # need to check users[] and replace all question cards  
