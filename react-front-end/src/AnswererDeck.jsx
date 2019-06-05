@@ -9,24 +9,35 @@ class AnswererDeck extends Component {
     super(props)
     this.state = {
       answers: [],
-      currentUser: this.props.userData
+      waitingPlayers: true
     }
   }
 
-  componentDidMount() {
+  // componentDidMount() {
     
-    const tempCards = [];
-    for (let k=0; k<5; k++){
-      //push in 5 answer cards
-      tempCards.push(this.props.activeUserInfo.answerCards[k])
-    }
+  //   const tempCards = [];
+  //   for (let k=0; k<5; k++){
+  //     //push in 5 answer cards
+  //     tempCards.push(this.props.activeUserInfo.answerCards[k])
+  //   }
 
-    // console.log('ANSWERS tempCards is:',tempCards)
-    this.setState({answers: tempCards})
-  }
+  //   // console.log('ANSWERS tempCards is:',tempCards)
+  //   this.setState({answers: tempCards})
+  // }
   
+  // code from questionDeck deck to show only 1 card
+  get selectedAnswer() {
+    return this.props.activeUserInfo.selectedCard;
+  }
+
+  // code from questionDeck: to show 5 cards or only 1 card. Need to add code in render to work
+  get AnswerCards() {
+    return this.selectedAnswer ? [this.selectedAnswer] : this.props.activeUserInfo.answerCards;
+  }
+
+
   render() {
-    const selectedAnswers = this.state.answers;
+    // const selectedAnswers = this.state.answers;
 
     return (
       <div className="Game">
@@ -34,7 +45,7 @@ class AnswererDeck extends Component {
         <div className=' answerers-cards'>
         
           <div className='d-inline-flex flex-row'>
-          {selectedAnswers.map((answer, index) => {
+          {this.AnswerCards.map((answer, index) => {
             return (
               <div className='deckCard card answer-card' key={index} onClick={() => {this.props.onSelectAnswer(answer)}}>
                 <div className='cardContainer'>

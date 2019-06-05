@@ -187,27 +187,44 @@ class Game extends Component {
 
     //trying to only render the QuestionDeck or Question section based on activeUserInfo 
     let isAnswerer = activeUserInfo.answerCards.length > 0
-    //check again if this person should show  
-    if (questionerID === this.props.userData.id){
-      isAnswerer = false;  
-    }
+    const playerID = this.props.userData.id.toString()
+    // let waitingPlayers = 1;
+
     console.log("ANSWERS activeUserInfo:", activeUserInfo);
     //conditionally render based on:
     // isAnswerer = true ---- AnswererDeck
     //  isAnswerer = false --- AnswererSection
     let currentStatus = this.state.gameTable.gameState.gameInfo.status
-    if (currentStatus === 'Question selected, please choose an answer'){
-      isAnswerer = true;
-    }
-    if (currentStatus.startsWith('Answer have been submitted by')){
-      //probably need to add more conditions to filter out other player status
-      isAnswerer = false;
-    }
+    
+    //check again if this person should show  
+    if (questionerID === this.props.userData.id){
+      isAnswerer = false;  
+    } 
+    // if (currentStatus === 'Question selected, please choose an answer'){
+    //   isAnswerer = true;
+    // }
+    // //after answer card have been selected
+    // if (currentStatus.includes(playerID)){
+    //   //probably need to add more conditions to filter out other player status
+    //   isAnswerer = false;
+    //   //only based on 3 player game
+    //   // let waitingPlayers = 1;
+    // }
+    // // after all players have selected answers, questioner selectinng winner state
+    // if (currentStatus.startsWith('All answers have been submitted')){
+    //   isAnswerer = true;
+    //   //only based on 3 player game
+    //   // let waitingPlayers = 0;
+    // }
 
     return (
       <div>
         {isAnswerer ? (
-          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo} onSelectAnswer={this.onSelectAnswer}/>
+          <AnswererDeck 
+          gameState={gameState} 
+          activeUserInfo={activeUserInfo} 
+          onSelectAnswer={this.onSelectAnswer}
+          userData={this.props.userData}/>
         ) : (
           <AnswerSection
             userStatus={gameTable.gameState.playersInfo}

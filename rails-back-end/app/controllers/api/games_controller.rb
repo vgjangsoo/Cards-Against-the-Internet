@@ -206,6 +206,7 @@ class Api::GamesController < ApplicationController
             cardNum = rand 1...cardSize
           end
           game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          game["gameState"]["playersInfo"]["users"][playerNum]["status"] = 'waiting'
           puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
         end
         playerNum += 1
@@ -264,6 +265,8 @@ class Api::GamesController < ApplicationController
       game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = question
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
+      game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
+      game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
 
       game.save!
       puts "=== end of type - question-card-selected ==== "
@@ -287,17 +290,19 @@ class Api::GamesController < ApplicationController
       puts "userIndex is #{userIndex}"
 
       # need to show number of answers have been selected
-      game["gameState"]["gameInfo"]["status"] = "Answer have been submitted by User ID:#{userID}"
+      game["gameState"]["gameInfo"]["status"] = "Answer have been submitted by User ID: #{userID}"
       game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = answer
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
       # add a loop to see if all users have a selected card, then set game status msg to something else
+      # use a arr.each loop to check the if selectedCard"] != nil
+ 
       numAnswers = 0
-      for i in 0..usersArray.length
-        if game["gameState"]["playersInfo"]["users"][i]["selectedCard"] != nil
+      usersArray.each { |user| 
+        if user["selectedCard"] != nil
           numAnswers += 1
         end
-      end
+      }
 
       puts "Number of total answers are: #{numAnswers}"
 
@@ -306,7 +311,6 @@ class Api::GamesController < ApplicationController
       end
 
       # all gamestate changes should be done before this line
-      # game["gameState"] = gameState
       game.save!
       puts "=== end of type - answer-card-selected ==== "
     
