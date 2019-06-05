@@ -52,8 +52,10 @@ class Game extends Component {
     this.QuestionArea = this.QuestionArea.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
     this.onSelectQuestion = this.onSelectQuestion.bind(this);
-    this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this);
-    this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this);
+    this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this)
+    this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this)
+    this.handlerNextRound = this.handlerNextRound.bind(this)
+
   }
 
   componentDidMount() {
@@ -107,6 +109,23 @@ class Game extends Component {
     });
   }
 
+  handlerNextRound(event){
+    event.preventDefault();
+    console.log('next round button is clicked')
+
+    //need to send some type message for game to start new round
+    const gameRoomId = this.props.match.params.id;
+    const type = 'next-round'
+    const userID = this.props.userData.id
+
+    axios.put(`${API_ROOT}/games/${gameRoomId}?userID=${userID}`, {
+      type: type
+    }).then(res =>{
+      console.log('PUT handlerNextRound successful, res:', res)
+    });
+
+  }
+
   handlerPlayQuestion(event){
     event.preventDefault();
     console.log('question play card button pressed')
@@ -139,9 +158,14 @@ class Game extends Component {
     const answer = this.state.selectedAnswer;
     console.log('answer is:', answer)
     const gameRoomId = this.props.match.params.id;
-    const type = 'answer-card-selected'
+    let type = 'answer-card-selected'
+    //gameState is not being used right now in back end for any updates, maybe can remove from request?
     const gameState = this.state.gameTable.gameState;
     const userID = this.props.userData.id
+    const status = this.state.gameTable.gameState.gameInfo.status
+    if (status.startsWith('All answers have been submitted,')){
+      type = 'questioner-picked-answer-card'
+    }
 
     axios.put(`${API_ROOT}/games/${gameRoomId}?answer=${answer}&userID=${userID}`, {
       type: type,
@@ -181,9 +205,9 @@ class Game extends Component {
     }
     let activeUserInfo = "";
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
-    const questionerID = this.state.gameTable.gameState.gameInfo
-      .currentQuestioner;
+    const questionerID = this.state.gameTable.gameState.gameInfo.currentQuestioner;
 
+    //for finding out the current_user in this window
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array and also check if they are questioner
       if (
@@ -198,20 +222,57 @@ class Game extends Component {
       debugger;
     }
 
-    //trying to only render the QuestionDeck or Question section based on activeUserInfo
-    let isAnswerer = activeUserInfo.answerCards.length > 0;
-    //check again if this person should show
-    if (questionerID === this.props.userData.id) {
-      isAnswerer = false;
-    }
+    //trying to only render the QuestionDeck or Question section based on activeUserInfo 
+    let isAnswerer = activeUserInfo.answerCards.length > 0
+    const playerID = this.props.userData.id.toString()
+    // let waitingPlayers = 1;
+
     console.log("ANSWERS activeUserInfo:", activeUserInfo);
     //conditionally render based on:
     // isAnswerer = true ---- AnswererDeck
     //  isAnswerer = false --- AnswererSection
+    let currentStatus = this.state.gameTable.gameState.gameInfo.status
+    
+    //check again if this person should show  
+    if (questionerID === this.props.userData.id){
+      isAnswerer = false;  
+    }
+    if (currentStatus.startsWith("All answers have been submitted,")){
+      console.log('ANSWER AREA: Inside All answers have been submitted, ')
+      // all answer cards have been selected by every player
+      isAnswerer = true;
+      // need to input the all player selected cards into activeUserInfo
+      // empty the answer cards array first, then push in the values
+      activeUserInfo.answerCards = []
+      console.log('selected answer card 1 is:', this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      console.log(activeUserInfo.answerCards)
+    }
+
+    if (currentStatus.startsWith("The best answer")){
+      isAnswerer = true;
+      // need to find the index of the user with winning answer!!!
+      // let winnerIndex = this.state.gameTable.gameState.playersInfo.users.find( function(user){
+      //   return  user.selectedCard === this.state.gameTable.gameState.gameInfo.selectedAnswer
+      // })
+      // console.log('winnerIndex is:', winnerIndex)
+
+      // empty the answer cards array first, then push in the values
+      activeUserInfo.answerCards = []
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.gameInfo.selectedAnswer)
+    }
+
+
     return (
       <div>
         {isAnswerer ? (
-          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo} onSelectAnswer={this.onSelectAnswer}/>
+          <AnswererDeck 
+          gameState={gameState} 
+          activeUserInfo={activeUserInfo} 
+          onSelectAnswer={this.onSelectAnswer}
+          userData={this.props.userData}/>
         ) : (
           <AnswerSection
             userStatus={gameTable.gameState.playersInfo}
@@ -253,6 +314,12 @@ class Game extends Component {
       isQuestioner = true;
     }
     if (currentStatus.startsWith('Answer have been submitted by')){
+      isQuestioner = true;
+    }
+    if (currentStatus.startsWith("All answers have been submitted,")){
+      isQuestioner = true;
+    }
+    if (currentStatus.startsWith("The best answer")){
       isQuestioner = true;
     }
     // maybe send down isQuestioner as a prop to use?
@@ -353,6 +420,9 @@ class Game extends Component {
                         >
                           Play Q Card
                         </button>
+                      </div>
+                      <div>
+                        <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerNextRound} >Next Round</button>
                       </div>
                       <div>
                       {
