@@ -217,23 +217,21 @@ class Game extends Component {
       console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
       activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
       console.log(activeUserInfo.answerCards)
-    } 
-    // if (currentStatus === 'Question selected, please choose an answer'){
-    //   isAnswerer = true;
-    // }
-    // //after answer card have been selected
-    // if (currentStatus.includes(playerID)){
-    //   //probably need to add more conditions to filter out other player status
-    //   isAnswerer = false;
-    //   //only based on 3 player game
-    //   // let waitingPlayers = 1;
-    // }
-    // // after all players have selected answers, questioner selectinng winner state
-    // if (currentStatus.startsWith('All answers have been submitted')){
-    //   isAnswerer = true;
-    //   //only based on 3 player game
-    //   // let waitingPlayers = 0;
-    // }
+    }
+
+    if (currentStatus.startsWith("The best answer")){
+      isAnswerer = true;
+      // need to find the index of the user with winning answer!!!
+      // let winnerIndex = this.state.gameTable.gameState.playersInfo.users.find( function(user){
+      //   return  user.selectedCard === this.state.gameTable.gameState.gameInfo.selectedAnswer
+      // })
+      // console.log('winnerIndex is:', winnerIndex)
+
+      // empty the answer cards array first, then push in the values
+      activeUserInfo.answerCards = []
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.gameInfo.selectedAnswer)
+    }
+
 
     return (
       <div>
@@ -287,6 +285,9 @@ class Game extends Component {
       isQuestioner = true;
     }
     if (currentStatus.startsWith("All answers have been submitted,")){
+      isQuestioner = true;
+    }
+    if (currentStatus.startsWith("The best answer")){
       isQuestioner = true;
     }
     // maybe send down isQuestioner as a prop to use?

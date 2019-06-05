@@ -37,7 +37,7 @@ class AnswererDeck extends Component {
 
   get AllAnswerCards() {
     let gameStatus = this.props.gameState.gameInfo.status
-    if (gameStatus.startsWith("All answers have been submitted,")){
+    if (gameStatus.startsWith("All answers have been submitted,") || gameStatus.startsWith("The best answer")){
       return this.props.activeUserInfo.answerCards
     }else{
       return this.AnswerCards
