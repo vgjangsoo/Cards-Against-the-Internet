@@ -1,3 +1,33 @@
 .leaderboard-link {
   cursor: pointer;
 }
+
+.leader-table {
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 1%;
+}
+
+.leader-title {
+  padding-left: 10%;
+  padding-bottom: 2%;
+}
+
+.leader-points {
+  margin-left: 40%;
+}
+
+.leader-title-score{
+  margin-right: 10%;
+  margin-left: 35%;
+  font-weight: bold;
+}
+
+.leader-title-username {
+  margin-left: 19%;
+  font-weight: bold;
+}
