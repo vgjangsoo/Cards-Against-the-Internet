@@ -41,12 +41,14 @@ class LobbyNav extends Component {
                 Log Out
               </button>
             ) : null}
-            <button
+            {this.props.userData.username ? (
+              <button
               onClick={this.props.createRoom}
               className="btn btn-dark btn-lg create-room-button"
             >
               Create Room
             </button>
+            ) : null}
           </nav>
         </div>
       </Route>
@@ -55,3 +57,4 @@ class LobbyNav extends Component {
 }
 
 export default LobbyNav;
+
