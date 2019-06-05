@@ -135,9 +135,14 @@ class Game extends Component {
     const answer = this.state.selectedAnswer;
     console.log('answer is:', answer)
     const gameRoomId = this.props.match.params.id;
-    const type = 'answer-card-selected'
+    let type = 'answer-card-selected'
+    //gameState is not being used right now in back end for any updates, maybe can remove from request?
     const gameState = this.state.gameTable.gameState;
     const userID = this.props.userData.id
+    const status = this.state.gameTable.gameState.gameInfo.status
+    if (status.startsWith('All answers have been submitted,')){
+      type = 'questioner-picked-answer-card'
+    }
 
     axios.put(`${API_ROOT}/games/${gameRoomId}?answer=${answer}&userID=${userID}`, {
       type: type,

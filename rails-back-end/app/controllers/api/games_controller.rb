@@ -168,8 +168,8 @@ class Api::GamesController < ApplicationController
     gameState = params[:gameState]
     puts "==== incoming type ==="
     puts type
-    puts "==== incoming gameState ==="
-    puts gameState
+    # puts "==== incoming gameState ==="
+    # puts gameState
 
     lobby = Lobby.find(params[:id])
     game_id = lobby.game_id
@@ -178,8 +178,7 @@ class Api::GamesController < ApplicationController
     if (type === 'start-button-pressed')
       # logic to modify gameState
       puts "====== inside start-button-pressed filter"
-      # returnData = gameState
-      puts gameState
+      # puts gameState
       game["gameState"]["gameInfo"]["status"] = 'Waiting for questioner to select card'
       game["gameState"]["gameInfo"]["currentRound"] = 1
 
@@ -313,11 +312,48 @@ class Api::GamesController < ApplicationController
       # all gamestate changes should be done before this line
       game.save!
       puts "=== end of type - answer-card-selected ==== "
-    
+
+      
     end    
+    
+    if (type === 'questioner-picked-answer-card')
+      # given all selected answer cards are displayed, quesioner have picked a winning answer
+      puts "=== GAME: type = questioner-picked-answer-card ==== "
+      puts params['answer']
+      puts params['userID']
+      answer = params['answer'].to_s
+      userID = params['userID'].to_i
+      usersArray = game["gameState"]["playersInfo"]["users"]
+      
+      roundWinner = "TEST"
+      # roundWinnerID = -1
+      # also have to find who is the winner with that answer
+      usersArray.each { |user| 
+        if user["selectedCard"] === answer
+          roundWinner = user["id"].to_i
+        end
+      }
+
+      # need to find the users[index] in order to set the correct user for roundPoints
+      roundWinnerIndex = usersArray.index { |user| user["id"] === roundWinner }
+      puts "roundWinnerIndex is #{roundWinnerIndex}"
+
+      # add points for the winner answerer (roundWinner)
+      game["gameState"]["playersInfo"]["users"][roundWinnerIndex]["roundPoints"] += 1
+
+      # set the winning answer and game status
+      game["gameState"]["gameInfo"]["status"] = "The best answer is..."
+      game["gameState"]["gameInfo"]["selectedAnswer"] = answer
+      game["gameState"]["gameInfo"]["roundWinner"] = roundWinner
+
+      # all gamestate changes should be done before this line
+      game.save!
+      puts "=== end of type - questioner-picked-answer-card ==== "
+
+    end
+
 
     # need to do broadcast call here
-
     broadcast_to_game(game)
   end
 
