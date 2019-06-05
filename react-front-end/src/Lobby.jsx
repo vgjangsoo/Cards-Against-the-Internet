@@ -50,20 +50,21 @@ class Lobby extends Component {
     const newRoomPlayer = event.target.playerNumber.value;
     const maxRound = event.target.roundNumber.value;
 
-    const roomData = {
-      maxPlayer: newRoomPlayer,
-      theme: newRoom
-    };
+    // const roomData = {
+    //   maxPlayer: newRoomPlayer,
+    //   theme: newRoom
+    // };
 
     const gameData = {
       theme: newRoom,
       maxRound: maxRound,
       maxPlayers: newRoomPlayer,
+      maxPlayer: newRoomPlayer
     };
 
-    axios.post(`${API_ROOT}/lobbies`, roomData).then(res => {
-      console.log("POST is successful");
-    });
+    // axios.post(`${API_ROOT}/lobbies`, roomData).then(res => {
+    //   console.log("POST is successful");
+    // });
 
     axios.post(`${API_ROOT}/games`, gameData).then(res => {
       console.log("POST to game succsfull")

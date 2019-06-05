@@ -7,11 +7,29 @@ class Api::GamesController < ApplicationController
   end
 
   def create
+    # create new lobby entry first
+
+    lobby = Lobby.new(lobby_params)
+    # will need to update later for game_id
+    lobby.game_id = nil
+    # #########
+    lobby.roomStatus = 'Waiting...'
+    lobby.currentPlayers = 0
+
+    lobby.save!
+        # send new room data back as WS broadcast
+        # serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        # LobbySerializer.new(lobby)
+        # ).serializable_hash
+        # ActionCable.server.broadcast 'lobbies_channel', serialized_data
+
+
+
     @game = Game.new(game_params)
 
     
     # HTTP POST request -> /api/games
-    @creator = User.find_by(username: 'Sam1')
+    # @creator = User.find_by(username: 'Sam1')
     @deck = Deck.find_by(theme: 'Base')
     # in update action, can use this to referennce to cards, not used at creation
     @questionCards = @deck.cards.where(isQuestion: true)
@@ -38,23 +56,24 @@ class Api::GamesController < ApplicationController
     }
 
     # link the game_id to lobby here to avoid lobbies table not being saved yet in DB
-    @newLobbyRoom = Lobby.find_by(theme: @game.theme)
-    puts '===================================='
-    puts 'NEW ROOM LOBBY ID RELATED TO GAMES'
-    puts @newLobbyRoom.id
-    @game.lobby_id = @newLobbyRoom.id
+    # @newLobbyRoom = Lobby.find_by(theme: @game.theme)
+    # puts '===================================='
+    # puts 'NEW ROOM LOBBY ID RELATED TO GAMES'
+    # puts @newLobbyRoom.id
+    @game.lobby_id = lobby.id
 
     if @game.save!
 
       # link the game_id to lobby table
-      @newLobbyRoom.game_id = @game.id
-      @newLobbyRoom.save!
+      lobby.game_id = @game.id
+      lobby.save!
+      broadcast_to_lobby (lobby)
       # broadcast the new game info (not really need? since only creating tables in DB)
       # serialized_data = ActiveModelSerializers::Adapter::Json.new(
       #   MessageSerializer.new(@game)
       # ).serializable_hash
       # GamesChannel.broadcast_to @game, serialized_data
-      # head :ok
+      head :ok
     end
   end
   
@@ -325,6 +344,16 @@ class Api::GamesController < ApplicationController
   
   def game_params
     params.require(:game).permit(:gameState, :theme, :lobby_id, :maxRound, :maxPlayers)
+  end
+
+  def lobby_params
+    params.permit( 
+        :game_id,
+        :maxPlayer,
+        :currentPlayers,
+        :theme,
+        :roomStatus
+    )
   end
 
 end

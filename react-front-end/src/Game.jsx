@@ -215,6 +215,7 @@ class Game extends Component {
     if (!isStartMode) {
       return <QuestionSection />;
     }
+    // Here, game have started. currentRound > 0
     let activeUserInfo;
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
 
@@ -249,7 +250,6 @@ class Game extends Component {
           <QuestionerDeck
             activeUserInfo={activeUserInfo}
             gameState={gameState}
-            userData={this.props.userData}
             onSelectQuestion={this.onSelectQuestion}
           />
         ) : (
