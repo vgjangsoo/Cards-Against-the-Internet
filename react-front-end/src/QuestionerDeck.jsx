@@ -7,55 +7,64 @@ class QuestionerDeck extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      questions: [],
-      status: ""
+      // an array of question cards
+      questions: props.activeUserInfo.questionCards,
+      selectedIndex: 0
     }
   }
 
+  get selectedQuestion() {
+    return this.props.gameState.gameInfo.selectedQuestion;
+  }
+
+  get questionCards() {
+    return this.selectedQuestion ? [this.selectedQuestion] : this.props.activeUserInfo.questionCards;
+  }
+
+  // refactoring tips
+  // send in all the question cards to this component
+  // have properties of questionCard[], selectedIndex, onSelection, isPlayedCard
+  // rendering based on these "dumb " properties, they should not change much
+  // the value of properties to pass down is done inside <Game> 
   
-  componentDidMount() {
-    // this.fetchQuestionCards();
-    const tempCards = [];
-    for (let k=0; k<this.props.activeUserInfo.questionCards.length; k++){
-      //push in 3 question cards
-      tempCards.push(this.props.activeUserInfo.questionCards[k])
-    }
-    // console.log('Questions tempCards is:',tempCards)
-    this.setState({questions: tempCards})
+  // componentDidMount() {
+  //   const tempCards = [...this.props.activeUserInfo.questionCards];
 
-    let status = this.props.gameState.gameInfo.status
-    if (status === 'Question selected, please choose an answer'){
-      let selectedQuestion = this.props.gameState.gameInfo.selectedQuestion;
-      let tempArray = []
-      tempArray.push(selectedQuestion)  
-      this.setState({questions: tempArray})
-    }
+  //   // console.log('Questions tempCards is:',tempCards)
+  //   this.setState({questions: tempCards})
 
-  }
+  //   if (this.selectedQuestion){
 
-  // componentWillUpdate = () => {
+  //   }else {
+
+  //   }
   //   let status = this.props.gameState.gameInfo.status
-  //    next line runs an infinite loop, CANNOT USE
-  //   if (status === 'Question selected, please choose an answer'){
+  //   if (status === 'Question selected, please choose an answer' || status.startsWith('Answer have been submitted by')){
   //     let selectedQuestion = this.props.gameState.gameInfo.selectedQuestion;
   //     let tempArray = []
   //     tempArray.push(selectedQuestion)  
   //     this.setState({questions: tempArray})
-  //     return;
-  //   } 
+  //   }
+
   // }
 
+  onQuestionCardClick = (index) => {
+    console.log('cardIndex is:', index);
+    this.props.onSelectQuestion(this.state.questions[index])
+    this.setState({selectedIndex: index})
+  };
+
   render() {
-    const selectedQuestions = this.state.questions;
+    // const selectedQuestions = this.state.questions;
     
     return (
       <div>
         <h4>Questioner's Cards</h4>
         <div className='d-flex flex-row justify-content-around'>
-          {selectedQuestions.map((question, index )=> {
+          {this.questionCards.map((question, index )=> {
 
             return (
-              <div className="deckCard card questioncards" style={{width: "18rem"}} key={index} onClick={() => {this.props.onSelectQuestion(question)}}>
+              <div className="deckCard card questioncards" style={{width: "18rem"}} key={index} onClick={() => this.onQuestionCardClick(index)}>
                 <div className='cardContainer'>
                   <div className="card-body">
                     <div className="card-text" >{question}</div>

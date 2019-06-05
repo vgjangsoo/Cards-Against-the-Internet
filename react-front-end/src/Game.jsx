@@ -107,8 +107,9 @@ class Game extends Component {
     });
   }
 
-  handlerPlayQuestion() {
-    console.log("question button pressed");
+  handlerPlayQuestion(event){
+    event.preventDefault();
+    console.log('question play card button pressed')
     const question = this.state.selectedQuestion;
     console.log("question is:", question);
     const gameRoomId = this.props.match.params.id;
@@ -132,10 +133,24 @@ class Game extends Component {
     //need to clear both selectedAnswer and selectedQuestion after posting?
   }
 
-  handlerPlayAnswer() {
-    console.log("answer button pressed");
+  handlerPlayAnswer(event){
+    event.preventDefault();
+    console.log('answer play card button pressed')
+    const answer = this.state.selectedAnswer;
+    console.log('answer is:', answer)
+    const gameRoomId = this.props.match.params.id;
+    const type = 'answer-card-selected'
+    const gameState = this.state.gameTable.gameState;
+    const userID = this.props.userData.id
 
-    //need to clear both selectedAnswer and selectedQuestion after posting
+    axios.put(`${API_ROOT}/games/${gameRoomId}?answer=${answer}&userID=${userID}`, {
+      type: type,
+      gameState: gameState
+    }).then(res =>{
+      console.log('PUT handlerPlayAnswer successful, res:', res)
+    });
+
+    //need to clear both selectedAnswer and selectedQuestion after posting?
   }
 
   onSelectAnswer(answer) {
@@ -196,7 +211,7 @@ class Game extends Component {
     return (
       <div>
         {isAnswerer ? (
-          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo} />
+          <AnswererDeck gameState={gameState} activeUserInfo={activeUserInfo} onSelectAnswer={this.onSelectAnswer}/>
         ) : (
           <AnswerSection
             userStatus={gameTable.gameState.playersInfo}
@@ -215,25 +230,14 @@ class Game extends Component {
     if (!isStartMode) {
       return <QuestionSection />;
     }
+    // Here, game have started. currentRound > 0
     let activeUserInfo;
-    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
-    // let tempUserIndex = -1;
-    // let usersArray = this.state.gameTable.gameState.playersInfo.users
-
-    // also cause Maximum update depth exceeded error
-    // let findUserIndex = (element) => {
-    //   // this.setState({userIndex: tempUserIndex})
-    //   return element.id === this.props.userData.id
-    // };
+    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
 
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array
-      if (
-        this.props.userData.id ===
-        this.state.gameTable.gameState.playersInfo.users[i].id
-      ) {
-        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i];
-        // tempUserIndex = i;
+      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
+        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
         break;
       }
     }
@@ -241,8 +245,6 @@ class Game extends Component {
       debugger;
     }
 
-    // tempUserIndex = usersArray.findIndex(findUserIndex);
-    // this.setState({userIndex: tempUserIndex})
 
     //trying to only render the QuestionDeck or Question section based on activeUserInfo
     let isQuestioner = activeUserInfo.questionCards.length > 0;
@@ -250,13 +252,12 @@ class Game extends Component {
     if (currentStatus === "Question selected, please choose an answer") {
       isQuestioner = true;
     }
+    if (currentStatus.startsWith('Answer have been submitted by')){
+      isQuestioner = true;
+    }
+    // maybe send down isQuestioner as a prop to use?
+    // should do most of the conditional rendering logic here in the parent, only send down static data to let component render
 
-    //set the userIndex inside the gameState object to be passed to backend
-    // if(tempUserIndex >= 0){
-    //   console.log('tempUserIndex is:',tempUserIndex)
-    //   // setting state here will caus: Maximum update depth exceeded error
-    //   // this.setState({userIndex: tempUserIndex})
-    // }
 
     return (
       <div>
@@ -264,7 +265,6 @@ class Game extends Component {
           <QuestionerDeck
             activeUserInfo={activeUserInfo}
             gameState={gameState}
-            userData={this.props.userData}
             onSelectQuestion={this.onSelectQuestion}
           />
         ) : (
@@ -274,7 +274,6 @@ class Game extends Component {
     );
   }
 
-  //////////////////////////////////
   render() {
     console.log("PROPS:", this.props);
     console.log("State:", this.state);

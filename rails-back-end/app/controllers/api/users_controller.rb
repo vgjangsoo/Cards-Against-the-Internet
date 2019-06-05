@@ -1,5 +1,11 @@
 class Api::UsersController < ApplicationController
 
+    def index
+        # URL: /api/users
+        users = User.all
+        render json: users
+    end
+
     def new
     end
 
@@ -12,6 +18,8 @@ class Api::UsersController < ApplicationController
         puts user.email
         puts user.password_digest
 
+        user.leaderboardPoints = 0
+
         if user.save
           session[:user_id] = user.id
         #   redirecting dont work from back end to front end
@@ -22,7 +30,7 @@ class Api::UsersController < ApplicationController
             
             # render json: session[:user_id]
             render json: user
-        else
+        else 
             puts user.errors.full_messages 
             redirect_to '/signup'
         end

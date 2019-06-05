@@ -8,13 +8,15 @@ import Footer from "./Footer.jsx";
 import SubmitIdeaModal from './Modals/SubmitIdeadModal';
 import axios from 'axios';
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
+import LeaderboardModal from './Modals/LeaderboardModal';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showModal: false,
-      showSubmitIdeas: false
+      showSubmitIdeas: false,
+      showLeaderboard: false,
     };
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -28,6 +30,9 @@ class Home extends Component {
 
   closeIdeaModal = () => this.setState({ showSubmitIdeas: false });
   openIdeaModal = () => this.setState({ showSubmitIdeas: true });
+
+  closeLeaderModal = () => this.setState({ showLeaderboard: false });
+  openLeaderModal = () => this.setState({ showLeaderboard: true });
 
   //not used currently
   getCurrentUser (){
@@ -56,7 +61,8 @@ class Home extends Component {
       this.props.updateCurrentUser(res.data)
       localStorage.setItem('browserUserData', JSON.stringify(res.data))
     });
-    
+
+    this.setState({ showModal: false });
     // .then(() =>{
     //   // trying to console log the localStorage user
     //   this.getCurrentUser()
@@ -68,7 +74,8 @@ class Home extends Component {
   handleLogout(){
     console.log('Logout button is clicked')
     // localStorage.removeItem('browserUserData')
-    this.props.updateCurrentUser({})
+    this.props.updateCurrentUser({}, true)
+    
   }
 
   handleLogin(event) {
@@ -88,9 +95,10 @@ class Home extends Component {
     axios.post(`${API_ROOT}/login`, loginData).then(res => {
       console.log("login POST is successful. RES.DATA:", res.data);
       // this will setState for currentUser in App.js
-      this.props.updateCurrentUser(res.data)
+      this.props.updateCurrentUser(res.data, false)
     });
     
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -98,7 +106,7 @@ class Home extends Component {
     console.log('currentUser is:',currentUser )
     return (
       <Route>
-       <Nav onOpen={this.openModal} onLogout= {this.handleLogout} userData={this.props.userData}/>
+       <Nav onOpen={this.openModal} onLogout= {this.handleLogout} userData={this.props.userData} openLeaderModal={this.openLeaderModal}/>
        <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal} userData={this.props.userData}/>
        <Footer onOpen={this.openModal}/>
        <div>
@@ -106,6 +114,9 @@ class Home extends Component {
        </div>
        <div>
          {this.state.showSubmitIdeas ? (<SubmitIdeaModal closeIdeaModal={this.closeIdeaModal} openIdeaModal={this.openIdeaModal}/>) : null}
+       </div>
+       <div>
+         {this.state.showLeaderboard ? (<LeaderboardModal closeLeaderModal={this.closeLeaderModal}/>) : null}
        </div>
       </Route>
     );

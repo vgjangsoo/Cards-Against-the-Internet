@@ -7,6 +7,7 @@ import NoGameroom from "./NoGameroom.jsx";
 import LobbyNav from "./LobbyNav.jsx";
 import CreateRoomModal from "./Modals/CreateRoomModal.jsx";
 import { API_ROOT, API_WS_ROOT, HEADERS } from "./constants";
+import UserNotLoggedIn from "./UserNotLoggedIn"
 
 class Lobby extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Lobby extends Component {
 
   handleLogout(){
     console.log('Logout button is clicked')
-    this.props.updateCurrentUser({})
+    this.props.updateCurrentUser({}, true)
   }
 
   handleRoomCreate(event) {
@@ -51,20 +52,21 @@ class Lobby extends Component {
     const newRoomPlayer = event.target.playerNumber.value;
     const maxRound = event.target.roundNumber.value;
 
-    const roomData = {
-      maxPlayer: newRoomPlayer,
-      theme: newRoom
-    };
+    // const roomData = {
+    //   maxPlayer: newRoomPlayer,
+    //   theme: newRoom
+    // };
 
     const gameData = {
       theme: newRoom,
       maxRound: maxRound,
       maxPlayers: newRoomPlayer,
+      maxPlayer: newRoomPlayer
     };
 
-    axios.post(`${API_ROOT}/lobbies`, roomData).then(res => {
-      console.log("POST is successful");
-    });
+    // axios.post(`${API_ROOT}/lobbies`, roomData).then(res => {
+    //   console.log("POST is successful");
+    // });
 
     axios.post(`${API_ROOT}/games`, gameData).then(res => {
       console.log("POST to game succsfull")
@@ -89,7 +91,6 @@ class Lobby extends Component {
       id: lobby.id
     };
     console.log(newLobbyInfo)
-
 
     let currentLobbyState = this.state.lobbyState
     let isModifed = false;
@@ -118,7 +119,6 @@ class Lobby extends Component {
         lobbyState: [...this.state.lobbyState, newLobbyInfo]
       });
     } 
-    
   };
 
   closeCreateRoomModal = () => this.setState({ showCreateRoomModal: false });
@@ -134,7 +134,7 @@ class Lobby extends Component {
       
       <div className="App">
         <LobbyNav createRoom={this.openCreateRoomModal} onLogout={this.handleLogout} userData={this.props.userData}/>
-        {!this.state.lobbyState.length 
+        {this.props.userData.username ? !this.state.lobbyState.length 
             ? 
             <div className="loader-container">
               <div className="loader"></div>
@@ -146,8 +146,7 @@ class Lobby extends Component {
               return <Gameroom roomInfo={e} key={e.id} roomId={e.id} cable={this.props.cable}/>;
             }) : <NoGameroom />}
           </div>
-        </div>}
-
+        </div> : <UserNotLoggedIn />}
         <div>
           {this.state.showCreateRoomModal ? (
             <CreateRoomModal

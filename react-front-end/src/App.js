@@ -30,15 +30,18 @@ class App extends Component {
   closeModal = () => this.setState({ showModal: false });
   openModal = () => this.setState({ showModal: true });
 
-  updateCurrentUser (user){
+  updateCurrentUser (user, isLogout){
     console.log('updateCurrentUser is called!!!!!')
     console.log(user)
     this.setState({
       currentUser: user
     });
-
-    cookies.set('currentUser', user)
-
+    if (isLogout){
+      console.log('clearning the currentUser from cookies')
+      cookies.remove('currentUser')
+    }else{
+      cookies.set('currentUser', user)
+    }
   }
 
   render() {

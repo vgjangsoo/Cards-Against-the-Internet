@@ -366,8 +366,6 @@ img.answerer-img {
   }
 
   button.game-nav-button:hover {
-    width: 9vw;
-    height: 5vh;
     font-size: 1.35vw;
   }
 
@@ -510,7 +508,7 @@ img.answerer-img {
   }
 
   div.incoming-msg {
-    height: 27vh;
+    height: 26vh;
   }
 
   input.write_msg {

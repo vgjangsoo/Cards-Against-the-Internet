@@ -7,11 +7,29 @@ class Api::GamesController < ApplicationController
   end
 
   def create
+    # create new lobby entry first
+
+    lobby = Lobby.new(lobby_params)
+    # will need to update later for game_id
+    lobby.game_id = nil
+    # #########
+    lobby.roomStatus = 'Waiting...'
+    lobby.currentPlayers = 0
+
+    lobby.save!
+        # send new room data back as WS broadcast
+        # serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        # LobbySerializer.new(lobby)
+        # ).serializable_hash
+        # ActionCable.server.broadcast 'lobbies_channel', serialized_data
+
+
+
     @game = Game.new(game_params)
 
     
     # HTTP POST request -> /api/games
-    @creator = User.find_by(username: 'Sam1')
+    # @creator = User.find_by(username: 'Sam1')
     @deck = Deck.find_by(theme: 'Base')
     # in update action, can use this to referennce to cards, not used at creation
     @questionCards = @deck.cards.where(isQuestion: true)
@@ -38,23 +56,24 @@ class Api::GamesController < ApplicationController
     }
 
     # link the game_id to lobby here to avoid lobbies table not being saved yet in DB
-    @newLobbyRoom = Lobby.find_by(theme: @game.theme)
-    puts '===================================='
-    puts 'NEW ROOM LOBBY ID RELATED TO GAMES'
-    puts @newLobbyRoom.id
-    @game.lobby_id = @newLobbyRoom.id
+    # @newLobbyRoom = Lobby.find_by(theme: @game.theme)
+    # puts '===================================='
+    # puts 'NEW ROOM LOBBY ID RELATED TO GAMES'
+    # puts @newLobbyRoom.id
+    @game.lobby_id = lobby.id
 
     if @game.save!
 
       # link the game_id to lobby table
-      @newLobbyRoom.game_id = @game.id
-      @newLobbyRoom.save!
+      lobby.game_id = @game.id
+      lobby.save!
+      broadcast_to_lobby (lobby)
       # broadcast the new game info (not really need? since only creating tables in DB)
       # serialized_data = ActiveModelSerializers::Adapter::Json.new(
       #   MessageSerializer.new(@game)
       # ).serializable_hash
       # GamesChannel.broadcast_to @game, serialized_data
-      # head :ok
+      head :ok
     end
   end
   
@@ -72,9 +91,10 @@ class Api::GamesController < ApplicationController
 
     if objCookies["email"]
       @newPlayer = User.find_by_email!(objCookies["email"])
+      puts "found user is: #{@newPlayer.username}"
     # else 
 
-    #   puts "========INSIDE addUser method ========="
+    #   puts "======== addUser method ========="
     #   randomID = rand 1...100
     #   @newPlayer = User.create!({
     #     username: "Guest ##{randomID}",
@@ -160,12 +180,12 @@ class Api::GamesController < ApplicationController
       puts "====== inside start-button-pressed filter"
       # returnData = gameState
       puts gameState
-      gameState["gameInfo"]["status"] = 'Waiting for questioner to select card'
-      gameState["gameInfo"]["currentRound"] = 1
+      game["gameState"]["gameInfo"]["status"] = 'Waiting for questioner to select card'
+      game["gameState"]["gameInfo"]["currentRound"] = 1
 
       # assigning cards to each player (including questioner)
       # find number of users in gameState
-      numPlayers = gameState["playersInfo"]["users"].size
+      numPlayers = game["gameState"]["playersInfo"]["users"].size
       puts "numPlayers: #{numPlayers}"
 
       # find all answer cards in cards table
@@ -181,20 +201,20 @@ class Api::GamesController < ApplicationController
         
         for i in 0..4
           cardNum = rand 1...cardSize
-          while gameState["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
+          while game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
             # generate another random cardNum to try again
             cardNum = rand 1...cardSize
           end
-          gameState["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
-          puts gameState["playersInfo"]["users"][playerNum]["answerCards"]
+          game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
         end
         playerNum += 1
       end
 
       # find all question cards in questions table
-      questionerID = gameState["gameInfo"]["currentQuestioner"]
+      questionerID = game["gameState"]["gameInfo"]["currentQuestioner"]
       puts "questionerID: #{questionerID}"
-      usersSize = gameState["playersInfo"]["users"].size
+      usersSize = game["gameState"]["playersInfo"]["users"].size
 
       @questionCards = Card.where(isQuestion: true)  
       puts "questionCards: #{@questionCards}"
@@ -204,7 +224,7 @@ class Api::GamesController < ApplicationController
       # loop through players.users array to find the questioner ID, then push in 3 question cards
       for k in 0..usersSize-1
         qcardNum = rand 1...qcardSize
-        quser = gameState["playersInfo"]["users"][k]
+        quser = game["gameState"]["playersInfo"]["users"][k]
         if quser["id"] === questionerID
           for m in 0..2
             while quser["questionCards"].include? (@questionCards[qcardNum].content)
@@ -219,7 +239,7 @@ class Api::GamesController < ApplicationController
       end
       
       ########### all start conditions should be done before this
-      game["gameState"] = gameState
+      # game["gameState"] = gameState
       game.save!
 
       puts "====== end of start-button-pressed filter"
@@ -232,28 +252,49 @@ class Api::GamesController < ApplicationController
       puts params['userID']
       question = params['question'].to_s
       userID = params['userID'].to_i
-      usersArray = gameState["playersInfo"]["users"]
+      usersArray = game["gameState"]["playersInfo"]["users"]
       # userIndex = params['userIndex'].to_i
       
       # need to find the users[index] in order to set the correct user
       userIndex = usersArray.index { |user| user["id"] === userID }
       puts "userIndex is #{userIndex}"
 
-      gameState["gameInfo"]["status"] = "Question selected, please choose an answer"
-      gameState["gameInfo"]["selectedQuestion"] = question
-      gameState["playersInfo"]["users"][userIndex]["selectedCard"] = question
-      gameState["playersInfo"]["users"][userIndex]["status"] = 'ready'
+      game["gameState"]["gameInfo"]["status"] = "Question selected, please choose an answer"
+      game["gameState"]["gameInfo"]["selectedQuestion"] = question
+      game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = question
+      game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
-      game["gameState"] = gameState
+
       game.save!
       puts "=== end of type - question-card-selected ==== "
 
     end
 
-    if (type === 'answerer-selected-card')
-      # logic to modify gameState
+    if (type === 'answer-card-selected')
       # need to check after changing gameState how many answer cards have been select,
       # if all answers are selected, then add a condition/flag to go to next step?
+
+      puts "=== GAME: type = answer-card-selected ==== "
+      puts params['answer']
+      puts params['userID']
+      answer = params['answer'].to_s
+      userID = params['userID'].to_i
+      usersArray = game["gameState"]["playersInfo"]["users"]
+      # userIndex = params['userIndex'].to_i
+      
+      # need to find the users[index] in order to set the correct user
+      userIndex = usersArray.index { |user| user["id"] === userID }
+      puts "userIndex is #{userIndex}"
+
+      # need to show number of answers have been selected
+      game["gameState"]["gameInfo"]["status"] = "Answer have been submitted by User ID:#{userID}"
+      game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = answer
+      game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
+
+      # all gamestate changes should be done before this line
+      # game["gameState"] = gameState
+      game.save!
+      puts "=== end of type - answer-card-selected ==== "
     
     end    
 
@@ -304,6 +345,16 @@ class Api::GamesController < ApplicationController
   
   def game_params
     params.require(:game).permit(:gameState, :theme, :lobby_id, :maxRound, :maxPlayers)
+  end
+
+  def lobby_params
+    params.permit( 
+        :game_id,
+        :maxPlayer,
+        :currentPlayers,
+        :theme,
+        :roomStatus
+    )
   end
 
 end
