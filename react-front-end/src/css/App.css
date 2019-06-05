@@ -394,7 +394,7 @@ img.answerer-img {
     font-size: 2vw;
   }
 
-  div.questioncards {
+  div.questioncards, div.answer-card {
     width: 13vw !important;
     height: 30vh;
   }
@@ -468,7 +468,7 @@ img.answerer-img {
   div.chat-history-bar {
     margin-left: 71vw;
     width: 25vw;
-    margin-top: calc(100vh - 191.20vh);
+    margin-top: calc(100vh - 190.5vh);
   }
 
   div.history-border {
@@ -620,6 +620,11 @@ img.answerer-img {
   overflow-x: scroll;
   padding-bottom: 1.5em;
   margin-bottom: -20px;
+}
+
+.player-answer-cards {
+  display: flex !important;
+  justify-content: center !important;
 }
 
 .play-card-button {
@@ -837,7 +842,7 @@ p.jumbotron-p {
 
   button.nav-signup-button {
     width: 7vw;
-    height: 6vh;
+    height: 5vh;
     font-size: 1.2vw;
     border: none;
   }
