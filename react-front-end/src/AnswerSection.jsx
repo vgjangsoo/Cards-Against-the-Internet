@@ -28,7 +28,7 @@ class AnswerSection extends Component {
                       <div className="card-body" >
                       <img className='card-img answerer-img' src="https://cdn2.iconfinder.com/data/icons/player-rounded-set/154/user-login-player-function-name-avatar-512.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
                         <div className='player-name-section'>
-                          <h6 className="answerer-ID">Player:{e.username}</h6>
+                          <h6 className="answerer-ID">Player: {e.username}</h6>
                         </div>
                         <div className='player-status-section'>
                           <h6 className="answerer-status-section">{e.status}</h6>
