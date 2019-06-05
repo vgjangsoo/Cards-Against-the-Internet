@@ -1,5 +1,11 @@
 class Api::UsersController < ApplicationController
 
+    def index
+        # URL: /api/users
+        users = User.all
+        render json: users
+    end
+
     def new
     end
 
@@ -11,6 +17,8 @@ class Api::UsersController < ApplicationController
         puts user.username
         puts user.email
         puts user.password_digest
+
+        user.leaderboardPoints = 0
 
         if user.save
           session[:user_id] = user.id
