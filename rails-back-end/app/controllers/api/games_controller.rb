@@ -362,24 +362,27 @@ class Api::GamesController < ApplicationController
       # need to create entry in rounds table for history
       
       # need to switch answer and questioner 
+      newQuestionerID = game["gameState"]["gameInfo"]["roundWinner"]
+      oldQuestionerID = game["gameState"]["gameInfo"]["currentQuestioner"]
+      
+      game["gameState"]["gameInfo"]["currentQuestioner"] = newQuestionerID.to_i
 
-      # need to give the new questioner 3 black cards
+      # need to give the new questioner 3 black cards and clear out the answer cards of the previous questioner
 
       # need to check users[] and replace all question cards  
 
       # need to change gameState data to next round and clear previous round's info in gameInfo, and users[]
-
       game["gameState"]["gameInfo"]["roundWinner"] = nil
       game["gameState"]["gameInfo"]["selectedQuestion"] = nil
       game["gameState"]["gameInfo"]["selectedAnswer"] = nil
-      game["gameState"]["gameInfo"]["selectedAnswer"] += 1
+      game["gameState"]["gameInfo"]["currentRound"] += 1
       game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
 
 
 
 
       # all gamestate changes should be done before this line
-      # game.save!
+      game.save!
       puts "=== end of type - next-round ==== "
     end
 
