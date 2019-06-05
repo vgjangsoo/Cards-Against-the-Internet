@@ -31,3 +31,7 @@
   margin-left: 19%;
   font-weight: bold;
 }
+
+.leader-modal {
+  overflow: scroll;
+}
