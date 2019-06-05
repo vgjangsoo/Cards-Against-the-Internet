@@ -37,7 +37,7 @@ class Gameroom extends Component {
             Players &raquo; {roomInfo.currentPlayers}{" "}
             <small>/ {roomInfo.maxPlayer}</small>
           </h5>
-          <Link
+          {(roomInfo.currentPlayers < roomInfo.maxPlayer) ? (<Link
             to={{
               pathname: `/lobby/${roomInfo.id}`,
               state: { info: roomInfo }
@@ -51,9 +51,17 @@ class Gameroom extends Component {
             >
               <h1 className="gameroom-theme">{roomInfo.theme}</h1>
             </button>
-          </Link>
+          </Link>) 
+          : (<button 
+              id="gameroom-button"
+              className="btn btn-lg btn-block btn-outline-dark mt-3 mb-4"
+              style={themeStyle}
+            >
+              <h1 className="gameroom-theme">{roomInfo.theme}</h1>
+            </button>)}
+          
           <div className="btn btn-lg btn-block btn-outline-dark bg-outline-dark gameroom-status">
-            {roomInfo.roomStatus}
+            {(roomInfo.currentPlayers < roomInfo.maxPlayer) ? roomInfo.roomStatus : <div style={{ color: "#cc0000" }}>Full</div>}
           </div>
         </div>
       </div>
