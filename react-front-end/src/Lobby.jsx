@@ -40,7 +40,7 @@ class Lobby extends Component {
 
   handleLogout(){
     console.log('Logout button is clicked')
-    this.props.updateCurrentUser({})
+    this.props.updateCurrentUser({}, true)
   }
 
   handleRoomCreate(event) {

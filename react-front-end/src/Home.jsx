@@ -68,7 +68,8 @@ class Home extends Component {
   handleLogout(){
     console.log('Logout button is clicked')
     // localStorage.removeItem('browserUserData')
-    this.props.updateCurrentUser({})
+    this.props.updateCurrentUser({}, true)
+    
   }
 
   handleLogin(event) {
@@ -88,7 +89,7 @@ class Home extends Component {
     axios.post(`${API_ROOT}/login`, loginData).then(res => {
       console.log("login POST is successful. RES.DATA:", res.data);
       // this will setState for currentUser in App.js
-      this.props.updateCurrentUser(res.data)
+      this.props.updateCurrentUser(res.data, false)
     });
     
   }

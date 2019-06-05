@@ -91,9 +91,10 @@ class Api::GamesController < ApplicationController
 
     if objCookies["email"]
       @newPlayer = User.find_by_email!(objCookies["email"])
+      puts "found user is: #{@newPlayer.username}"
     # else 
 
-    #   puts "========INSIDE addUser method ========="
+    #   puts "======== addUser method ========="
     #   randomID = rand 1...100
     #   @newPlayer = User.create!({
     #     username: "Guest ##{randomID}",
