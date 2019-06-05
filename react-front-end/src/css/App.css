@@ -125,6 +125,19 @@
   font-weight: 500;
 }
 
+.nav-signup-button {
+  width: 105px;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+}
+
+.nav-signup-button:hover {
+  font-size: 21px;
+  background-color: #1abc9c;
+  border: none;
+}
+
 .banner-button:hover {
   border-color: #1abc9c;
   background-color: #1abc9c;
@@ -200,9 +213,15 @@ button.close-button {
   background-color: #1abc9c;
 }
 
+.gameroom-info {
+  display: flex;
+  justify-content: space-between;
+  width: 40vw;
+}
+
 .game-round, .game-player {
   color: white;
-  font-size: 18px;
+  font-size: 1.2vw;
 }
 
 /* CSS for cards! (QuestionerDeck.jsx, AnswererDeck.jsx) */
@@ -251,13 +270,15 @@ button.close-button {
 
 /* Gamestatus Section */
 .game-status-message {
+  padding-top: 0.5vw;
   font-size: 20px;
 }
 
 .status-message {
   padding-top: 1%;
-  margin-left: 23vw;
-  width: 50%;
+  width: 70vw;
+  display: flex;
+  justify-content: space-around;
 }
 
 .game-status-button {
@@ -283,6 +304,16 @@ button.close-button {
   background-color: #EEE;
 }
 
+div.answerer-card-section {
+    display: flex;
+  justify-content: center;
+}
+
+.answerer-card-container {
+  display: flex;
+  justify-content: center;
+}
+
 .answerer-header {
   font-weight: 900;
 }
@@ -297,9 +328,14 @@ button.close-button {
   padding: none;
 }
 
+img.answerer-img {
+  width: 8.1vw !important;
+  height: 8.1vw !important;
+}
+
 /* In game before the game starts */
 .player-name-section {
-  padding-top: 15px;
+  padding-top: 1%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -313,11 +349,13 @@ button.close-button {
   justify-content: center;
   border: 2px solid;
   border-radius: 5px;
+  width: 9vw;
 }
 
 .answerer-status-section {
   font-weight: 900;
 }
+
 
 @media screen and (min-width: 1350px) {
   /* Nav Section */
@@ -334,7 +372,7 @@ button.close-button {
   }
 
   h6.game-round, h6.game-player {
-    font-size: 1.1vw;
+    font-size: 1.2vw;
   }
 
   /* Questioner Section */
@@ -430,7 +468,7 @@ button.close-button {
   div.chat-history-bar {
     margin-left: 71vw;
     width: 25vw;
-    margin-top: -51vw;
+    margin-top: calc(100vh - 191.20vh);
   }
 
   div.history-border {
@@ -442,13 +480,13 @@ button.close-button {
   }
 
   div.history-border {
-    height: 30vh; 
+    height: 29.5vh; 
     padding-left: 2vw;
   }
 
   div.history-box {
     width: 9vw;
-    height: 22vh;
+    height: 21vh;
   }
 
   div.chat-box {
@@ -498,7 +536,7 @@ button.close-button {
 
 /* Chat-history section */
 .chat-history-bar {
-  margin-top: -687px;
+  margin-top: -694px;
   margin-left: 75vw;
   width: 310px; 
 }
@@ -520,7 +558,7 @@ button.close-button {
   padding: 10px;
   margin: 5px;
   margin-left: 10px;
-  height: 165px;
+  height: 170px;
   margin-bottom: 10px;
   margin-top: -10px;
 }
@@ -564,6 +602,7 @@ button.close-button {
 /* Add some padding inside the card container */
 .cardContainer {
   padding: 1px 2px;
+  
 }
 
 .questioncards {
@@ -584,8 +623,8 @@ button.close-button {
 }
 
 .play-card-button {
-  margin-left: 55vw;
-  margin-top: -40px;
+  /* margin-left: 55vw;
+  margin-top: -40px; */
   width: 195px;
 }
 
@@ -600,7 +639,7 @@ button.close-button {
 
 h6.game-logged-ID {
   color: white;
-  font-size: 1vw;
+  font-size: 1.2vw;
   margin: none;
   padding: none;
 }
@@ -679,6 +718,22 @@ button.sign-up-button {
 
 button.create-room-button {
   background-color: #15cda8;
+  width: 140px;
+  height: 50px;
+  font-size: 15px;
+}
+
+.lobby-nav-container {
+  width: 40vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+button.create-room-button:hover {
+  background-color: #15cda8;
+  width: 140px;
+  height: 50px;
+  font-size: 17px;
 }
 
 /* Custom dropdown */
@@ -781,26 +836,28 @@ p.jumbotron-p {
   }
 
   button.nav-signup-button {
-    width: 6vw;
-    height: 5vh;
-    font-size: 1vw;
-  }
-
-  button.nav-signup-button:hover {
-    width: 6vw;
-    height: 5vh;
-    font-size: 1.1vw;
-    background-color: #1abc9c;
-  }
-
-  button.create-room-button {
-    width: 15vw !important;
+    width: 7vw;
+    height: 6vh;
     font-size: 1.2vw;
     border: none;
   }
 
+  button.nav-signup-button:hover {
+    font-size: 1.3vw;
+    background-color: #1abc9c;
+    border: none;
+  }
+
+  button.create-room-button {
+    width: 10vw !important;
+    font-size: 1.2vw;
+    border: none;
+    
+  }
+
   button.create-room-button:hover {
     background-color: #1abc9c;
+    font-size: 1.3vw;
     border: none;
   }
 
