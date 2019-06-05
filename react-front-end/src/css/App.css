@@ -515,6 +515,7 @@ img.answerer-img {
 
   input.write_msg {
     width: 15vw;
+    height: 4.5vh;
   }
 
   button.chat-button {
