@@ -35,6 +35,14 @@ class AnswererDeck extends Component {
     return this.selectedAnswer ? [this.selectedAnswer] : this.props.activeUserInfo.answerCards;
   }
 
+  get AllAnswerCards() {
+    let gameStatus = this.props.gameState.gameInfo.status
+    if (gameStatus.startsWith("All answers have been submitted,")){
+      return this.props.activeUserInfo.answerCards
+    }else{
+      return this.AnswerCards
+    }
+  }
 
   render() {
     // const selectedAnswers = this.state.answers;
@@ -45,7 +53,7 @@ class AnswererDeck extends Component {
         <div className=' answerers-cards'>
         
           <div className='d-inline-flex flex-row'>
-          {this.AnswerCards.map((answer, index) => {
+          {this.AllAnswerCards.map((answer, index) => {
             return (
               <div className='deckCard card answer-card' key={index} onClick={() => {this.props.onSelectAnswer(answer)}}>
                 <div className='cardContainer'>

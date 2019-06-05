@@ -199,6 +199,17 @@ class Game extends Component {
     //check again if this person should show  
     if (questionerID === this.props.userData.id){
       isAnswerer = false;  
+    }
+    if (currentStatus.startsWith("All answers have been submitted,")){
+      console.log('ANSWER AREA: Inside All answers have been submitted, ')
+      // all answer cards have been selected by every player
+      isAnswerer = true;
+      // need to input the all player selected cards into activeUserInfo
+      // empty the answer cards array first, then push in the values
+      activeUserInfo.answerCards = []
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1].selecetedCard)
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2].selecetedCard)
+      console.log(activeUserInfo.answerCards)
     } 
     // if (currentStatus === 'Question selected, please choose an answer'){
     //   isAnswerer = true;
