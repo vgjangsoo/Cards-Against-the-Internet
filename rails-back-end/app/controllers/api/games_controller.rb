@@ -291,6 +291,20 @@ class Api::GamesController < ApplicationController
       game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = answer
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
+      # add a loop to see if all users have a selected card, then set game status msg to something else
+      numAnswers = 0
+      for i in 0..usersArray.length
+        if game["gameState"]["playersInfo"]["users"][i]["selectedCard"] != nil
+          numAnswers += 1
+        end
+      end
+
+      puts "Number of total answers are: #{numAnswers}"
+
+      if numAnswers == game["gameState"]["gameInfo"]["currentPlayers"]
+        game["gameState"]["gameInfo"]["status"] = "All answers have been submitted, picking best answer"
+      end
+
       # all gamestate changes should be done before this line
       # game["gameState"] = gameState
       game.save!

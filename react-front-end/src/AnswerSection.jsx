@@ -58,7 +58,7 @@ class MissingPlayerCard extends Component {
       <div className="card-body">
       <img className='card-img' src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
         <div className='player-name-section'>
-          <h6 className="answerer-status answerer-status1">Waiting to Join</h6>
+          <h6 className="answerer-status answerer-status1">Waiting to Select</h6>
         </div>
         <div className='player-status-section'>
           <h6 className="answerer-status answerer-status2">Waiting...</h6>

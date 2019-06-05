@@ -171,9 +171,9 @@ class Game extends Component {
     }
     let activeUserInfo = "";
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
-    const questionerID = this.state.gameTable.gameState.gameInfo
-      .currentQuestioner;
+    const questionerID = this.state.gameTable.gameState.gameInfo.currentQuestioner;
 
+    //for finding out the current_user in this window
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array and also check if they are questioner
       if (this.props.userData.id ===this.state.gameTable.gameState.playersInfo.users[i].id) {
@@ -195,6 +195,15 @@ class Game extends Component {
     //conditionally render based on:
     // isAnswerer = true ---- AnswererDeck
     //  isAnswerer = false --- AnswererSection
+    let currentStatus = this.state.gameTable.gameState.gameInfo.status
+    if (currentStatus === 'Question selected, please choose an answer'){
+      isAnswerer = true;
+    }
+    if (currentStatus.startsWith('Answer have been submitted by')){
+      //probably need to add more conditions to filter out other player status
+      isAnswerer = false;
+    }
+
     return (
       <div>
         {isAnswerer ? (

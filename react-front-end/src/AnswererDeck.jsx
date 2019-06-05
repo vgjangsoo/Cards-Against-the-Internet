@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './css/App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import WaitingPlayerCard from "./WaitingPlayerCard.jsx";
 
 class AnswererDeck extends Component {
   constructor(props) {
@@ -13,21 +14,7 @@ class AnswererDeck extends Component {
   }
 
   componentDidMount() {
-    //this.fetchAnswerCards();
-    // check currentUser id and match to this.props.gameState user.id
-    // render only that players cards
-    // let numPlayers = this.props.gameState.gameInfo.currentPlayers
-    // console.log(this.props)
-    // for (let i= 0; i < numPlayers-1; i++ ){
-      //   if (this.props.userData.id === this.props.gameState.playersInfo.users[i].id){
-        //     console.log('FOUND currentUser in playersInfo, id:', this.state.currentUser.id )
-        //     for (let k=0; k<5; k++){
-          //       //push in 5 answer cards
-          //       tempCards.push(this.props.gameState.playersInfo.users[i].answerCards[k])
-          //     }
-          //   }
-          // }
-          
+    
     const tempCards = [];
     for (let k=0; k<5; k++){
       //push in 5 answer cards
@@ -66,3 +53,4 @@ class AnswererDeck extends Component {
 }
 
 export default AnswererDeck;
+
