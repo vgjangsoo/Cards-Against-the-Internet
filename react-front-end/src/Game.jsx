@@ -207,8 +207,10 @@ class Game extends Component {
       // need to input the all player selected cards into activeUserInfo
       // empty the answer cards array first, then push in the values
       activeUserInfo.answerCards = []
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1].selecetedCard)
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2].selecetedCard)
+      console.log('selected answer card 1 is:', this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
       console.log(activeUserInfo.answerCards)
     } 
     // if (currentStatus === 'Question selected, please choose an answer'){
