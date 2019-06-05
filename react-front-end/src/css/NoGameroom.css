@@ -1,0 +1,47 @@
+.noGame-container {
+    border: 0.5vw solid black;
+    border-radius: 1vw;
+    margin-top: 4%;
+    width: 85vw;
+    height: 60vh;
+}
+
+.noGame-header {
+    background-color: #9E9E9E;
+    height: 9vh;
+    border-top-left-radius: 0.5vw;
+    border-top-right-radius: 0.5vw;
+
+}
+
+.noGame-body {
+    /* width: 84vw;
+    height: 55vh; */
+    display: flex;
+    justify-content: flex-start;
+}
+
+.noGame-body1 {
+    background-color: #212529;
+    width: 20%;
+    height: 49.2vh;
+    border-bottom-left-radius: 0.4vw;
+}
+
+.noGame-body2 {
+    background-color: #fff;
+    width: 80%;
+    border-bottom-right-radius: 0.4vw;
+}
+
+.noGame-body1-content {
+    color: white;
+    font-size: 12vw;
+    padding-top: 25%;
+}
+
+.noGame-body2-content {
+    font-size: 3.7vw;
+    padding-top: 13%;
+    border-bottom: 4px solid #212529;
+}

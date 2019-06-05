@@ -106,8 +106,8 @@ class Home extends Component {
     console.log('currentUser is:',currentUser )
     return (
       <Route>
-       <Nav onOpen={this.openModal} onLogout= {this.handleLogout} userData={this.props.userData} openLeaderModal={this.openLeaderModal} />
-       <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal} />
+       <Nav onOpen={this.openModal} onLogout= {this.handleLogout} userData={this.props.userData} openLeaderModal={this.openLeaderModal}/>
+       <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal} userData={this.props.userData}/>
        <Footer onOpen={this.openModal}/>
        <div>
          {this.state.showModal ? (<LoginModal onClose={this.closeModal} handleSignUp={this.handleSignUp} handleLogin={this.handleLogin}/>) : null}

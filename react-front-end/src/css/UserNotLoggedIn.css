@@ -3,3 +3,22 @@
   width: 50%;
   padding: 5%;
 }
+
+.page-img {
+  width: 35vw !important;
+  margin-top: -5%;
+  margin-left: 10%;
+}
+
+.page-header {
+  font-size: 4.5vw;
+  margin-left: 20%;
+}
+
+.link-to-home {
+  font-size: 2vw;
+  font-weight: 500;
+  margin-left: 25%;
+  text-decoration: none;
+  border: 0.2vw solid black;
+}

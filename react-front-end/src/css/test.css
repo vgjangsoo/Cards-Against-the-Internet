@@ -13,8 +13,9 @@
     }
   
     h6.game-round, h6.game-player {
-      font-size: 1.1vw;
+      font-size: 1vw;
     }
+    
   
     /* Questioner Section */
     h6.game-number {
