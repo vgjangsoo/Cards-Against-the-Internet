@@ -46,3 +46,54 @@ button.idea-button {
 form.idea-form {
     background-color: #dedede;
 }
+
+/* Leaderboard CSS */
+
+.table-th {
+    background-color: gray;
+    width: 15vw;
+    height: 3vh;
+}
+
+table {
+  color: black;
+  border-spacing: 0;
+}
+
+tr:first-child{
+  background-color: gray;
+  width: 20vw !important;
+}
+
+tr:nth-child(2) > td{
+  border-top-width: 0;
+}
+
+tr{
+  background-color: darken(gray, 20%);
+}
+
+th, td{
+  margin: 0;
+  padding: .5em 1.5em;
+  text-align: center;
+  border-width: 1px 0;
+  border-color: gray;
+  border-style: solid;
+}
+
+th{
+  border-bottom-width: 1px;
+}
+
+th:nth-child(even){
+  border-width: 0 4px;
+  border-color: darken(gray, 20%);
+  border-style: solid;
+}
+
+td:nth-child(even){
+  border-width: 1px 4px;
+  border-color: gray;
+  border-style: solid;
+}
