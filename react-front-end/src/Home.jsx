@@ -99,7 +99,7 @@ class Home extends Component {
     return (
       <Route>
        <Nav onOpen={this.openModal} onLogout= {this.handleLogout} userData={this.props.userData}/>
-       <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal}/>
+       <Banner onOpen={this.openModal} openIdeaModal={this.openIdeaModal} userData={this.props.userData}/>
        <Footer onOpen={this.openModal}/>
        <div>
          {this.state.showModal ? (<LoginModal onClose={this.closeModal} handleSignUp={this.handleSignUp} handleLogin={this.handleLogin}/>) : null}
