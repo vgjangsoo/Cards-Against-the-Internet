@@ -138,9 +138,25 @@
   border: none;
 }
 
+button.banner-button-banner {
+  width: 15vw;
+}
+
 .banner-button:hover {
   border-color: #1abc9c;
   background-color: #1abc9c;
+}
+
+p.jumbotron-p {
+  color: white;
+  font-size: 2vw;
+  font-weight: 500;
+  width: 45vw;
+}
+
+.banner-extra {
+  margin-top: -1%;
+  font-size: 1.8vw;
 }
 
 input.room-theme {
@@ -813,10 +829,12 @@ div.jumbotron {
 
 h1.jumbotron-h1 {
   color: white;
+  font-size: 6vw;
+  font-weight: 500;
 }
 
-p.jumbotron-p {
-  color: white;
+h3.banner-blah {
+  font-size: 1.2vw;
 }
 
 @media screen and (max-width: 765px) {
@@ -876,11 +894,12 @@ p.jumbotron-p {
   }
 
   h1.jumbotron-h1 {
-    font-size: 5vw;
+    font-size: 6vw;
+    font-weight: 500;
   }
 
   p.jumbotron-p {
-    font-size: 1.3vw;
+    font-size: 2vw;
   }
 
   button.banner-button {

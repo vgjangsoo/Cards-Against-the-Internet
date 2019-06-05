@@ -18,8 +18,8 @@ class Banner extends Component {
           <div className="jumbotron">
             <div className="container banner-container">
               <h1 className="display-3 jumbotron-h1"> Hello, Trolls!</h1>
-              <p className="jumbotron-p">Cards Against Internet is for horrible pelple... blah blah blah blah blah</p>
-              <p><button className="btn btn-dark btn-lg banner-button" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
+              <p className="jumbotron-p">What is Cards Against Internet?<br></br> <h3 className="banner-blah">Blah blah blah blah..........</h3> <br></br> <h4 className="banner-extra">Play the game and find out yourself!</h4></p>
+              <p><button className="btn btn-dark btn-lg banner-button banner-button-banner" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
             </div>
           </div>
 
@@ -28,7 +28,7 @@ class Banner extends Component {
             <div className="row option-row">
               <div className="col-md-4 option-section">
                 <h2 className="option-header">Quick Start</h2>
-                <p className="option-p">You don't need to register to play and enjoy our Everyone version that is suitable for people in all ages! </p>
+                <p className="option-p">Create an account first to play and enjoy our Everyone version that is suitable for people in all ages! </p>
                 <Link to="/lobby"><p><span style={{color: 'white', textDecoration: 'none'}} className="btn btn-dark btn-md banner-button" role="button">Go to Lobby &raquo;</span></p></Link>
               </div>
               <div className="col-md-4 option-section">
@@ -40,7 +40,7 @@ class Banner extends Component {
               </div>
               <div className="col-md-4 option-section">
                 <h2 className="option-header">Make own cards</h2>
-                <p className="option-p">Do you want to share your stuid ideas? Create your own cards and share your trollness with other players!</p>
+                <p className="option-p">Do you want to share your stupid ideas? Create your own cards and share your trollness with other players!</p>
                 <p><button className="btn btn-dark btn-md banner-button" onClick={this.props.openIdeaModal} role="button">Share Your Ideas &raquo;</button></p>
               </div>
             </div>
