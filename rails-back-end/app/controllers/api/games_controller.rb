@@ -252,19 +252,19 @@ class Api::GamesController < ApplicationController
       puts params['userID']
       question = params['question'].to_s
       userID = params['userID'].to_i
-      usersArray = gameState["playersInfo"]["users"]
+      usersArray = game["gameState"]["playersInfo"]["users"]
       # userIndex = params['userIndex'].to_i
       
       # need to find the users[index] in order to set the correct user
       userIndex = usersArray.index { |user| user["id"] === userID }
       puts "userIndex is #{userIndex}"
 
-      gameState["gameInfo"]["status"] = "Question selected, please choose an answer"
-      gameState["gameInfo"]["selectedQuestion"] = question
-      gameState["playersInfo"]["users"][userIndex]["selectedCard"] = question
-      gameState["playersInfo"]["users"][userIndex]["status"] = 'ready'
+      game["gameState"]["gameInfo"]["status"] = "Question selected, please choose an answer"
+      game["gameState"]["gameInfo"]["selectedQuestion"] = question
+      game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = question
+      game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
-      game["gameState"] = gameState
+
       game.save!
       puts "=== end of type - question-card-selected ==== "
 
@@ -279,7 +279,7 @@ class Api::GamesController < ApplicationController
       puts params['userID']
       answer = params['answer'].to_s
       userID = params['userID'].to_i
-      usersArray = gameState["playersInfo"]["users"]
+      usersArray = game["gameState"]["playersInfo"]["users"]
       # userIndex = params['userIndex'].to_i
       
       # need to find the users[index] in order to set the correct user
@@ -287,12 +287,12 @@ class Api::GamesController < ApplicationController
       puts "userIndex is #{userIndex}"
 
       # need to show number of answers have been selected
-      gameState["gameInfo"]["status"] = "Answer have been submitted by User ID:#{userID}"
-      gameState["playersInfo"]["users"][userIndex]["selectedCard"] = answer
-      gameState["playersInfo"]["users"][userIndex]["status"] = 'ready'
+      game["gameState"]["gameInfo"]["status"] = "Answer have been submitted by User ID:#{userID}"
+      game["gameState"]["playersInfo"]["users"][userIndex]["selectedCard"] = answer
+      game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
       # all gamestate changes should be done before this line
-      game["gameState"] = gameState
+      # game["gameState"] = gameState
       game.save!
       puts "=== end of type - answer-card-selected ==== "
     

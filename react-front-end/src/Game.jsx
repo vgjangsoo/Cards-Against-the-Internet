@@ -108,7 +108,8 @@ class Game extends Component {
     });
   }
 
-  handlerPlayQuestion(){
+  handlerPlayQuestion(event){
+    event.preventDefault();
     console.log('question play card button pressed')
     const question = this.state.selectedQuestion;
     console.log('question is:', question)
@@ -128,7 +129,8 @@ class Game extends Component {
     //need to clear both selectedAnswer and selectedQuestion after posting?
   }
 
-  handlerPlayAnswer(){
+  handlerPlayAnswer(event){
+    event.preventDefault();
     console.log('answer play card button pressed')
     const answer = this.state.selectedAnswer;
     console.log('answer is:', answer)
