@@ -862,6 +862,7 @@ h3.banner-blah {
     height: 5vh;
     font-size: 1.2vw;
     border: none;
+    margin-top: -2%;
   }
 
   button.nav-signup-button:hover {
@@ -911,7 +912,7 @@ h3.banner-blah {
   span.banner-button {
     width: 12vw;
     height: 3vw;
-    padding-top: 2.5%;
+    padding-top: 0.5vw;
     font-size: 1.2vw;
   }
 
