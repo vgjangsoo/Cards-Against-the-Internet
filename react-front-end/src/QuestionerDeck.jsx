@@ -60,7 +60,7 @@ class QuestionerDeck extends Component {
     return (
       <div>
         <h4>Questioner's Cards</h4>
-        <div className='d-flex flex-row justify-content-around'>
+        <div className='d-flex flex-row questioner-content-card'>
           {this.questionCards.map((question, index )=> {
 
             return (

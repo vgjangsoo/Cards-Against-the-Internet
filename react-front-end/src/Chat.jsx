@@ -3,6 +3,23 @@ import axios from 'axios';
 import './css/App.css';
 
 class Chat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: []
+    }
+
+    this.handleChatMessage = this.handleChatMessage.bind(this);
+  }
+
+  handleChatMessage(event) {
+    event.preventDefault();
+    const newMessage = event.target.msg.value;
+
+    this.setState({ messages: [...this.state.messages, newMessage] });
+
+    event.target.msg.value="";
+  }
 
   render() {
     console.log("FROM CHAT.jsx: ", this.props);
@@ -21,16 +38,23 @@ class Chat extends Component {
         <h5 className="chat-header">Chat</h5>
 
         <div className="incoming-msg">
-
+    
+        {this.state.messages.map(e => {
+            return (
+              <p className="chat-message">{e}</p>
+            )
+          })}
         </div>
         <div className="d-flex flex-row justify-content-around">
+          <form className="chat-form" onSubmit={this.handleChatMessage}>
+          
           <div>
-            <input type="chat-input" id="cha-input" className="form-control write_msg" placeholder="Let's chat!"></input>
+            <input type="chat-input" id="msg" className="form-control write_msg" placeholder="Let's chat!"></input>
           </div>
-            <button className="btn btn-dark btn-md p-1 chat-button">
+            <button type="submit" className="btn btn-dark btn-md p-1 chat-button">
               Send
             </button>
-          <button className='btn-md btn btn-dark p-1 chat-button'> 😀</button>
+          </form>
         </div>
       </div>
     );
@@ -38,3 +62,6 @@ class Chat extends Component {
 }
 
 export default Chat;
+
+
+

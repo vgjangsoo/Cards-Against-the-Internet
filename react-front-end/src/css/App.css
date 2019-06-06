@@ -231,8 +231,9 @@ button.close-button {
 
 .gameroom-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 40vw;
+  padding-top: 4vw !important;
 }
 
 .game-round, .game-player {
@@ -265,6 +266,11 @@ button.close-button {
   margin-top: 200px;
   border: 5px solid black !important;
   background-color: #EEE;
+}
+
+.questioner-content-card {
+  display: flex;
+  justify-content: center;
 }
 
 .game-card-logo {
@@ -300,7 +306,7 @@ button.close-button {
 .game-status-button {
   background-color: #1abc9c;
   border: none;
-  width: 190px; 
+  width: 12vw; 
   height: 45px;
   font-size: 18px;
 }
@@ -347,6 +353,7 @@ div.answerer-card-section {
 img.answerer-img {
   width: 8.1vw !important;
   height: 8.1vw !important;
+  margin-left: 0.6vw;
 }
 
 /* In game before the game starts */
@@ -354,9 +361,9 @@ img.answerer-img {
   padding-top: 1%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  width: 160px !important;
-  margin-right: 1.5%; 
+  justify-content: center;
+  width: 10vw !important;
+  margin-right: 0.5vw;
 }
 
 .player-status-section {
@@ -366,6 +373,7 @@ img.answerer-img {
   border: 2px solid;
   border-radius: 5px;
   width: 9vw;
+  margin-left: 0vw;
 }
 
 .answerer-status-section {
@@ -375,6 +383,10 @@ img.answerer-img {
 
 @media screen and (min-width: 1350px) {
   /* Nav Section */
+  .gameroom-info {
+    padding-top: 2.8vw !important;
+  }
+
   button.game-nav-button {
     width: 9vw;
     height: 5vh;
@@ -413,6 +425,10 @@ img.answerer-img {
     height: 30vh;
   }
 
+  .player-status-section {
+    margin-left: 0.6vw;
+  }
+
   /* Status Section */
   h6.game-status-message {
     font-size: 1.7vw;
@@ -420,7 +436,7 @@ img.answerer-img {
 
   button.game-status-button {
     border: none;
-    width: 14vw; 
+    width: 12vw; 
     height: 6vh;
     margin-top: -2%;
     margin-left: -1.5vw;
@@ -452,6 +468,7 @@ img.answerer-img {
   img.answerer-img {
     width: 8vw !important;
     height: 8vw !important;
+    margin-left: 1.2vw;
   }
 
   h6.answerer-ID {
@@ -525,11 +542,13 @@ img.answerer-img {
 
   div.incoming-msg {
     height: 26vh;
+    padding-top: 0.5vw;
   }
 
   input.write_msg {
-    width: 15vw;
+    width: 18vw;
     height: 4.5vh;
+    font-size: 1.2vw;
   }
 
   button.chat-button {
@@ -554,6 +573,14 @@ img.answerer-img {
   margin-top: -694px;
   margin-left: 75vw;
   width: 310px; 
+}
+
+.chat-form {
+  width: 24vw;
+  display: flex;
+  flex-direction: row;
+  background-color: #eee;
+  padding: 0.2vw;
 }
 
 .history-header {
@@ -593,6 +620,12 @@ img.answerer-img {
   border: 5px solid black;
   height: 430px;
   background-color: #EEE;
+  overflow: hidden;
+}
+
+p.chat-message {
+  margin-left: 0.5vw;
+  font-size: 1vw;
 }
 
 .incoming-msg {
@@ -600,11 +633,14 @@ img.answerer-img {
   border: 5px solid black;
   border-radius: 5px;
   background-color: white;
+  overflow: scroll;
 }
 
 .chat-button {
-  height: 4.7vh;
-  margin-top: 3%;
+  height: 4.5vh !important;
+  width: 5vw !important;
+  font-size: 1.2vw;
+  margin-left: 2%;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -862,6 +898,7 @@ h3.banner-blah {
     height: 5vh;
     font-size: 1.2vw;
     border: none;
+    margin-top: -2%;
   }
 
   button.nav-signup-button:hover {
@@ -911,7 +948,7 @@ h3.banner-blah {
   span.banner-button {
     width: 12vw;
     height: 3vw;
-    padding-top: 2.5%;
+    padding-top: 0.5vw;
     font-size: 1.2vw;
   }
 
