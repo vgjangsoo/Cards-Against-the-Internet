@@ -241,14 +241,27 @@ class Game extends Component {
       console.log('ANSWER AREA: Inside All answers have been submitted, ')
       // all answer cards have been selected by every player
       isAnswerer = true;
+
       // need to input the all player selected cards into activeUserInfo
       // empty the answer cards array first, then push in the values
+
+      // need to loop and push in the correct cards according to user ID
       activeUserInfo.answerCards = []
-      console.log('selected answer card 1 is:', this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
-      console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
-      console.log(activeUserInfo.answerCards)
+      // console.log('selected answer card 1 is:', this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      // activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      // console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      // activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      // console.log(activeUserInfo.answerCards)
+
+      const userSize = this.state.gameTable.gameState.playersInfo.users.length
+
+      for( let index = 0; index < userSize-1; index++ ){
+        if ( this.state.gameTable.gameState.playersInfo.users[index].id !== questionerID ){
+          activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[index]['selectedCard'])
+          console.log(activeUserInfo.answerCards)
+        }
+      }
+
     }
 
     if (currentStatus.startsWith("The best answer")){
