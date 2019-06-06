@@ -431,12 +431,12 @@ img.answerer-img {
 
   /* Status Section */
   h6.game-status-message {
-    font-size: 1.7vw;
+    font-size: 1.4vw;
   }
 
   button.game-status-button {
     border: none;
-    width: 12vw; 
+    width: 10vw; 
     height: 6vh;
     margin-top: -2%;
     margin-left: -1.5vw;

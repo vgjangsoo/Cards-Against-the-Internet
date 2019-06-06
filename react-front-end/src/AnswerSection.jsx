@@ -61,7 +61,7 @@ class MissingPlayerCard extends Component {
     <div className="deckCardBeforeStart card answer-card" style={{width: "18rem"}}>
     <div className='cardContainer answerer-card-section'>
       <div className="card-body">
-      <img className='card-img answerer-img' src="http://www.pngall.com/wp-content/uploads/2016/06/Kanye-West-PNG-Pic.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
+      <img className='card-img answerer-img' src="http://assets.stickpng.com/thumbs/580b585b2edbce24c47b2a2c.png" alt="Avatar" style={{width: "100%", height: "100px"}}/>
         <div className='player-name-section'>
           <h6 className="answerer-status answerer-status1">Waiting to Select</h6>
         </div>
