@@ -52,8 +52,11 @@ class QuestionerDeck extends Component {
   // }
 
   onQuestionCardClick = (index) => {
-    console.log('cardIndex is:', index);
-    this.props.onSelectQuestion(this.state.questions[index])
+    console.log('INSIDE onQuestionCardClick - cardIndex is:', index);
+    // probably need to select from questionCards method
+    console.warn('INSIDE questionerDeck - this.state.questions[index]',this.state.questions[index])
+    console.warn('INSIDE questionerDeck - this.questionCards[index]', this.questionCards[index] )
+    this.props.onSelectQuestion(this.questionCards[index])
     this.setState({selectedIndex: index})
   };
 

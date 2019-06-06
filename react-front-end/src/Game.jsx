@@ -135,6 +135,8 @@ class Game extends Component {
     const type = "question-card-selected";
     const gameState = this.state.gameTable.gameState;
     const userID = this.props.userData.id;
+    console.log("userID is:", userID);
+    // userID is not being sent on 2nd round
     // const userIndex = this.state.userIndex
 
     axios
@@ -254,11 +256,13 @@ class Game extends Component {
       // console.log(activeUserInfo.answerCards)
 
       const userSize = this.state.gameTable.gameState.playersInfo.users.length
-
-      for( let index = 0; index < userSize-1; index++ ){
+      console.log('INSIDE ANSWER AREA, userSize:', userSize)
+      console.log('questionerID is:', questionerID)
+      for( let index = 0; index < (userSize); index++ ){
+        console.warn(`FOR LOOP, testing user[${index}]`)
         if ( this.state.gameTable.gameState.playersInfo.users[index].id !== questionerID ){
           activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[index]['selectedCard'])
-          console.log(activeUserInfo.answerCards)
+          console.log('activeUserInfo.answerCards -- new selectedCard',activeUserInfo.answerCards)
         }
       }
 
