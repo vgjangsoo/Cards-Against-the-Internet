@@ -52,10 +52,9 @@ class Game extends Component {
     this.QuestionArea = this.QuestionArea.bind(this);
     this.onSelectAnswer = this.onSelectAnswer.bind(this);
     this.onSelectQuestion = this.onSelectQuestion.bind(this);
-    this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this)
-    this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this)
-    this.handlerNextRound = this.handlerNextRound.bind(this)
-
+    this.handlerPlayQuestion = this.handlerPlayQuestion.bind(this);
+    this.handlerPlayAnswer = this.handlerPlayAnswer.bind(this);
+    this.handlerNextRound = this.handlerNextRound.bind(this);
   }
 
   componentDidMount() {
@@ -109,26 +108,27 @@ class Game extends Component {
     });
   }
 
-  handlerNextRound(event){
+  handlerNextRound(event) {
     event.preventDefault();
-    console.log('next round button is clicked')
+    console.log("next round button is clicked");
 
     //need to send some type message for game to start new round
     const gameRoomId = this.props.match.params.id;
-    const type = 'next-round'
-    const userID = this.props.userData.id
+    const type = "next-round";
+    const userID = this.props.userData.id;
 
-    axios.put(`${API_ROOT}/games/${gameRoomId}?userID=${userID}`, {
-      type: type
-    }).then(res =>{
-      console.log('PUT handlerNextRound successful, res:', res)
-    });
-
+    axios
+      .put(`${API_ROOT}/games/${gameRoomId}?userID=${userID}`, {
+        type: type
+      })
+      .then(res => {
+        console.log("PUT handlerNextRound successful, res:", res);
+      });
   }
 
-  handlerPlayQuestion(event){
+  handlerPlayQuestion(event) {
     event.preventDefault();
-    console.log('question play card button pressed')
+    console.log("question play card button pressed");
     const question = this.state.selectedQuestion;
     console.log("question is:", question);
     const gameRoomId = this.props.match.params.id;
@@ -152,27 +152,32 @@ class Game extends Component {
     //need to clear both selectedAnswer and selectedQuestion after posting?
   }
 
-  handlerPlayAnswer(event){
+  handlerPlayAnswer(event) {
     event.preventDefault();
-    console.log('answer play card button pressed')
+    console.log("answer play card button pressed");
     const answer = this.state.selectedAnswer;
-    console.log('answer is:', answer)
+    console.log("answer is:", answer);
     const gameRoomId = this.props.match.params.id;
-    let type = 'answer-card-selected'
+    let type = "answer-card-selected";
     //gameState is not being used right now in back end for any updates, maybe can remove from request?
     const gameState = this.state.gameTable.gameState;
-    const userID = this.props.userData.id
-    const status = this.state.gameTable.gameState.gameInfo.status
-    if (status.startsWith('All answers have been submitted,')){
-      type = 'questioner-picked-answer-card'
+    const userID = this.props.userData.id;
+    const status = this.state.gameTable.gameState.gameInfo.status;
+    if (status.startsWith("All answers have been submitted,")) {
+      type = "questioner-picked-answer-card";
     }
 
-    axios.put(`${API_ROOT}/games/${gameRoomId}?answer=${answer}&userID=${userID}`, {
-      type: type,
-      gameState: gameState
-    }).then(res =>{
-      console.log('PUT handlerPlayAnswer successful, res:', res)
-    });
+    axios
+      .put(
+        `${API_ROOT}/games/${gameRoomId}?answer=${answer}&userID=${userID}`,
+        {
+          type: type,
+          gameState: gameState
+        }
+      )
+      .then(res => {
+        console.log("PUT handlerPlayAnswer successful, res:", res);
+      });
 
     //need to clear both selectedAnswer and selectedQuestion after posting?
   }
@@ -205,7 +210,8 @@ class Game extends Component {
     }
     let activeUserInfo = "";
     const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
-    const questionerID = this.state.gameTable.gameState.gameInfo.currentQuestioner;
+    const questionerID = this.state.gameTable.gameState.gameInfo
+      .currentQuestioner;
 
     //for finding out the current_user in this window
     for (let i = 0; i <= numPlayers - 1; i++) {
@@ -222,36 +228,46 @@ class Game extends Component {
       debugger;
     }
 
-    //trying to only render the QuestionDeck or Question section based on activeUserInfo 
-    let isAnswerer = activeUserInfo.answerCards.length > 0
-    const playerID = this.props.userData.id.toString()
+    //trying to only render the QuestionDeck or Question section based on activeUserInfo
+    let isAnswerer = activeUserInfo.answerCards.length > 0;
+    const playerID = this.props.userData.id.toString();
     // let waitingPlayers = 1;
 
     console.log("ANSWERS activeUserInfo:", activeUserInfo);
     //conditionally render based on:
     // isAnswerer = true ---- AnswererDeck
     //  isAnswerer = false --- AnswererSection
-    let currentStatus = this.state.gameTable.gameState.gameInfo.status
-    
-    //check again if this person should show  
-    if (questionerID === this.props.userData.id){
-      isAnswerer = false;  
+    let currentStatus = this.state.gameTable.gameState.gameInfo.status;
+
+    //check again if this person should show
+    if (questionerID === this.props.userData.id) {
+      isAnswerer = false;
     }
-    if (currentStatus.startsWith("All answers have been submitted,")){
-      console.log('ANSWER AREA: Inside All answers have been submitted, ')
+    if (currentStatus.startsWith("All answers have been submitted,")) {
+      console.log("ANSWER AREA: Inside All answers have been submitted, ");
       // all answer cards have been selected by every player
       isAnswerer = true;
       // need to input the all player selected cards into activeUserInfo
       // empty the answer cards array first, then push in the values
-      activeUserInfo.answerCards = []
-      console.log('selected answer card 1 is:', this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
-      console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
-      console.log(activeUserInfo.answerCards)
+      activeUserInfo.answerCards = [];
+      console.log(
+        "selected answer card 1 is:",
+        this.state.gameTable.gameState.playersInfo.users[1]["selectedCard"]
+      );
+      activeUserInfo.answerCards.push(
+        this.state.gameTable.gameState.playersInfo.users[1]["selectedCard"]
+      );
+      console.log(
+        "selected answer card 2 is:",
+        this.state.gameTable.gameState.playersInfo.users[2]["selectedCard"]
+      );
+      activeUserInfo.answerCards.push(
+        this.state.gameTable.gameState.playersInfo.users[2]["selectedCard"]
+      );
+      console.log(activeUserInfo.answerCards);
     }
 
-    if (currentStatus.startsWith("The best answer")){
+    if (currentStatus.startsWith("The best answer")) {
       isAnswerer = true;
       // need to find the index of the user with winning answer!!!
       // let winnerIndex = this.state.gameTable.gameState.playersInfo.users.find( function(user){
@@ -260,19 +276,21 @@ class Game extends Component {
       // console.log('winnerIndex is:', winnerIndex)
 
       // empty the answer cards array first, then push in the values
-      activeUserInfo.answerCards = []
-      activeUserInfo.answerCards.push(this.state.gameTable.gameState.gameInfo.selectedAnswer)
+      activeUserInfo.answerCards = [];
+      activeUserInfo.answerCards.push(
+        this.state.gameTable.gameState.gameInfo.selectedAnswer
+      );
     }
-
 
     return (
       <div>
         {isAnswerer ? (
-          <AnswererDeck 
-          gameState={gameState} 
-          activeUserInfo={activeUserInfo} 
-          onSelectAnswer={this.onSelectAnswer}
-          userData={this.props.userData}/>
+          <AnswererDeck
+            gameState={gameState}
+            activeUserInfo={activeUserInfo}
+            onSelectAnswer={this.onSelectAnswer}
+            userData={this.props.userData}
+          />
         ) : (
           <AnswerSection
             userStatus={gameTable.gameState.playersInfo}
@@ -293,12 +311,15 @@ class Game extends Component {
     }
     // Here, game have started. currentRound > 0
     let activeUserInfo;
-    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers
+    const numPlayers = this.state.gameTable.gameState.gameInfo.currentPlayers;
 
     for (let i = 0; i <= numPlayers - 1; i++) {
       //trying to find the ONE player in playersInfo.user array
-      if (this.props.userData.id === this.state.gameTable.gameState.playersInfo.users[i].id){
-        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i]
+      if (
+        this.props.userData.id ===
+        this.state.gameTable.gameState.playersInfo.users[i].id
+      ) {
+        activeUserInfo = this.state.gameTable.gameState.playersInfo.users[i];
         break;
       }
     }
@@ -306,25 +327,23 @@ class Game extends Component {
       debugger;
     }
 
-
     //trying to only render the QuestionDeck or Question section based on activeUserInfo
     let isQuestioner = activeUserInfo.questionCards.length > 0;
     let currentStatus = this.state.gameTable.gameState.gameInfo.status;
     if (currentStatus === "Question selected, please choose an answer") {
       isQuestioner = true;
     }
-    if (currentStatus.startsWith('Answer have been submitted by')){
+    if (currentStatus.startsWith("Answer have been submitted by")) {
       isQuestioner = true;
     }
-    if (currentStatus.startsWith("All answers have been submitted,")){
+    if (currentStatus.startsWith("All answers have been submitted,")) {
       isQuestioner = true;
     }
-    if (currentStatus.startsWith("The best answer")){
+    if (currentStatus.startsWith("The best answer")) {
       isQuestioner = true;
     }
     // maybe send down isQuestioner as a prop to use?
     // should do most of the conditional rendering logic here in the parent, only send down static data to let component render
-
 
     return (
       <div>
@@ -373,9 +392,9 @@ class Game extends Component {
                       {gameTable.maxPlayers}
                     </h6>
                     <h6 className="game-logged-ID">
-                    Logged in: {this.props.userData.username}/ ID:
-                    {this.props.userData.id}{" "}
-                  </h6>
+                      Logged in: {this.props.userData.username}/ ID:
+                      {this.props.userData.id}{" "}
+                    </h6>
                   </div>
                 </nav>
                 <nav className="my-2 my-md-1 mr-md-3">
@@ -421,22 +440,29 @@ class Game extends Component {
                           Play Q Card
                         </button>
                       </div>
-                      <div>
-                        <button className='btn btn-dark btn-md p-2 game-status-button' onClick={this.handlerNextRound} >Next Round</button>
-                      </div>
-                      <div>
-                      {
-                        <h6 className="game-status-message">
-                          {gameTable.gameState.gameInfo.status}
-                        </h6>
-                      }
-                    </div>
+
                       <div className="play-card-button">
                         <button
                           className="btn btn-dark btn-md p-2 game-status-button"
                           onClick={this.handlerPlayAnswer}
                         >
                           Play A Card
+                        </button>
+                      </div>
+                      <div>
+                        {
+                          <h6 className="game-status-message">
+                            {gameTable.gameState.gameInfo.status}
+                          </h6>
+                        }
+                      </div>
+
+                      <div>
+                        <button
+                          className="btn btn-dark btn-md p-2 game-status-button"
+                          onClick={this.handlerNextRound}
+                        >
+                          Next Round
                         </button>
                       </div>
                     </div>
@@ -451,12 +477,15 @@ class Game extends Component {
                       /> */}
                     </div>
                     <br />
-                    <div className="chat-history-bar" >
+                    <div className="chat-history-bar">
                       <div>
                         <History />
                       </div>
                       <div>
-                        <Chat userInfo={gameTable.gameState.playersInfo} />
+                        <Chat
+                          userInfo={gameTable.gameState.playersInfo}
+                          handleChat={this.handleChat}
+                        />
                       </div>
                     </div>
                   </div>

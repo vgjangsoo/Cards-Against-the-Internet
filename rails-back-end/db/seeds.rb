@@ -45,12 +45,6 @@ qcard3 = baseDeck.cards.create!({
   content: "Why am I sticky?"
 })
 
-qcard4 = baseDeck.cards.create!({
-  isQuestion: true,
-  fromInternet: false,
-  content: "Uh, hey guys, I know this was my idea, but I’m having serious doubts about ____."
-})
-
 qcard5 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
@@ -195,11 +189,6 @@ qcard28 = baseDeck.cards.create!({
   content: "I’m Lebron James, and when I’m not slamming dunks, I love ____."
 })
 
-qcard29 = baseDeck.cards.create!({
-  isQuestion: true,
-  fromInternet: false,
-  content: "Bravo’s new reality show features eight washed-up celebrities living with ____."
-})
 
 qcard30 = baseDeck.cards.create!({
   isQuestion: true,
@@ -237,12 +226,6 @@ qcard35 = baseDeck.cards.create!({
   content: "Dear Abby, I’m having some trouble with ____ and would like your advice."
 })
 
-qcard36 = baseDeck.cards.create!({
-  isQuestion: true,
-  fromInternet: false,
-  content: "After four platinum albums and three Grammys, it’s time to get back to my roots, to what inspired me to make music in the first place: ____."
-})
-
 qcard37 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
@@ -255,11 +238,6 @@ qcard38 = baseDeck.cards.create!({
   content: "Coming to Broadway this season, ____: the Musical."
 })
 
-qcard39 = baseDeck.cards.create!({
-  isQuestion: true,
-  fromInternet: false,
-  content: "This is the way the world ends. This is the way the world ends. Not with a bang but with ____."
-})
 
 qcard40 = baseDeck.cards.create!({
   isQuestion: true,
@@ -331,12 +309,6 @@ qcard51 = baseDeck.cards.create!({
   isQuestion: true,
   fromInternet: false,
   content: "Why can’t I sleep at night?"
-})
-
-qcard52 = baseDeck.cards.create!({
-  isQuestion: true,
-  fromInternet: false,
-  content: "While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on ____."
 })
 
 puts 'Creating Answer cards'
@@ -648,12 +620,6 @@ acard51 = baseDeck.cards.create!({
   isQuestion: false,
   fromInternet: false,
   content: "Farting and walking away."
-})
-
-acard52 = baseDeck.cards.create!({
-  isQuestion: false,
-  fromInternet: false,
-  content: "Throwing grapes at a man until he touch with reality."
 })
 
 acard53 = baseDeck.cards.create!({
@@ -1160,11 +1126,6 @@ acard135 = baseDeck.cards.create!({
   content: "Authentic Mexican cuisine."
 })
 
-acard136 = baseDeck.cards.create!({
-  isQuestion: false,
-  fromInternet: false,
-  content: "Seeing what happens when you lock people in a room with hungry seagulls."
-})
 
 acard137 = baseDeck.cards.create!({
   isQuestion: false,
