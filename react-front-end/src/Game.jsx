@@ -135,6 +135,8 @@ class Game extends Component {
     const type = "question-card-selected";
     const gameState = this.state.gameTable.gameState;
     const userID = this.props.userData.id;
+    console.log("userID is:", userID);
+    // userID is not being sent on 2nd round
     // const userIndex = this.state.userIndex
 
     axios
@@ -247,24 +249,29 @@ class Game extends Component {
       console.log("ANSWER AREA: Inside All answers have been submitted, ");
       // all answer cards have been selected by every player
       isAnswerer = true;
+
       // need to input the all player selected cards into activeUserInfo
       // empty the answer cards array first, then push in the values
-      activeUserInfo.answerCards = [];
-      console.log(
-        "selected answer card 1 is:",
-        this.state.gameTable.gameState.playersInfo.users[1]["selectedCard"]
-      );
-      activeUserInfo.answerCards.push(
-        this.state.gameTable.gameState.playersInfo.users[1]["selectedCard"]
-      );
-      console.log(
-        "selected answer card 2 is:",
-        this.state.gameTable.gameState.playersInfo.users[2]["selectedCard"]
-      );
-      activeUserInfo.answerCards.push(
-        this.state.gameTable.gameState.playersInfo.users[2]["selectedCard"]
-      );
-      console.log(activeUserInfo.answerCards);
+
+      // need to loop and push in the correct cards according to user ID
+      activeUserInfo.answerCards = []
+      // console.log('selected answer card 1 is:', this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      // activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[1]['selectedCard'])
+      // console.log('selected answer card 2 is:', this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      // activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[2]['selectedCard'])
+      // console.log(activeUserInfo.answerCards)
+
+      const userSize = this.state.gameTable.gameState.playersInfo.users.length
+      console.log('INSIDE ANSWER AREA, userSize:', userSize)
+      console.log('questionerID is:', questionerID)
+      for( let index = 0; index < (userSize); index++ ){
+        console.warn(`FOR LOOP, testing user[${index}]`)
+        if ( this.state.gameTable.gameState.playersInfo.users[index].id !== questionerID ){
+          activeUserInfo.answerCards.push(this.state.gameTable.gameState.playersInfo.users[index]['selectedCard'])
+          console.log('activeUserInfo.answerCards -- new selectedCard',activeUserInfo.answerCards)
+        }
+      }
+
     }
 
     if (currentStatus.startsWith("The best answer")) {
