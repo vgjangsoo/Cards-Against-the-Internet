@@ -447,9 +447,15 @@ class Api::GamesController < ApplicationController
       game["gameState"]["gameInfo"]["roundWinner"] = nil
       game["gameState"]["gameInfo"]["selectedQuestion"] = nil
       game["gameState"]["gameInfo"]["selectedAnswer"] = nil
-      game["gameState"]["gameInfo"]["currentRound"] += 1
-      game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
-
+      if (game["gameState"]["gameInfo"]["currentRound"] === game["gameState"]["maxRound"])
+        # round is 5, maxRound = 5. End of game
+        game["gameState"]["gameInfo"]["status"] = "Game Over! Game have ended!"
+      else
+        # round is 0,1,2,4
+        game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
+        game["gameState"]["gameInfo"]["currentRound"] += 1
+      end
+            
 
       # all gamestate changes should be done before this line
       game.save!
