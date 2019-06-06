@@ -268,6 +268,11 @@ button.close-button {
   background-color: #EEE;
 }
 
+.questioner-content-card {
+  display: flex;
+  justify-content: center;
+}
+
 .game-card-logo {
   font-size: 25px;
 }
@@ -301,7 +306,7 @@ button.close-button {
 .game-status-button {
   background-color: #1abc9c;
   border: none;
-  width: 190px; 
+  width: 12vw; 
   height: 45px;
   font-size: 18px;
 }
@@ -431,7 +436,7 @@ img.answerer-img {
 
   button.game-status-button {
     border: none;
-    width: 14vw; 
+    width: 12vw; 
     height: 6vh;
     margin-top: -2%;
     margin-left: -1.5vw;
@@ -537,11 +542,13 @@ img.answerer-img {
 
   div.incoming-msg {
     height: 26vh;
+    padding-top: 0.5vw;
   }
 
   input.write_msg {
-    width: 15vw;
+    width: 18vw;
     height: 4.5vh;
+    font-size: 1.2vw;
   }
 
   button.chat-button {
@@ -566,6 +573,14 @@ img.answerer-img {
   margin-top: -694px;
   margin-left: 75vw;
   width: 310px; 
+}
+
+.chat-form {
+  width: 24vw;
+  display: flex;
+  flex-direction: row;
+  background-color: #eee;
+  padding: 0.2vw;
 }
 
 .history-header {
@@ -605,6 +620,12 @@ img.answerer-img {
   border: 5px solid black;
   height: 430px;
   background-color: #EEE;
+  overflow: hidden;
+}
+
+p.chat-message {
+  margin-left: 0.5vw;
+  font-size: 1vw;
 }
 
 .incoming-msg {
@@ -612,11 +633,14 @@ img.answerer-img {
   border: 5px solid black;
   border-radius: 5px;
   background-color: white;
+  overflow: scroll;
 }
 
 .chat-button {
-  height: 4.7vh;
-  margin-top: 3%;
+  height: 4.5vh !important;
+  width: 5vw !important;
+  font-size: 1.2vw;
+  margin-left: 2%;
 }
 
 /* On mouse-over, add a deeper shadow */
