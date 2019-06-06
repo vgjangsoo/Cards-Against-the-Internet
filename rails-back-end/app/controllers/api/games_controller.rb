@@ -265,8 +265,17 @@ class Api::GamesController < ApplicationController
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
       # need to modify the user status of non questioner, only works for 1 round right now
-      game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
-      game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
+
+      for index in 0..(usersArray.length-1)
+        if index != userIndex
+          game["gameState"]["playersInfo"]["users"][index]["status"] = 'selecting'
+        end
+
+      end
+
+
+      # game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
+      # game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
 
       game.save!
       puts "=== end of type - question-card-selected ==== "
@@ -388,6 +397,8 @@ class Api::GamesController < ApplicationController
         # clear out previous answer cards and question cards
         game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"] = []
         game["gameState"]["playersInfo"]["users"][playerNum]["questionCards"] = []
+        game["gameState"]["playersInfo"]["users"][playerNum]["selectedCard"] = nil
+        game["gameState"]["playersInfo"]["users"][playerNum]["status"] = 'selecting'
 
         for i in 0..4
           cardNum = rand 1...cardSize
@@ -396,7 +407,6 @@ class Api::GamesController < ApplicationController
             cardNum = rand 1...cardSize
           end
           game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
-          game["gameState"]["playersInfo"]["users"][playerNum]["status"] = 'waiting'
           puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
         end
         playerNum += 1
@@ -431,10 +441,7 @@ class Api::GamesController < ApplicationController
           puts "=== assigned new question cards to next questioner ==="
           puts quser["questionCards"]
         end
-      end
-
-
-      # need to check users[] and replace all question cards  
+      end 
 
       # need to change gameState data to next round and clear previous round's info in gameInfo, and users[]
       game["gameState"]["gameInfo"]["roundWinner"] = nil
@@ -442,8 +449,6 @@ class Api::GamesController < ApplicationController
       game["gameState"]["gameInfo"]["selectedAnswer"] = nil
       game["gameState"]["gameInfo"]["currentRound"] += 1
       game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
-
-
 
 
       # all gamestate changes should be done before this line
