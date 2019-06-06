@@ -265,8 +265,17 @@ class Api::GamesController < ApplicationController
       game["gameState"]["playersInfo"]["users"][userIndex]["status"] = 'ready'
 
       # need to modify the user status of non questioner, only works for 1 round right now
-      game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
-      game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
+
+      for index in 0..(usersArray.length-1)
+        if index != userIndex
+          game["gameState"]["playersInfo"]["users"][index]["status"] = 'selecting'
+        end
+
+      end
+
+
+      # game["gameState"]["playersInfo"]["users"][userIndex+1]["status"] = 'selecting'
+      # game["gameState"]["playersInfo"]["users"][userIndex+2]["status"] = 'selecting'
 
       game.save!
       puts "=== end of type - question-card-selected ==== "
@@ -368,18 +377,85 @@ class Api::GamesController < ApplicationController
       game["gameState"]["gameInfo"]["currentQuestioner"] = newQuestionerID.to_i
 
       # need to give the new questioner 3 black cards and clear out the answer cards of the previous questioner
+      # step 1: assign new answer cards to all players
+            
+      # assigning cards to each player (including questioner)
+      # find number of users in gameState
+      numPlayers = game["gameState"]["playersInfo"]["users"].size
+      puts "numPlayers: #{numPlayers}"
 
-      # need to check users[] and replace all question cards  
+      # find all answer cards in cards table
+      @answerCards = Card.where(isQuestion: false)  
+      puts "answerCards: #{@answerCards}"
+      puts "answerCards size: #{@answerCards.size}"
+      cardSize = @answerCards.size
+      
+      # randomly assign 5 card.context to each user
+      # puts @answerCards[0].content
+      playerNum = 0
+      while playerNum < numPlayers 
+        # clear out previous answer cards and question cards
+        game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"] = []
+        game["gameState"]["playersInfo"]["users"][playerNum]["questionCards"] = []
+        game["gameState"]["playersInfo"]["users"][playerNum]["selectedCard"] = nil
+        game["gameState"]["playersInfo"]["users"][playerNum]["status"] = 'selecting'
+
+        for i in 0..4
+          cardNum = rand 1...cardSize
+          while game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].include? (@answerCards[cardNum].content)
+            # generate another random cardNum to try again
+            cardNum = rand 1...cardSize
+          end
+          game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"].push(@answerCards[cardNum].content)
+          puts game["gameState"]["playersInfo"]["users"][playerNum]["answerCards"]
+        end
+        playerNum += 1
+      end
+
+
+      # step 2: find the new questioner and assign 3 question cards
+      # find all question cards in questions table
+      # questionerID = game["gameState"]["gameInfo"]["currentQuestioner"]
+
+      
+      puts "New QuestionerID: #{newQuestionerID}"
+      usersSize = game["gameState"]["playersInfo"]["users"].size
+
+      @questionCards = Card.where(isQuestion: true)  
+      puts "questionCards: #{@questionCards}"
+      puts "questionCards size: #{@questionCards.size}"
+      qcardSize = @questionCards.size
+
+      # loop through players.users array to find the questioner ID, then push in 3 question cards
+      for k in 0..usersSize-1
+        qcardNum = rand 1...qcardSize
+        quser = game["gameState"]["playersInfo"]["users"][k]
+        if quser["id"] === newQuestionerID 
+          for m in 0..2
+            while quser["questionCards"].include? (@questionCards[qcardNum].content)
+              # generate another random cardNum to try again
+              qcardNum = rand 1...qcardSize
+            end
+            quser["questionCards"].push(@questionCards[qcardNum].content)
+          end
+          puts "=== assigned new question cards to next questioner ==="
+          puts quser["questionCards"]
+        end
+      end 
 
       # need to change gameState data to next round and clear previous round's info in gameInfo, and users[]
       game["gameState"]["gameInfo"]["roundWinner"] = nil
       game["gameState"]["gameInfo"]["selectedQuestion"] = nil
       game["gameState"]["gameInfo"]["selectedAnswer"] = nil
-      game["gameState"]["gameInfo"]["currentRound"] += 1
-      game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
-
-
-
+      if (game["gameState"]["gameInfo"]["currentRound"] === game["gameState"]["maxRound"])
+        # round is 5, maxRound = 5. End of game
+        game["gameState"]["gameInfo"]["status"] = "Game Over! Game have ended!"
+      else
+        # round is 0,1,2,4
+        game["gameState"]["gameInfo"]["status"] = "Waiting for questioner to select card"
+        game["gameState"]["gameInfo"]["currentRound"] += 1
+      end
+            
 
       # all gamestate changes should be done before this line
       game.save!
