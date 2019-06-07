@@ -444,7 +444,7 @@ class Game extends Component {
                           className="btn btn-dark btn-md p-2 game-status-button"
                           onClick={this.handlerPlayQuestion}
                         >
-                          Play Q Card
+                          Play Question
                         </button>
                       </div>
 
@@ -453,7 +453,7 @@ class Game extends Component {
                           className="btn btn-dark btn-md p-2 game-status-button"
                           onClick={this.handlerPlayAnswer}
                         >
-                          Play A Card
+                          Play Answer
                         </button>
                       </div>
                       <div>
