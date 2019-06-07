@@ -7,10 +7,17 @@ Cards Against Internet, is a clone web application of card game, Cards Against H
 The users get to play as Questioner and Answerer. Questioner gets 3 randomized black question cards, and Answerers get 5 randomized white answer cards. Questioner chooses one question card, and Answerers choose one answer card according to the chosen question. When all answer cards are ready, Questioner chooses one answer card he likes the most and the Answerer with the chosen card gets the points and becomes the next Questioner.
 
 ## Final Product
-- Screenshot
-- Screenshot
-- Screenshot
-- Screenshot
+![1](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/1.png)
+![2](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/2.png)
+![3](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/3.png)
+![4](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/4.png)
+![5](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/5.png)
+![6](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/6.png)
+![7](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/7.png)
+![8](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/8.png)
+![9](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/9.png)
+![10](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/10.png)
+![11](https://github.com/Gimorhee/Cards-Against-the-Internet/blob/master/images/11.png)
 
 ## Setup
 For this project, we need **TWO** terminals.
