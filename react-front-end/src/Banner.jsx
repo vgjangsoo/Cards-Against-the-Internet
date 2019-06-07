@@ -18,7 +18,7 @@ class Banner extends Component {
           <div className="jumbotron">
             <div className="container banner-container">
               <h1 className="display-3 jumbotron-h1"> Hello, Trolls!</h1>
-              <p className="jumbotron-p">What is Cards Against Internet?<br></br> <h3 className="banner-blah">It's Card Against Humanity but online!!!</h3> <br></br> <h4 className="banner-extra">Play the game and find out yourself!</h4></p>
+              <p className="jumbotron-p">What is Cards Against Internet?<br></br> <h3 className="banner-blah">In's a clone web application of Cards Against Humanity designed for online play.</h3> <br></br> <h4 className="banner-extra">Play the game and find out yourself!</h4></p>
               <p><button className="btn btn-dark btn-lg banner-button banner-button-banner" onClick={this.props.onOpen} style={{color: 'white', textDecoration: 'none'}}>Login / Register &raquo;</button></p>
             </div>
           </div>
